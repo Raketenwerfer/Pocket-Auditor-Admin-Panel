@@ -16,5 +16,10 @@ namespace Pocket_Audior_Admin_Panel.Forms
         {
             InitializeComponent();
         }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

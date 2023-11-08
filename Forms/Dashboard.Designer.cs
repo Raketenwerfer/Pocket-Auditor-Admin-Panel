@@ -85,6 +85,7 @@
             Controls.Add(btnStartAudit);
             Name = "Dashboard";
             Text = "Dashboard";
+            Load += Dashboard_Load;
             ResumeLayout(false);
         }
 
