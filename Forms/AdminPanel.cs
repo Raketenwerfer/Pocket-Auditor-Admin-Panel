@@ -5,7 +5,6 @@ namespace Pocket_Audior_Admin_Panel
     public partial class AdminPanel : Form
     {
         //declare variable;
-        private Form form;
 
         public AdminPanel() 
         {
@@ -15,6 +14,7 @@ namespace Pocket_Audior_Admin_Panel
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
+            
             Form dashform = new Form();
             dashform.TopLevel = false;
             dashform.TopMost = true;
