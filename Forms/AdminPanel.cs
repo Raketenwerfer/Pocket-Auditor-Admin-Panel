@@ -7,35 +7,26 @@ namespace Pocket_Audior_Admin_Panel
         //declare variable;
         private Form form;
 
-        public AdminPanel()
+        public AdminPanel() 
         {
             InitializeComponent();
 
         }
 
-        private void childForm()
-        {
-            //
-            Form form = new Form();
-            form.TopLevel = false;
-            form.Dock = DockStyle.Fill;
-            panelContent.Controls.Add(form);
-            form.Show();
-        }
-
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            Form form = new Form();
-            form.TopLevel = false;
-            form.Dock = DockStyle.Fill;
-            panelContent.Controls.Add(form);
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Show();
+            Form dashform = new Form();
+            dashform.TopLevel = false;
+            dashform.TopMost = true;
+            dashform.FormBorderStyle = FormBorderStyle.None;
+            panelContent.Controls.Add(dashform);
+            panelContent.Dock = DockStyle.Fill;
+            dashform.Show();
         }
 
         private void btnAuditForm_Click(object sender, EventArgs e)
         {
-            childForm();
+            
         }
 
         private void btnActionPlans_Click(object sender, EventArgs e)
@@ -55,7 +46,6 @@ namespace Pocket_Audior_Admin_Panel
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
-            panelContent.Controls.Add(form);
         }
     }
 }
