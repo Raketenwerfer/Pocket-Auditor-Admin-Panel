@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Pocket_Audior_Admin_Panel.Forms
 {
-    public partial class ManageAuditors : Form
+    public partial class FormAuditForm : Form
     {
-        public ManageAuditors()
+        public FormAuditForm()
         {
             InitializeComponent();
         }
+
     }
 }

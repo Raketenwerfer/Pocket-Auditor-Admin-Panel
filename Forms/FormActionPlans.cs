@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Pocket_Audior_Admin_Panel.Forms
 {
-    public partial class form2 : Form
+    public partial class FormActionPlans : Form
     {
-        public form2()
+        public FormActionPlans()
         {
             InitializeComponent();
-        }
-
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

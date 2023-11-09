@@ -1,6 +1,6 @@
 ﻿namespace Pocket_Audior_Admin_Panel.Forms
 {
-    partial class ActionPlans
+    partial class FormAuditReports
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label1 = new Label();
             SuspendLayout();
             // 
-            // ActionPlans
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(54, 49);
+            label1.Name = "label1";
+            label1.Size = new Size(167, 23);
+            label1.TabIndex = 2;
+            label1.Text = "AUDIT REPORTS";
+            // 
+            // FormAuditReports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(713, 450);
-            Name = "ActionPlans";
-            Text = "ActionPlans";
+            ClientSize = new Size(915, 631);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FormAuditReports";
+            Text = "FormAuditReports";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label1;
     }
 }

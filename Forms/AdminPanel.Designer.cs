@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            button1 = new Button();
             btnAuditForm = new Button();
             btnActionPlans = new Button();
             btnAuditReports = new Button();
             btnManageAuditors = new Button();
             btnDashboard = new Button();
-            panel2 = new Panel();
-            lblTitle = new Label();
             panelContent = new Panel();
             panelMenu.SuspendLayout();
-            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = SystemColors.ActiveBorder;
+            panelMenu.BackColor = Color.Green;
+            panelMenu.Controls.Add(button1);
             panelMenu.Controls.Add(btnAuditForm);
             panelMenu.Controls.Add(btnActionPlans);
             panelMenu.Controls.Add(btnAuditReports);
@@ -55,11 +54,22 @@
             panelMenu.Size = new Size(200, 631);
             panelMenu.TabIndex = 0;
             // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Top;
+            button1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(200, 0);
+            button1.TabIndex = 5;
+            button1.Text = "ADMIN PANEL";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // btnAuditForm
             // 
-            btnAuditForm.Location = new Point(25, 140);
+            btnAuditForm.Location = new Point(29, 149);
             btnAuditForm.Name = "btnAuditForm";
-            btnAuditForm.Size = new Size(137, 46);
+            btnAuditForm.Size = new Size(139, 50);
             btnAuditForm.TabIndex = 1;
             btnAuditForm.Text = "Audit Form";
             btnAuditForm.UseVisualStyleBackColor = true;
@@ -67,9 +77,9 @@
             // 
             // btnActionPlans
             // 
-            btnActionPlans.Location = new Point(25, 192);
+            btnActionPlans.Location = new Point(29, 206);
             btnActionPlans.Name = "btnActionPlans";
-            btnActionPlans.Size = new Size(137, 46);
+            btnActionPlans.Size = new Size(139, 50);
             btnActionPlans.TabIndex = 2;
             btnActionPlans.Text = "Action Plans";
             btnActionPlans.UseVisualStyleBackColor = true;
@@ -77,9 +87,9 @@
             // 
             // btnAuditReports
             // 
-            btnAuditReports.Location = new Point(25, 244);
+            btnAuditReports.Location = new Point(29, 262);
             btnAuditReports.Name = "btnAuditReports";
-            btnAuditReports.Size = new Size(137, 46);
+            btnAuditReports.Size = new Size(139, 50);
             btnAuditReports.TabIndex = 3;
             btnAuditReports.Text = "Audit Reports";
             btnAuditReports.UseVisualStyleBackColor = true;
@@ -87,9 +97,9 @@
             // 
             // btnManageAuditors
             // 
-            btnManageAuditors.Location = new Point(25, 296);
+            btnManageAuditors.Location = new Point(29, 319);
             btnManageAuditors.Name = "btnManageAuditors";
-            btnManageAuditors.Size = new Size(137, 46);
+            btnManageAuditors.Size = new Size(139, 50);
             btnManageAuditors.TabIndex = 4;
             btnManageAuditors.Text = "Manage Auditors";
             btnManageAuditors.UseVisualStyleBackColor = true;
@@ -97,40 +107,21 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.Location = new Point(25, 88);
+            btnDashboard.Location = new Point(29, 91);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(137, 46);
+            btnDashboard.Size = new Size(139, 50);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = "Dashboard";
             btnDashboard.UseVisualStyleBackColor = true;
             btnDashboard.Click += btnDashboard_Click;
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Green;
-            panel2.Controls.Add(lblTitle);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(200, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(915, 80);
-            panel2.TabIndex = 1;
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTitle.Location = new Point(411, 33);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(54, 18);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "TITLE";
-            // 
             // panelContent
             // 
             panelContent.Dock = DockStyle.Fill;
-            panelContent.Location = new Point(200, 80);
+            panelContent.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            panelContent.Location = new Point(200, 0);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(915, 551);
+            panelContent.Size = new Size(915, 631);
             panelContent.TabIndex = 2;
             // 
             // AdminPanel
@@ -139,14 +130,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1115, 631);
             Controls.Add(panelContent);
-            Controls.Add(panel2);
             Controls.Add(panelMenu);
             Name = "AdminPanel";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
             Load += AdminPanel_Load;
             panelMenu.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -158,8 +147,7 @@
         private Button btnAuditReports;
         private Button btnManageAuditors;
         private Button btnDashboard;
-        private Panel panel2;
-        private Label lblTitle;
         private Panel panelContent;
+        private Button button1;
     }
 }
