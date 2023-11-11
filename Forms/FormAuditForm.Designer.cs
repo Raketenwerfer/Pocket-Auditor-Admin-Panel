@@ -31,26 +31,26 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
+            txtCategoryName = new TextBox();
             textBox2 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnCatInsert = new Button();
+            btnCatUpdate = new Button();
+            btnCatDelete = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            textBox3 = new TextBox();
+            btnSQuesDelete = new Button();
+            btnSQuesUpdate = new Button();
+            btnSQuesInsert = new Button();
+            txtSubQuestion = new TextBox();
             label4 = new Label();
-            comboBox1 = new ComboBox();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            dataGridView1 = new DataGridView();
+            cbxCategoryList = new ComboBox();
+            btnQuesDelete = new Button();
+            btnQuesUpdate = new Button();
+            btnQuesInsert = new Button();
+            dgvAuditForm = new DataGridView();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAuditForm).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -83,61 +83,67 @@
             label3.TabIndex = 3;
             label3.Text = "Questions";
             // 
-            // textBox1
+            // txtCategoryName
             // 
-            textBox1.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(30, 64);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(221, 23);
-            textBox1.TabIndex = 5;
+            txtCategoryName.BackColor = Color.Silver;
+            txtCategoryName.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCategoryName.Location = new Point(30, 64);
+            txtCategoryName.Multiline = true;
+            txtCategoryName.Name = "txtCategoryName";
+            txtCategoryName.Size = new Size(221, 23);
+            txtCategoryName.TabIndex = 5;
             // 
             // textBox2
             // 
+            textBox2.BackColor = Color.Silver;
             textBox2.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             textBox2.Location = new Point(158, 92);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(284, 27);
             textBox2.TabIndex = 6;
             // 
-            // button1
+            // btnCatInsert
             // 
-            button1.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(50, 171);
-            button1.Name = "button1";
-            button1.Size = new Size(78, 27);
-            button1.TabIndex = 9;
-            button1.Text = "INSERT";
-            button1.UseVisualStyleBackColor = true;
+            btnCatInsert.BackColor = Color.Lime;
+            btnCatInsert.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCatInsert.Location = new Point(50, 171);
+            btnCatInsert.Name = "btnCatInsert";
+            btnCatInsert.Size = new Size(78, 27);
+            btnCatInsert.TabIndex = 9;
+            btnCatInsert.Text = "INSERT";
+            btnCatInsert.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnCatUpdate
             // 
-            button2.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(145, 171);
-            button2.Name = "button2";
-            button2.Size = new Size(78, 27);
-            button2.TabIndex = 10;
-            button2.Text = "UPDATE";
-            button2.UseVisualStyleBackColor = true;
+            btnCatUpdate.BackColor = Color.FromArgb(0, 192, 192);
+            btnCatUpdate.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCatUpdate.Location = new Point(145, 171);
+            btnCatUpdate.Name = "btnCatUpdate";
+            btnCatUpdate.Size = new Size(78, 27);
+            btnCatUpdate.TabIndex = 10;
+            btnCatUpdate.Text = "UPDATE";
+            btnCatUpdate.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnCatDelete
             // 
-            button3.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(51, 214);
-            button3.Name = "button3";
-            button3.Size = new Size(172, 27);
-            button3.TabIndex = 11;
-            button3.Text = "DELETE";
-            button3.UseVisualStyleBackColor = true;
+            btnCatDelete.BackColor = Color.Red;
+            btnCatDelete.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCatDelete.ForeColor = Color.White;
+            btnCatDelete.Location = new Point(51, 214);
+            btnCatDelete.Name = "btnCatDelete";
+            btnCatDelete.Size = new Size(172, 27);
+            btnCatDelete.TabIndex = 11;
+            btnCatDelete.Text = "DELETE";
+            btnCatDelete.UseVisualStyleBackColor = false;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
-            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(btnCatDelete);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btnCatUpdate);
+            groupBox1.Controls.Add(txtCategoryName);
+            groupBox1.Controls.Add(btnCatInsert);
             groupBox1.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(28, 74);
             groupBox1.Name = "groupBox1";
@@ -149,15 +155,15 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.White;
-            groupBox2.Controls.Add(button7);
-            groupBox2.Controls.Add(button8);
-            groupBox2.Controls.Add(button9);
-            groupBox2.Controls.Add(textBox3);
+            groupBox2.Controls.Add(btnSQuesDelete);
+            groupBox2.Controls.Add(btnSQuesUpdate);
+            groupBox2.Controls.Add(btnSQuesInsert);
+            groupBox2.Controls.Add(txtSubQuestion);
             groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(comboBox1);
-            groupBox2.Controls.Add(button4);
-            groupBox2.Controls.Add(button5);
-            groupBox2.Controls.Add(button6);
+            groupBox2.Controls.Add(cbxCategoryList);
+            groupBox2.Controls.Add(btnQuesDelete);
+            groupBox2.Controls.Add(btnQuesUpdate);
+            groupBox2.Controls.Add(btnQuesInsert);
             groupBox2.Controls.Add(textBox2);
             groupBox2.Controls.Add(label3);
             groupBox2.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -168,101 +174,111 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Add New Question/Sub-Question";
             // 
-            // button7
+            // btnSQuesDelete
             // 
-            button7.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button7.Location = new Point(396, 244);
-            button7.Name = "button7";
-            button7.Size = new Size(78, 27);
-            button7.TabIndex = 22;
-            button7.Text = "DELETE";
-            button7.UseVisualStyleBackColor = true;
+            btnSQuesDelete.BackColor = Color.Red;
+            btnSQuesDelete.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSQuesDelete.ForeColor = Color.White;
+            btnSQuesDelete.Location = new Point(396, 244);
+            btnSQuesDelete.Name = "btnSQuesDelete";
+            btnSQuesDelete.Size = new Size(78, 27);
+            btnSQuesDelete.TabIndex = 22;
+            btnSQuesDelete.Text = "DELETE";
+            btnSQuesDelete.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // btnSQuesUpdate
             // 
-            button8.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button8.Location = new Point(291, 244);
-            button8.Name = "button8";
-            button8.Size = new Size(78, 27);
-            button8.TabIndex = 21;
-            button8.Text = "UPDATE";
-            button8.UseVisualStyleBackColor = true;
+            btnSQuesUpdate.BackColor = Color.FromArgb(0, 192, 192);
+            btnSQuesUpdate.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSQuesUpdate.Location = new Point(291, 244);
+            btnSQuesUpdate.Name = "btnSQuesUpdate";
+            btnSQuesUpdate.Size = new Size(78, 27);
+            btnSQuesUpdate.TabIndex = 21;
+            btnSQuesUpdate.Text = "UPDATE";
+            btnSQuesUpdate.UseVisualStyleBackColor = false;
             // 
-            // button9
+            // btnSQuesInsert
             // 
-            button9.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button9.Location = new Point(186, 244);
-            button9.Name = "button9";
-            button9.Size = new Size(78, 27);
-            button9.TabIndex = 20;
-            button9.Text = "INSERT";
-            button9.UseVisualStyleBackColor = true;
+            btnSQuesInsert.BackColor = Color.Lime;
+            btnSQuesInsert.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSQuesInsert.Location = new Point(186, 244);
+            btnSQuesInsert.Name = "btnSQuesInsert";
+            btnSQuesInsert.Size = new Size(78, 27);
+            btnSQuesInsert.TabIndex = 20;
+            btnSQuesInsert.Text = "INSERT";
+            btnSQuesInsert.UseVisualStyleBackColor = false;
             // 
-            // textBox3
+            // txtSubQuestion
             // 
-            textBox3.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.Location = new Point(158, 194);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(284, 27);
-            textBox3.TabIndex = 19;
+            txtSubQuestion.BackColor = Color.Silver;
+            txtSubQuestion.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSubQuestion.Location = new Point(158, 194);
+            txtSubQuestion.Name = "txtSubQuestion";
+            txtSubQuestion.Size = new Size(284, 27);
+            txtSubQuestion.TabIndex = 19;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(42, 197);
+            label4.Location = new Point(38, 200);
             label4.Name = "label4";
             label4.Size = new Size(117, 18);
             label4.TabIndex = 18;
             label4.Text = "Sub-Questions";
             // 
-            // comboBox1
+            // cbxCategoryList
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(15, 44);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(484, 26);
-            comboBox1.TabIndex = 15;
-            comboBox1.Text = "Select Category Name";
+            cbxCategoryList.BackColor = Color.Silver;
+            cbxCategoryList.FormattingEnabled = true;
+            cbxCategoryList.Location = new Point(15, 44);
+            cbxCategoryList.Name = "cbxCategoryList";
+            cbxCategoryList.Size = new Size(484, 26);
+            cbxCategoryList.TabIndex = 15;
+            cbxCategoryList.Text = "Select Category Name";
             // 
-            // button4
+            // btnQuesDelete
             // 
-            button4.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.Location = new Point(400, 138);
-            button4.Name = "button4";
-            button4.Size = new Size(78, 27);
-            button4.TabIndex = 14;
-            button4.Text = "DELETE";
-            button4.UseVisualStyleBackColor = true;
+            btnQuesDelete.BackColor = Color.Red;
+            btnQuesDelete.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnQuesDelete.ForeColor = Color.White;
+            btnQuesDelete.Location = new Point(400, 138);
+            btnQuesDelete.Name = "btnQuesDelete";
+            btnQuesDelete.Size = new Size(78, 27);
+            btnQuesDelete.TabIndex = 14;
+            btnQuesDelete.Text = "DELETE";
+            btnQuesDelete.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnQuesUpdate
             // 
-            button5.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button5.Location = new Point(295, 138);
-            button5.Name = "button5";
-            button5.Size = new Size(78, 27);
-            button5.TabIndex = 13;
-            button5.Text = "UPDATE";
-            button5.UseVisualStyleBackColor = true;
+            btnQuesUpdate.BackColor = Color.FromArgb(0, 192, 192);
+            btnQuesUpdate.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnQuesUpdate.Location = new Point(295, 138);
+            btnQuesUpdate.Name = "btnQuesUpdate";
+            btnQuesUpdate.Size = new Size(78, 27);
+            btnQuesUpdate.TabIndex = 13;
+            btnQuesUpdate.Text = "UPDATE";
+            btnQuesUpdate.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // btnQuesInsert
             // 
-            button6.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button6.Location = new Point(190, 138);
-            button6.Name = "button6";
-            button6.Size = new Size(78, 27);
-            button6.TabIndex = 12;
-            button6.Text = "INSERT";
-            button6.UseVisualStyleBackColor = true;
+            btnQuesInsert.BackColor = Color.Lime;
+            btnQuesInsert.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnQuesInsert.Location = new Point(190, 138);
+            btnQuesInsert.Name = "btnQuesInsert";
+            btnQuesInsert.Size = new Size(78, 27);
+            btnQuesInsert.TabIndex = 12;
+            btnQuesInsert.Text = "INSERT";
+            btnQuesInsert.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvAuditForm
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(28, 392);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(804, 207);
-            dataGridView1.TabIndex = 14;
+            dgvAuditForm.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAuditForm.Location = new Point(28, 392);
+            dgvAuditForm.Name = "dgvAuditForm";
+            dgvAuditForm.RowTemplate.Height = 25;
+            dgvAuditForm.Size = new Size(804, 207);
+            dgvAuditForm.TabIndex = 14;
             // 
             // FormAuditForm
             // 
@@ -270,7 +286,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(915, 631);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvAuditForm);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label1);
@@ -281,7 +297,7 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAuditForm).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -291,22 +307,22 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox txtCategoryName;
         private TextBox textBox2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnCatInsert;
+        private Button btnCatUpdate;
+        private Button btnCatDelete;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private ComboBox comboBox1;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private TextBox textBox3;
+        private Button btnQuesDelete;
+        private Button btnQuesUpdate;
+        private Button btnQuesInsert;
+        private ComboBox cbxCategoryList;
+        private Button btnSQuesDelete;
+        private Button btnSQuesUpdate;
+        private Button btnSQuesInsert;
+        private TextBox txtSubQuestion;
         private Label label4;
-        private DataGridView dataGridView1;
+        private DataGridView dgvAuditForm;
     }
 }
