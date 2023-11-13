@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pocket_Audior_Admin_Panel.Classes
+namespace Pocket_Auditor_Admin_Panel.Classes
 {
     public class rmdl_SubIndicatorAnswers
     {

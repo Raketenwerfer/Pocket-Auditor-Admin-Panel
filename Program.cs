@@ -1,4 +1,4 @@
-namespace Pocket_Audior_Admin_Panel
+namespace Pocket_Auditor_Admin_Panel
 {
     internal static class Program
     {

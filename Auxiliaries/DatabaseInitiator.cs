@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pocket_Audior_Admin_Panel.Auxiliaries
+namespace Pocket_Auditor_Admin_Panel.Auxiliaries
 {
     public class DatabaseInitiator
     {

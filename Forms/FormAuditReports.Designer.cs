@@ -1,4 +1,4 @@
-﻿namespace Pocket_Audior_Admin_Panel.Forms
+﻿namespace Pocket_Auditor_Admin_Panel.Forms
 {
     partial class FormAuditReports
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pocket_Audior_Admin_Panel.Forms
+namespace Pocket_Auditor_Admin_Panel.Forms
 {
     public partial class FormAuditForm : Form
     {

@@ -1,9 +1,9 @@
-using Pocket_Audior_Admin_Panel.Forms;
+using Pocket_Auditor_Admin_Panel.Forms;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using Pocket_Audior_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Auxiliaries;
 
-namespace Pocket_Audior_Admin_Panel
+namespace Pocket_Auditor_Admin_Panel
 {
     public partial class AdminPanel : Form
     {
@@ -16,7 +16,7 @@ namespace Pocket_Audior_Admin_Panel
         public AdminPanel()
         {
             InitializeComponent();
-            //InitDatabase();
+            InitDatabase();
         }
 
         public void InitDatabase()
