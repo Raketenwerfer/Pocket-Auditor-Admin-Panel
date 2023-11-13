@@ -17,5 +17,26 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             InitializeComponent();
         }
 
+        private void FormAuditForm_Load(object sender, EventArgs e)
+        {
+            pnlSubIndicators.Hide();
+        }
+
+        private void cbxSubIndicators_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxSubIndicators.Checked == true)
+            {
+                pnlSubIndicators.Show();
+            }
+            else
+            {
+                pnlSubIndicators.Hide();
+            }
+        }
+
+        private void btnCatInsert_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

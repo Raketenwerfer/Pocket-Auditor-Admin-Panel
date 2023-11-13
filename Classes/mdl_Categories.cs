@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pocket_Auditor_Admin_Panel.Classes
 {
-    public class mdl_Categories
+    public class mdl_Categories 
     {
         public int CategoryID { get; set; }
         public string CategoryTitle { get; set; }

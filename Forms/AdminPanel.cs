@@ -12,7 +12,9 @@ namespace Pocket_Auditor_Admin_Panel
         FormActionPlans frmActionPlans = new FormActionPlans();
         FormAuditReports frmAuditReports = new FormAuditReports();
         FormManageAuditors frmManageAuditors = new FormManageAuditors();
+
         DatabaseInitiator db = new DatabaseInitiator("sql207.infinityfreem.com", "if0_35394751_testrun", "if0_35394751", "aTbs7LJAy0B2");
+        
         public AdminPanel()
         {
             InitializeComponent();
