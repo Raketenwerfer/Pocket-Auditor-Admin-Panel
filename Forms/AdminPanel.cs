@@ -28,9 +28,6 @@ namespace Pocket_Auditor_Admin_Panel
                 MessageBox.Show("Database connection has been established!");
                 return;
             }
-            else
-            {
-            }
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
