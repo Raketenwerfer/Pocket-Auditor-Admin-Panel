@@ -1,5 +1,6 @@
 using Pocket_Audior_Admin_Panel.Forms;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Pocket_Audior_Admin_Panel
 {
