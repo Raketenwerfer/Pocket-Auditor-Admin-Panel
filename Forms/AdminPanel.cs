@@ -30,7 +30,6 @@ namespace Pocket_Auditor_Admin_Panel
             }
             else
             {
-                MessageBox.Show("No database has been found!");
             }
         }
 
