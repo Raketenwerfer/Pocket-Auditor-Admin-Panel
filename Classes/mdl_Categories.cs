@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Pocket_Audior_Admin_Panel.Classes
 {
-    internal class mdl_Categories
+    public class mdl_Categories
     {
+        public int CategoryID { get; set; }
+        public string CategoryTitle { get; set; }
+        public string CategoryStatus { get; set; }
+
+        public mdl_Categories(int categoryID, string categoryTitle, string categoryStatus)
+        {
+            CategoryID = categoryID;
+            CategoryTitle = categoryTitle;
+            CategoryStatus = categoryStatus;
+        }
     }
 }
