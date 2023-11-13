@@ -5,6 +5,11 @@ namespace Pocket_Audior_Admin_Panel
 {
     public partial class AdminPanel : Form
     {
+        FormDashboard frmDashboard = new FormDashboard();
+        FormAuditForm frmAuditForm = new FormAuditForm();
+        FormActionPlans frmActionPlans = new FormActionPlans();
+        FormAuditReports frmAuditReports = new FormAuditReports();
+        FormManageAuditors frmManageAuditors = new FormManageAuditors();
         public AdminPanel()
         {
             InitializeComponent();
@@ -12,7 +17,6 @@ namespace Pocket_Audior_Admin_Panel
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            FormDashboard frmDashboard = new FormDashboard();
             frmDashboard.TopLevel = false;
             frmDashboard.TopMost = true;
             panelContent.Controls.Clear();
@@ -22,7 +26,6 @@ namespace Pocket_Audior_Admin_Panel
 
         private void btnAuditForm_Click(object sender, EventArgs e)
         {
-            FormAuditForm frmAuditForm = new FormAuditForm();
             frmAuditForm.TopLevel = false;
             frmAuditForm.TopMost = true;
             panelContent.Controls.Clear();
@@ -33,7 +36,6 @@ namespace Pocket_Audior_Admin_Panel
 
         private void btnActionPlans_Click(object sender, EventArgs e)
         {
-            FormActionPlans frmActionPlans = new FormActionPlans();
             frmActionPlans.TopLevel = false;
             frmActionPlans.TopMost = true;
             panelContent.Controls.Clear();
@@ -44,7 +46,6 @@ namespace Pocket_Audior_Admin_Panel
 
         private void btnAuditReports_Click(object sender, EventArgs e)
         {
-            FormAuditReports frmAuditReports = new FormAuditReports();
             frmAuditReports.TopLevel = false;
             frmAuditReports.TopMost = true;
             panelContent.Controls.Clear();
@@ -55,7 +56,6 @@ namespace Pocket_Audior_Admin_Panel
 
         private void btnManageAuditors_Click(object sender, EventArgs e)
         {
-            FormManageAuditors frmManageAuditors = new FormManageAuditors();
             frmManageAuditors.TopLevel = false;
             frmManageAuditors.TopMost = true;
             panelContent.Controls.Clear();
