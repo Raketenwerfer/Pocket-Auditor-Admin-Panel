@@ -11,11 +11,13 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
     {
 
         private string connectionString;
-        public string server, database, username, password;
+        private string server, database, username, password;
 
         public DatabaseInitiator(string _server, string _db, string _username, string _password)
         {
-            // Replace these values with your actual database information
+            // Database details will be supplied upon application start-up
+            // If no database connection is established, a prompt must be
+            // displayed to input database details
             server = _server;
             database = _db;
             username = _username;
