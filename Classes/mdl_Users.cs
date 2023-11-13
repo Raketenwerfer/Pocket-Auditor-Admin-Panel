@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace Pocket_Audior_Admin_Panel.Classes
 {
-    internal class mdl_Users
+    public class mdl_Users
     {
+        public int UserID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string EmailAddress { get; set; }
+        public string UserType { get; set; }
+        public string UserStatus { get; set; }
+
+        public mdl_Users(int userID, string username, string password, string emailAddress, string userType, string userStatus)
+        {
+            UserID = userID;
+            Username = username;
+            Password = password;
+            EmailAddress = emailAddress;
+            UserType = userType;
+            UserStatus = userStatus;
+        }
     }
 }

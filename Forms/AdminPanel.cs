@@ -1,6 +1,7 @@
 using Pocket_Audior_Admin_Panel.Forms;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Pocket_Audior_Admin_Panel.Auxiliaries;
 
 namespace Pocket_Audior_Admin_Panel
 {
@@ -11,9 +12,26 @@ namespace Pocket_Audior_Admin_Panel
         FormActionPlans frmActionPlans = new FormActionPlans();
         FormAuditReports frmAuditReports = new FormAuditReports();
         FormManageAuditors frmManageAuditors = new FormManageAuditors();
+        DatabaseInitiator db = new DatabaseInitiator("sql207.infinityfreem.com", "if0_35394751_testrun", "if0_35394751", "aTbs7LJAy0B2");
         public AdminPanel()
         {
             InitializeComponent();
+            //InitDatabase();
+        }
+
+        public void InitDatabase()
+        {
+            // Establishes connection with the database
+            using MySqlConnection conn = db.GetConnection();
+            if (conn != null)
+            {
+                MessageBox.Show("Database connection has been established!");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("No database has been found!");
+            }
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
