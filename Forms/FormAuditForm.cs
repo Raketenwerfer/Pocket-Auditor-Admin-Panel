@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 {
     public partial class FormAuditForm : Form
     {
+
         public FormAuditForm()
         {
             InitializeComponent();
@@ -34,9 +36,18 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
         }
 
-        private void btnCatInsert_Click(object sender, EventArgs e)
+        private void txtCatID_KeyPress_1(object sender, KeyPressEventArgs e)
         {
+            // Allow only numeric digits, backspace, and the delete key
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;  // Suppress the key press
+            }
+        }
 
+        private void btnInsertData_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

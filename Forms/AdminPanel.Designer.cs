@@ -118,7 +118,7 @@
             // panelContent
             // 
             panelContent.Dock = DockStyle.Fill;
-            panelContent.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            panelContent.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             panelContent.Location = new Point(200, 0);
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(915, 631);

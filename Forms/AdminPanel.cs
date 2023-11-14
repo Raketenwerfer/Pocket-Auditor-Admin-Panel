@@ -14,7 +14,7 @@ namespace Pocket_Auditor_Admin_Panel
         FormManageAuditors frmManageAuditors = new FormManageAuditors();
 
         DatabaseInitiator db = new DatabaseInitiator("sql207.infinityfreem.com", "if0_35394751_testrun", "if0_35394751", "aTbs7LJAy0B2");
-        
+
         public AdminPanel()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace Pocket_Auditor_Admin_Panel
             frmActionPlans.TopLevel = false;
             frmActionPlans.TopMost = true;
             panelContent.Controls.Clear();
-            panelContent.AutoScroll=true;
+            panelContent.AutoScroll = true;
             panelContent.Controls.Add(frmActionPlans);
             frmActionPlans.Show();
         }

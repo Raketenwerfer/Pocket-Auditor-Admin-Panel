@@ -30,9 +30,7 @@
         {
             label1 = new Label();
             label2 = new Label();
-            txtCategoryName = new TextBox();
             label5 = new Label();
-            txtIndicators = new TextBox();
             label6 = new Label();
             txtSubIndicators = new TextBox();
             cbxSubIndicators = new CheckBox();
@@ -43,14 +41,12 @@
             dgvSubIndicators = new DataGridView();
             label3 = new Label();
             cbxType = new ComboBox();
-            btnIndiDelete = new Button();
-            btnIndiUpdate = new Button();
-            btnIndiInsert = new Button();
-            btnCatDelete = new Button();
-            btnCatUpdate = new Button();
-            btnCatInsert = new Button();
             fLpDisplayForm = new FlowLayoutPanel();
-            btnMobileForm = new Button();
+            label4 = new Label();
+            txtCatID = new TextBox();
+            txtCatName = new TextBox();
+            txtIndicators = new TextBox();
+            btnInsertData = new Button();
             pnlSubIndicators.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSubIndicators).BeginInit();
             SuspendLayout();
@@ -69,41 +65,21 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(32, 69);
+            label2.Location = new Point(32, 101);
             label2.Name = "label2";
             label2.Size = new Size(102, 16);
             label2.TabIndex = 2;
             label2.Text = "Category Name";
             // 
-            // txtCategoryName
-            // 
-            txtCategoryName.BackColor = Color.Silver;
-            txtCategoryName.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCategoryName.Location = new Point(34, 90);
-            txtCategoryName.Multiline = true;
-            txtCategoryName.Name = "txtCategoryName";
-            txtCategoryName.Size = new Size(317, 23);
-            txtCategoryName.TabIndex = 5;
-            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(32, 148);
+            label5.Location = new Point(32, 157);
             label5.Name = "label5";
             label5.Size = new Size(65, 16);
             label5.TabIndex = 14;
             label5.Text = "Indicators";
-            // 
-            // txtIndicators
-            // 
-            txtIndicators.BackColor = Color.Silver;
-            txtIndicators.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtIndicators.Location = new Point(34, 169);
-            txtIndicators.Multiline = true;
-            txtIndicators.Name = "txtIndicators";
-            txtIndicators.Size = new Size(317, 23);
-            txtIndicators.TabIndex = 15;
             // 
             // label6
             // 
@@ -129,7 +105,7 @@
             // 
             cbxSubIndicators.AutoSize = true;
             cbxSubIndicators.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cbxSubIndicators.Location = new Point(33, 241);
+            cbxSubIndicators.Location = new Point(32, 243);
             cbxSubIndicators.Name = "cbxSubIndicators";
             cbxSubIndicators.Size = new Size(140, 20);
             cbxSubIndicators.TabIndex = 18;
@@ -148,7 +124,7 @@
             pnlSubIndicators.Controls.Add(txtSubIndicators);
             pnlSubIndicators.Controls.Add(label6);
             pnlSubIndicators.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            pnlSubIndicators.Location = new Point(31, 267);
+            pnlSubIndicators.Location = new Point(31, 273);
             pnlSubIndicators.Name = "pnlSubIndicators";
             pnlSubIndicators.Size = new Size(341, 342);
             pnlSubIndicators.TabIndex = 19;
@@ -208,83 +184,56 @@
             cbxType.Size = new Size(301, 24);
             cbxType.TabIndex = 18;
             // 
-            // btnIndiDelete
-            // 
-            btnIndiDelete.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnIndiDelete.Location = new Point(277, 197);
-            btnIndiDelete.Name = "btnIndiDelete";
-            btnIndiDelete.Size = new Size(71, 25);
-            btnIndiDelete.TabIndex = 28;
-            btnIndiDelete.Text = "Delete";
-            btnIndiDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnIndiUpdate
-            // 
-            btnIndiUpdate.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnIndiUpdate.Location = new Point(200, 197);
-            btnIndiUpdate.Name = "btnIndiUpdate";
-            btnIndiUpdate.Size = new Size(71, 25);
-            btnIndiUpdate.TabIndex = 27;
-            btnIndiUpdate.Text = "Update";
-            btnIndiUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnIndiInsert
-            // 
-            btnIndiInsert.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnIndiInsert.Location = new Point(123, 197);
-            btnIndiInsert.Name = "btnIndiInsert";
-            btnIndiInsert.Size = new Size(71, 25);
-            btnIndiInsert.TabIndex = 26;
-            btnIndiInsert.Text = "Insert";
-            btnIndiInsert.UseVisualStyleBackColor = true;
-            // 
-            // btnCatDelete
-            // 
-            btnCatDelete.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCatDelete.Location = new Point(277, 119);
-            btnCatDelete.Name = "btnCatDelete";
-            btnCatDelete.Size = new Size(71, 25);
-            btnCatDelete.TabIndex = 31;
-            btnCatDelete.Text = "Delete";
-            btnCatDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnCatUpdate
-            // 
-            btnCatUpdate.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCatUpdate.Location = new Point(200, 119);
-            btnCatUpdate.Name = "btnCatUpdate";
-            btnCatUpdate.Size = new Size(71, 25);
-            btnCatUpdate.TabIndex = 30;
-            btnCatUpdate.Text = "Update";
-            btnCatUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnCatInsert
-            // 
-            btnCatInsert.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCatInsert.Location = new Point(123, 119);
-            btnCatInsert.Name = "btnCatInsert";
-            btnCatInsert.Size = new Size(71, 25);
-            btnCatInsert.TabIndex = 29;
-            btnCatInsert.Text = "Insert";
-            btnCatInsert.UseVisualStyleBackColor = true;
-            btnCatInsert.Click += btnCatInsert_Click;
-            // 
             // fLpDisplayForm
             // 
-            fLpDisplayForm.Location = new Point(378, 69);
+            fLpDisplayForm.Location = new Point(494, 69);
             fLpDisplayForm.Name = "fLpDisplayForm";
-            fLpDisplayForm.Size = new Size(504, 541);
+            fLpDisplayForm.Size = new Size(388, 541);
             fLpDisplayForm.TabIndex = 32;
             // 
-            // btnMobileForm
+            // label4
             // 
-            btnMobileForm.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMobileForm.Location = new Point(378, 38);
-            btnMobileForm.Name = "btnMobileForm";
-            btnMobileForm.Size = new Size(143, 25);
-            btnMobileForm.TabIndex = 33;
-            btnMobileForm.Text = "Display Mobile Form";
-            btnMobileForm.UseVisualStyleBackColor = true;
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(32, 71);
+            label4.Name = "label4";
+            label4.Size = new Size(78, 16);
+            label4.TabIndex = 34;
+            label4.Text = "Category ID";
+            // 
+            // txtCatID
+            // 
+            txtCatID.Location = new Point(116, 69);
+            txtCatID.Name = "txtCatID";
+            txtCatID.Size = new Size(100, 23);
+            txtCatID.TabIndex = 36;
+            txtCatID.KeyPress += txtCatID_KeyPress_1;
+            // 
+            // txtCatName
+            // 
+            txtCatName.Location = new Point(131, 99);
+            txtCatName.Multiline = true;
+            txtCatName.Name = "txtCatName";
+            txtCatName.Size = new Size(211, 52);
+            txtCatName.TabIndex = 37;
+            // 
+            // txtIndicators
+            // 
+            txtIndicators.Location = new Point(131, 157);
+            txtIndicators.Multiline = true;
+            txtIndicators.Name = "txtIndicators";
+            txtIndicators.Size = new Size(211, 52);
+            txtIndicators.TabIndex = 38;
+            // 
+            // btnInsertData
+            // 
+            btnInsertData.Location = new Point(363, 100);
+            btnInsertData.Name = "btnInsertData";
+            btnInsertData.Size = new Size(75, 23);
+            btnInsertData.TabIndex = 39;
+            btnInsertData.Text = "INSERT";
+            btnInsertData.UseVisualStyleBackColor = true;
+            btnInsertData.Click += btnInsertData_Click;
             // 
             // FormAuditForm
             // 
@@ -292,21 +241,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(915, 631);
-            Controls.Add(btnMobileForm);
+            Controls.Add(btnInsertData);
+            Controls.Add(txtIndicators);
+            Controls.Add(txtCatName);
+            Controls.Add(txtCatID);
+            Controls.Add(label4);
             Controls.Add(fLpDisplayForm);
-            Controls.Add(btnCatDelete);
-            Controls.Add(btnCatUpdate);
-            Controls.Add(btnCatInsert);
-            Controls.Add(btnIndiDelete);
-            Controls.Add(btnIndiUpdate);
-            Controls.Add(btnIndiInsert);
             Controls.Add(pnlSubIndicators);
             Controls.Add(cbxSubIndicators);
             Controls.Add(label5);
-            Controls.Add(txtIndicators);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtCategoryName);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormAuditForm";
             Text = "FormAuditForm";
@@ -322,9 +267,7 @@
 
         private Label label1;
         private Label label2;
-        private TextBox txtCategoryName;
         private Label label5;
-        private TextBox txtIndicators;
         private Label label6;
         private TextBox txtSubIndicators;
         private CheckBox cbxSubIndicators;
@@ -335,13 +278,11 @@
         private Button btnSubUpdate;
         private Button btnSubInsert;
         private DataGridView dgvSubIndicators;
-        private Button btnIndiDelete;
-        private Button btnIndiUpdate;
-        private Button btnIndiInsert;
-        private Button btnCatDelete;
-        private Button btnCatUpdate;
-        private Button btnCatInsert;
         private FlowLayoutPanel fLpDisplayForm;
-        private Button btnMobileForm;
+        private Label label4;
+        private TextBox txtCatID;
+        private TextBox txtCatName;
+        private TextBox txtIndicators;
+        private Button btnInsertData;
     }
 }
