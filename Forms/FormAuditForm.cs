@@ -47,7 +47,44 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void btnInsertData_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(txtCatID.Text) ||
+                string.IsNullOrEmpty(txtCatName.Text) ||
+                string.IsNullOrEmpty(txtIndicators.Text))
+            {
+                MessageBox.Show("Please fill in all textboxes.");
+                return;
+            }
+
+        }
+
+        private void btnUpdateData_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Data is successfull updated!");
+        }
+
+        private void btnDelData_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Data is successfull Deleted!");
+        }
+
+        private void btnSubInsert_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(cbxSubIndicators.Text) ||
+                string.IsNullOrEmpty(txtSubIndicators.Text))
+            {
+                MessageBox.Show("Please select and fill in the textbox.");
+                return;
+            }
+        }
+
+        private void btnSubUpdate_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("The selected Data is Updated successfully");
+        }
+
+        private void btnSubDelete_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("The selected Data is Deleted successfully");
         }
     }
 }

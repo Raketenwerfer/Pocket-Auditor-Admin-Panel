@@ -47,7 +47,7 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(208, 58);
+            txtSearch.Location = new Point(212, 58);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(253, 22);
             txtSearch.TabIndex = 3;
@@ -58,7 +58,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(108, 62);
             label2.Name = "label2";
-            label2.Size = new Size(94, 15);
+            label2.Size = new Size(101, 15);
             label2.TabIndex = 5;
             label2.Text = "Search Barangay";
             // 
@@ -79,6 +79,7 @@
             Controls.Add(label2);
             Controls.Add(txtSearch);
             Controls.Add(label1);
+            Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormAuditReports";
             Text = "FormAuditReports";

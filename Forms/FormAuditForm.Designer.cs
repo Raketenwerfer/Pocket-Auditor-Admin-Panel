@@ -47,6 +47,8 @@
             txtCatName = new TextBox();
             txtIndicators = new TextBox();
             btnInsertData = new Button();
+            btnUpdateData = new Button();
+            btnDelData = new Button();
             pnlSubIndicators.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSubIndicators).BeginInit();
             SuspendLayout();
@@ -137,6 +139,7 @@
             btnSubDelete.TabIndex = 22;
             btnSubDelete.Text = "Delete";
             btnSubDelete.UseVisualStyleBackColor = true;
+            btnSubDelete.Click += btnSubDelete_Click;
             // 
             // btnSubUpdate
             // 
@@ -146,6 +149,7 @@
             btnSubUpdate.TabIndex = 22;
             btnSubUpdate.Text = "Update";
             btnSubUpdate.UseVisualStyleBackColor = true;
+            btnSubUpdate.Click += btnSubUpdate_Click;
             // 
             // btnSubInsert
             // 
@@ -155,6 +159,7 @@
             btnSubInsert.TabIndex = 21;
             btnSubInsert.Text = "Insert";
             btnSubInsert.UseVisualStyleBackColor = true;
+            btnSubInsert.Click += btnSubInsert_Click;
             // 
             // dgvSubIndicators
             // 
@@ -235,12 +240,34 @@
             btnInsertData.UseVisualStyleBackColor = true;
             btnInsertData.Click += btnInsertData_Click;
             // 
+            // btnUpdateData
+            // 
+            btnUpdateData.Location = new Point(363, 138);
+            btnUpdateData.Name = "btnUpdateData";
+            btnUpdateData.Size = new Size(75, 23);
+            btnUpdateData.TabIndex = 40;
+            btnUpdateData.Text = "UPDATE";
+            btnUpdateData.UseVisualStyleBackColor = true;
+            btnUpdateData.Click += btnUpdateData_Click;
+            // 
+            // btnDelData
+            // 
+            btnDelData.Location = new Point(363, 177);
+            btnDelData.Name = "btnDelData";
+            btnDelData.Size = new Size(75, 23);
+            btnDelData.TabIndex = 41;
+            btnDelData.Text = "DELETE";
+            btnDelData.UseVisualStyleBackColor = true;
+            btnDelData.Click += btnDelData_Click;
+            // 
             // FormAuditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(915, 631);
+            Controls.Add(btnDelData);
+            Controls.Add(btnUpdateData);
             Controls.Add(btnInsertData);
             Controls.Add(txtIndicators);
             Controls.Add(txtCatName);
@@ -284,5 +311,7 @@
         private TextBox txtCatName;
         private TextBox txtIndicators;
         private Button btnInsertData;
+        private Button btnUpdateData;
+        private Button btnDelData;
     }
 }
