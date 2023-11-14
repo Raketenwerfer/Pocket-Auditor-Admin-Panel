@@ -40,7 +40,8 @@
             btnA_Insert = new Button();
             btnA_Delete = new Button();
             btnA_Update = new Button();
-            checkBox1 = new CheckBox();
+            cbxApplyToAllCategory = new CheckBox();
+            fLpActionPlans = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // label1
@@ -57,7 +58,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(49, 84);
+            label2.Location = new Point(49, 96);
             label2.Name = "label2";
             label2.Size = new Size(114, 16);
             label2.TabIndex = 3;
@@ -67,16 +68,16 @@
             // 
             txtPlanName.BackColor = Color.Silver;
             txtPlanName.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPlanName.Location = new Point(169, 81);
+            txtPlanName.Location = new Point(169, 93);
             txtPlanName.Name = "txtPlanName";
-            txtPlanName.Size = new Size(337, 22);
+            txtPlanName.Size = new Size(252, 22);
             txtPlanName.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(78, 120);
+            label3.Location = new Point(78, 132);
             label3.Name = "label3";
             label3.Size = new Size(85, 16);
             label3.TabIndex = 5;
@@ -87,9 +88,9 @@
             cbxA_CatList.BackColor = Color.Silver;
             cbxA_CatList.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             cbxA_CatList.FormattingEnabled = true;
-            cbxA_CatList.Location = new Point(169, 117);
+            cbxA_CatList.Location = new Point(169, 129);
             cbxA_CatList.Name = "cbxA_CatList";
-            cbxA_CatList.Size = new Size(337, 24);
+            cbxA_CatList.Size = new Size(252, 24);
             cbxA_CatList.TabIndex = 6;
             cbxA_CatList.Text = "Choose a Category Here";
             // 
@@ -97,16 +98,16 @@
             // 
             txtPlanDetails.BackColor = Color.Silver;
             txtPlanDetails.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPlanDetails.Location = new Point(168, 188);
+            txtPlanDetails.Location = new Point(168, 200);
             txtPlanDetails.Name = "txtPlanDetails";
-            txtPlanDetails.Size = new Size(337, 22);
+            txtPlanDetails.Size = new Size(252, 22);
             txtPlanDetails.TabIndex = 8;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(48, 191);
+            label4.Location = new Point(48, 203);
             label4.Name = "label4";
             label4.Size = new Size(119, 16);
             label4.TabIndex = 7;
@@ -116,9 +117,9 @@
             // 
             txtLink.BackColor = Color.Silver;
             txtLink.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtLink.Location = new Point(169, 226);
+            txtLink.Location = new Point(169, 238);
             txtLink.Name = "txtLink";
-            txtLink.Size = new Size(337, 22);
+            txtLink.Size = new Size(252, 22);
             txtLink.TabIndex = 10;
             txtLink.Text = "Paste link here";
             // 
@@ -126,7 +127,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(81, 229);
+            label5.Location = new Point(81, 241);
             label5.Name = "label5";
             label5.Size = new Size(82, 16);
             label5.TabIndex = 9;
@@ -136,7 +137,7 @@
             // 
             btnA_Insert.BackColor = Color.Lime;
             btnA_Insert.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnA_Insert.Location = new Point(317, 254);
+            btnA_Insert.Location = new Point(197, 279);
             btnA_Insert.Name = "btnA_Insert";
             btnA_Insert.Size = new Size(82, 33);
             btnA_Insert.TabIndex = 12;
@@ -148,9 +149,9 @@
             btnA_Delete.BackColor = Color.Red;
             btnA_Delete.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnA_Delete.ForeColor = Color.White;
-            btnA_Delete.Location = new Point(405, 372);
+            btnA_Delete.Location = new Point(197, 330);
             btnA_Delete.Name = "btnA_Delete";
-            btnA_Delete.Size = new Size(82, 33);
+            btnA_Delete.Size = new Size(188, 33);
             btnA_Delete.TabIndex = 13;
             btnA_Delete.Text = "Delete";
             btnA_Delete.UseVisualStyleBackColor = false;
@@ -159,30 +160,38 @@
             // 
             btnA_Update.BackColor = Color.FromArgb(0, 192, 192);
             btnA_Update.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnA_Update.Location = new Point(423, 254);
+            btnA_Update.Location = new Point(303, 279);
             btnA_Update.Name = "btnA_Update";
             btnA_Update.Size = new Size(82, 33);
             btnA_Update.TabIndex = 14;
             btnA_Update.Text = "Update";
             btnA_Update.UseVisualStyleBackColor = false;
             // 
-            // checkBox1
+            // cbxApplyToAllCategory
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox1.Location = new Point(225, 156);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(151, 20);
-            checkBox1.TabIndex = 15;
-            checkBox1.Text = "Apply to All Category";
-            checkBox1.UseVisualStyleBackColor = true;
+            cbxApplyToAllCategory.AutoSize = true;
+            cbxApplyToAllCategory.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            cbxApplyToAllCategory.Location = new Point(207, 168);
+            cbxApplyToAllCategory.Name = "cbxApplyToAllCategory";
+            cbxApplyToAllCategory.Size = new Size(151, 20);
+            cbxApplyToAllCategory.TabIndex = 15;
+            cbxApplyToAllCategory.Text = "Apply to All Category";
+            cbxApplyToAllCategory.UseVisualStyleBackColor = true;
+            // 
+            // fLpActionPlans
+            // 
+            fLpActionPlans.Location = new Point(445, 27);
+            fLpActionPlans.Name = "fLpActionPlans";
+            fLpActionPlans.Size = new Size(444, 397);
+            fLpActionPlans.TabIndex = 16;
             // 
             // FormActionPlans
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(915, 631);
-            Controls.Add(checkBox1);
+            Controls.Add(fLpActionPlans);
+            Controls.Add(cbxApplyToAllCategory);
             Controls.Add(btnA_Update);
             Controls.Add(btnA_Delete);
             Controls.Add(btnA_Insert);
@@ -218,6 +227,7 @@
         private Button btnA_Insert;
         private Button btnA_Delete;
         private Button btnA_Update;
-        private CheckBox checkBox1;
+        private CheckBox cbxApplyToAllCategory;
+        private FlowLayoutPanel fLpActionPlans;
     }
 }

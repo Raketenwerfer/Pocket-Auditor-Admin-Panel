@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pocket_Auditor_Admin_Panel
+namespace Pocket_Auditor_Admin_Panel.UserView
 {
-    public partial class CardViewControl : UserControl
+    public partial class DataItemList : UserControl
     {
-        public CardViewControl()
+        public DataItemList()
         {
             InitializeComponent();
         }
