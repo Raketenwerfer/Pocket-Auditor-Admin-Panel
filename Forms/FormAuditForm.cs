@@ -86,5 +86,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             MessageBox.Show("The selected Data is Deleted successfully");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

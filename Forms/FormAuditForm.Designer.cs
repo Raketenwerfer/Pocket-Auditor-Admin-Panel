@@ -101,7 +101,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(704, 351);
+            tabPage1.Size = new Size(802, 351);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -132,6 +132,7 @@
             button3.TabIndex = 42;
             button3.Text = "INSERT";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // txtCatName
             // 
