@@ -157,6 +157,7 @@
             APlandgv.Location = new Point(430, 103);
             APlandgv.Name = "APlandgv";
             APlandgv.RowTemplate.Height = 25;
+            APlandgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             APlandgv.Size = new Size(456, 499);
             APlandgv.TabIndex = 16;
             APlandgv.CellClick += APlandgv_CellClick;
