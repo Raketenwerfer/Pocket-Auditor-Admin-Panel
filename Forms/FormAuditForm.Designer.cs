@@ -31,10 +31,17 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            button3 = new Button();
+            CatUpdatebtn = new Button();
+            Catdgv = new DataGridView();
+            txtCatID = new TextBox();
+            label7 = new Label();
+            textBox1 = new TextBox();
+            label4 = new Label();
+            CatInsertbtn = new Button();
             txtCatName = new TextBox();
             label2 = new Label();
             tabPage2 = new TabPage();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             pnlSubIndicators = new Panel();
             btnSubDelete = new Button();
             btnSubUpdate = new Button();
@@ -50,12 +57,10 @@
             btnInsertData = new Button();
             txtIndicators = new TextBox();
             label5 = new Label();
-            fLpDisplayForm = new FlowLayoutPanel();
-            label4 = new Label();
-            textBox1 = new TextBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            CatDeletebtn = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Catdgv).BeginInit();
             tabPage2.SuspendLayout();
             pnlSubIndicators.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSubIndicators).BeginInit();
@@ -83,10 +88,14 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(CatDeletebtn);
+            tabPage1.Controls.Add(CatUpdatebtn);
+            tabPage1.Controls.Add(Catdgv);
+            tabPage1.Controls.Add(txtCatID);
+            tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(textBox1);
             tabPage1.Controls.Add(label4);
-            tabPage1.Controls.Add(fLpDisplayForm);
-            tabPage1.Controls.Add(button3);
+            tabPage1.Controls.Add(CatInsertbtn);
             tabPage1.Controls.Add(txtCatName);
             tabPage1.Controls.Add(label2);
             tabPage1.Location = new Point(4, 24);
@@ -97,19 +106,77 @@
             tabPage1.Text = "Categories";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // CatUpdatebtn
             // 
-            button3.Location = new Point(574, 26);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 42;
-            button3.Text = "INSERT";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            CatUpdatebtn.Location = new Point(530, 203);
+            CatUpdatebtn.Name = "CatUpdatebtn";
+            CatUpdatebtn.Size = new Size(75, 23);
+            CatUpdatebtn.TabIndex = 51;
+            CatUpdatebtn.Text = "UPDATE";
+            CatUpdatebtn.UseVisualStyleBackColor = true;
+            CatUpdatebtn.Click += CatUpdatebtn_Click;
+            // 
+            // Catdgv
+            // 
+            Catdgv.AllowUserToAddRows = false;
+            Catdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Catdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Catdgv.Location = new Point(21, 181);
+            Catdgv.Name = "Catdgv";
+            Catdgv.RowTemplate.Height = 25;
+            Catdgv.Size = new Size(401, 150);
+            Catdgv.TabIndex = 50;
+            Catdgv.CellClick += Catdgv_CellClick;
+            // 
+            // txtCatID
+            // 
+            txtCatID.Location = new Point(247, 34);
+            txtCatID.Multiline = true;
+            txtCatID.Name = "txtCatID";
+            txtCatID.Size = new Size(47, 26);
+            txtCatID.TabIndex = 49;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(139, 36);
+            label7.Name = "label7";
+            label7.Size = new Size(78, 16);
+            label7.TabIndex = 48;
+            label7.Text = "Category ID";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(541, 149);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(242, 20);
+            textBox1.TabIndex = 47;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(404, 151);
+            label4.Name = "label4";
+            label4.Size = new Size(131, 16);
+            label4.TabIndex = 46;
+            label4.Text = "Find Category Name";
+            // 
+            // CatInsertbtn
+            // 
+            CatInsertbtn.Location = new Point(574, 71);
+            CatInsertbtn.Name = "CatInsertbtn";
+            CatInsertbtn.Size = new Size(75, 23);
+            CatInsertbtn.TabIndex = 42;
+            CatInsertbtn.Text = "INSERT";
+            CatInsertbtn.UseVisualStyleBackColor = true;
+            CatInsertbtn.Click += CatInsertbtn_Click;
             // 
             // txtCatName
             // 
-            txtCatName.Location = new Point(247, 23);
+            txtCatName.Location = new Point(247, 68);
             txtCatName.Multiline = true;
             txtCatName.Name = "txtCatName";
             txtCatName.Size = new Size(321, 26);
@@ -119,7 +186,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(139, 29);
+            label2.Location = new Point(139, 74);
             label2.Name = "label2";
             label2.Size = new Size(102, 16);
             label2.TabIndex = 38;
@@ -142,6 +209,13 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(28, 269);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(743, 247);
+            flowLayoutPanel1.TabIndex = 49;
             // 
             // pnlSubIndicators
             // 
@@ -244,7 +318,6 @@
             cbxSubIndicators.TabIndex = 47;
             cbxSubIndicators.Text = "Add Sub-Indicators";
             cbxSubIndicators.UseVisualStyleBackColor = true;
-            cbxSubIndicators.CheckedChanged += cbxSubIndicators_CheckedChanged;
             // 
             // btnDelData
             // 
@@ -291,37 +364,15 @@
             label5.TabIndex = 42;
             label5.Text = "Indicator Question";
             // 
-            // fLpDisplayForm
+            // CatDeletebtn
             // 
-            fLpDisplayForm.Location = new Point(18, 129);
-            fLpDisplayForm.Name = "fLpDisplayForm";
-            fLpDisplayForm.Size = new Size(765, 396);
-            fLpDisplayForm.TabIndex = 45;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(18, 94);
-            label4.Name = "label4";
-            label4.Size = new Size(131, 16);
-            label4.TabIndex = 46;
-            label4.Text = "Find Category Name";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(154, 92);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(629, 20);
-            textBox1.TabIndex = 47;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Location = new Point(28, 269);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(743, 247);
-            flowLayoutPanel1.TabIndex = 49;
+            CatDeletebtn.Location = new Point(530, 256);
+            CatDeletebtn.Name = "CatDeletebtn";
+            CatDeletebtn.Size = new Size(75, 23);
+            CatDeletebtn.TabIndex = 52;
+            CatDeletebtn.Text = "DELETE";
+            CatDeletebtn.UseVisualStyleBackColor = true;
+            CatDeletebtn.Click += CatDeletebtn_Click;
             // 
             // FormAuditForm
             // 
@@ -338,6 +389,7 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Catdgv).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             pnlSubIndicators.ResumeLayout(false);
@@ -353,7 +405,7 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Button button3;
+        private Button CatInsertbtn;
         private TextBox txtCatName;
         private Label label2;
         private CheckBox cbxSubIndicators;
@@ -371,9 +423,13 @@
         private ComboBox cbxType;
         private TextBox txtSubIndicators;
         private Label label6;
-        private FlowLayoutPanel fLpDisplayForm;
         private TextBox textBox1;
         private Label label4;
         private FlowLayoutPanel flowLayoutPanel1;
+        private TextBox txtCatID;
+        private Label label7;
+        private DataGridView Catdgv;
+        private Button CatUpdatebtn;
+        private Button CatDeletebtn;
     }
 }
