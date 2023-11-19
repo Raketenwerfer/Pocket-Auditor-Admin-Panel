@@ -31,6 +31,7 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            CatDeletebtn = new Button();
             CatUpdatebtn = new Button();
             Catdgv = new DataGridView();
             txtCatID = new TextBox();
@@ -41,29 +42,32 @@
             txtCatName = new TextBox();
             label2 = new Label();
             tabPage2 = new TabPage();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            Indicatordgv = new DataGridView();
+            Indicatortxt = new TextBox();
+            CatIDcbx = new ComboBox();
+            label8 = new Label();
             pnlSubIndicators = new Panel();
             btnSubDelete = new Button();
             btnSubUpdate = new Button();
             btnSubInsert = new Button();
-            dgvSubIndicators = new DataGridView();
+            SubIndicatorsdgv = new DataGridView();
             label3 = new Label();
             cbxType = new ComboBox();
             txtSubIndicators = new TextBox();
             label6 = new Label();
-            cbxSubIndicators = new CheckBox();
-            btnDelData = new Button();
-            btnUpdateData = new Button();
-            btnInsertData = new Button();
-            txtIndicators = new TextBox();
+            SubIndicatorscbx = new CheckBox();
+            IndicatorDeletebtn = new Button();
+            IndicatorUpdatebtn = new Button();
+            IndicatorInsertbtn = new Button();
             label5 = new Label();
-            CatDeletebtn = new Button();
+            comboBox1 = new ComboBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Catdgv).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Indicatordgv).BeginInit();
             pnlSubIndicators.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSubIndicators).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -83,11 +87,12 @@
             tabControl1.Location = new Point(12, 48);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(810, 571);
+            tabControl1.Size = new Size(891, 631);
             tabControl1.TabIndex = 42;
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = SystemColors.Control;
             tabPage1.Controls.Add(CatDeletebtn);
             tabPage1.Controls.Add(CatUpdatebtn);
             tabPage1.Controls.Add(Catdgv);
@@ -101,10 +106,19 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(802, 543);
+            tabPage1.Size = new Size(883, 603);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Categories";
-            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CatDeletebtn
+            // 
+            CatDeletebtn.Location = new Point(530, 256);
+            CatDeletebtn.Name = "CatDeletebtn";
+            CatDeletebtn.Size = new Size(75, 23);
+            CatDeletebtn.TabIndex = 52;
+            CatDeletebtn.Text = "DELETE";
+            CatDeletebtn.UseVisualStyleBackColor = true;
+            CatDeletebtn.Click += CatDeletebtn_Click;
             // 
             // CatUpdatebtn
             // 
@@ -131,10 +145,10 @@
             // txtCatID
             // 
             txtCatID.Location = new Point(247, 34);
-            txtCatID.Multiline = true;
             txtCatID.Name = "txtCatID";
-            txtCatID.Size = new Size(47, 26);
+            txtCatID.Size = new Size(77, 23);
             txtCatID.TabIndex = 49;
+            txtCatID.KeyPress += txtCatID_KeyPress;
             // 
             // label7
             // 
@@ -194,86 +208,126 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(flowLayoutPanel1);
+            tabPage2.BackColor = SystemColors.Control;
+            tabPage2.Controls.Add(comboBox1);
+            tabPage2.Controls.Add(Indicatordgv);
+            tabPage2.Controls.Add(Indicatortxt);
+            tabPage2.Controls.Add(CatIDcbx);
+            tabPage2.Controls.Add(label8);
             tabPage2.Controls.Add(pnlSubIndicators);
-            tabPage2.Controls.Add(cbxSubIndicators);
-            tabPage2.Controls.Add(btnDelData);
-            tabPage2.Controls.Add(btnUpdateData);
-            tabPage2.Controls.Add(btnInsertData);
-            tabPage2.Controls.Add(txtIndicators);
+            tabPage2.Controls.Add(SubIndicatorscbx);
+            tabPage2.Controls.Add(IndicatorDeletebtn);
+            tabPage2.Controls.Add(IndicatorUpdatebtn);
+            tabPage2.Controls.Add(IndicatorInsertbtn);
             tabPage2.Controls.Add(label5);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(802, 543);
+            tabPage2.Size = new Size(883, 603);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // Indicatordgv
             // 
-            flowLayoutPanel1.Location = new Point(28, 269);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(743, 247);
-            flowLayoutPanel1.TabIndex = 49;
+            Indicatordgv.AllowUserToAddRows = false;
+            Indicatordgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Indicatordgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Indicatordgv.Location = new Point(28, 169);
+            Indicatordgv.Name = "Indicatordgv";
+            Indicatordgv.RowTemplate.Height = 25;
+            Indicatordgv.Size = new Size(371, 367);
+            Indicatordgv.TabIndex = 53;
+            Indicatordgv.CellClick += Indicatordgv_CellClick;
+            // 
+            // Indicatortxt
+            // 
+            Indicatortxt.Location = new Point(144, 52);
+            Indicatortxt.Multiline = true;
+            Indicatortxt.Name = "Indicatortxt";
+            Indicatortxt.Size = new Size(217, 67);
+            Indicatortxt.TabIndex = 52;
+            // 
+            // CatIDcbx
+            // 
+            CatIDcbx.FormattingEnabled = true;
+            CatIDcbx.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            CatIDcbx.Location = new Point(158, 17);
+            CatIDcbx.Name = "CatIDcbx";
+            CatIDcbx.Size = new Size(86, 23);
+            CatIDcbx.TabIndex = 51;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(19, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(128, 16);
+            label8.TabIndex = 50;
+            label8.Text = "Choose Category ID";
             // 
             // pnlSubIndicators
             // 
             pnlSubIndicators.Controls.Add(btnSubDelete);
             pnlSubIndicators.Controls.Add(btnSubUpdate);
             pnlSubIndicators.Controls.Add(btnSubInsert);
-            pnlSubIndicators.Controls.Add(dgvSubIndicators);
+            pnlSubIndicators.Controls.Add(SubIndicatorsdgv);
             pnlSubIndicators.Controls.Add(label3);
             pnlSubIndicators.Controls.Add(cbxType);
             pnlSubIndicators.Controls.Add(txtSubIndicators);
             pnlSubIndicators.Controls.Add(label6);
             pnlSubIndicators.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            pnlSubIndicators.Location = new Point(28, 106);
+            pnlSubIndicators.Location = new Point(452, 52);
             pnlSubIndicators.Name = "pnlSubIndicators";
-            pnlSubIndicators.Size = new Size(743, 149);
+            pnlSubIndicators.Size = new Size(419, 468);
             pnlSubIndicators.TabIndex = 48;
             // 
             // btnSubDelete
             // 
-            btnSubDelete.Location = new Point(246, 101);
+            btnSubDelete.Location = new Point(242, 165);
             btnSubDelete.Name = "btnSubDelete";
             btnSubDelete.Size = new Size(71, 25);
             btnSubDelete.TabIndex = 22;
             btnSubDelete.Text = "Delete";
             btnSubDelete.UseVisualStyleBackColor = true;
+            btnSubDelete.Click += btnSubDelete_Click;
             // 
             // btnSubUpdate
             // 
-            btnSubUpdate.Location = new Point(169, 101);
+            btnSubUpdate.Location = new Point(165, 165);
             btnSubUpdate.Name = "btnSubUpdate";
             btnSubUpdate.Size = new Size(71, 25);
             btnSubUpdate.TabIndex = 22;
             btnSubUpdate.Text = "Update";
             btnSubUpdate.UseVisualStyleBackColor = true;
+            btnSubUpdate.Click += btnSubUpdate_Click;
             // 
             // btnSubInsert
             // 
-            btnSubInsert.Location = new Point(92, 101);
+            btnSubInsert.Location = new Point(326, 102);
             btnSubInsert.Name = "btnSubInsert";
             btnSubInsert.Size = new Size(71, 25);
             btnSubInsert.TabIndex = 21;
             btnSubInsert.Text = "Insert";
             btnSubInsert.UseVisualStyleBackColor = true;
+            btnSubInsert.Click += btnSubInsert_Click;
             // 
-            // dgvSubIndicators
+            // SubIndicatorsdgv
             // 
-            dgvSubIndicators.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSubIndicators.Location = new Point(343, 25);
-            dgvSubIndicators.Name = "dgvSubIndicators";
-            dgvSubIndicators.RowTemplate.Height = 25;
-            dgvSubIndicators.Size = new Size(371, 101);
-            dgvSubIndicators.TabIndex = 20;
+            SubIndicatorsdgv.AllowUserToAddRows = false;
+            SubIndicatorsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            SubIndicatorsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SubIndicatorsdgv.Location = new Point(26, 206);
+            SubIndicatorsdgv.Name = "SubIndicatorsdgv";
+            SubIndicatorsdgv.RowTemplate.Height = 25;
+            SubIndicatorsdgv.Size = new Size(371, 241);
+            SubIndicatorsdgv.TabIndex = 20;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(16, 4);
+            label3.Location = new Point(16, 22);
             label3.Name = "label3";
             label3.Size = new Size(74, 15);
             label3.TabIndex = 19;
@@ -283,7 +337,7 @@
             // 
             cbxType.FormattingEnabled = true;
             cbxType.Items.AddRange(new object[] { "Details", "Options" });
-            cbxType.Location = new Point(16, 25);
+            cbxType.Location = new Point(16, 43);
             cbxType.Name = "cbxType";
             cbxType.Size = new Size(301, 24);
             cbxType.TabIndex = 18;
@@ -292,98 +346,95 @@
             // 
             txtSubIndicators.BackColor = Color.Silver;
             txtSubIndicators.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSubIndicators.Location = new Point(16, 72);
+            txtSubIndicators.Location = new Point(16, 90);
             txtSubIndicators.Multiline = true;
             txtSubIndicators.Name = "txtSubIndicators";
-            txtSubIndicators.Size = new Size(301, 23);
+            txtSubIndicators.Size = new Size(301, 49);
             txtSubIndicators.TabIndex = 17;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(14, 51);
+            label6.Location = new Point(14, 69);
             label6.Name = "label6";
             label6.Size = new Size(86, 15);
             label6.TabIndex = 16;
             label6.Text = "Sub-Indicators";
             // 
-            // cbxSubIndicators
+            // SubIndicatorscbx
             // 
-            cbxSubIndicators.AutoSize = true;
-            cbxSubIndicators.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cbxSubIndicators.Location = new Point(28, 80);
-            cbxSubIndicators.Name = "cbxSubIndicators";
-            cbxSubIndicators.Size = new Size(140, 20);
-            cbxSubIndicators.TabIndex = 47;
-            cbxSubIndicators.Text = "Add Sub-Indicators";
-            cbxSubIndicators.UseVisualStyleBackColor = true;
+            SubIndicatorscbx.AutoSize = true;
+            SubIndicatorscbx.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            SubIndicatorscbx.Location = new Point(466, 19);
+            SubIndicatorscbx.Name = "SubIndicatorscbx";
+            SubIndicatorscbx.Size = new Size(140, 20);
+            SubIndicatorscbx.TabIndex = 47;
+            SubIndicatorscbx.Text = "Add Sub-Indicators";
+            SubIndicatorscbx.UseVisualStyleBackColor = true;
+            SubIndicatorscbx.CheckedChanged += SubIndicatorscbx_CheckedChanged;
             // 
-            // btnDelData
+            // IndicatorDeletebtn
             // 
-            btnDelData.Location = new Point(190, 51);
-            btnDelData.Name = "btnDelData";
-            btnDelData.Size = new Size(75, 23);
-            btnDelData.TabIndex = 46;
-            btnDelData.Text = "DELETE";
-            btnDelData.UseVisualStyleBackColor = true;
+            IndicatorDeletebtn.Location = new Point(321, 140);
+            IndicatorDeletebtn.Name = "IndicatorDeletebtn";
+            IndicatorDeletebtn.Size = new Size(75, 23);
+            IndicatorDeletebtn.TabIndex = 46;
+            IndicatorDeletebtn.Text = "DELETE";
+            IndicatorDeletebtn.UseVisualStyleBackColor = true;
+            IndicatorDeletebtn.Click += IndicatorDeletebtn_Click;
             // 
-            // btnUpdateData
+            // IndicatorUpdatebtn
             // 
-            btnUpdateData.Location = new Point(109, 51);
-            btnUpdateData.Name = "btnUpdateData";
-            btnUpdateData.Size = new Size(75, 23);
-            btnUpdateData.TabIndex = 45;
-            btnUpdateData.Text = "UPDATE";
-            btnUpdateData.UseVisualStyleBackColor = true;
+            IndicatorUpdatebtn.Location = new Point(240, 140);
+            IndicatorUpdatebtn.Name = "IndicatorUpdatebtn";
+            IndicatorUpdatebtn.Size = new Size(75, 23);
+            IndicatorUpdatebtn.TabIndex = 45;
+            IndicatorUpdatebtn.Text = "UPDATE";
+            IndicatorUpdatebtn.UseVisualStyleBackColor = true;
+            IndicatorUpdatebtn.Click += IndicatorUpdatebtn_Click;
             // 
-            // btnInsertData
+            // IndicatorInsertbtn
             // 
-            btnInsertData.Location = new Point(371, 19);
-            btnInsertData.Name = "btnInsertData";
-            btnInsertData.Size = new Size(75, 23);
-            btnInsertData.TabIndex = 44;
-            btnInsertData.Text = "INSERT";
-            btnInsertData.UseVisualStyleBackColor = true;
-            // 
-            // txtIndicators
-            // 
-            txtIndicators.Location = new Point(148, 20);
-            txtIndicators.Multiline = true;
-            txtIndicators.Name = "txtIndicators";
-            txtIndicators.Size = new Size(211, 16);
-            txtIndicators.TabIndex = 43;
+            IndicatorInsertbtn.Location = new Point(286, 18);
+            IndicatorInsertbtn.Name = "IndicatorInsertbtn";
+            IndicatorInsertbtn.Size = new Size(75, 23);
+            IndicatorInsertbtn.TabIndex = 44;
+            IndicatorInsertbtn.Text = "INSERT";
+            IndicatorInsertbtn.UseVisualStyleBackColor = true;
+            IndicatorInsertbtn.Click += IndicatorInsertbtn_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(28, 20);
+            label5.Location = new Point(19, 54);
             label5.Name = "label5";
             label5.Size = new Size(114, 16);
             label5.TabIndex = 42;
             label5.Text = "Indicator Question";
             // 
-            // CatDeletebtn
+            // comboBox1
             // 
-            CatDeletebtn.Location = new Point(530, 256);
-            CatDeletebtn.Name = "CatDeletebtn";
-            CatDeletebtn.Size = new Size(75, 23);
-            CatDeletebtn.TabIndex = 52;
-            CatDeletebtn.Text = "DELETE";
-            CatDeletebtn.UseVisualStyleBackColor = true;
-            CatDeletebtn.Click += CatDeletebtn_Click;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            comboBox1.Location = new Point(28, 140);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(129, 23);
+            comboBox1.TabIndex = 54;
+            comboBox1.Text = "Sort By Category ID";
             // 
             // FormAuditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(838, 631);
+            ClientSize = new Size(915, 631);
             Controls.Add(tabControl1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormAuditForm";
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "FormAuditForm";
             Load += FormAuditForm_Load;
             tabControl1.ResumeLayout(false);
@@ -392,9 +443,10 @@
             ((System.ComponentModel.ISupportInitialize)Catdgv).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Indicatordgv).EndInit();
             pnlSubIndicators.ResumeLayout(false);
             pnlSubIndicators.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSubIndicators).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -408,28 +460,31 @@
         private Button CatInsertbtn;
         private TextBox txtCatName;
         private Label label2;
-        private CheckBox cbxSubIndicators;
-        private Button btnDelData;
-        private Button btnUpdateData;
-        private Button btnInsertData;
-        private TextBox txtIndicators;
+        private CheckBox SubIndicatorscbx;
+        private Button IndicatorDeletebtn;
+        private Button IndicatorUpdatebtn;
+        private Button IndicatorInsertbtn;
         private Label label5;
         private Panel pnlSubIndicators;
         private Button btnSubDelete;
         private Button btnSubUpdate;
         private Button btnSubInsert;
-        private DataGridView dgvSubIndicators;
+        private DataGridView SubIndicatorsdgv;
         private Label label3;
         private ComboBox cbxType;
         private TextBox txtSubIndicators;
         private Label label6;
         private TextBox textBox1;
         private Label label4;
-        private FlowLayoutPanel flowLayoutPanel1;
         private TextBox txtCatID;
         private Label label7;
         private DataGridView Catdgv;
         private Button CatUpdatebtn;
         private Button CatDeletebtn;
+        private TextBox Indicatortxt;
+        private ComboBox CatIDcbx;
+        private Label label8;
+        private DataGridView Indicatordgv;
+        private ComboBox comboBox1;
     }
 }

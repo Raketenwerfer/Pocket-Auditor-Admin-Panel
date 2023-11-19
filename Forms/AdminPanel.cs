@@ -7,13 +7,13 @@ namespace Pocket_Auditor_Admin_Panel
 {
     public partial class AdminPanel : Form
     {
-        FormDashboard frmDashboard = new FormDashboard();
-        FormAuditForm frmAuditForm = new FormAuditForm();
-        FormActionPlans frmActionPlans = new FormActionPlans();
-        FormAuditReports frmAuditReports = new FormAuditReports();
-        FormManageAuditors frmManageAuditors = new FormManageAuditors();
+        readonly FormDashboard frmDashboard = new FormDashboard();
+        readonly FormAuditForm frmAuditForm = new FormAuditForm();
+        readonly FormActionPlans frmActionPlans = new FormActionPlans();
+        readonly FormAuditReports frmAuditReports = new FormAuditReports();
+        readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
 
-        DatabaseInitiator db = new DatabaseInitiator("sql207.infinityfreem.com", "if0_35394751_testrun", "if0_35394751", "aTbs7LJAy0B2");
+        readonly DatabaseInitiator db = new DatabaseInitiator("sql207.infinityfreem.com", "if0_35394751_testrun", "if0_35394751", "aTbs7LJAy0B2");
 
         public AdminPanel()
         {

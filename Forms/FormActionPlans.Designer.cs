@@ -32,16 +32,14 @@
             label2 = new Label();
             txtPlanName = new TextBox();
             label3 = new Label();
-            cbxA_CatList = new ComboBox();
+            cbxAPlanType = new ComboBox();
             txtPlanDetails = new TextBox();
             label4 = new Label();
-            txtLink = new TextBox();
-            label5 = new Label();
             btnA_Insert = new Button();
             btnA_Delete = new Button();
             btnA_Update = new Button();
-            cbxApplyToAllCategory = new CheckBox();
-            fLpActionPlans = new FlowLayoutPanel();
+            APlandgv = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)APlandgv).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -58,7 +56,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(49, 96);
+            label2.Location = new Point(37, 84);
             label2.Name = "label2";
             label2.Size = new Size(114, 16);
             label2.TabIndex = 3;
@@ -68,138 +66,113 @@
             // 
             txtPlanName.BackColor = Color.Silver;
             txtPlanName.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPlanName.Location = new Point(169, 93);
+            txtPlanName.Location = new Point(37, 103);
             txtPlanName.Name = "txtPlanName";
-            txtPlanName.Size = new Size(252, 22);
+            txtPlanName.Size = new Size(368, 22);
             txtPlanName.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(78, 132);
+            label3.Location = new Point(38, 225);
             label3.Name = "label3";
-            label3.Size = new Size(85, 16);
+            label3.Size = new Size(109, 16);
             label3.TabIndex = 5;
-            label3.Text = "Category List";
+            label3.Text = "Action Plan Type";
             // 
-            // cbxA_CatList
+            // cbxAPlanType
             // 
-            cbxA_CatList.BackColor = Color.Silver;
-            cbxA_CatList.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cbxA_CatList.FormattingEnabled = true;
-            cbxA_CatList.Location = new Point(169, 129);
-            cbxA_CatList.Name = "cbxA_CatList";
-            cbxA_CatList.Size = new Size(252, 24);
-            cbxA_CatList.TabIndex = 6;
-            cbxA_CatList.Text = "Choose a Category Here";
+            cbxAPlanType.BackColor = Color.Silver;
+            cbxAPlanType.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            cbxAPlanType.FormattingEnabled = true;
+            cbxAPlanType.Items.AddRange(new object[] { "Singular", "Multiple ", "General" });
+            cbxAPlanType.Location = new Point(38, 244);
+            cbxAPlanType.Name = "cbxAPlanType";
+            cbxAPlanType.Size = new Size(367, 24);
+            cbxAPlanType.TabIndex = 6;
             // 
             // txtPlanDetails
             // 
             txtPlanDetails.BackColor = Color.Silver;
             txtPlanDetails.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPlanDetails.Location = new Point(168, 200);
+            txtPlanDetails.Location = new Point(38, 157);
+            txtPlanDetails.Multiline = true;
             txtPlanDetails.Name = "txtPlanDetails";
-            txtPlanDetails.Size = new Size(252, 22);
+            txtPlanDetails.Size = new Size(367, 50);
             txtPlanDetails.TabIndex = 8;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(48, 203);
+            label4.Location = new Point(38, 138);
             label4.Name = "label4";
             label4.Size = new Size(119, 16);
             label4.TabIndex = 7;
             label4.Text = "Action Plan Details";
             // 
-            // txtLink
-            // 
-            txtLink.BackColor = Color.Silver;
-            txtLink.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtLink.Location = new Point(169, 238);
-            txtLink.Name = "txtLink";
-            txtLink.Size = new Size(252, 22);
-            txtLink.TabIndex = 10;
-            txtLink.Text = "Paste link here";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(81, 241);
-            label5.Name = "label5";
-            label5.Size = new Size(82, 16);
-            label5.TabIndex = 9;
-            label5.Text = "External Link";
-            // 
             // btnA_Insert
             // 
             btnA_Insert.BackColor = Color.Lime;
             btnA_Insert.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnA_Insert.Location = new Point(197, 279);
+            btnA_Insert.Location = new Point(323, 283);
             btnA_Insert.Name = "btnA_Insert";
             btnA_Insert.Size = new Size(82, 33);
             btnA_Insert.TabIndex = 12;
             btnA_Insert.Text = "Insert";
             btnA_Insert.UseVisualStyleBackColor = false;
+            btnA_Insert.Click += btnA_Insert_Click;
             // 
             // btnA_Delete
             // 
             btnA_Delete.BackColor = Color.Red;
             btnA_Delete.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnA_Delete.ForeColor = Color.White;
-            btnA_Delete.Location = new Point(197, 330);
+            btnA_Delete.Location = new Point(800, 64);
             btnA_Delete.Name = "btnA_Delete";
-            btnA_Delete.Size = new Size(188, 33);
+            btnA_Delete.Size = new Size(86, 33);
             btnA_Delete.TabIndex = 13;
             btnA_Delete.Text = "Delete";
             btnA_Delete.UseVisualStyleBackColor = false;
+            btnA_Delete.Click += btnA_Delete_Click;
             // 
             // btnA_Update
             // 
             btnA_Update.BackColor = Color.FromArgb(0, 192, 192);
             btnA_Update.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnA_Update.Location = new Point(303, 279);
+            btnA_Update.Location = new Point(685, 64);
             btnA_Update.Name = "btnA_Update";
             btnA_Update.Size = new Size(82, 33);
             btnA_Update.TabIndex = 14;
             btnA_Update.Text = "Update";
             btnA_Update.UseVisualStyleBackColor = false;
+            btnA_Update.Click += btnA_Update_Click;
             // 
-            // cbxApplyToAllCategory
+            // APlandgv
             // 
-            cbxApplyToAllCategory.AutoSize = true;
-            cbxApplyToAllCategory.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            cbxApplyToAllCategory.Location = new Point(207, 168);
-            cbxApplyToAllCategory.Name = "cbxApplyToAllCategory";
-            cbxApplyToAllCategory.Size = new Size(151, 20);
-            cbxApplyToAllCategory.TabIndex = 15;
-            cbxApplyToAllCategory.Text = "Apply to All Category";
-            cbxApplyToAllCategory.UseVisualStyleBackColor = true;
-            // 
-            // fLpActionPlans
-            // 
-            fLpActionPlans.Location = new Point(445, 27);
-            fLpActionPlans.Name = "fLpActionPlans";
-            fLpActionPlans.Size = new Size(444, 397);
-            fLpActionPlans.TabIndex = 16;
+            APlandgv.AllowUserToAddRows = false;
+            APlandgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            APlandgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            APlandgv.Location = new Point(430, 103);
+            APlandgv.Name = "APlandgv";
+            APlandgv.RowTemplate.Height = 25;
+            APlandgv.Size = new Size(456, 499);
+            APlandgv.TabIndex = 16;
+            APlandgv.CellClick += APlandgv_CellClick;
             // 
             // FormActionPlans
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(915, 631);
-            Controls.Add(fLpActionPlans);
-            Controls.Add(cbxApplyToAllCategory);
+            Controls.Add(APlandgv);
             Controls.Add(btnA_Update);
             Controls.Add(btnA_Delete);
             Controls.Add(btnA_Insert);
-            Controls.Add(txtLink);
-            Controls.Add(label5);
             Controls.Add(txtPlanDetails);
             Controls.Add(label4);
-            Controls.Add(cbxA_CatList);
+            Controls.Add(cbxAPlanType);
             Controls.Add(label3);
             Controls.Add(txtPlanName);
             Controls.Add(label2);
@@ -209,6 +182,8 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormActionPlans";
             Text = "FormActionPlans";
+            Load += FormActionPlans_Load;
+            ((System.ComponentModel.ISupportInitialize)APlandgv).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -219,15 +194,12 @@
         private Label label2;
         private TextBox txtPlanName;
         private Label label3;
-        private ComboBox cbxA_CatList;
+        private ComboBox cbxAPlanType;
         private TextBox txtPlanDetails;
         private Label label4;
-        private TextBox txtLink;
-        private Label label5;
         private Button btnA_Insert;
         private Button btnA_Delete;
         private Button btnA_Update;
-        private CheckBox cbxApplyToAllCategory;
-        private FlowLayoutPanel fLpActionPlans;
+        private DataGridView APlandgv;
     }
 }
