@@ -29,15 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            fLpDisplayForm = new FlowLayoutPanel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            button1 = new Button();
-            button2 = new Button();
             button3 = new Button();
             txtCatName = new TextBox();
-            txtCatID = new TextBox();
-            label4 = new Label();
             label2 = new Label();
             tabPage2 = new TabPage();
             pnlSubIndicators = new Panel();
@@ -55,6 +50,10 @@
             btnInsertData = new Button();
             txtIndicators = new TextBox();
             label5 = new Label();
+            fLpDisplayForm = new FlowLayoutPanel();
+            label4 = new Label();
+            textBox1 = new TextBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -66,18 +65,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 22);
+            label1.Location = new Point(15, 17);
             label1.Name = "label1";
             label1.Size = new Size(134, 23);
             label1.TabIndex = 1;
             label1.Text = "AUDIT FORM";
-            // 
-            // fLpDisplayForm
-            // 
-            fLpDisplayForm.Location = new Point(16, 433);
-            fLpDisplayForm.Name = "fLpDisplayForm";
-            fLpDisplayForm.Size = new Size(802, 186);
-            fLpDisplayForm.TabIndex = 32;
             // 
             // tabControl1
             // 
@@ -86,47 +78,28 @@
             tabControl1.Location = new Point(12, 48);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(810, 379);
+            tabControl1.Size = new Size(810, 571);
             tabControl1.TabIndex = 42;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(button1);
-            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(textBox1);
+            tabPage1.Controls.Add(label4);
+            tabPage1.Controls.Add(fLpDisplayForm);
             tabPage1.Controls.Add(button3);
             tabPage1.Controls.Add(txtCatName);
-            tabPage1.Controls.Add(txtCatID);
-            tabPage1.Controls.Add(label4);
             tabPage1.Controls.Add(label2);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(802, 351);
+            tabPage1.Size = new Size(802, 543);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
+            tabPage1.Text = "Categories";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(356, 109);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 44;
-            button1.Text = "DELETE";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(356, 70);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 43;
-            button2.Text = "UPDATE";
-            button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(356, 32);
+            button3.Location = new Point(574, 26);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 42;
@@ -136,34 +109,17 @@
             // 
             // txtCatName
             // 
-            txtCatName.Location = new Point(127, 67);
+            txtCatName.Location = new Point(247, 23);
             txtCatName.Multiline = true;
             txtCatName.Name = "txtCatName";
-            txtCatName.Size = new Size(211, 52);
+            txtCatName.Size = new Size(321, 26);
             txtCatName.TabIndex = 41;
-            // 
-            // txtCatID
-            // 
-            txtCatID.Location = new Point(112, 37);
-            txtCatID.Name = "txtCatID";
-            txtCatID.Size = new Size(100, 23);
-            txtCatID.TabIndex = 40;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(28, 39);
-            label4.Name = "label4";
-            label4.Size = new Size(78, 16);
-            label4.TabIndex = 39;
-            label4.Text = "Category ID";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(28, 69);
+            label2.Location = new Point(139, 29);
             label2.Name = "label2";
             label2.Size = new Size(102, 16);
             label2.TabIndex = 38;
@@ -171,6 +127,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(flowLayoutPanel1);
             tabPage2.Controls.Add(pnlSubIndicators);
             tabPage2.Controls.Add(cbxSubIndicators);
             tabPage2.Controls.Add(btnDelData);
@@ -181,9 +138,9 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(802, 351);
+            tabPage2.Size = new Size(802, 543);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Indicators";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // pnlSubIndicators
@@ -197,9 +154,9 @@
             pnlSubIndicators.Controls.Add(txtSubIndicators);
             pnlSubIndicators.Controls.Add(label6);
             pnlSubIndicators.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            pnlSubIndicators.Location = new Point(28, 118);
+            pnlSubIndicators.Location = new Point(28, 106);
             pnlSubIndicators.Name = "pnlSubIndicators";
-            pnlSubIndicators.Size = new Size(743, 210);
+            pnlSubIndicators.Size = new Size(743, 149);
             pnlSubIndicators.TabIndex = 48;
             // 
             // btnSubDelete
@@ -235,7 +192,7 @@
             dgvSubIndicators.Location = new Point(343, 25);
             dgvSubIndicators.Name = "dgvSubIndicators";
             dgvSubIndicators.RowTemplate.Height = 25;
-            dgvSubIndicators.Size = new Size(371, 171);
+            dgvSubIndicators.Size = new Size(371, 101);
             dgvSubIndicators.TabIndex = 20;
             // 
             // label3
@@ -309,7 +266,7 @@
             // 
             // btnInsertData
             // 
-            btnInsertData.Location = new Point(28, 51);
+            btnInsertData.Location = new Point(371, 19);
             btnInsertData.Name = "btnInsertData";
             btnInsertData.Size = new Size(75, 23);
             btnInsertData.TabIndex = 44;
@@ -318,7 +275,7 @@
             // 
             // txtIndicators
             // 
-            txtIndicators.Location = new Point(99, 20);
+            txtIndicators.Location = new Point(148, 20);
             txtIndicators.Multiline = true;
             txtIndicators.Name = "txtIndicators";
             txtIndicators.Size = new Size(211, 16);
@@ -330,18 +287,49 @@
             label5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(28, 20);
             label5.Name = "label5";
-            label5.Size = new Size(65, 16);
+            label5.Size = new Size(114, 16);
             label5.TabIndex = 42;
-            label5.Text = "Indicators";
+            label5.Text = "Indicator Question";
+            // 
+            // fLpDisplayForm
+            // 
+            fLpDisplayForm.Location = new Point(18, 129);
+            fLpDisplayForm.Name = "fLpDisplayForm";
+            fLpDisplayForm.Size = new Size(765, 396);
+            fLpDisplayForm.TabIndex = 45;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(18, 94);
+            label4.Name = "label4";
+            label4.Size = new Size(131, 16);
+            label4.TabIndex = 46;
+            label4.Text = "Find Category Name";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(154, 92);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(629, 20);
+            textBox1.TabIndex = 47;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(28, 269);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(743, 247);
+            flowLayoutPanel1.TabIndex = 49;
             // 
             // FormAuditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(841, 631);
+            ClientSize = new Size(838, 631);
             Controls.Add(tabControl1);
-            Controls.Add(fLpDisplayForm);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormAuditForm";
@@ -362,16 +350,11 @@
         #endregion
 
         private Label label1;
-        private FlowLayoutPanel fLpDisplayForm;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Button button1;
-        private Button button2;
         private Button button3;
         private TextBox txtCatName;
-        private TextBox txtCatID;
-        private Label label4;
         private Label label2;
         private CheckBox cbxSubIndicators;
         private Button btnDelData;
@@ -388,5 +371,9 @@
         private ComboBox cbxType;
         private TextBox txtSubIndicators;
         private Label label6;
+        private FlowLayoutPanel fLpDisplayForm;
+        private TextBox textBox1;
+        private Label label4;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
