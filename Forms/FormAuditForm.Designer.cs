@@ -38,8 +38,10 @@
             txtCatName = new TextBox();
             label2 = new Label();
             tabPage2 = new TabPage();
+            num_IndicatorSV = new NumericUpDown();
             label7 = new Label();
             pnlSubIndicators = new Panel();
+            nm_SubIndicatorSV = new NumericUpDown();
             label9 = new Label();
             label4 = new Label();
             btnSubDelete = new Button();
@@ -60,17 +62,17 @@
             IndicatorUpdatebtn = new Button();
             IndicatorInsertbtn = new Button();
             label5 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            numericUpDown2 = new NumericUpDown();
+            label10 = new Label();
+            IndicatorNumbertxt = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Catdgv).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)num_IndicatorSV).BeginInit();
             pnlSubIndicators.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nm_SubIndicatorSV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Indicatordgv).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -175,7 +177,9 @@
             // tabPage2
             // 
             tabPage2.BackColor = SystemColors.Control;
-            tabPage2.Controls.Add(numericUpDown1);
+            tabPage2.Controls.Add(IndicatorNumbertxt);
+            tabPage2.Controls.Add(label10);
+            tabPage2.Controls.Add(num_IndicatorSV);
             tabPage2.Controls.Add(label7);
             tabPage2.Controls.Add(pnlSubIndicators);
             tabPage2.Controls.Add(cbox_IndicatorFilterbyCategory);
@@ -195,6 +199,13 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
             // 
+            // num_IndicatorSV
+            // 
+            num_IndicatorSV.Location = new Point(479, 60);
+            num_IndicatorSV.Name = "num_IndicatorSV";
+            num_IndicatorSV.Size = new Size(41, 23);
+            num_IndicatorSV.TabIndex = 59;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -207,7 +218,7 @@
             // 
             // pnlSubIndicators
             // 
-            pnlSubIndicators.Controls.Add(numericUpDown2);
+            pnlSubIndicators.Controls.Add(nm_SubIndicatorSV);
             pnlSubIndicators.Controls.Add(label9);
             pnlSubIndicators.Controls.Add(label4);
             pnlSubIndicators.Controls.Add(btnSubDelete);
@@ -223,6 +234,13 @@
             pnlSubIndicators.Name = "pnlSubIndicators";
             pnlSubIndicators.Size = new Size(840, 258);
             pnlSubIndicators.TabIndex = 50;
+            // 
+            // nm_SubIndicatorSV
+            // 
+            nm_SubIndicatorSV.Location = new Point(407, 39);
+            nm_SubIndicatorSV.Name = "nm_SubIndicatorSV";
+            nm_SubIndicatorSV.Size = new Size(41, 22);
+            nm_SubIndicatorSV.TabIndex = 60;
             // 
             // label9
             // 
@@ -440,19 +458,25 @@
             label5.TabIndex = 42;
             label5.Text = "Indicator Question";
             // 
-            // numericUpDown1
+            // label10
             // 
-            numericUpDown1.Location = new Point(479, 60);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(41, 23);
-            numericUpDown1.TabIndex = 59;
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(575, 23);
+            label10.Name = "label10";
+            label10.Size = new Size(109, 16);
+            label10.TabIndex = 60;
+            label10.Text = "Indicator Number";
             // 
-            // numericUpDown2
+            // IndicatorNumbertxt
             // 
-            numericUpDown2.Location = new Point(407, 39);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(41, 22);
-            numericUpDown2.TabIndex = 60;
+            IndicatorNumbertxt.BackColor = Color.White;
+            IndicatorNumbertxt.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            IndicatorNumbertxt.Location = new Point(690, 20);
+            IndicatorNumbertxt.Multiline = true;
+            IndicatorNumbertxt.Name = "IndicatorNumbertxt";
+            IndicatorNumbertxt.Size = new Size(103, 24);
+            IndicatorNumbertxt.TabIndex = 61;
             // 
             // FormAuditForm
             // 
@@ -473,12 +497,12 @@
             ((System.ComponentModel.ISupportInitialize)Catdgv).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)num_IndicatorSV).EndInit();
             pnlSubIndicators.ResumeLayout(false);
             pnlSubIndicators.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nm_SubIndicatorSV).EndInit();
             ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).EndInit();
             ((System.ComponentModel.ISupportInitialize)Indicatordgv).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -517,7 +541,9 @@
         private Label label4;
         private Label label9;
         private Label label7;
-        private NumericUpDown numericUpDown1;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown num_IndicatorSV;
+        private NumericUpDown nm_SubIndicatorSV;
+        private TextBox IndicatorNumbertxt;
+        private Label label10;
     }
 }
