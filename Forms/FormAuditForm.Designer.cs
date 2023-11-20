@@ -34,8 +34,6 @@
             CatDeletebtn = new Button();
             CatUpdatebtn = new Button();
             Catdgv = new DataGridView();
-            txtCatID = new TextBox();
-            label7 = new Label();
             CatInsertbtn = new Button();
             txtCatName = new TextBox();
             label2 = new Label();
@@ -94,8 +92,6 @@
             tabPage1.Controls.Add(CatDeletebtn);
             tabPage1.Controls.Add(CatUpdatebtn);
             tabPage1.Controls.Add(Catdgv);
-            tabPage1.Controls.Add(txtCatID);
-            tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(CatInsertbtn);
             tabPage1.Controls.Add(txtCatName);
             tabPage1.Controls.Add(label2);
@@ -105,11 +101,10 @@
             tabPage1.Size = new Size(871, 512);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Categories";
-            tabPage1.Click += tabPage1_Click;
             // 
             // CatDeletebtn
             // 
-            CatDeletebtn.Location = new Point(625, 27);
+            CatDeletebtn.Location = new Point(439, 103);
             CatDeletebtn.Name = "CatDeletebtn";
             CatDeletebtn.Size = new Size(75, 23);
             CatDeletebtn.TabIndex = 52;
@@ -119,7 +114,7 @@
             // 
             // CatUpdatebtn
             // 
-            CatUpdatebtn.Location = new Point(515, 27);
+            CatUpdatebtn.Location = new Point(358, 103);
             CatUpdatebtn.Name = "CatUpdatebtn";
             CatUpdatebtn.Size = new Size(75, 23);
             CatUpdatebtn.TabIndex = 51;
@@ -132,37 +127,19 @@
             Catdgv.AllowUserToAddRows = false;
             Catdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Catdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Catdgv.Location = new Point(412, 56);
+            Catdgv.Location = new Point(22, 157);
             Catdgv.Name = "Catdgv";
             Catdgv.RowTemplate.Height = 25;
             Catdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Catdgv.Size = new Size(401, 423);
+            Catdgv.Size = new Size(824, 334);
             Catdgv.TabIndex = 50;
             Catdgv.CellClick += Catdgv_CellClick;
             // 
-            // txtCatID
-            // 
-            txtCatID.Location = new Point(38, 56);
-            txtCatID.Name = "txtCatID";
-            txtCatID.Size = new Size(77, 23);
-            txtCatID.TabIndex = 49;
-            txtCatID.KeyPress += txtCatID_KeyPress;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(35, 34);
-            label7.Name = "label7";
-            label7.Size = new Size(78, 16);
-            label7.TabIndex = 48;
-            label7.Text = "Category ID";
-            // 
             // CatInsertbtn
             // 
-            CatInsertbtn.Location = new Point(168, 206);
+            CatInsertbtn.Location = new Point(358, 74);
             CatInsertbtn.Name = "CatInsertbtn";
-            CatInsertbtn.Size = new Size(152, 23);
+            CatInsertbtn.Size = new Size(156, 23);
             CatInsertbtn.TabIndex = 42;
             CatInsertbtn.Text = "INSERT";
             CatInsertbtn.UseVisualStyleBackColor = true;
@@ -170,17 +147,17 @@
             // 
             // txtCatName
             // 
-            txtCatName.Location = new Point(38, 120);
+            txtCatName.Location = new Point(242, 45);
             txtCatName.Multiline = true;
             txtCatName.Name = "txtCatName";
-            txtCatName.Size = new Size(282, 79);
+            txtCatName.Size = new Size(385, 23);
             txtCatName.TabIndex = 41;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(35, 101);
+            label2.Location = new Point(384, 26);
             label2.Name = "label2";
             label2.Size = new Size(102, 16);
             label2.TabIndex = 38;
@@ -203,7 +180,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(883, 603);
+            tabPage2.Size = new Size(871, 512);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
             // 
@@ -456,8 +433,6 @@
         private ComboBox cbxType;
         private TextBox txtSubIndicators;
         private Label label6;
-        private TextBox txtCatID;
-        private Label label7;
         private DataGridView Catdgv;
         private Button CatUpdatebtn;
         private Button CatDeletebtn;

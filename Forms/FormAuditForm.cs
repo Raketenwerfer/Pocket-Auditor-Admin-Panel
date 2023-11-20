@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,26 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         readonly DataTable dgvIndiTable = new DataTable();
         readonly DataTable dgvSunIndiTable = new DataTable();
         int index;
+        public DatabaseInitiator dbInit;
 
-        public FormAuditForm()
+        public List<mdl_Categories> _Categories;
+        public List<mdl_Indicators> _Indicators;
+        public List<mdl_SubIndicators> _SubIndicators;
+
+        public List<jmdl_IndicatorsSubInd> _jmISI;
+        public List<jmdl_CategoriesIndicators> _jmCI;
+
+        public FormAuditForm(DatabaseInitiator _dbBUcket, List<mdl_Categories> __categories,
+            List<mdl_Indicators> __indicators, List<mdl_SubIndicators> __subindicators,
+            List<jmdl_IndicatorsSubInd> __jmISI, List<jmdl_CategoriesIndicators> __jmCI)
         {
+            _Categories = __categories;
+            _Indicators = __indicators;
+            _SubIndicators = __subindicators;
+            _jmISI = __jmISI;
+            _jmCI = __jmCI;
+
+            dbInit = _dbBUcket;
             InitializeComponent();
         }
 
@@ -30,6 +48,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             CatTable();
             IndicatorTable();
             SubIndicatorTable();
+
+            UpdateCatDataTable();
+            UpdateIndiDataTable();
+            UpdateSubIndiDataTable();
+
             HideControls();
         }
 
@@ -37,13 +60,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void CatInsertbtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCatID.Text) || string.IsNullOrEmpty(txtCatName.Text))
+            if (string.IsNullOrEmpty(txtCatName.Text))
             {
                 MessageBox.Show("Please input data.");
                 return;
             }
 
-            dgvCatTable.Rows.Add(txtCatID.Text, txtCatName.Text);
+
             MessageBox.Show("Data Successfully Created!");
 
             Clear();
@@ -55,7 +78,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             index = e.RowIndex;
             DataGridViewRow row = Catdgv.Rows[index];
 
-            txtCatID.Text = row.Cells[0].Value.ToString();
+
             txtCatName.Text = row.Cells[1].Value.ToString();
         }
 
@@ -64,7 +87,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             DataGridViewRow newData = Catdgv.Rows[index];
 
-            newData.Cells[0].Value = txtCatID.Text;
+
             newData.Cells[1].Value = txtCatName.Text;
             MessageBox.Show("Data Successfully Updated!");
 
@@ -86,9 +109,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         }
 
         #endregion
-
-
-
 
         #region TabControl Indicators
 
@@ -137,8 +157,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         }
 
         #endregion
-
-
 
         #region SubIndicators
 
@@ -192,6 +210,39 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
 
 
+        #region Load DataGridViews
+        private void UpdateCatDataTable()
+        {
+            dgvCatTable.Rows.Clear(); // Clear existing rows
+
+            foreach (var category in _Categories)
+            {
+                dgvCatTable.Rows.Add(category.CategoryID, category.CategoryTitle);
+            }
+        }
+
+        private void UpdateIndiDataTable()
+        {
+            dgvIndiTable.Rows.Clear(); // Clear existing rows
+
+            foreach (var i in _Indicators)
+            {
+                dgvIndiTable.Rows.Add(i.IndicatorNumber, i.Indicator, i.IndicatorType, i.ScoreValue);
+            }
+        }
+
+        private void UpdateSubIndiDataTable()
+        {
+            dgvSunIndiTable.Rows.Clear(); // Clear existing rows
+
+            foreach (var si in _SubIndicators)
+            {
+                dgvSunIndiTable.Rows.Add(si.SubIndicator, si.SubIndicatorType, si.ScoreValue);
+            }
+        }
+        #endregion
+
+
         #region Methods
 
         private void HideControls()
@@ -229,7 +280,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             // for Category
             dgvCatTable.Columns.Add("Category ID");
-            dgvCatTable.Columns.Add("Category Name");
+            dgvCatTable.Columns.Add("Category Title");
             Catdgv.DataSource = dgvCatTable;
 
         }
@@ -237,7 +288,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void Clear()
         {
             // for Category Entry
-            txtCatID.Clear();
             txtCatName.Clear();
 
             // for Indicator Entry
@@ -252,23 +302,22 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void IndicatorTable()
         {
             // for Indicator
-            dgvIndiTable.Columns.Add("Category ID");
+            dgvIndiTable.Columns.Add("Indicator Number");
             dgvIndiTable.Columns.Add("Indicator");
+            dgvIndiTable.Columns.Add("Type");
+            dgvIndiTable.Columns.Add("Score Value");
             Indicatordgv.DataSource = dgvIndiTable;
         }
 
         private void SubIndicatorTable()
         {
-            dgvSunIndiTable.Columns.Add("Sub-Indicator Type");
             dgvSunIndiTable.Columns.Add("Sub-Indicator");
+            dgvSunIndiTable.Columns.Add("Sub-Indicator Type");
+            dgvSunIndiTable.Columns.Add("Score Value");
             SubIndicatorsdgv.DataSource = dgvSunIndiTable;
         }
 
         #endregion
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
