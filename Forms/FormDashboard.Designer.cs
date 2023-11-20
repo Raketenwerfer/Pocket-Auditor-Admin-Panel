@@ -50,7 +50,7 @@
             button1.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             button1.Location = new Point(81, 104);
             button1.Name = "button1";
-            button1.Size = new Size(417, 61);
+            button1.Size = new Size(241, 144);
             button1.TabIndex = 1;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -58,9 +58,9 @@
             // button2
             // 
             button2.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(81, 181);
+            button2.Location = new Point(81, 287);
             button2.Name = "button2";
-            button2.Size = new Size(417, 61);
+            button2.Size = new Size(241, 144);
             button2.TabIndex = 2;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
@@ -68,9 +68,9 @@
             // button3
             // 
             button3.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(81, 258);
+            button3.Location = new Point(333, 104);
             button3.Name = "button3";
-            button3.Size = new Size(417, 61);
+            button3.Size = new Size(241, 144);
             button3.TabIndex = 3;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = true;
@@ -78,9 +78,9 @@
             // button4
             // 
             button4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.Location = new Point(81, 338);
+            button4.Location = new Point(333, 290);
             button4.Name = "button4";
-            button4.Size = new Size(417, 61);
+            button4.Size = new Size(241, 144);
             button4.TabIndex = 4;
             button4.Text = "button4";
             button4.UseVisualStyleBackColor = true;
