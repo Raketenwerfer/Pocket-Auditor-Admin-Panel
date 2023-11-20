@@ -38,12 +38,10 @@
             txtCatName = new TextBox();
             label2 = new Label();
             tabPage2 = new TabPage();
-            comboBox1 = new ComboBox();
-            Indicatordgv = new DataGridView();
-            Indicatortxt = new TextBox();
-            CatIDcbx = new ComboBox();
-            label8 = new Label();
+            label7 = new Label();
             pnlSubIndicators = new Panel();
+            label9 = new Label();
+            label4 = new Label();
             btnSubDelete = new Button();
             btnSubUpdate = new Button();
             btnSubInsert = new Button();
@@ -52,18 +50,27 @@
             cbxType = new ComboBox();
             txtSubIndicators = new TextBox();
             label6 = new Label();
+            cbox_IndicatorFilterbyCategory = new ComboBox();
             SubIndicatorscbx = new CheckBox();
+            Indicatordgv = new DataGridView();
+            Indicatortxt = new TextBox();
+            CatIDcbx = new ComboBox();
+            label8 = new Label();
             IndicatorDeletebtn = new Button();
             IndicatorUpdatebtn = new Button();
             IndicatorInsertbtn = new Button();
             label5 = new Label();
+            numericUpDown1 = new NumericUpDown();
+            numericUpDown2 = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Catdgv).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Indicatordgv).BeginInit();
             pnlSubIndicators.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Indicatordgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -83,7 +90,7 @@
             tabControl1.Location = new Point(15, 46);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(879, 540);
+            tabControl1.Size = new Size(879, 558);
             tabControl1.TabIndex = 42;
             // 
             // tabPage1
@@ -98,7 +105,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(871, 512);
+            tabPage1.Size = new Size(871, 530);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Categories";
             // 
@@ -128,10 +135,12 @@
             Catdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Catdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Catdgv.Location = new Point(22, 157);
+            Catdgv.MultiSelect = false;
             Catdgv.Name = "Catdgv";
+            Catdgv.ReadOnly = true;
             Catdgv.RowTemplate.Height = 25;
             Catdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Catdgv.Size = new Size(824, 334);
+            Catdgv.Size = new Size(824, 358);
             Catdgv.TabIndex = 50;
             Catdgv.CellClick += Catdgv_CellClick;
             // 
@@ -166,13 +175,15 @@
             // tabPage2
             // 
             tabPage2.BackColor = SystemColors.Control;
-            tabPage2.Controls.Add(comboBox1);
+            tabPage2.Controls.Add(numericUpDown1);
+            tabPage2.Controls.Add(label7);
+            tabPage2.Controls.Add(pnlSubIndicators);
+            tabPage2.Controls.Add(cbox_IndicatorFilterbyCategory);
+            tabPage2.Controls.Add(SubIndicatorscbx);
             tabPage2.Controls.Add(Indicatordgv);
             tabPage2.Controls.Add(Indicatortxt);
             tabPage2.Controls.Add(CatIDcbx);
             tabPage2.Controls.Add(label8);
-            tabPage2.Controls.Add(pnlSubIndicators);
-            tabPage2.Controls.Add(SubIndicatorscbx);
             tabPage2.Controls.Add(IndicatorDeletebtn);
             tabPage2.Controls.Add(IndicatorUpdatebtn);
             tabPage2.Controls.Add(IndicatorInsertbtn);
@@ -180,62 +191,25 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(871, 512);
+            tabPage2.Size = new Size(871, 530);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
             // 
-            // comboBox1
+            // label7
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            comboBox1.Location = new Point(28, 140);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(129, 23);
-            comboBox1.TabIndex = 54;
-            comboBox1.Text = "Sort By Category ID";
-            // 
-            // Indicatordgv
-            // 
-            Indicatordgv.AllowUserToAddRows = false;
-            Indicatordgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Indicatordgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Indicatordgv.Location = new Point(28, 169);
-            Indicatordgv.Name = "Indicatordgv";
-            Indicatordgv.RowTemplate.Height = 25;
-            Indicatordgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Indicatordgv.Size = new Size(371, 367);
-            Indicatordgv.TabIndex = 53;
-            Indicatordgv.CellClick += Indicatordgv_CellClick;
-            // 
-            // Indicatortxt
-            // 
-            Indicatortxt.Location = new Point(144, 52);
-            Indicatortxt.Multiline = true;
-            Indicatortxt.Name = "Indicatortxt";
-            Indicatortxt.Size = new Size(217, 67);
-            Indicatortxt.TabIndex = 52;
-            // 
-            // CatIDcbx
-            // 
-            CatIDcbx.FormattingEnabled = true;
-            CatIDcbx.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            CatIDcbx.Location = new Point(158, 17);
-            CatIDcbx.Name = "CatIDcbx";
-            CatIDcbx.Size = new Size(86, 23);
-            CatIDcbx.TabIndex = 51;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(19, 19);
-            label8.Name = "label8";
-            label8.Size = new Size(128, 16);
-            label8.TabIndex = 50;
-            label8.Text = "Choose Category ID";
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(392, 62);
+            label7.Name = "label7";
+            label7.Size = new Size(81, 16);
+            label7.TabIndex = 58;
+            label7.Text = "Score Value";
             // 
             // pnlSubIndicators
             // 
+            pnlSubIndicators.Controls.Add(numericUpDown2);
+            pnlSubIndicators.Controls.Add(label9);
+            pnlSubIndicators.Controls.Add(label4);
             pnlSubIndicators.Controls.Add(btnSubDelete);
             pnlSubIndicators.Controls.Add(btnSubUpdate);
             pnlSubIndicators.Controls.Add(btnSubInsert);
@@ -245,107 +219,190 @@
             pnlSubIndicators.Controls.Add(txtSubIndicators);
             pnlSubIndicators.Controls.Add(label6);
             pnlSubIndicators.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            pnlSubIndicators.Location = new Point(452, 52);
+            pnlSubIndicators.Location = new Point(16, 266);
             pnlSubIndicators.Name = "pnlSubIndicators";
-            pnlSubIndicators.Size = new Size(419, 468);
-            pnlSubIndicators.TabIndex = 48;
+            pnlSubIndicators.Size = new Size(840, 258);
+            pnlSubIndicators.TabIndex = 50;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(320, 42);
+            label9.Name = "label9";
+            label9.Size = new Size(81, 16);
+            label9.TabIndex = 56;
+            label9.Text = "Score Value";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(8, 86);
+            label4.Name = "label4";
+            label4.Size = new Size(148, 16);
+            label4.TabIndex = 23;
+            label4.Text = "INDICATOR NUMBER: ";
             // 
             // btnSubDelete
             // 
-            btnSubDelete.Location = new Point(242, 165);
+            btnSubDelete.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSubDelete.Location = new Point(759, 74);
             btnSubDelete.Name = "btnSubDelete";
             btnSubDelete.Size = new Size(71, 25);
             btnSubDelete.TabIndex = 22;
-            btnSubDelete.Text = "Delete";
+            btnSubDelete.Text = "DELETE";
             btnSubDelete.UseVisualStyleBackColor = true;
             btnSubDelete.Click += btnSubDelete_Click;
             // 
             // btnSubUpdate
             // 
-            btnSubUpdate.Location = new Point(165, 165);
+            btnSubUpdate.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSubUpdate.Location = new Point(682, 74);
             btnSubUpdate.Name = "btnSubUpdate";
             btnSubUpdate.Size = new Size(71, 25);
             btnSubUpdate.TabIndex = 22;
-            btnSubUpdate.Text = "Update";
+            btnSubUpdate.Text = "UPDATE";
             btnSubUpdate.UseVisualStyleBackColor = true;
             btnSubUpdate.Click += btnSubUpdate_Click;
             // 
             // btnSubInsert
             // 
-            btnSubInsert.Location = new Point(326, 102);
+            btnSubInsert.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSubInsert.Location = new Point(605, 74);
             btnSubInsert.Name = "btnSubInsert";
-            btnSubInsert.Size = new Size(71, 25);
+            btnSubInsert.Size = new Size(71, 24);
             btnSubInsert.TabIndex = 21;
-            btnSubInsert.Text = "Insert";
+            btnSubInsert.Text = "INSERT";
             btnSubInsert.UseVisualStyleBackColor = true;
             btnSubInsert.Click += btnSubInsert_Click;
             // 
             // SubIndicatorsdgv
             // 
             SubIndicatorsdgv.AllowUserToAddRows = false;
+            SubIndicatorsdgv.AllowUserToDeleteRows = false;
             SubIndicatorsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            SubIndicatorsdgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             SubIndicatorsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            SubIndicatorsdgv.Location = new Point(26, 206);
+            SubIndicatorsdgv.Location = new Point(3, 105);
+            SubIndicatorsdgv.MultiSelect = false;
             SubIndicatorsdgv.Name = "SubIndicatorsdgv";
+            SubIndicatorsdgv.ReadOnly = true;
+            SubIndicatorsdgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             SubIndicatorsdgv.RowTemplate.Height = 25;
             SubIndicatorsdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            SubIndicatorsdgv.Size = new Size(371, 241);
+            SubIndicatorsdgv.Size = new Size(827, 140);
             SubIndicatorsdgv.TabIndex = 20;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(16, 22);
+            label3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(67, 42);
             label3.Name = "label3";
-            label3.Size = new Size(74, 15);
+            label3.Size = new Size(89, 16);
             label3.TabIndex = 19;
-            label3.Text = "Choose type";
+            label3.Text = "Choose Type";
             // 
             // cbxType
             // 
             cbxType.FormattingEnabled = true;
-            cbxType.Items.AddRange(new object[] { "Details", "Options" });
-            cbxType.Location = new Point(16, 43);
+            cbxType.Items.AddRange(new object[] { "DETAILS", "OPTIONS" });
+            cbxType.Location = new Point(162, 39);
             cbxType.Name = "cbxType";
-            cbxType.Size = new Size(301, 24);
+            cbxType.Size = new Size(128, 24);
             cbxType.TabIndex = 18;
             // 
             // txtSubIndicators
             // 
-            txtSubIndicators.BackColor = Color.Silver;
+            txtSubIndicators.BackColor = Color.White;
             txtSubIndicators.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSubIndicators.Location = new Point(16, 90);
+            txtSubIndicators.Location = new Point(162, 9);
             txtSubIndicators.Multiline = true;
             txtSubIndicators.Name = "txtSubIndicators";
-            txtSubIndicators.Size = new Size(301, 49);
+            txtSubIndicators.Size = new Size(320, 24);
             txtSubIndicators.TabIndex = 17;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(14, 69);
+            label6.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(14, 12);
             label6.Name = "label6";
-            label6.Size = new Size(86, 15);
+            label6.Size = new Size(142, 16);
             label6.TabIndex = 16;
-            label6.Text = "Sub-Indicators";
+            label6.Text = "Sub-Indicator Question";
+            // 
+            // cbox_IndicatorFilterbyCategory
+            // 
+            cbox_IndicatorFilterbyCategory.FormattingEnabled = true;
+            cbox_IndicatorFilterbyCategory.Location = new Point(19, 96);
+            cbox_IndicatorFilterbyCategory.Name = "cbox_IndicatorFilterbyCategory";
+            cbox_IndicatorFilterbyCategory.Size = new Size(226, 23);
+            cbox_IndicatorFilterbyCategory.TabIndex = 54;
+            cbox_IndicatorFilterbyCategory.Text = "Sort By Category";
+            cbox_IndicatorFilterbyCategory.SelectedIndexChanged += cbox_IndicatorFilterbyCategory_SelectedIndexChanged;
             // 
             // SubIndicatorscbx
             // 
             SubIndicatorscbx.AutoSize = true;
             SubIndicatorscbx.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            SubIndicatorscbx.Location = new Point(466, 19);
+            SubIndicatorscbx.Location = new Point(544, 98);
             SubIndicatorscbx.Name = "SubIndicatorscbx";
             SubIndicatorscbx.Size = new Size(140, 20);
-            SubIndicatorscbx.TabIndex = 47;
+            SubIndicatorscbx.TabIndex = 49;
             SubIndicatorscbx.Text = "Add Sub-Indicators";
             SubIndicatorscbx.UseVisualStyleBackColor = true;
             SubIndicatorscbx.CheckedChanged += SubIndicatorscbx_CheckedChanged;
             // 
+            // Indicatordgv
+            // 
+            Indicatordgv.AllowUserToAddRows = false;
+            Indicatordgv.AllowUserToDeleteRows = false;
+            Indicatordgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Indicatordgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Indicatordgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Indicatordgv.Location = new Point(19, 125);
+            Indicatordgv.MultiSelect = false;
+            Indicatordgv.Name = "Indicatordgv";
+            Indicatordgv.ReadOnly = true;
+            Indicatordgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            Indicatordgv.RowTemplate.Height = 25;
+            Indicatordgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Indicatordgv.Size = new Size(827, 135);
+            Indicatordgv.TabIndex = 53;
+            Indicatordgv.CellClick += Indicatordgv_CellClick;
+            // 
+            // Indicatortxt
+            // 
+            Indicatortxt.Location = new Point(139, 6);
+            Indicatortxt.Multiline = true;
+            Indicatortxt.Name = "Indicatortxt";
+            Indicatortxt.Size = new Size(415, 47);
+            Indicatortxt.TabIndex = 52;
+            // 
+            // CatIDcbx
+            // 
+            CatIDcbx.FormattingEnabled = true;
+            CatIDcbx.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            CatIDcbx.Location = new Point(139, 59);
+            CatIDcbx.Name = "CatIDcbx";
+            CatIDcbx.Size = new Size(232, 23);
+            CatIDcbx.TabIndex = 51;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(8, 59);
+            label8.Name = "label8";
+            label8.Size = new Size(122, 16);
+            label8.TabIndex = 50;
+            label8.Text = "Assigned Category";
+            // 
             // IndicatorDeletebtn
             // 
-            IndicatorDeletebtn.Location = new Point(321, 140);
+            IndicatorDeletebtn.Location = new Point(771, 96);
             IndicatorDeletebtn.Name = "IndicatorDeletebtn";
             IndicatorDeletebtn.Size = new Size(75, 23);
             IndicatorDeletebtn.TabIndex = 46;
@@ -355,7 +412,7 @@
             // 
             // IndicatorUpdatebtn
             // 
-            IndicatorUpdatebtn.Location = new Point(240, 140);
+            IndicatorUpdatebtn.Location = new Point(690, 96);
             IndicatorUpdatebtn.Name = "IndicatorUpdatebtn";
             IndicatorUpdatebtn.Size = new Size(75, 23);
             IndicatorUpdatebtn.TabIndex = 45;
@@ -365,7 +422,7 @@
             // 
             // IndicatorInsertbtn
             // 
-            IndicatorInsertbtn.Location = new Point(286, 18);
+            IndicatorInsertbtn.Location = new Point(463, 95);
             IndicatorInsertbtn.Name = "IndicatorInsertbtn";
             IndicatorInsertbtn.Size = new Size(75, 23);
             IndicatorInsertbtn.TabIndex = 44;
@@ -377,18 +434,32 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(19, 54);
+            label5.Location = new Point(16, 8);
             label5.Name = "label5";
             label5.Size = new Size(114, 16);
             label5.TabIndex = 42;
             label5.Text = "Indicator Question";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(479, 60);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(41, 23);
+            numericUpDown1.TabIndex = 59;
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(407, 39);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(41, 22);
+            numericUpDown2.TabIndex = 60;
             // 
             // FormAuditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(915, 631);
+            ClientSize = new Size(915, 612);
             Controls.Add(tabControl1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -402,10 +473,12 @@
             ((System.ComponentModel.ISupportInitialize)Catdgv).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)Indicatordgv).EndInit();
             pnlSubIndicators.ResumeLayout(false);
             pnlSubIndicators.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Indicatordgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -419,11 +492,18 @@
         private Button CatInsertbtn;
         private TextBox txtCatName;
         private Label label2;
-        private CheckBox SubIndicatorscbx;
         private Button IndicatorDeletebtn;
         private Button IndicatorUpdatebtn;
         private Button IndicatorInsertbtn;
         private Label label5;
+        private DataGridView Catdgv;
+        private Button CatUpdatebtn;
+        private Button CatDeletebtn;
+        private TextBox Indicatortxt;
+        private ComboBox CatIDcbx;
+        private Label label8;
+        private DataGridView Indicatordgv;
+        private ComboBox cbox_IndicatorFilterbyCategory;
         private Panel pnlSubIndicators;
         private Button btnSubDelete;
         private Button btnSubUpdate;
@@ -433,13 +513,11 @@
         private ComboBox cbxType;
         private TextBox txtSubIndicators;
         private Label label6;
-        private DataGridView Catdgv;
-        private Button CatUpdatebtn;
-        private Button CatDeletebtn;
-        private TextBox Indicatortxt;
-        private ComboBox CatIDcbx;
-        private Label label8;
-        private DataGridView Indicatordgv;
-        private ComboBox comboBox1;
+        private CheckBox SubIndicatorscbx;
+        private Label label4;
+        private Label label9;
+        private Label label7;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown2;
     }
 }

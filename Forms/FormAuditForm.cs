@@ -19,6 +19,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         readonly DataTable dgvCatTable = new DataTable();
         readonly DataTable dgvIndiTable = new DataTable();
         readonly DataTable dgvSunIndiTable = new DataTable();
+
         int index;
         public DatabaseInitiator dbInit;
 
@@ -49,9 +50,12 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             IndicatorTable();
             SubIndicatorTable();
 
+            SetCboxItems();
+
             UpdateCatDataTable();
             UpdateIndiDataTable();
             UpdateSubIndiDataTable();
+
 
             HideControls();
         }
@@ -80,6 +84,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
 
             txtCatName.Text = row.Cells[1].Value.ToString();
+            ShowControls();
         }
 
         private void CatUpdatebtn_Click(object sender, EventArgs e)
@@ -132,7 +137,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             index = e.RowIndex;
             DataGridViewRow row = Indicatordgv.Rows[index];
 
-            CatIDcbx.Text = row.Cells[0].Value.ToString();
             Indicatortxt.Text = row.Cells[1].Value.ToString();
         }
 
@@ -154,6 +158,23 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             MessageBox.Show("Data Successfully Deleted!");
 
             Clear();
+        }
+
+        private void SetCboxItems()
+        {
+            cbox_IndicatorFilterbyCategory.Items.Clear();
+            CatIDcbx.Items.Clear();
+
+            foreach (var cat in _Categories)
+            {
+                cbox_IndicatorFilterbyCategory.Items.Add(cat.CategoryTitle);
+                CatIDcbx.Items.Add(cat.CategoryTitle);
+            }
+        }
+
+        private void cbox_IndicatorFilterbyCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateIndiDataTable();
         }
 
         #endregion
@@ -225,7 +246,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             dgvIndiTable.Rows.Clear(); // Clear existing rows
 
-            foreach (var i in _Indicators)
+            foreach (var i in _jmCI.Where(x => x.CategoryTitle.Equals(cbox_IndicatorFilterbyCategory.Text)))
             {
                 dgvIndiTable.Rows.Add(i.IndicatorNumber, i.Indicator, i.IndicatorType, i.ScoreValue);
             }
