@@ -31,7 +31,9 @@
             label1 = new Label();
             txtSearch = new TextBox();
             label2 = new Label();
-            fLpChoices = new FlowLayoutPanel();
+            Reportsdgv = new DataGridView();
+            label3 = new Label();
+            ((System.ComponentModel.ISupportInitialize)Reportsdgv).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -47,35 +49,49 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(212, 58);
+            txtSearch.Location = new Point(531, 65);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(253, 22);
             txtSearch.TabIndex = 3;
-            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(108, 62);
+            label2.Location = new Point(427, 69);
             label2.Name = "label2";
             label2.Size = new Size(101, 15);
             label2.TabIndex = 5;
             label2.Text = "Search Barangay";
             // 
-            // fLpChoices
+            // Reportsdgv
             // 
-            fLpChoices.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            fLpChoices.Location = new Point(108, 86);
-            fLpChoices.Name = "fLpChoices";
-            fLpChoices.Size = new Size(663, 59);
-            fLpChoices.TabIndex = 7;
+            Reportsdgv.AllowUserToAddRows = false;
+            Reportsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Reportsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Reportsdgv.Location = new Point(91, 93);
+            Reportsdgv.Name = "Reportsdgv";
+            Reportsdgv.RowTemplate.Height = 25;
+            Reportsdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Reportsdgv.Size = new Size(697, 225);
+            Reportsdgv.TabIndex = 51;
+            Reportsdgv.CellContentClick += Reportsdgv_CellContentClick;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(96, 364);
+            label3.Name = "label3";
+            label3.Size = new Size(101, 15);
+            label3.TabIndex = 52;
+            label3.Text = "Search Barangay";
             // 
             // FormAuditReports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(915, 631);
-            Controls.Add(fLpChoices);
+            ClientSize = new Size(915, 788);
+            Controls.Add(label3);
+            Controls.Add(Reportsdgv);
             Controls.Add(label2);
             Controls.Add(txtSearch);
             Controls.Add(label1);
@@ -83,6 +99,8 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormAuditReports";
             Text = "FormAuditReports";
+            Load += FormAuditReports_Load;
+            ((System.ComponentModel.ISupportInitialize)Reportsdgv).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -92,6 +110,7 @@
         private Label label1;
         private TextBox txtSearch;
         private Label label2;
-        private FlowLayoutPanel fLpChoices;
+        private DataGridView Reportsdgv;
+        private Label label3;
     }
 }

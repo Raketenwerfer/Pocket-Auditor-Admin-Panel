@@ -13,7 +13,7 @@ namespace Pocket_Auditor_Admin_Panel
         readonly FormAuditReports frmAuditReports = new FormAuditReports();
         readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
 
-        readonly DatabaseInitiator db = new DatabaseInitiator("sql207.infinityfreem.com", "if0_35394751_testrun", "if0_35394751", "aTbs7LJAy0B2");
+        readonly DatabaseInitiator db = new DatabaseInitiator("sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN");
 
         public AdminPanel()
         {

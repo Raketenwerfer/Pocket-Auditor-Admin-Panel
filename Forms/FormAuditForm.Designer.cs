@@ -42,6 +42,7 @@
             txtCatName = new TextBox();
             label2 = new Label();
             tabPage2 = new TabPage();
+            comboBox1 = new ComboBox();
             Indicatordgv = new DataGridView();
             Indicatortxt = new TextBox();
             CatIDcbx = new ComboBox();
@@ -60,7 +61,6 @@
             IndicatorUpdatebtn = new Button();
             IndicatorInsertbtn = new Button();
             label5 = new Label();
-            comboBox1 = new ComboBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Catdgv).BeginInit();
@@ -109,6 +109,7 @@
             tabPage1.Size = new Size(883, 603);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Categories";
+            tabPage1.Click += tabPage1_Click;
             // 
             // CatDeletebtn
             // 
@@ -226,6 +227,16 @@
             tabPage2.Size = new Size(883, 603);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            comboBox1.Location = new Point(28, 140);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(129, 23);
+            comboBox1.TabIndex = 54;
+            comboBox1.Text = "Sort By Category ID";
             // 
             // Indicatordgv
             // 
@@ -413,16 +424,6 @@
             label5.Size = new Size(114, 16);
             label5.TabIndex = 42;
             label5.Text = "Indicator Question";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            comboBox1.Location = new Point(28, 140);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(129, 23);
-            comboBox1.TabIndex = 54;
-            comboBox1.Text = "Sort By Category ID";
             // 
             // FormAuditForm
             // 

@@ -266,5 +266,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         #endregion
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
