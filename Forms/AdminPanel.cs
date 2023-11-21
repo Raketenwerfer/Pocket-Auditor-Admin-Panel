@@ -30,12 +30,6 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
-            PullCategories();
-            PullIndicators();
-            PullSubIndicators();
-            PullAssociate_ISI();
-            PullAssociate_CI();
-
             frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
                 _SubIndicators, _jmISI, _jmCI);
         }
@@ -47,7 +41,17 @@ namespace Pocket_Auditor_Admin_Panel
 
             if (TestDatabaseConnection())
             {
+                PullCategories();
+                PullIndicators();
+                PullSubIndicators();
+                PullAssociate_ISI();
+                PullAssociate_CI();
+
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No database established! Check your internet connection!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private bool TestDatabaseConnection()

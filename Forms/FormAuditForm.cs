@@ -119,7 +119,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void IndicatorInsertbtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(CatIDcbx.Text) || string.IsNullOrEmpty(Indicatortxt.Text))
+            if (string.IsNullOrEmpty(CatIDcbx.Text) || string.IsNullOrEmpty(Indicatortxt.Text) ||
+                string.IsNullOrEmpty(IndicatorNumbertxt.Text))
             {
                 MessageBox.Show("Please Select and input a data.");
                 return;
@@ -137,7 +138,19 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             index = e.RowIndex;
             DataGridViewRow row = Indicatordgv.Rows[index];
 
-            Indicatortxt.Text = row.Cells[1].Value.ToString();
+            if (!SubIndicatorscbx.Checked)
+            {
+                SubIndicatorsdgv.Visible = true;
+            }
+        }
+
+        private void Indicatordgv_Leave(object sender, EventArgs e)
+        {
+            Indicatordgv.ClearSelection();
+            if (!SubIndicatorscbx.Checked)
+            {
+                SubIndicatorsdgv.Visible = true;
+            }
         }
 
         private void IndicatorUpdatebtn_Click(object sender, EventArgs e)
@@ -170,6 +183,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 cbox_IndicatorFilterbyCategory.Items.Add(cat.CategoryTitle);
                 CatIDcbx.Items.Add(cat.CategoryTitle);
             }
+
+            num_IndicatorSV.Value = 1;
+            num_SubIndicatorSV.Value = 1;
         }
 
         private void cbox_IndicatorFilterbyCategory_SelectedIndexChanged(object sender, EventArgs e)

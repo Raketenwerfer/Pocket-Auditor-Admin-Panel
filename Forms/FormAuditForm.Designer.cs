@@ -38,10 +38,11 @@
             txtCatName = new TextBox();
             label2 = new Label();
             tabPage2 = new TabPage();
+            IndicatorNumbertxt = new TextBox();
+            label10 = new Label();
             num_IndicatorSV = new NumericUpDown();
             label7 = new Label();
             pnlSubIndicators = new Panel();
-            nm_SubIndicatorSV = new NumericUpDown();
             label9 = new Label();
             label4 = new Label();
             btnSubDelete = new Button();
@@ -62,17 +63,16 @@
             IndicatorUpdatebtn = new Button();
             IndicatorInsertbtn = new Button();
             label5 = new Label();
-            label10 = new Label();
-            IndicatorNumbertxt = new TextBox();
+            num_SubIndicatorSV = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Catdgv).BeginInit();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)num_IndicatorSV).BeginInit();
             pnlSubIndicators.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nm_SubIndicatorSV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Indicatordgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)num_SubIndicatorSV).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -199,9 +199,30 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
             // 
+            // IndicatorNumbertxt
+            // 
+            IndicatorNumbertxt.BackColor = Color.White;
+            IndicatorNumbertxt.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            IndicatorNumbertxt.Location = new Point(690, 20);
+            IndicatorNumbertxt.Multiline = true;
+            IndicatorNumbertxt.Name = "IndicatorNumbertxt";
+            IndicatorNumbertxt.Size = new Size(103, 24);
+            IndicatorNumbertxt.TabIndex = 61;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(575, 23);
+            label10.Name = "label10";
+            label10.Size = new Size(109, 16);
+            label10.TabIndex = 60;
+            label10.Text = "Indicator Number";
+            // 
             // num_IndicatorSV
             // 
             num_IndicatorSV.Location = new Point(479, 60);
+            num_IndicatorSV.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             num_IndicatorSV.Name = "num_IndicatorSV";
             num_IndicatorSV.Size = new Size(41, 23);
             num_IndicatorSV.TabIndex = 59;
@@ -218,7 +239,7 @@
             // 
             // pnlSubIndicators
             // 
-            pnlSubIndicators.Controls.Add(nm_SubIndicatorSV);
+            pnlSubIndicators.Controls.Add(num_SubIndicatorSV);
             pnlSubIndicators.Controls.Add(label9);
             pnlSubIndicators.Controls.Add(label4);
             pnlSubIndicators.Controls.Add(btnSubDelete);
@@ -234,13 +255,6 @@
             pnlSubIndicators.Name = "pnlSubIndicators";
             pnlSubIndicators.Size = new Size(840, 258);
             pnlSubIndicators.TabIndex = 50;
-            // 
-            // nm_SubIndicatorSV
-            // 
-            nm_SubIndicatorSV.Location = new Point(407, 39);
-            nm_SubIndicatorSV.Name = "nm_SubIndicatorSV";
-            nm_SubIndicatorSV.Size = new Size(41, 22);
-            nm_SubIndicatorSV.TabIndex = 60;
             // 
             // label9
             // 
@@ -390,6 +404,7 @@
             Indicatordgv.Size = new Size(827, 135);
             Indicatordgv.TabIndex = 53;
             Indicatordgv.CellClick += Indicatordgv_CellClick;
+            Indicatordgv.Leave += Indicatordgv_Leave;
             // 
             // Indicatortxt
             // 
@@ -458,25 +473,14 @@
             label5.TabIndex = 42;
             label5.Text = "Indicator Question";
             // 
-            // label10
+            // num_SubIndicatorSV
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(575, 23);
-            label10.Name = "label10";
-            label10.Size = new Size(109, 16);
-            label10.TabIndex = 60;
-            label10.Text = "Indicator Number";
-            // 
-            // IndicatorNumbertxt
-            // 
-            IndicatorNumbertxt.BackColor = Color.White;
-            IndicatorNumbertxt.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            IndicatorNumbertxt.Location = new Point(690, 20);
-            IndicatorNumbertxt.Multiline = true;
-            IndicatorNumbertxt.Name = "IndicatorNumbertxt";
-            IndicatorNumbertxt.Size = new Size(103, 24);
-            IndicatorNumbertxt.TabIndex = 61;
+            num_SubIndicatorSV.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
+            num_SubIndicatorSV.Location = new Point(407, 39);
+            num_SubIndicatorSV.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            num_SubIndicatorSV.Name = "num_SubIndicatorSV";
+            num_SubIndicatorSV.Size = new Size(41, 22);
+            num_SubIndicatorSV.TabIndex = 60;
             // 
             // FormAuditForm
             // 
@@ -500,9 +504,9 @@
             ((System.ComponentModel.ISupportInitialize)num_IndicatorSV).EndInit();
             pnlSubIndicators.ResumeLayout(false);
             pnlSubIndicators.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nm_SubIndicatorSV).EndInit();
             ((System.ComponentModel.ISupportInitialize)SubIndicatorsdgv).EndInit();
             ((System.ComponentModel.ISupportInitialize)Indicatordgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)num_SubIndicatorSV).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -542,7 +546,7 @@
         private Label label9;
         private Label label7;
         private NumericUpDown num_IndicatorSV;
-        private NumericUpDown nm_SubIndicatorSV;
+        private NumericUpDown num_SubIndicatorSV;
         private TextBox IndicatorNumbertxt;
         private Label label10;
     }
