@@ -128,12 +128,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1115, 631);
             Controls.Add(panelContent);
             Controls.Add(panelMenu);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "AdminPanel";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Admin";
+            Text = "Pocket Auditor - Admin Panel";
             Load += AdminPanel_Load;
             panelMenu.ResumeLayout(false);
             ResumeLayout(false);

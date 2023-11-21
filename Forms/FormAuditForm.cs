@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         public List<jmdl_IndicatorsSubInd> _jmISI;
         public List<jmdl_CategoriesIndicators> _jmCI;
+
+
+        int sel { get; set; }
+        bool isSubIndEditMode { get; set; }
 
         public FormAuditForm(DatabaseInitiator _dbBUcket, List<mdl_Categories> __categories,
             List<mdl_Indicators> __indicators, List<mdl_SubIndicators> __subindicators,
@@ -133,15 +138,39 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             ShowControls();
         }
 
-        private void Indicatordgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Indicatordgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             index = e.RowIndex;
             DataGridViewRow row = Indicatordgv.Rows[index];
 
             if (!SubIndicatorscbx.Checked)
             {
-                SubIndicatorsdgv.Visible = true;
+                pnlSubIndicators.Visible = true;
             }
+
+            foreach (jmdl_CategoriesIndicators x in _jmCI)
+            {
+                if (Convert.ToInt32(row.Cells[0].Value) == x.IndicatorID)
+                {
+                    sel = x.IndicatorID;
+                }
+            };
+
+            prompt_Edit_ISI EditPrompt = new prompt_Edit_ISI("indicator", sel, _Indicators, _SubIndicators, _jmISI);
+            EditPrompt.Show();
+        }
+
+        private void Indicatordgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            pnlSubIndicators.Visible = true;
+            isSubIndEditMode = true;
+            btnSubIndSubmitEvent.Text = "EDIT";
+            label3.Visible = false;
+            label6.Visible = false;
+            label9.Visible = false;
+            txtSubIndicators.Visible = false;
+            cbxType.Visible = false;
+            num_SubIndicatorSV.Visible = false;
         }
 
         private void Indicatordgv_Leave(object sender, EventArgs e)
@@ -149,7 +178,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             Indicatordgv.ClearSelection();
             if (!SubIndicatorscbx.Checked)
             {
-                SubIndicatorsdgv.Visible = true;
+                pnlSubIndicators.Visible = false;
             }
         }
 
@@ -191,6 +220,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void cbox_IndicatorFilterbyCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateIndiDataTable();
+            Indicatordgv.ClearSelection();
         }
 
         #endregion
@@ -202,14 +232,25 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             if (SubIndicatorscbx.Checked == true)
             {
                 pnlSubIndicators.Show();
+                Indicatordgv.Enabled = false;
+                Indicatordgv.ClearSelection();
+                isSubIndEditMode = false;
+                btnSubIndSubmitEvent.Text = "INSERT";
+                label3.Visible = true;
+                label6.Visible = true;
+                label9.Visible = true;
+                txtSubIndicators.Visible = true;
+                cbxType.Visible = true;
+                num_SubIndicatorSV.Visible = true;
             }
             else
             {
                 pnlSubIndicators.Hide();
+                Indicatordgv.Enabled = true;
             }
         }
 
-        private void btnSubInsert_Click(object sender, EventArgs e)
+        private void btnSubInsert_Click()
         {
             if (string.IsNullOrEmpty(cbxType.Text) || string.IsNullOrEmpty(txtSubIndicators.Text))
             {
@@ -223,24 +264,18 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             ShowControls();
         }
 
-        private void btnSubUpdate_Click(object sender, EventArgs e)
+        private void btnSubIndSubmitEvent_Click(object sender, EventArgs e)
         {
-            DataGridViewRow newData = SubIndicatorsdgv.Rows[index];
 
-            newData.Cells[0].Value = cbxType.Text;
-            newData.Cells[1].Value = txtSubIndicators.Text;
-            MessageBox.Show("Data Successfully Updated!");
-
-            Clear();
-        }
-
-        private void btnSubDelete_Click(object sender, EventArgs e)
-        {
-            index = SubIndicatorsdgv.CurrentCell.RowIndex;
-            SubIndicatorsdgv.Rows.RemoveAt(index);
-            MessageBox.Show("Data Successfully Deleted!");
-
-            Clear();
+            if (isSubIndEditMode == true)
+            {
+                prompt_Edit_ISI EditPrompt = new prompt_Edit_ISI("subindicator", sel, _Indicators, _SubIndicators, _jmISI);
+                EditPrompt.Show();
+            }
+            else
+            {
+                btnSubInsert_Click();
+            }
         }
 
         #endregion
@@ -264,7 +299,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             foreach (var i in _jmCI.Where(x => x.CategoryTitle.Equals(cbox_IndicatorFilterbyCategory.Text)))
             {
-                dgvIndiTable.Rows.Add(i.IndicatorNumber, i.Indicator, i.IndicatorType, i.ScoreValue);
+                dgvIndiTable.Rows.Add(i.IndicatorID, i.IndicatorNumber, i.Indicator, i.IndicatorType, i.ScoreValue);
             }
         }
 
@@ -290,12 +325,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             // controls of Indicators
             pnlSubIndicators.Hide();
-            IndicatorUpdatebtn.Hide();
-            IndicatorDeletebtn.Hide();
+            //btnSubIndSubmitEvent.Hide();
 
             // controls for SubIndicators
-            btnSubUpdate.Hide();
-            btnSubDelete.Hide();
+            //btnSubUpdate.Hide();
+            //btnSubDelete.Hide();
         }
 
         private void ShowControls()
@@ -305,12 +339,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             CatDeletebtn.Show();
 
             // controls of Indicators
-            IndicatorUpdatebtn.Show();
-            IndicatorDeletebtn.Show();
+            btnSubIndSubmitEvent.Show();
 
             // controls for SubIndicators
-            btnSubUpdate.Show();
-            btnSubDelete.Show();
+            btnSubIndSubmitEvent.Show();
         }
 
         private void CatTable()
@@ -339,11 +371,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void IndicatorTable()
         {
             // for Indicator
+            dgvIndiTable.Columns.Add("Indicator ID");
             dgvIndiTable.Columns.Add("Indicator Number");
             dgvIndiTable.Columns.Add("Indicator");
             dgvIndiTable.Columns.Add("Type");
             dgvIndiTable.Columns.Add("Score Value");
             Indicatordgv.DataSource = dgvIndiTable;
+            Indicatordgv.Columns[0].Visible = false;
         }
 
         private void SubIndicatorTable()
@@ -355,6 +389,5 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         }
 
         #endregion
-
     }
 }
