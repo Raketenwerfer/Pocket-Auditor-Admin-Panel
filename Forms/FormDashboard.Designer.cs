@@ -29,75 +29,40 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(81, 50);
+            label1.Location = new Point(22, 20);
             label1.Name = "label1";
             label1.Size = new Size(134, 23);
             label1.TabIndex = 0;
             label1.Text = "DASHBOARD";
             // 
-            // button1
+            // dataGridView1
             // 
-            button1.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(81, 104);
-            button1.Name = "button1";
-            button1.Size = new Size(241, 144);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(81, 287);
-            button2.Name = "button2";
-            button2.Size = new Size(241, 144);
-            button2.TabIndex = 2;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(333, 104);
-            button3.Name = "button3";
-            button3.Size = new Size(241, 144);
-            button3.TabIndex = 3;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.Location = new Point(333, 290);
-            button4.Name = "button4";
-            button4.Size = new Size(241, 144);
-            button4.TabIndex = 4;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(347, 62);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(508, 150);
+            dataGridView1.TabIndex = 1;
             // 
             // FormDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(899, 512);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(dataGridView1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormDashboard";
             Text = "FormDashboard";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,9 +70,6 @@
         #endregion
 
         private Label label1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private DataGridView dataGridView1;
     }
 }
