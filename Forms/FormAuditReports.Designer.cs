@@ -32,7 +32,6 @@
             txtSearch = new TextBox();
             label2 = new Label();
             Reportsdgv = new DataGridView();
-            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)Reportsdgv).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +48,7 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(531, 65);
+            txtSearch.Location = new Point(624, 70);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(253, 22);
             txtSearch.TabIndex = 3;
@@ -57,7 +56,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(427, 69);
+            label2.Location = new Point(520, 74);
             label2.Name = "label2";
             label2.Size = new Size(101, 15);
             label2.TabIndex = 5;
@@ -68,29 +67,19 @@
             Reportsdgv.AllowUserToAddRows = false;
             Reportsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Reportsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Reportsdgv.Location = new Point(91, 93);
+            Reportsdgv.Location = new Point(30, 98);
             Reportsdgv.Name = "Reportsdgv";
             Reportsdgv.RowTemplate.Height = 25;
             Reportsdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Reportsdgv.Size = new Size(697, 225);
+            Reportsdgv.Size = new Size(847, 570);
             Reportsdgv.TabIndex = 51;
             Reportsdgv.CellContentClick += Reportsdgv_CellContentClick;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(96, 364);
-            label3.Name = "label3";
-            label3.Size = new Size(101, 15);
-            label3.TabIndex = 52;
-            label3.Text = "Search Barangay";
             // 
             // FormAuditReports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(915, 788);
-            Controls.Add(label3);
             Controls.Add(Reportsdgv);
             Controls.Add(label2);
             Controls.Add(txtSearch);
@@ -111,6 +100,5 @@
         private TextBox txtSearch;
         private Label label2;
         private DataGridView Reportsdgv;
-        private Label label3;
     }
 }

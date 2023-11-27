@@ -12,6 +12,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 {
     public partial class FormAuditReports : Form
     {
+        Form editISI;
+
         DataTable reportTable = new DataTable();
         int index;
 
@@ -73,14 +75,17 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void FormAuditReports_Load(object sender, EventArgs e)
         {
             reportTable.Columns.Add("Barangay");
-            reportTable.Columns.Add("Auditors");
             reportTable.Columns.Add("Score");
+            reportTable.Columns.Add("Auditor");
+            reportTable.Columns.Add("Date");
             Reportsdgv.DataSource = reportTable;
         }
 
         private void Reportsdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // to be continued! HAHAHA
+            Form showForm = new Form();
+            showForm.ShowDialog();
         }
     }
 }
