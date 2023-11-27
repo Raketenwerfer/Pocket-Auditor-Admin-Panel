@@ -286,8 +286,17 @@ namespace Pocket_Auditor_Admin_Panel
         public void PullAssociate_ISI()
         {
             int indicatorFK, subindicatorFK;
+            double subindSV;
+            string indicator, subind, subindtype, subindstatus;
 
-            string query = "SELECT * FROM Associate_Indicator_to_SubIndicator";
+            string query = "SELECT S.SubIndicatorID, S.SubIndicator, S.SubIndicatorType, S.SubIndicatorStatus, S.ScoreValue, " +
+                "I.IndicatorID, I.Indicator " +
+                "FROM Associate_Indicator_to_SubIndicator AtISI " +
+                "INNER JOIN SubIndicators S on AtISI.SubIndicatorID_fk = S.SubIndicatorID " +
+                "INNER JOIN Indicators I on AtISI.IndicatorID_fk = I.IndicatorID " +
+                "WHERE (S.SubIndicatorStatus = 'ACTIVE' AND I.IndicatorStatus = 'ACTIVE') " +
+                "OR (S.SubIndicatorStatus = 'ACTIVE' AND I.IndicatorStatus = 'INACTIVE') " +
+                "ORDER BY S.SubIndicatorID, I.IndicatorID ASC";
 
             MySqlConnection conn = dbInit.GetConnection();
 
@@ -301,13 +310,24 @@ namespace Pocket_Auditor_Admin_Panel
                     {
                         while (read.Read())
                         {
-                            indicatorFK = read.GetInt32(read.GetOrdinal("IndicatorID_fk"));
-                            subindicatorFK = read.GetInt32(read.GetOrdinal("SubIndicatorID_fk"));
+                            indicatorFK = read.GetInt32(read.GetOrdinal("IndicatorID"));
+                            indicator = read.GetString(read.GetOrdinal("Indicator"));
+                            subindicatorFK = read.GetInt32(read.GetOrdinal("SubIndicatorID"));
+                            subind = read.GetString(read.GetOrdinal("SubIndicator"));
+                            subindtype = read.GetString(read.GetOrdinal("SubIndicatorType"));
+                            subindstatus = read.GetString(read.GetOrdinal("SubIndicatorStatus"));
+                            subindSV = read.GetDouble(read.GetOrdinal("ScoreValue"));
 
-                            jmdl_IndicatorsSubInd a = new jmdl_IndicatorsSubInd(subindicatorFK, indicatorFK);
+                            jmdl_IndicatorsSubInd a = new jmdl_IndicatorsSubInd(subindicatorFK, subind, 
+                                subindtype, subindstatus, subindSV, indicatorFK, indicator);
                             {
                                 a.SubIndicatorID_fk = subindicatorFK;
+                                a.SubIndicator = subind;
+                                a.SubIndicatorType = subindtype;
+                                a.SubIndicatorStatus = subindstatus;
+                                a.ScoreValue = subindSV;
                                 a.IndicatorID_fk = indicatorFK;
+                                a.Indicator = indicator;
                             }
 
                             _jmISI.Add(a);
@@ -331,7 +351,8 @@ namespace Pocket_Auditor_Admin_Panel
             string catTitle, indicator, indType;
             double indScoreValue;
 
-            string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.IndicatorNumber, I.IndicatorType, I.ScoreValue\r\nFROM Associate_Category_to_Indicator AtC " +
+            string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.IndicatorNumber, I.IndicatorType, I.ScoreValue " +
+                "FROM Associate_Category_to_Indicator AtC " +
                 "INNER JOIN Categories C on AtC.CategoryID_fk = C.CategoryID " +
                 "INNER JOIN Indicators I on AtC.IndicatorID_fk = I.IndicatorID " +
                 "WHERE (C.CategoryStatus = 'ACTIVE' AND I.IndicatorStatus = 'ACTIVE')";

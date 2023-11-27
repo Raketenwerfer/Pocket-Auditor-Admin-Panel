@@ -31,6 +31,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public List<jmdl_IndicatorsSubInd> _jmISI;
         public List<jmdl_CategoriesIndicators> _jmCI;
 
+        string __bucketIndType;
+
 
         int sel { get; set; }
         bool isSubIndEditMode { get; set; }
@@ -47,6 +49,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             dbInit = _dbBUcket;
             InitializeComponent();
+
+            __bucketIndType = "SINGLE";
+            SubIndicatorscbx.Checked = false;
         }
 
         private void FormAuditForm_Load(object sender, EventArgs e)
@@ -59,7 +64,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             UpdateCatDataTable();
             UpdateIndiDataTable();
-            UpdateSubIndiDataTable();
 
 
             HideControls();
@@ -125,20 +129,29 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void IndicatorInsertbtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(CatIDcbx.Text) || string.IsNullOrEmpty(Indicatortxt.Text) ||
-                string.IsNullOrEmpty(IndicatorNumbertxt.Text))
+                string.IsNullOrEmpty(IndicatorNumbertxt.Text) || string.IsNullOrEmpty(IndicatorNumbertxt.Text))
             {
                 MessageBox.Show("Please Select and input a data.");
                 return;
             }
-
-            dgvIndiTable.Rows.Add(CatIDcbx.Text, Indicatortxt.Text);
-            MessageBox.Show("Data Successfully Created!");
+            else
+            {
+                InsertIndicator();
+            }
 
             Clear();
             ShowControls();
         }
 
         private void Indicatordgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = e.RowIndex;
+
+            prompt_Edit_ISI EditPrompt = new prompt_Edit_ISI("indicator", sel, _Indicators, _SubIndicators, _jmISI);
+            EditPrompt.Show();
+        }
+
+        private void Indicatordgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             index = e.RowIndex;
             DataGridViewRow row = Indicatordgv.Rows[index];
@@ -156,13 +169,16 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 }
             };
 
-            prompt_Edit_ISI EditPrompt = new prompt_Edit_ISI("indicator", sel, _Indicators, _SubIndicators, _jmISI);
-            EditPrompt.Show();
-        }
+            if (!Indicatordgv.SelectedCells[3].Value.Equals("COMPOSITE"))
+            {
+                pnlSubIndicators.Visible = false;
+            }
+            else
+            {
+                pnlSubIndicators.Visible = true;
+            }
 
-        private void Indicatordgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            pnlSubIndicators.Visible = true;
+            
             isSubIndEditMode = true;
             btnSubIndSubmitEvent.Text = "EDIT";
             label3.Visible = false;
@@ -171,6 +187,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             txtSubIndicators.Visible = false;
             cbxType.Visible = false;
             num_SubIndicatorSV.Visible = false;
+            btnAttachExisting.Visible = false;
+
+
+
+            UpdateSubIndiDataTable();
         }
 
         private void Indicatordgv_Leave(object sender, EventArgs e)
@@ -242,15 +263,34 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 txtSubIndicators.Visible = true;
                 cbxType.Visible = true;
                 num_SubIndicatorSV.Visible = true;
+                btnAttachExisting.Visible = true;
+                dgvSunIndiTable.Rows.Clear();
+                __bucketIndType = "COMPOSITE";
             }
             else
             {
+                __bucketIndType = "SINGLE";
                 pnlSubIndicators.Hide();
                 Indicatordgv.Enabled = true;
             }
         }
 
-        private void btnSubInsert_Click()
+        private void btnSubIndSubmitEvent_Click(object sender, EventArgs e)
+        {
+
+            if (isSubIndEditMode == true)
+            {
+                prompt_Edit_ISI EditPrompt = new prompt_Edit_ISI("subindicator", sel, _Indicators, _SubIndicators, _jmISI);
+                EditPrompt.Show();
+            }
+            else
+            {
+                MessageBox.Show("Indicator is not a composite type!");
+            }
+        }
+
+
+        private void btnAttachExisting_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cbxType.Text) || string.IsNullOrEmpty(txtSubIndicators.Text))
             {
@@ -264,22 +304,80 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             ShowControls();
         }
 
-        private void btnSubIndSubmitEvent_Click(object sender, EventArgs e)
-        {
-
-            if (isSubIndEditMode == true)
-            {
-                prompt_Edit_ISI EditPrompt = new prompt_Edit_ISI("subindicator", sel, _Indicators, _SubIndicators, _jmISI);
-                EditPrompt.Show();
-            }
-            else
-            {
-                btnSubInsert_Click();
-            }
-        }
-
         #endregion
 
+        public void InsertIndicator()
+        {
+            int _indNo;
+            double _indScoreValue;
+            string _indTitle, _indStatus, _indType;
+
+            _indTitle = Indicatortxt.Text;
+            _indStatus = "ACTIVE";
+            _indNo = Convert.ToInt32(IndicatorNumbertxt.Text);
+            _indScoreValue = Convert.ToDouble(num_IndicatorSV.Value);
+            _indType = __bucketIndType;
+
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                // Step 1: Insert the indicator into the Indicators table
+                string insertIndicatorQuery = "INSERT INTO Indicators (IndicatorNumber, ScoreValue, Indicator, IndicatorStatus, IndicatorType) " +
+                                             "VALUES (@IndicatorNumber, @ScoreValue, @Indicator, @IndicatorStatus, @IndicatorType)";
+
+                using (MySqlCommand cmd = new MySqlCommand(insertIndicatorQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@IndicatorNumber", _indNo);
+                    cmd.Parameters.AddWithValue("@ScoreValue", _indScoreValue);
+                    cmd.Parameters.AddWithValue("@Indicator", _indTitle);
+                    cmd.Parameters.AddWithValue("@IndicatorStatus", _indStatus);
+                    cmd.Parameters.AddWithValue("@IndicatorType", _indType);
+
+                    cmd.ExecuteNonQuery(); // Execute the query to insert the indicator
+                }
+
+                // Step 2: Insert the association into the Associate_Category_to_Indicator table
+                string getCategoryIDQuery = "SELECT CategoryID FROM Categories WHERE CategoryTitle = @CategoryTitle";
+
+                using (MySqlCommand cmd = new MySqlCommand(getCategoryIDQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryTitle", CatIDcbx.Text);
+
+                    int categoryID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    string insertAssociationQuery = "INSERT INTO Associate_Category_to_Indicator (CategoryID_fk, IndicatorID_fk) " +
+                                                   "VALUES (@CategoryID, LAST_INSERT_ID())";
+
+                    using (MySqlCommand associationCmd = new MySqlCommand(insertAssociationQuery, conn))
+                    {
+                        associationCmd.Parameters.AddWithValue("@CategoryID", categoryID);
+
+                        int rowsAffected = associationCmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Data Successfully Inserted and Associated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Association failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
 
         #region Load DataGridViews
@@ -307,13 +405,15 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             dgvSunIndiTable.Rows.Clear(); // Clear existing rows
 
-            foreach (var si in _SubIndicators)
+            foreach (jmdl_IndicatorsSubInd j in _jmISI)
             {
-                dgvSunIndiTable.Rows.Add(si.SubIndicator, si.SubIndicatorType, si.ScoreValue);
+                if (sel == j.IndicatorID_fk)
+                {
+                    dgvSunIndiTable.Rows.Add(j.SubIndicator, j.SubIndicatorType, j.ScoreValue);
+                }
             }
         }
         #endregion
-
 
         #region Methods
 

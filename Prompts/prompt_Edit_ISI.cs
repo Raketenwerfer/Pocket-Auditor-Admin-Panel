@@ -14,12 +14,15 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
     public partial class prompt_Edit_ISI : Form
     {
         private string type { get; set; }
+
         List<mdl_Indicators> _Indicators;
         List<mdl_SubIndicators> _SubIndicators;
         List<jmdl_IndicatorsSubInd> _jmISI;
         private int selected_id;
 
-        public prompt_Edit_ISI(string edit_type, int _selection, List<mdl_Indicators> indicators, 
+        readonly DataTable DGV_subind = new DataTable();
+
+        public prompt_Edit_ISI(string edit_type, int _selection, List<mdl_Indicators> indicators,
             List<mdl_SubIndicators> subIndicators, List<jmdl_IndicatorsSubInd> jmISI)
         {
             selected_id = _selection;
@@ -32,7 +35,8 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             SetSize();
             SetView();
-
+            SubIndicatorTable();
+            SetDataGrid();
         }
 
         public void SetSize()
@@ -53,7 +57,6 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         {
             if (type == "indicator")
             {
-                lbl_editType.Text = "Editing Indicator";
                 lbl_itemname.Text = "Indicator";
                 lbl_itemnumber.Text = "Indicator Number";
                 lbl_itemscorevalue.Text = "Score Value";
@@ -61,12 +64,33 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             }
             else if (type == "subindicator")
             {
-                lbl_editType.Text = "Editing Sub-Indicator";
                 lbl_itemname.Text = "Sub-Indicator Question";
                 lbl_itemscorevalue.Text = "Score Value";
                 lbl_itemnumber.Visible = false;
                 lbl_assignment_or_dgvname.Text = "Type";
             }
         }
+
+        public void SetDataGrid()
+        {
+            DGV_subind.Rows.Clear();
+
+            foreach (jmdl_IndicatorsSubInd j in _jmISI)
+            {
+                if (selected_id == j.IndicatorID_fk)
+                {
+                    DGV_subind.Rows.Add(j.SubIndicator, j.SubIndicatorType, j.ScoreValue);
+                }
+            }
+        }
+
+        private void SubIndicatorTable()
+        {
+            DGV_subind.Columns.Add("Sub-Indicator");
+            DGV_subind.Columns.Add("Sub-Indicator Type");
+            DGV_subind.Columns.Add("Score Value");
+            prmpt_dgv_subind.DataSource = DGV_subind;
+        }
+
     }
 }

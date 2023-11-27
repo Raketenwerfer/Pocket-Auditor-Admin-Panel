@@ -43,6 +43,7 @@
             num_IndicatorSV = new NumericUpDown();
             label7 = new Label();
             pnlSubIndicators = new Panel();
+            btnAttachExisting = new Button();
             num_SubIndicatorSV = new NumericUpDown();
             label9 = new Label();
             label4 = new Label();
@@ -236,6 +237,7 @@
             // 
             // pnlSubIndicators
             // 
+            pnlSubIndicators.Controls.Add(btnAttachExisting);
             pnlSubIndicators.Controls.Add(num_SubIndicatorSV);
             pnlSubIndicators.Controls.Add(label9);
             pnlSubIndicators.Controls.Add(label4);
@@ -251,9 +253,19 @@
             pnlSubIndicators.Size = new Size(840, 258);
             pnlSubIndicators.TabIndex = 50;
             // 
+            // btnAttachExisting
+            // 
+            btnAttachExisting.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAttachExisting.Location = new Point(636, 73);
+            btnAttachExisting.Name = "btnAttachExisting";
+            btnAttachExisting.Size = new Size(113, 25);
+            btnAttachExisting.TabIndex = 61;
+            btnAttachExisting.Text = "ATTACH EXISITNG";
+            btnAttachExisting.UseVisualStyleBackColor = true;
+            btnAttachExisting.Click += btnAttachExisting_Click;
+            // 
             // num_SubIndicatorSV
             // 
-            num_SubIndicatorSV.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
             num_SubIndicatorSV.Location = new Point(407, 39);
             num_SubIndicatorSV.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             num_SubIndicatorSV.Name = "num_SubIndicatorSV";
@@ -298,14 +310,14 @@
             SubIndicatorsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             SubIndicatorsdgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             SubIndicatorsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            SubIndicatorsdgv.Location = new Point(3, 105);
+            SubIndicatorsdgv.Location = new Point(14, 105);
             SubIndicatorsdgv.MultiSelect = false;
             SubIndicatorsdgv.Name = "SubIndicatorsdgv";
             SubIndicatorsdgv.ReadOnly = true;
             SubIndicatorsdgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             SubIndicatorsdgv.RowTemplate.Height = 25;
             SubIndicatorsdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            SubIndicatorsdgv.Size = new Size(827, 140);
+            SubIndicatorsdgv.Size = new Size(812, 140);
             SubIndicatorsdgv.TabIndex = 20;
             // 
             // label3
@@ -502,5 +514,6 @@
         private NumericUpDown num_SubIndicatorSV;
         private TextBox IndicatorNumbertxt;
         private Label label10;
+        private Button btnAttachExisting;
     }
 }
