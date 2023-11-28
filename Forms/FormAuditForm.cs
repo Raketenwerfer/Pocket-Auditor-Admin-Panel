@@ -72,7 +72,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             UpdateCatDataTable();
             UpdateIndiDataTable();
 
-
+            CatIDcbx.SelectedIndex = 0;
             HideControls();
         }
 
@@ -86,6 +86,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 return;
             }
 
+            // Call the method to insert the category into the database
+            InsertCategory(txtCatName.Text);
 
             MessageBox.Show("Data Successfully Created!");
 
@@ -117,11 +119,23 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void CatDeletebtn_Click(object sender, EventArgs e)
         {
-            index = Catdgv.CurrentCell.RowIndex;
-            Catdgv.Rows.RemoveAt(index);
-            MessageBox.Show("Data Successfully Deleted!");
+            // Check if a category is selected in the DataGridView
+            if (Catdgv.SelectedRows.Count > 0)
+            {
+                // Get the CategoryID from the selected row
+                int categoryID = Convert.ToInt32(Catdgv.SelectedRows[0].Cells[0].Value);
 
-            Clear();
+                // Call the method to delete the category from the database
+                DeleteCategory(categoryID);
+
+                MessageBox.Show("Data Successfully Deleted!");
+
+                Clear();
+            }
+            else
+            {
+                MessageBox.Show("Please select a category to delete.");
+            }
         }
 
         private void txtCatID_KeyPress(object sender, KeyPressEventArgs e)
@@ -337,6 +351,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         #endregion
 
+
+        #region Insert Methods
+
         public void InsertIndicator()
         {
             int _indNo;
@@ -430,7 +447,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
         }
 
-
         public void ListSubIndicator()
         {
             string _subind, _subindtype;
@@ -519,6 +535,71 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         }
 
 
+        // Method to insert a new category into the database
+        private void InsertCategory(string categoryName)
+        {
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string insertCategoryQuery = "INSERT INTO Categories (CategoryTitle, CategoryStatus) " +
+                                            "VALUES (@CategoryTitle, 'ACTIVE')";
+
+                using (MySqlCommand cmd = new MySqlCommand(insertCategoryQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryTitle", categoryName);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        // Method to delete a category from the database
+        private void DeleteCategory(int categoryID)
+        {
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string deleteCategoryQuery = "UPDATE Categories SET CategoryStatus = 'INACTIVE' " +
+                                             "WHERE CategoryID = @CategoryID";
+
+                using (MySqlCommand cmd = new MySqlCommand(deleteCategoryQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        #endregion
+
+
+
+
+
         #region Load DataGridViews
         private void UpdateCatDataTable()
         {
@@ -573,15 +654,24 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void ShowControls()
         {
-            // controls of Categories
-            CatUpdatebtn.Show();
-            CatDeletebtn.Show();
-
             // controls of Indicators
             btnSubIndSubmitEvent.Show();
 
             // controls for SubIndicators
             btnSubIndSubmitEvent.Show();
+        }
+
+        private void EnableCatBtn()
+        {
+            // controls of Categories
+            CatUpdatebtn.Enabled = true;
+            CatDeletebtn.Enabled = true;
+        }
+
+        private void DisableCatBtn()
+        {
+            CatUpdatebtn.Enabled = false;
+            CatDeletebtn.Enabled = false;
         }
 
         private void CatTable()
@@ -597,10 +687,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             // for Category Entry
             txtCatName.Clear();
-
-            // for Indicator Entry
-            CatIDcbx.SelectedItem = null;
-            Indicatortxt.Clear();
 
             // for Sub-Indicator Entry
             cbxType.SelectedItem = null;
