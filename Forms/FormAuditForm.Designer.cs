@@ -53,7 +53,6 @@
             cbxType = new ComboBox();
             txtSubIndicators = new TextBox();
             label6 = new Label();
-            cbox_IndicatorFilterbyCategory = new ComboBox();
             SubIndicatorscbx = new CheckBox();
             Indicatordgv = new DataGridView();
             Indicatortxt = new TextBox();
@@ -179,7 +178,6 @@
             tabPage2.Controls.Add(num_IndicatorSV);
             tabPage2.Controls.Add(label7);
             tabPage2.Controls.Add(pnlSubIndicators);
-            tabPage2.Controls.Add(cbox_IndicatorFilterbyCategory);
             tabPage2.Controls.Add(SubIndicatorscbx);
             tabPage2.Controls.Add(Indicatordgv);
             tabPage2.Controls.Add(Indicatortxt);
@@ -338,6 +336,7 @@
             cbxType.Name = "cbxType";
             cbxType.Size = new Size(128, 24);
             cbxType.TabIndex = 18;
+            cbxType.SelectedIndexChanged += cbxType_SelectedIndexChanged;
             // 
             // txtSubIndicators
             // 
@@ -358,17 +357,6 @@
             label6.Size = new Size(142, 16);
             label6.TabIndex = 16;
             label6.Text = "Sub-Indicator Question";
-            // 
-            // cbox_IndicatorFilterbyCategory
-            // 
-            cbox_IndicatorFilterbyCategory.FormattingEnabled = true;
-            cbox_IndicatorFilterbyCategory.Location = new Point(19, 96);
-            cbox_IndicatorFilterbyCategory.Name = "cbox_IndicatorFilterbyCategory";
-            cbox_IndicatorFilterbyCategory.Size = new Size(226, 23);
-            cbox_IndicatorFilterbyCategory.TabIndex = 54;
-            cbox_IndicatorFilterbyCategory.Text = "Sort By Category";
-            cbox_IndicatorFilterbyCategory.SelectedIndexChanged += cbox_IndicatorFilterbyCategory_SelectedIndexChanged;
-            cbox_IndicatorFilterbyCategory.Enter += Indicatordgv_Leave;
             // 
             // SubIndicatorscbx
             // 
@@ -418,6 +406,7 @@
             CatIDcbx.Name = "CatIDcbx";
             CatIDcbx.Size = new Size(232, 23);
             CatIDcbx.TabIndex = 51;
+            CatIDcbx.SelectedIndexChanged += CatIDcbx_SelectedIndexChanged;
             CatIDcbx.Enter += Indicatordgv_Leave;
             // 
             // label8
@@ -498,7 +487,6 @@
         private ComboBox CatIDcbx;
         private Label label8;
         private DataGridView Indicatordgv;
-        private ComboBox cbox_IndicatorFilterbyCategory;
         private Panel pnlSubIndicators;
         private Button btnSubIndSubmitEvent;
         private DataGridView SubIndicatorsdgv;

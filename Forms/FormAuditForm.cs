@@ -34,12 +34,18 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         string __bucketIndType;
 
 
+        AdminPanel AP;
+
+        // Declare a list to store SubIndicators and their associations
+        List<Tuple<string, string, double>> subIndicatorsList = new List<Tuple<string, string, double>>();
+
+
         int sel { get; set; }
         bool isSubIndEditMode { get; set; }
 
         public FormAuditForm(DatabaseInitiator _dbBUcket, List<mdl_Categories> __categories,
             List<mdl_Indicators> __indicators, List<mdl_SubIndicators> __subindicators,
-            List<jmdl_IndicatorsSubInd> __jmISI, List<jmdl_CategoriesIndicators> __jmCI)
+            List<jmdl_IndicatorsSubInd> __jmISI, List<jmdl_CategoriesIndicators> __jmCI, AdminPanel aP)
         {
             _Categories = __categories;
             _Indicators = __indicators;
@@ -52,6 +58,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             __bucketIndType = "SINGLE";
             SubIndicatorscbx.Checked = false;
+            AP = aP;
         }
 
         private void FormAuditForm_Load(object sender, EventArgs e)
@@ -137,6 +144,17 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             else
             {
                 InsertIndicator();
+                _jmCI.Clear();
+                _Indicators.Clear();
+                AP.PullIndicators();
+                AP.PullAssociate_CI();
+                UpdateIndiDataTable();
+
+                SubIndicatorscbx.Checked = false;
+                if (Indicatordgv.Enabled == false)
+                {
+                    Indicatordgv.Enabled = true;
+                }
             }
 
             Clear();
@@ -178,7 +196,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 pnlSubIndicators.Visible = true;
             }
 
-            
+
             isSubIndEditMode = true;
             btnSubIndSubmitEvent.Text = "EDIT";
             label3.Visible = false;
@@ -225,20 +243,17 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void SetCboxItems()
         {
-            cbox_IndicatorFilterbyCategory.Items.Clear();
             CatIDcbx.Items.Clear();
 
             foreach (var cat in _Categories)
             {
-                cbox_IndicatorFilterbyCategory.Items.Add(cat.CategoryTitle);
                 CatIDcbx.Items.Add(cat.CategoryTitle);
             }
 
             num_IndicatorSV.Value = 1;
             num_SubIndicatorSV.Value = 1;
         }
-
-        private void cbox_IndicatorFilterbyCategory_SelectedIndexChanged(object sender, EventArgs e)
+        private void CatIDcbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateIndiDataTable();
             Indicatordgv.ClearSelection();
@@ -266,12 +281,15 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 btnAttachExisting.Visible = true;
                 dgvSunIndiTable.Rows.Clear();
                 __bucketIndType = "COMPOSITE";
+                num_IndicatorSV.Value = 0;
+                num_IndicatorSV.Enabled = false;
             }
             else
             {
                 __bucketIndType = "SINGLE";
                 pnlSubIndicators.Hide();
                 Indicatordgv.Enabled = true;
+                num_IndicatorSV.Enabled = true;
             }
         }
 
@@ -285,7 +303,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
             else
             {
-                MessageBox.Show("Indicator is not a composite type!");
+                ListSubIndicator();
             }
         }
 
@@ -304,6 +322,19 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             ShowControls();
         }
 
+        private void cbxType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxType.Text == "OPTIONS")
+            {
+                num_SubIndicatorSV.Enabled = true;
+            }
+            else if (cbxType.Text == "DETAILS")
+            {
+                num_SubIndicatorSV.Enabled = false;
+                num_SubIndicatorSV.Value = 0;
+            }
+        }
+
         #endregion
 
         public void InsertIndicator()
@@ -312,12 +343,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             double _indScoreValue;
             string _indTitle, _indStatus, _indType;
 
+            int passID = 0;
+
             _indTitle = Indicatortxt.Text;
             _indStatus = "ACTIVE";
             _indNo = Convert.ToInt32(IndicatorNumbertxt.Text);
             _indScoreValue = Convert.ToDouble(num_IndicatorSV.Value);
             _indType = __bucketIndType;
-
 
             MySqlConnection conn = dbInit.GetConnection();
 
@@ -327,7 +359,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
                 // Step 1: Insert the indicator into the Indicators table
                 string insertIndicatorQuery = "INSERT INTO Indicators (IndicatorNumber, ScoreValue, Indicator, IndicatorStatus, IndicatorType) " +
-                                             "VALUES (@IndicatorNumber, @ScoreValue, @Indicator, @IndicatorStatus, @IndicatorType)";
+                                              "VALUES (@IndicatorNumber, @ScoreValue, @Indicator, @IndicatorStatus, @IndicatorType)";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertIndicatorQuery, conn))
                 {
@@ -338,36 +370,143 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     cmd.Parameters.AddWithValue("@IndicatorType", _indType);
 
                     cmd.ExecuteNonQuery(); // Execute the query to insert the indicator
-                }
 
-                // Step 2: Insert the association into the Associate_Category_to_Indicator table
-                string getCategoryIDQuery = "SELECT CategoryID FROM Categories WHERE CategoryTitle = @CategoryTitle";
+                    // Get the ID of the newly inserted Indicator
+                    string getNewIndicatorIDQuery = "SELECT LAST_INSERT_ID()";
 
-                using (MySqlCommand cmd = new MySqlCommand(getCategoryIDQuery, conn))
-                {
-                    cmd.Parameters.AddWithValue("@CategoryTitle", CatIDcbx.Text);
-
-                    int categoryID = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    string insertAssociationQuery = "INSERT INTO Associate_Category_to_Indicator (CategoryID_fk, IndicatorID_fk) " +
-                                                   "VALUES (@CategoryID, LAST_INSERT_ID())";
-
-                    using (MySqlCommand associationCmd = new MySqlCommand(insertAssociationQuery, conn))
+                    using (MySqlCommand idCmd = new MySqlCommand(getNewIndicatorIDQuery, conn))
                     {
-                        associationCmd.Parameters.AddWithValue("@CategoryID", categoryID);
+                        passID = Convert.ToInt32(idCmd.ExecuteScalar());
+                    }
 
-                        int rowsAffected = associationCmd.ExecuteNonQuery();
+                    // Step 2: Insert the association into the Associate_Category_to_Indicator table
+                    string getCategoryIDQuery = "SELECT CategoryID FROM Categories WHERE CategoryTitle = @CategoryTitle";
 
-                        if (rowsAffected > 0)
+                    using (MySqlCommand categoryCmd = new MySqlCommand(getCategoryIDQuery, conn))
+                    {
+                        categoryCmd.Parameters.AddWithValue("@CategoryTitle", CatIDcbx.Text);
+
+                        int categoryID = Convert.ToInt32(categoryCmd.ExecuteScalar());
+
+                        string insertAssociationQuery = "INSERT INTO Associate_Category_to_Indicator (CategoryID_fk, IndicatorID_fk) " +
+                                                       "VALUES (@CategoryID, LAST_INSERT_ID())";
+
+                        using (MySqlCommand associationCmd = new MySqlCommand(insertAssociationQuery, conn))
                         {
-                            MessageBox.Show("Data Successfully Inserted and Associated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Association failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            associationCmd.Parameters.AddWithValue("@CategoryID", categoryID);
+
+                            int rowsAffected = associationCmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Data Successfully Inserted and Associated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Association failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+
+                if (SubIndicatorscbx.Checked)
+                {
+                    InsertSubIndicator(passID);
+                    subIndicatorsList.Clear();
+                    _jmISI.Clear();
+                    _SubIndicators.Clear();
+                    AP.PullSubIndicators();
+                    AP.PullAssociate_ISI();
+                    UpdateSubIndiDataTable();
+                }
+            }
+        }
+
+
+        public void ListSubIndicator()
+        {
+            string _subind, _subindtype;
+            double _subindSV;
+
+            _subind = txtSubIndicators.Text;
+            _subindtype = cbxType.Text;
+            _subindSV = Convert.ToDouble(num_SubIndicatorSV.Value);
+
+
+            // Add SubIndicators to the list (call this in your SubIndicator insertion logic)
+            subIndicatorsList.Add(Tuple.Create(_subind, _subindtype, _subindSV));
+
+            dgvSunIndiTable.Rows.Add(_subind, _subindtype, _subindSV);
+        }
+
+        public void InsertSubIndicator(int _indIDbucket)
+        {
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                // After inserting the Indicator and getting its IndicatorID
+                int indicatorID = _indIDbucket; // Assuming you have the IndicatorID, replace it with the actual value
+
+                // Loop through the list and insert SubIndicators and their associations
+                foreach (var subIndicator in subIndicatorsList)
+                {
+                    string _subind = subIndicator.Item1;
+                    string _subindtype = subIndicator.Item2;
+                    double _subindSV = subIndicator.Item3;
+
+                    // Insert SubIndicator into the SubIndicators table
+                    string insertSubIndicatorQuery = "INSERT INTO SubIndicators (SubIndicator, SubIndicatorType, ScoreValue, SubIndicatorStatus) " +
+                                                     "VALUES (@SubIndicator, @SubIndicatorType, @ScoreValue, 'ACTIVE')";
+
+                    using (MySqlCommand cmd = new MySqlCommand(insertSubIndicatorQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@SubIndicator", _subind);
+                        cmd.Parameters.AddWithValue("@SubIndicatorType", _subindtype);
+                        cmd.Parameters.AddWithValue("@ScoreValue", _subindSV);
+
+                        cmd.ExecuteNonQuery(); // Execute the query to insert the SubIndicator
+                    }
+
+                    // Get the SubIndicatorID of the newly inserted SubIndicator
+                    string getSubIndicatorIDQuery = "SELECT LAST_INSERT_ID()";
+
+                    using (MySqlCommand cmd = new MySqlCommand(getSubIndicatorIDQuery, conn))
+                    {
+                        int subIndicatorID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // Insert the association into the Associate_Indicator_to_SubIndicator table
+                        string insertAssociationQuery = "INSERT INTO Associate_Indicator_to_SubIndicator (IndicatorID_fk, SubIndicatorID_fk) " +
+                                                       "VALUES (@IndicatorID, @SubIndicatorID)";
+
+                        using (MySqlCommand associationCmd = new MySqlCommand(insertAssociationQuery, conn))
+                        {
+                            associationCmd.Parameters.AddWithValue("@IndicatorID", indicatorID);
+                            associationCmd.Parameters.AddWithValue("@SubIndicatorID", subIndicatorID);
+
+                            int rowsAffected = associationCmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                            }
+                            else
+                            {
+                                MessageBox.Show("Association failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -395,7 +534,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             dgvIndiTable.Rows.Clear(); // Clear existing rows
 
-            foreach (var i in _jmCI.Where(x => x.CategoryTitle.Equals(cbox_IndicatorFilterbyCategory.Text)))
+            foreach (var i in _jmCI.Where(x => x.CategoryTitle.Equals(CatIDcbx.Text)))
             {
                 dgvIndiTable.Rows.Add(i.IndicatorID, i.IndicatorNumber, i.Indicator, i.IndicatorType, i.ScoreValue);
             }

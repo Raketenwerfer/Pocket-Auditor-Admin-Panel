@@ -31,7 +31,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitDatabase();
 
             frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
-                _SubIndicators, _jmISI, _jmCI);
+                _SubIndicators, _jmISI, _jmCI, this);
         }
 
         public void InitDatabase()
@@ -138,27 +138,38 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullCategories()
         {
+            // Initialize placeholder variables
             int _catID;
             string _catTitle, _catStatus;
 
+            // Query string to command our databse
             string getCatQuery = "SELECT * FROM Categories WHERE CategoryStatus = 'ACTIVE'";
 
+            // Establish a new connection instance to the database
             MySqlConnection conn = dbInit.GetConnection();
 
             try
             {
+                // Open the connection
                 conn.Open();
 
+                // Initiate a new command by supplying the query string and connection instance
                 using (MySqlCommand cmd = new MySqlCommand(getCatQuery, conn))
                 {
+                    // Execute and read the command. Pull commands will return a table list
                     using (MySqlDataReader read = cmd.ExecuteReader())
                     {
+                        // `while` loop reads through each row
                         while (read.Read())
                         {
+                            // Placeholder variables will temporarily store each cell based on their columns
+                            // from the database. It will do this for each row in the table
                             _catID = read.GetInt32(read.GetOrdinal("CategoryID"));
                             _catTitle = read.GetString(read.GetOrdinal("CategoryTitle"));
                             _catStatus = read.GetString(read.GetOrdinal("CategoryStatus"));
 
+                            // A placeholder or `bucket` object is created to temporarily hold the data of the
+                            // row being currently read
                             mdl_Categories a = new mdl_Categories(_catID, _catTitle, _catStatus);
                             {
                                 a.CategoryID = _catID;
@@ -166,6 +177,8 @@ namespace Pocket_Auditor_Admin_Panel
                                 a.CategoryStatus = _catStatus;
                             }
 
+                            // Finally adding the current row from the bucket object into the primary List object for displaying
+                            // in a DataGridView
                             _Categories.Add(a);
                         }
                     }
@@ -177,6 +190,7 @@ namespace Pocket_Auditor_Admin_Panel
             }
             finally
             {
+                // The most important part! This closes the connection so another connection can be opened
                 conn.Close();
             }
         }

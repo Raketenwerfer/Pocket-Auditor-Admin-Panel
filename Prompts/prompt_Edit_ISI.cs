@@ -46,7 +46,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 prmpt_dgv_subind.Visible = false;
                 this.Size = new System.Drawing.Size(460, 240);
             }
-            else if (type == "sunindicator")
+            else if (type == "subindicator")
             {
                 prmpt_dgv_subind.Visible = true;
                 this.Size = new System.Drawing.Size(460, 430);
