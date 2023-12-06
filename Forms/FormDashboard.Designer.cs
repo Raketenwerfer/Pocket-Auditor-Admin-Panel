@@ -37,6 +37,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(1, 188, 22);
             label1.Location = new Point(22, 20);
             label1.Name = "label1";
             label1.Size = new Size(134, 23);
@@ -56,7 +57,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(899, 512);
+            ClientSize = new Size(915, 630);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;

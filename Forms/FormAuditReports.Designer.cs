@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             txtSearch = new TextBox();
             label2 = new Label();
@@ -39,6 +41,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(1, 188, 22);
             label1.Location = new Point(30, 24);
             label1.Name = "label1";
             label1.Size = new Size(167, 23);
@@ -66,12 +69,28 @@
             // 
             Reportsdgv.AllowUserToAddRows = false;
             Reportsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Reportsdgv.BackgroundColor = Color.White;
+            Reportsdgv.BorderStyle = BorderStyle.None;
+            Reportsdgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            Reportsdgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             Reportsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Reportsdgv.EnableHeadersVisualStyles = false;
             Reportsdgv.Location = new Point(30, 98);
             Reportsdgv.Name = "Reportsdgv";
+            Reportsdgv.RowHeadersVisible = false;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(185, 238, 187);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGreen;
+            Reportsdgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             Reportsdgv.RowTemplate.Height = 25;
             Reportsdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Reportsdgv.Size = new Size(847, 570);
+            Reportsdgv.Size = new Size(847, 466);
             Reportsdgv.TabIndex = 51;
             Reportsdgv.CellContentClick += Reportsdgv_CellContentClick;
             // 
@@ -79,7 +98,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(915, 788);
+            ClientSize = new Size(915, 630);
             Controls.Add(Reportsdgv);
             Controls.Add(label2);
             Controls.Add(txtSearch);

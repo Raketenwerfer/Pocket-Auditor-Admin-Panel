@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             txtPlanName = new TextBox();
@@ -46,6 +48,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(1, 188, 22);
             label1.Location = new Point(32, 27);
             label1.Name = "label1";
             label1.Size = new Size(154, 23);
@@ -153,12 +156,28 @@
             // 
             APlandgv.AllowUserToAddRows = false;
             APlandgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            APlandgv.BackgroundColor = Color.White;
+            APlandgv.BorderStyle = BorderStyle.None;
+            APlandgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            APlandgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             APlandgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            APlandgv.EnableHeadersVisualStyles = false;
             APlandgv.Location = new Point(430, 103);
             APlandgv.Name = "APlandgv";
+            APlandgv.RowHeadersVisible = false;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(185, 238, 187);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGreen;
+            APlandgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             APlandgv.RowTemplate.Height = 25;
             APlandgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            APlandgv.Size = new Size(456, 499);
+            APlandgv.Size = new Size(456, 450);
             APlandgv.TabIndex = 16;
             APlandgv.CellClick += APlandgv_CellClick;
             // 
@@ -166,7 +185,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(915, 631);
+            ClientSize = new Size(915, 630);
             Controls.Add(APlandgv);
             Controls.Add(btnA_Update);
             Controls.Add(btnA_Delete);

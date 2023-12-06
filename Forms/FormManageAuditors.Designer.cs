@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             cbxUserType = new ComboBox();
             txtUserID = new TextBox();
@@ -51,6 +53,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(1, 188, 22);
             label1.Location = new Point(36, 29);
             label1.Name = "label1";
             label1.Size = new Size(203, 23);
@@ -144,13 +147,14 @@
             // 
             // btnRegister
             // 
+            btnRegister.BackColor = Color.Lime;
             btnRegister.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRegister.Location = new Point(240, 363);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(93, 30);
             btnRegister.TabIndex = 24;
             btnRegister.Text = "REGISTER";
-            btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.UseVisualStyleBackColor = false;
             btnRegister.Click += btnRegister_Click_1;
             // 
             // txtEmail
@@ -174,42 +178,60 @@
             // 
             Usersdgv.AllowUserToAddRows = false;
             Usersdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Usersdgv.BackgroundColor = Color.White;
+            Usersdgv.BorderStyle = BorderStyle.None;
+            Usersdgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            Usersdgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             Usersdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Usersdgv.EnableHeadersVisualStyles = false;
             Usersdgv.Location = new Point(360, 94);
             Usersdgv.Name = "Usersdgv";
+            Usersdgv.RowHeadersVisible = false;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(185, 238, 187);
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGreen;
+            Usersdgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             Usersdgv.RowTemplate.Height = 25;
             Usersdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Usersdgv.Size = new Size(528, 382);
+            Usersdgv.Size = new Size(528, 471);
             Usersdgv.TabIndex = 28;
             Usersdgv.CellClick += Usersdgv_CellClick;
             // 
             // btnUpdate
             // 
+            btnUpdate.BackColor = Color.FromArgb(0, 192, 192);
             btnUpdate.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnUpdate.Location = new Point(664, 58);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(93, 30);
             btnUpdate.TabIndex = 29;
             btnUpdate.Text = "UPDATE";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.Red;
             btnDelete.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnDelete.Location = new Point(786, 58);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(93, 30);
             btnDelete.TabIndex = 30;
             btnDelete.Text = "DELETE";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // FormManageAuditors
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(915, 631);
+            ClientSize = new Size(915, 630);
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(Usersdgv);

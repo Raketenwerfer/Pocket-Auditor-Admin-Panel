@@ -332,7 +332,7 @@ namespace Pocket_Auditor_Admin_Panel
                             subindstatus = read.GetString(read.GetOrdinal("SubIndicatorStatus"));
                             subindSV = read.GetDouble(read.GetOrdinal("ScoreValue"));
 
-                            jmdl_IndicatorsSubInd a = new jmdl_IndicatorsSubInd(subindicatorFK, subind, 
+                            jmdl_IndicatorsSubInd a = new jmdl_IndicatorsSubInd(subindicatorFK, subind,
                                 subindtype, subindstatus, subindSV, indicatorFK, indicator);
                             {
                                 a.SubIndicatorID_fk = subindicatorFK;

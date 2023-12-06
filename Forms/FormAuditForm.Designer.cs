@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
@@ -75,6 +82,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(1, 188, 22);
             label1.Location = new Point(15, 17);
             label1.Name = "label1";
             label1.Size = new Size(134, 23);
@@ -88,7 +96,7 @@
             tabControl1.Location = new Point(15, 46);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(879, 558);
+            tabControl1.Size = new Size(879, 525);
             tabControl1.TabIndex = 42;
             // 
             // tabPage1
@@ -103,7 +111,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(871, 530);
+            tabPage1.Size = new Size(871, 497);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Categories";
             // 
@@ -130,15 +138,40 @@
             // Catdgv
             // 
             Catdgv.AllowUserToAddRows = false;
+            Catdgv.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Catdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Catdgv.BackgroundColor = Color.White;
+            Catdgv.BorderStyle = BorderStyle.None;
+            Catdgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            Catdgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             Catdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Catdgv.EnableHeadersVisualStyles = false;
             Catdgv.Location = new Point(22, 157);
             Catdgv.MultiSelect = false;
             Catdgv.Name = "Catdgv";
             Catdgv.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            Catdgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            Catdgv.RowHeadersVisible = false;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(185, 238, 187);
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightGreen;
+            Catdgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
             Catdgv.RowTemplate.Height = 25;
             Catdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Catdgv.Size = new Size(824, 358);
+            Catdgv.Size = new Size(824, 325);
             Catdgv.TabIndex = 50;
             Catdgv.CellClick += Catdgv_CellClick;
             // 
@@ -188,7 +221,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(871, 530);
+            tabPage2.Size = new Size(871, 497);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Indicators";
             tabPage2.Enter += Indicatordgv_Leave;
@@ -307,12 +340,28 @@
             SubIndicatorsdgv.AllowUserToDeleteRows = false;
             SubIndicatorsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             SubIndicatorsdgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            SubIndicatorsdgv.BackgroundColor = Color.White;
+            SubIndicatorsdgv.BorderStyle = BorderStyle.None;
+            SubIndicatorsdgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            SubIndicatorsdgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             SubIndicatorsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SubIndicatorsdgv.EnableHeadersVisualStyles = false;
             SubIndicatorsdgv.Location = new Point(14, 105);
             SubIndicatorsdgv.MultiSelect = false;
             SubIndicatorsdgv.Name = "SubIndicatorsdgv";
             SubIndicatorsdgv.ReadOnly = true;
+            SubIndicatorsdgv.RowHeadersVisible = false;
             SubIndicatorsdgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(185, 238, 187);
+            dataGridViewCellStyle5.SelectionBackColor = Color.LightGreen;
+            SubIndicatorsdgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
             SubIndicatorsdgv.RowTemplate.Height = 25;
             SubIndicatorsdgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             SubIndicatorsdgv.Size = new Size(812, 140);
@@ -376,12 +425,28 @@
             Indicatordgv.AllowUserToDeleteRows = false;
             Indicatordgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Indicatordgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Indicatordgv.BackgroundColor = Color.White;
+            Indicatordgv.BorderStyle = BorderStyle.None;
+            Indicatordgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            Indicatordgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             Indicatordgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Indicatordgv.EnableHeadersVisualStyles = false;
             Indicatordgv.Location = new Point(19, 125);
             Indicatordgv.MultiSelect = false;
             Indicatordgv.Name = "Indicatordgv";
             Indicatordgv.ReadOnly = true;
+            Indicatordgv.RowHeadersVisible = false;
             Indicatordgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(185, 238, 187);
+            dataGridViewCellStyle7.SelectionBackColor = Color.LightGreen;
+            Indicatordgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
             Indicatordgv.RowTemplate.Height = 25;
             Indicatordgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Indicatordgv.Size = new Size(827, 135);
@@ -445,7 +510,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(915, 612);
+            ClientSize = new Size(915, 630);
             Controls.Add(tabControl1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
