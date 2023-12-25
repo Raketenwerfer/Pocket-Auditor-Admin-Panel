@@ -12,7 +12,7 @@ namespace Pocket_Auditor_Admin_Panel
 
 
         readonly FormDashboard frmDashboard = new FormDashboard();
-        readonly FormAuditForm frmAuditForm;
+        //readonly FormAuditForm frmAuditForm;
         readonly FormActionPlans frmActionPlans = new FormActionPlans();
         readonly FormAuditReports frmAuditReports = new FormAuditReports();
         readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
@@ -30,8 +30,8 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
-            frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
-                _SubIndicators, _jmISI, _jmCI, this);
+            //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
+            //    _SubIndicators, _jmISI, _jmCI, this);
         }
 
         public void InitDatabase()
@@ -86,15 +86,15 @@ namespace Pocket_Auditor_Admin_Panel
             frmDashboard.Show();
         }
 
-        private void btnAuditForm_Click(object sender, EventArgs e)
-        {
-            frmAuditForm.TopLevel = false;
-            frmAuditForm.TopMost = true;
-            panelContent.Controls.Clear();
-            panelContent.AutoScroll = true;
-            panelContent.Controls.Add(frmAuditForm);
-            frmAuditForm.Show();
-        }
+        //private void btnAuditForm_Click(object sender, EventArgs e)
+        //{
+        //    frmAuditForm.TopLevel = false;
+        //    frmAuditForm.TopMost = true;
+        //    panelContent.Controls.Clear();
+        //    panelContent.AutoScroll = true;
+        //    panelContent.Controls.Add(frmAuditForm);
+        //    frmAuditForm.Show();
+        //}
 
         private void btnActionPlans_Click(object sender, EventArgs e)
         {
