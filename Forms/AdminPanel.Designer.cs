@@ -108,7 +108,6 @@
             btnAuditForm.TextAlign = ContentAlignment.MiddleLeft;
             btnAuditForm.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAuditForm.UseVisualStyleBackColor = true;
-            btnAuditForm.Click += btnAuditForm_Click;
             // 
             // btnActionPlans
             // 
