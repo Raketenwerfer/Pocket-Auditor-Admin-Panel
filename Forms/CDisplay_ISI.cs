@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Prompts;
 using Pocket_Auditor_Admin_Panel.UserControlPanels;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         public List<jmdl_IndicatorsSubInd> _jmISI;
         public List<jmdl_CategoriesIndicators> _jmCI;
+
+        public prompt_AddIndicator pAddIndicator = new prompt_AddIndicator();
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
             List<jmdl_IndicatorsSubInd> bucket_jmisi)
@@ -51,6 +54,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 // Add the UserControl to the FlowLayoutPanel
                 flowLayoutPanel1.Controls.Add(userControl);
             }
+        }
+
+        public void AddIndicator (object sender, EventArgs e)
+        {
+            pAddIndicator.ShowDialog();
         }
     }
 }

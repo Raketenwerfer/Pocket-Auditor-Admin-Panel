@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pocket_Auditor_Admin_Panel.Prompts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,9 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 {
     public partial class UCM_IndicatorItem : UserControl
     {
+
+        readonly prompt_Edit_ISI pEditISI = new prompt_Edit_ISI();
+
         public UCM_IndicatorItem()
         {
             InitializeComponent();
@@ -27,6 +31,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private int _indicatorNumber;
         private string _indicatorType;
         private double _scoreValue;
+
+        private void pbox_btn_EditItem_Click(object sender, EventArgs e)
+        {
+            pEditISI.ShowDialog();
+        }
 
         // Expose properties
         public int CategoryID

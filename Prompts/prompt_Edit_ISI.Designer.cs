@@ -144,7 +144,7 @@
             Controls.Add(lbl_itemscorevalue);
             Controls.Add(lbl_itemnumber);
             Controls.Add(lbl_itemname);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "prompt_Edit_ISI";

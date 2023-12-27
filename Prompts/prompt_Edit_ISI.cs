@@ -22,21 +22,21 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         readonly DataTable DGV_subind = new DataTable();
 
-        public prompt_Edit_ISI(string edit_type, int _selection, List<mdl_Indicators> indicators,
-            List<mdl_SubIndicators> subIndicators, List<jmdl_IndicatorsSubInd> jmISI)
+        public prompt_Edit_ISI(/*string edit_type, int _selection, List<mdl_Indicators> indicators,
+            List<mdl_SubIndicators> subIndicators, List<jmdl_IndicatorsSubInd> jmISI*/)
         {
-            selected_id = _selection;
-            type = edit_type;
-            _Indicators = indicators;
-            _SubIndicators = subIndicators;
-            _jmISI = jmISI;
+            //selected_id = _selection;
+            //type = edit_type;
+            //_Indicators = indicators;
+            //_SubIndicators = subIndicators;
+            //_jmISI = jmISI;
 
             InitializeComponent();
 
-            SetSize();
-            SetView();
-            SubIndicatorTable();
-            SetDataGrid();
+            //SetSize();
+            //SetView();
+            //SubIndicatorTable();
+            //SetDataGrid();
         }
 
         public void SetSize()
