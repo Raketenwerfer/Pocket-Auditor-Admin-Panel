@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            pictureBox1 = new PictureBox();
             btnLogOut = new Button();
             button1 = new Button();
             btnAuditForm = new Button();
@@ -38,15 +39,16 @@
             btnDashboard = new Button();
             panelContent = new Panel();
             panel2 = new Panel();
-            pictureBox1 = new PictureBox();
+            button2 = new Button();
             panelMenu.SuspendLayout();
-            panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelContent.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
             // 
             panelMenu.BackColor = Color.Green;
+            panelMenu.Controls.Add(button2);
             panelMenu.Controls.Add(pictureBox1);
             panelMenu.Controls.Add(btnLogOut);
             panelMenu.Controls.Add(button1);
@@ -60,6 +62,16 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(200, 631);
             panelMenu.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources._352514791_278804624543271_4286607186819115630_n;
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(172, 140);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // btnLogOut
             // 
@@ -204,15 +216,15 @@
             panel2.Size = new Size(915, 47);
             panel2.TabIndex = 0;
             // 
-            // pictureBox1
+            // button2
             // 
-            pictureBox1.Image = Properties.Resources._352514791_278804624543271_4286607186819115630_n;
-            pictureBox1.Location = new Point(12, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(172, 140);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 8;
-            pictureBox1.TabStop = false;
+            button2.Location = new Point(12, 447);
+            button2.Name = "button2";
+            button2.Size = new Size(153, 40);
+            button2.TabIndex = 1;
+            button2.Text = "testing";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += btnAuditForm_Click;
             // 
             // AdminPanel
             // 
@@ -228,8 +240,8 @@
             Text = "Pocket Auditor - Admin Panel";
             Load += AdminPanel_Load;
             panelMenu.ResumeLayout(false);
-            panelContent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelContent.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -246,5 +258,6 @@
         private Button btnLogOut;
         private Panel panel2;
         private PictureBox pictureBox1;
+        private Button button2;
     }
 }
