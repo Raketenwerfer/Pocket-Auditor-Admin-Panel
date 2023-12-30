@@ -1,4 +1,5 @@
-﻿using Pocket_Auditor_Admin_Panel.Prompts;
+﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     {
 
         readonly prompt_Edit_ISI pEditISI = new prompt_Edit_ISI();
+        readonly DatabaseInitiator dbInit;
 
-        public UCM_IndicatorItem()
+        public UCM_IndicatorItem(DatabaseInitiator _bucketDB)
         {
+            dbInit = _bucketDB;
             InitializeComponent();
 
         }

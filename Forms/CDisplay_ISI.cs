@@ -22,14 +22,18 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public List<jmdl_IndicatorsSubInd> _jmISI;
         public List<jmdl_CategoriesIndicators> _jmCI;
 
-        public prompt_AddIndicator pAddIndicator = new prompt_AddIndicator();
+        public prompt_AddIndicator pAddIndicator;
+        public string SelectedCategory = "Test Category - ambot";
+
+        readonly AdminPanel AP;
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<jmdl_IndicatorsSubInd> bucket_jmisi)
+            List<jmdl_IndicatorsSubInd> bucket_jmisi, AdminPanel aP)
         {
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
             _jmISI = bucket_jmisi;
+            AP = aP;
 
             InitializeComponent();
             PopulateIndicators();
@@ -37,17 +41,18 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         public void PopulateIndicators()
         {
+            flowLayoutPanel1.Controls.Clear();
+
             foreach (jmdl_CategoriesIndicators data in _jmCI)
             {
                 // Create a new instance of the UserControl
-                UCM_IndicatorItem userControl = new UCM_IndicatorItem();
+                UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit);
 
                 // Set the UserControl properties using the data from your list
                 userControl.CategoryID = data.CategoryID;
                 userControl.CategoryTitle = data.CategoryTitle;
                 userControl.IndicatorID = data.IndicatorID;
                 userControl.Indicator = data.Indicator;
-                userControl.IndicatorNumber = data.IndicatorNumber;
                 userControl.IndicatorType = data.IndicatorType;
                 userControl.ScoreValue = data.ScoreValue;
 
@@ -58,7 +63,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         public void AddIndicator (object sender, EventArgs e)
         {
+            pAddIndicator = new prompt_AddIndicator(dbInit, SelectedCategory, AP, this);
             pAddIndicator.ShowDialog();
         }
+
+
     }
 }
