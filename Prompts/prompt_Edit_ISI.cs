@@ -1,4 +1,7 @@
-﻿using Pocket_Auditor_Admin_Panel.Classes;
+﻿using MySql.Data.MySqlClient;
+using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,77 +22,113 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         List<mdl_SubIndicators> _SubIndicators;
         List<jmdl_IndicatorsSubInd> _jmISI;
         private int selected_id;
+        readonly DatabaseInitiator dbInit;
+        readonly string indicatorName;
+        readonly CDisplay_ISI parent;
+        readonly AdminPanel AP;
 
-        readonly DataTable DGV_subind = new DataTable();
 
-        public prompt_Edit_ISI(/*string edit_type, int _selection, List<mdl_Indicators> indicators,
-            List<mdl_SubIndicators> subIndicators, List<jmdl_IndicatorsSubInd> jmISI*/)
+        public prompt_Edit_ISI(string _buckketIndicator,
+            int _selection, DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP)
         {
             //selected_id = _selection;
             //type = edit_type;
             //_Indicators = indicators;
             //_SubIndicators = subIndicators;
             //_jmISI = jmISI;
+            indicatorName = _buckketIndicator;
+            dbInit = _bucketDB;
+            selected_id = _selection;
 
             InitializeComponent();
 
-            //SetSize();
-            //SetView();
-            //SubIndicatorTable();
-            //SetDataGrid();
+            tbox_EditIndicator.Text = indicatorName;
+            parent = _parent;
+            AP = aP;
         }
 
-        public void SetSize()
+        private void btn_ApplyEdit_Click(object sender, EventArgs e)
         {
-            if (type == "indicator")
-            {
-                prmpt_dgv_subind.Visible = false;
-                this.Size = new System.Drawing.Size(460, 240);
-            }
-            else if (type == "subindicator")
-            {
-                prmpt_dgv_subind.Visible = true;
-                this.Size = new System.Drawing.Size(460, 430);
-            }
+            EditIndicator();
+        }
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            DeleteIndicator();
         }
 
-        public void SetView()
-        {
-            if (type == "indicator")
-            {
-                lbl_itemname.Text = "Indicator";
-                lbl_itemnumber.Text = "Indicator Number";
-                lbl_itemscorevalue.Text = "Score Value";
-                lbl_assignment_or_dgvname.Text = "Assign Category";
-            }
-            else if (type == "subindicator")
-            {
-                lbl_itemname.Text = "Sub-Indicator Question";
-                lbl_itemscorevalue.Text = "Score Value";
-                lbl_itemnumber.Visible = false;
-                lbl_assignment_or_dgvname.Text = "Type";
-            }
-        }
 
-        public void SetDataGrid()
+        public void EditIndicator()
         {
-            DGV_subind.Rows.Clear();
+            MySqlConnection conn = dbInit.GetConnection();
 
-            foreach (jmdl_IndicatorsSubInd j in _jmISI)
+            try
             {
-                if (selected_id == j.IndicatorID_fk)
+                conn.Open();
+
+                string updateIndicatorTextQuery = "UPDATE Indicators " +
+                                                  "SET Indicator = @NewIndicatorText " +
+                                                  "WHERE IndicatorID = @IndicatorID";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateIndicatorTextQuery, conn))
                 {
-                    DGV_subind.Rows.Add(j.SubIndicator, j.SubIndicatorType, j.ScoreValue);
+                    cmd.Parameters.AddWithValue("@NewIndicatorText", tbox_EditIndicator.Text);
+                    cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MessageBox.Show("Indicator Successfully Edited!", "Edit Succesful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                conn.Close();
+                AP._Indicators.Clear();
+                AP._jmCI.Clear();
+                AP.PullIndicators();
+                AP.PullAssociate_CI();
+                parent.PopulateIndicators();
+            }
         }
 
-        private void SubIndicatorTable()
+        public void DeleteIndicator()
         {
-            DGV_subind.Columns.Add("Sub-Indicator");
-            DGV_subind.Columns.Add("Sub-Indicator Type");
-            DGV_subind.Columns.Add("Score Value");
-            prmpt_dgv_subind.DataSource = DGV_subind;
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string deactivateIndicatorQuery = "UPDATE Indicators " +
+                                                  "SET IndicatorStatus = 'INACTIVE' " +
+                                                  "WHERE IndicatorID = @IndicatorID";
+
+                using (MySqlCommand cmd = new MySqlCommand(deactivateIndicatorQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MessageBox.Show("Indicator Deleted!", "Delete Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                conn.Close();
+                AP._Indicators.Clear();
+                AP._jmCI.Clear();
+                AP.PullIndicators();
+                AP.PullAssociate_CI();
+                parent.PopulateIndicators();
+            }
         }
 
     }

@@ -27,6 +27,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         readonly AdminPanel AP;
 
+
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
             List<jmdl_IndicatorsSubInd> bucket_jmisi, AdminPanel aP)
         {
@@ -34,6 +35,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             _jmCI = bucket_jmci;
             _jmISI = bucket_jmisi;
             AP = aP;
+
 
             InitializeComponent();
             PopulateIndicators();
@@ -46,7 +48,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             foreach (jmdl_CategoriesIndicators data in _jmCI)
             {
                 // Create a new instance of the UserControl
-                UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit);
+                UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP);
 
                 // Set the UserControl properties using the data from your list
                 userControl.CategoryID = data.CategoryID;
@@ -58,6 +60,12 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
                 // Add the UserControl to the FlowLayoutPanel
                 flowLayoutPanel1.Controls.Add(userControl);
+
+
+                //if (userControl.CategoryTitle == SelectedCategory)
+                //{
+                //    flowLayoutPanel1.Controls.Add(userControl);
+                //}
             }
         }
 

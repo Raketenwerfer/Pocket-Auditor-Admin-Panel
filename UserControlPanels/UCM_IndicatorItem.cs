@@ -1,4 +1,5 @@
 ﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Forms;
 using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,16 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     public partial class UCM_IndicatorItem : UserControl
     {
 
-        readonly prompt_Edit_ISI pEditISI = new prompt_Edit_ISI();
         readonly DatabaseInitiator dbInit;
+        readonly CDisplay_ISI parent;
+        readonly AdminPanel AP;
 
-        public UCM_IndicatorItem(DatabaseInitiator _bucketDB)
+        public UCM_IndicatorItem(DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP)
         {
             dbInit = _bucketDB;
+            parent = _parent;
+            AP = aP;
             InitializeComponent();
-
         }
 
 
@@ -37,6 +40,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void pbox_btn_EditItem_Click(object sender, EventArgs e)
         {
+            prompt_Edit_ISI pEditISI = new prompt_Edit_ISI(_indicator, _indicatorID, dbInit, parent, AP);
             pEditISI.ShowDialog();
         }
 

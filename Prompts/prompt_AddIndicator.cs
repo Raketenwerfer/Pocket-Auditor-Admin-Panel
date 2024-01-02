@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Classes;
 using Pocket_Auditor_Admin_Panel.Forms;
 using System;
 using System.Collections.Generic;
@@ -93,7 +94,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
                             if (rowsAffected > 0)
                             {
-                                MessageBox.Show("Data Successfully Inserted and Associated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Indicator Successfully Added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
@@ -110,6 +111,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             finally
             {
                 conn.Close();
+
+                AP._Indicators.Clear();
+                AP._jmCI.Clear();
                 AP.PullIndicators();
                 AP.PullAssociate_CI();
                 parent.PopulateIndicators();
