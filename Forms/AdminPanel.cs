@@ -31,7 +31,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
-            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _jmISI, this);
+            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, this);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
         }

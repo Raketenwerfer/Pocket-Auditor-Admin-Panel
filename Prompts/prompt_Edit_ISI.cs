@@ -2,6 +2,7 @@
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
 using Pocket_Auditor_Admin_Panel.Forms;
+using Pocket_Auditor_Admin_Panel.UserControlPanels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,13 +30,14 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
 
         public prompt_Edit_ISI(string _buckketIndicator,
-            int _selection, DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP)
+            int _selection, DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP,
+            List<mdl_SubIndicators> _bucketSI)
         {
             //selected_id = _selection;
             //type = edit_type;
             //_Indicators = indicators;
             //_SubIndicators = subIndicators;
-            //_jmISI = jmISI;
+            _SubIndicators = _bucketSI;
             indicatorName = _buckketIndicator;
             dbInit = _bucketDB;
             selected_id = _selection;
@@ -45,6 +47,31 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             tbox_EditIndicator.Text = indicatorName;
             parent = _parent;
             AP = aP;
+
+            PopuateSubIndicators();
+        }
+
+
+
+        public void PopuateSubIndicators()
+        {
+            flp_subindicators.Controls.Clear();
+
+            foreach (var data in _SubIndicators)
+            {
+                // Create an instance of UCM_SubIndicatorItem
+                UCM_SubIndicatorItem subIndicatorItem = new UCM_SubIndicatorItem("test");
+
+                // Set properties of the user control using your data
+                subIndicatorItem.SubIndicatorID = data.SubIndicatorID;
+                subIndicatorItem.SubIndicator = data.SubIndicator;
+                subIndicatorItem.SubIndicatorType = data.SubIndicatorType;
+                subIndicatorItem.SubIndicatorStatus = data.SubIndicatorStatus;
+                subIndicatorItem.ScoreValue = data.ScoreValue;
+
+                // Add the UserControl to the FlowLayoutPanel
+                flp_subindicators.Controls.Add(subIndicatorItem);
+            }
         }
 
         private void btn_ApplyEdit_Click(object sender, EventArgs e)

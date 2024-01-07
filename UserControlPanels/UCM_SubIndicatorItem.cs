@@ -20,74 +20,55 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         }
 
 
-        private int SubIndicatorID_fk;
-        private string SubIndicator;
-        private string SubIndicatorType;
-        private string SubIndicatorStatus;
-        private double ScoreValue;
-        private int IndicatorID_fk;
-        private string Indicator;
+        private int _SubIndicatorID;
+        private string _SubIndicator;
+        private string _SubIndicatorType;
+        private string _SubIndicatorStatus;
+        private double _ScoreValue;
 
-        public int SubIndicatorID_FK
+        public int SubIndicatorID
         {
-            get { return SubIndicatorID_fk; }
+            get { return _SubIndicatorID; }
             set
             {
-                SubIndicatorID_fk = value;
+                _SubIndicatorID = value;
             }
-        }
-        public string SubIndicatorProperty
-        {
-            get { return SubIndicator; }
-            set
-            {
-                SubIndicator = value;
-                cbox_SubIndicator.Text = SubIndicator;
-            }
-        }
 
-        public string SubIndicatorTypeProperty
+        }
+        public string SubIndicator
         {
-            get { return SubIndicatorType; }
+            get { return _SubIndicator; }
             set
             {
-                SubIndicatorType = value;
+                _SubIndicator = value;
+                cbox_SubIndicator.Text = _SubIndicator;
             }
         }
 
-        public string SubIndicatorStatusProperty
+        public string SubIndicatorType
         {
-            get { return SubIndicatorStatus; }
+            get { return _SubIndicatorType; }
             set
             {
-                SubIndicatorStatus = value;
+                _SubIndicatorType = value;
             }
         }
 
-        public double ScoreValueProperty
+        public string SubIndicatorStatus
         {
-            get { return ScoreValue; }
+            get { return _SubIndicatorStatus; }
             set
             {
-                ScoreValue = value;
+                _SubIndicatorStatus = value;
             }
         }
 
-        public int IndicatorID_FK
+        public double ScoreValue
         {
-            get { return IndicatorID_fk; }
+            get { return _ScoreValue; }
             set
             {
-                IndicatorID_fk = value;
-            }
-        }
-
-        public string IndicatorProperty
-        {
-            get { return Indicator; }
-            set
-            {
-                Indicator = value;
+                _ScoreValue = value;
             }
         }
     }

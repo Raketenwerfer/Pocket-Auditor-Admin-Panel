@@ -45,9 +45,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(cbox_SubIndicator);
+            Margin = new Padding(6, 3, 6, 3);
             Name = "UCM_SubIndicatorItem";
-            Size = new Size(500, 28);
+            Size = new Size(491, 28);
             ResumeLayout(false);
             PerformLayout();
         }

@@ -58,7 +58,7 @@
             // 
             // btn_ApplyEdit
             // 
-            btn_ApplyEdit.Location = new Point(162, 60);
+            btn_ApplyEdit.Location = new Point(162, 331);
             btn_ApplyEdit.Name = "btn_ApplyEdit";
             btn_ApplyEdit.Size = new Size(112, 29);
             btn_ApplyEdit.TabIndex = 23;
@@ -70,7 +70,7 @@
             // 
             btn_Delete.BackColor = Color.Salmon;
             btn_Delete.FlatStyle = FlatStyle.Popup;
-            btn_Delete.Location = new Point(280, 60);
+            btn_Delete.Location = new Point(280, 331);
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(112, 29);
             btn_Delete.TabIndex = 24;
@@ -80,18 +80,22 @@
             // 
             // flp_subindicators
             // 
-            flp_subindicators.BackColor = SystemColors.MenuHighlight;
-            flp_subindicators.Location = new Point(12, 146);
+            flp_subindicators.AutoScroll = true;
+            flp_subindicators.BackColor = SystemColors.InactiveBorder;
+            flp_subindicators.FlowDirection = FlowDirection.TopDown;
+            flp_subindicators.Location = new Point(12, 87);
             flp_subindicators.Margin = new Padding(8);
             flp_subindicators.Name = "flp_subindicators";
+            flp_subindicators.Padding = new Padding(0, 3, 0, 6);
             flp_subindicators.Size = new Size(523, 233);
             flp_subindicators.TabIndex = 25;
+            flp_subindicators.WrapContents = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 129);
+            label1.Location = new Point(12, 68);
             label1.Name = "label1";
             label1.Size = new Size(84, 15);
             label1.TabIndex = 26;
@@ -102,7 +106,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(547, 391);
+            ClientSize = new Size(547, 372);
             Controls.Add(label1);
             Controls.Add(flp_subindicators);
             Controls.Add(btn_Delete);

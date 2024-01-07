@@ -19,7 +19,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
     {
         public DatabaseInitiator dbInit;
 
-        public List<jmdl_IndicatorsSubInd> _jmISI;
+        public List<mdl_SubIndicators> _SubIndicators;
         public List<jmdl_CategoriesIndicators> _jmCI;
 
         public prompt_AddIndicator pAddIndicator;
@@ -29,11 +29,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<jmdl_IndicatorsSubInd> bucket_jmisi, AdminPanel aP)
+            List<mdl_SubIndicators> bucket_si, AdminPanel aP)
         {
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
-            _jmISI = bucket_jmisi;
+            _SubIndicators = bucket_si;
             AP = aP;
 
 
@@ -48,7 +48,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             foreach (jmdl_CategoriesIndicators data in _jmCI)
             {
                 // Create a new instance of the UserControl
-                UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP);
+                UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP, _SubIndicators);
 
                 // Set the UserControl properties using the data from your list
                 userControl.CategoryID = data.CategoryID;

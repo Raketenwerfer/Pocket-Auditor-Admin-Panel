@@ -36,7 +36,7 @@
             // pbox_btn_EditItem
             // 
             pbox_btn_EditItem.BackColor = SystemColors.ControlDark;
-            pbox_btn_EditItem.Location = new Point(854, 0);
+            pbox_btn_EditItem.Location = new Point(844, 0);
             pbox_btn_EditItem.Name = "pbox_btn_EditItem";
             pbox_btn_EditItem.Size = new Size(44, 42);
             pbox_btn_EditItem.TabIndex = 1;
@@ -63,7 +63,7 @@
             Margin = new Padding(3, 3, 6, 3);
             Name = "UCM_IndicatorItem";
             Padding = new Padding(1, 1, 6, 1);
-            Size = new Size(891, 40);
+            Size = new Size(882, 40);
             ((System.ComponentModel.ISupportInitialize)pbox_btn_EditItem).EndInit();
             ResumeLayout(false);
             PerformLayout();
