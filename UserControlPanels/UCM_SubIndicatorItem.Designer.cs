@@ -40,6 +40,7 @@
             cbox_SubIndicator.TabIndex = 1;
             cbox_SubIndicator.Text = "SubIndicator";
             cbox_SubIndicator.UseVisualStyleBackColor = true;
+            cbox_SubIndicator.MouseDown += cbox_SubIndicator_MouseDown;
             // 
             // UCM_SubIndicatorItem
             // 

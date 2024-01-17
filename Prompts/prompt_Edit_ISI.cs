@@ -23,7 +23,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         List<mdl_SubIndicators> _SubIndicators;
         List<jmdl_IndicatorsSubInd> _jmISI;
         private int selected_id;
-        readonly DatabaseInitiator dbInit;
+        public DatabaseInitiator dbInit;
         readonly string indicatorName;
         readonly CDisplay_ISI parent;
         readonly AdminPanel AP;
@@ -60,7 +60,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             foreach (var data in _SubIndicators)
             {
                 // Create an instance of UCM_SubIndicatorItem
-                UCM_SubIndicatorItem subIndicatorItem = new UCM_SubIndicatorItem("test");
+                UCM_SubIndicatorItem subIndicatorItem = new UCM_SubIndicatorItem("test", dbInit);
 
                 // Set properties of the user control using your data
                 subIndicatorItem.SubIndicatorID = data.SubIndicatorID;
@@ -68,6 +68,46 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 subIndicatorItem.SubIndicatorType = data.SubIndicatorType;
                 subIndicatorItem.SubIndicatorStatus = data.SubIndicatorStatus;
                 subIndicatorItem.ScoreValue = data.ScoreValue;
+
+                subIndicatorItem.IndicatorID = selected_id;
+
+                MySqlConnection conn = dbInit.GetConnection();
+
+                try
+                {
+                    conn.Open();
+
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM Associate_Indicator_to_SubIndicator " +
+                                                   "WHERE IndicatorID_fk = @IndicatorID AND SubIndicatorID_fk = @SubIndicatorID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+                        cmd.Parameters.AddWithValue("@SubIndicatorID", data.SubIndicatorID);
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // If an entry exists, set the checkbox as checked
+                        if (count > 0)
+                        {
+                            subIndicatorItem.State = true;
+                        }
+                        else
+                        {
+                            subIndicatorItem.State = false;
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
 
                 // Add the UserControl to the FlowLayoutPanel
                 flp_subindicators.Controls.Add(subIndicatorItem);

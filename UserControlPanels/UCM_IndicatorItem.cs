@@ -17,7 +17,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     public partial class UCM_IndicatorItem : UserControl
     {
 
-        readonly DatabaseInitiator dbInit;
+        public DatabaseInitiator dbInit;
         readonly CDisplay_ISI parent;
         readonly AdminPanel AP;
 
