@@ -112,8 +112,6 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 conn.Close();
 
-                AP._Indicators.Clear();
-                AP._jmCI.Clear();
                 AP.PullIndicators();
                 AP.PullAssociate_CI();
                 parent.PopulateIndicators();

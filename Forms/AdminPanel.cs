@@ -199,6 +199,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullIndicators()
         {
+            _Indicators.Clear();
+
             int _indID;
             double _indScoreValue;
             string _indTitle, _indStatus, _indType;
@@ -249,6 +251,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullSubIndicators()
         {
+            _SubIndicators.Clear();
+
             int _subIndID;
             string _subIndTitle, _subIndType, _subIndStatus;
             double _subIndScoreValue;
@@ -299,6 +303,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullAssociate_ISI()
         {
+            _jmISI.Clear();
+
             int indicatorFK, subindicatorFK;
             double subindSV;
             string indicator, subind, subindtype, subindstatus;
@@ -361,6 +367,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullAssociate_CI()
         {
+            _jmCI.Clear();
+
             int indicatorID, categoryID;
             string catTitle, indicator, indType;
             double indScoreValue;

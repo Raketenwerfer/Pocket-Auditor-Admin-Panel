@@ -39,7 +39,6 @@
             btnDashboard = new Button();
             panelContent = new Panel();
             panel2 = new Panel();
-            button2 = new Button();
             panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelContent.SuspendLayout();
@@ -48,7 +47,6 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.Green;
-            panelMenu.Controls.Add(button2);
             panelMenu.Controls.Add(pictureBox1);
             panelMenu.Controls.Add(btnLogOut);
             panelMenu.Controls.Add(button1);
@@ -120,6 +118,7 @@
             btnAuditForm.TextAlign = ContentAlignment.MiddleLeft;
             btnAuditForm.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAuditForm.UseVisualStyleBackColor = true;
+            btnAuditForm.Click += btnAuditForm_Click;
             // 
             // btnActionPlans
             // 
@@ -216,16 +215,6 @@
             panel2.Size = new Size(915, 47);
             panel2.TabIndex = 0;
             // 
-            // button2
-            // 
-            button2.Location = new Point(12, 447);
-            button2.Name = "button2";
-            button2.Size = new Size(153, 40);
-            button2.TabIndex = 1;
-            button2.Text = "testing";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += btnAuditForm_Click;
-            // 
             // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -258,6 +247,5 @@
         private Button btnLogOut;
         private Panel panel2;
         private PictureBox pictureBox1;
-        private Button button2;
     }
 }

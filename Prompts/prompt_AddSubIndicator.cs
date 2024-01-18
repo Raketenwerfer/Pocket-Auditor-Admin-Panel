@@ -15,15 +15,23 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
     public partial class prompt_AddSubIndicator : Form
     {
         private DatabaseInitiator dbInit;
-        public prompt_AddSubIndicator(DatabaseInitiator _bucketDB)
+        private prompt_Edit_ISI pE_ISI;
+        private AdminPanel AP;
+        public prompt_AddSubIndicator(DatabaseInitiator _bucketDB, prompt_Edit_ISI _parent, AdminPanel aP)
         {
             dbInit = _bucketDB;
             InitializeComponent();
+            pE_ISI = _parent;
+            cbox_SubIndType.SelectedIndex = 0;
+            AP = aP;
         }
 
         private void btn_AcceptSubIndicator_Click(object sender, EventArgs e)
         {
-
+            InsertSubInd();
+            AP.PullSubIndicators();
+            pE_ISI.PopuateSubIndicators();
+            this.Close();
         }
 
         private void InsertSubInd()
@@ -56,6 +64,8 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                     cmd.Parameters.AddWithValue("SubIndicatorType", _subindtype);
                     cmd.Parameters.AddWithValue("SubIndicatorStatus", "ACTIVE");
                     cmd.Parameters.AddWithValue("ScoreValue", _scorevalue);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

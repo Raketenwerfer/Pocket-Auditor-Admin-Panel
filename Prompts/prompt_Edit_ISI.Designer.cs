@@ -34,8 +34,8 @@
             btn_Delete = new Button();
             flp_subindicators = new FlowLayoutPanel();
             label1 = new Label();
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btn_AddSubIndicator = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)btn_AddSubIndicator).BeginInit();
             SuspendLayout();
             // 
             // lbl_itemname
@@ -103,14 +103,15 @@
             label1.TabIndex = 26;
             label1.Text = "Sub-Indicators";
             // 
-            // pictureBox1
+            // btn_AddSubIndicator
             // 
-            pictureBox1.BackColor = Color.DarkSeaGreen;
-            pictureBox1.Location = new Point(515, 66);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.TabIndex = 27;
-            pictureBox1.TabStop = false;
+            btn_AddSubIndicator.BackColor = Color.DarkSeaGreen;
+            btn_AddSubIndicator.Location = new Point(515, 66);
+            btn_AddSubIndicator.Name = "btn_AddSubIndicator";
+            btn_AddSubIndicator.Size = new Size(20, 20);
+            btn_AddSubIndicator.TabIndex = 27;
+            btn_AddSubIndicator.TabStop = false;
+            btn_AddSubIndicator.Click += btn_AddSubIndicator_Click;
             // 
             // prompt_Edit_ISI
             // 
@@ -118,7 +119,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(547, 372);
-            Controls.Add(pictureBox1);
+            Controls.Add(btn_AddSubIndicator);
             Controls.Add(label1);
             Controls.Add(flp_subindicators);
             Controls.Add(btn_Delete);
@@ -131,7 +132,7 @@
             Name = "prompt_Edit_ISI";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Item";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btn_AddSubIndicator).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -144,6 +145,6 @@
         private Button btn_Delete;
         private FlowLayoutPanel flp_subindicators;
         private Label label1;
-        private PictureBox pictureBox1;
+        private PictureBox btn_AddSubIndicator;
     }
 }

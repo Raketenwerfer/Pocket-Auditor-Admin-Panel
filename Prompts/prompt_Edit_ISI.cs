@@ -27,6 +27,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         readonly string indicatorName;
         readonly CDisplay_ISI parent;
         readonly AdminPanel AP;
+        prompt_AddSubIndicator pASI;
 
 
         public prompt_Edit_ISI(string _buckketIndicator,
@@ -47,6 +48,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             tbox_EditIndicator.Text = indicatorName;
             parent = _parent;
             AP = aP;
+            pASI = new prompt_AddSubIndicator(_bucketDB, this, aP);
 
             PopuateSubIndicators();
         }
@@ -198,5 +200,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             }
         }
 
+        private void btn_AddSubIndicator_Click(object sender, EventArgs e)
+        {
+            pASI.ShowDialog();
+        }
     }
 }
