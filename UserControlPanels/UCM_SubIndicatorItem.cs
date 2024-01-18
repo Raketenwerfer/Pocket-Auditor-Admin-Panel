@@ -165,6 +165,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
                 DisassociateSubIndicator(indicator_id, _SubIndicatorID);
             }
         }
+
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

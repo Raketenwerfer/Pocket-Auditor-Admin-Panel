@@ -69,7 +69,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
         }
 
-        public void AddIndicator (object sender, EventArgs e)
+        public void AddIndicator(object sender, EventArgs e)
         {
             pAddIndicator = new prompt_AddIndicator(dbInit, SelectedCategory, AP, this);
             pAddIndicator.ShowDialog();

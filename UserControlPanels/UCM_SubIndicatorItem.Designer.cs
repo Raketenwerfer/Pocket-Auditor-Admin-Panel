@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             cbox_SubIndicator = new CheckBox();
+            btn_Delete = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)btn_Delete).BeginInit();
             SuspendLayout();
             // 
             // cbox_SubIndicator
@@ -42,15 +44,27 @@
             cbox_SubIndicator.UseVisualStyleBackColor = true;
             cbox_SubIndicator.MouseDown += cbox_SubIndicator_MouseDown;
             // 
+            // btn_Delete
+            // 
+            btn_Delete.BackColor = Color.IndianRed;
+            btn_Delete.Location = new Point(461, 0);
+            btn_Delete.Name = "btn_Delete";
+            btn_Delete.Size = new Size(30, 28);
+            btn_Delete.TabIndex = 2;
+            btn_Delete.TabStop = false;
+            btn_Delete.Click += btn_Delete_Click;
+            // 
             // UCM_SubIndicatorItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(btn_Delete);
             Controls.Add(cbox_SubIndicator);
             Margin = new Padding(6, 3, 6, 3);
             Name = "UCM_SubIndicatorItem";
             Size = new Size(491, 28);
+            ((System.ComponentModel.ISupportInitialize)btn_Delete).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -59,5 +73,6 @@
 
         private Label lbl_SubIndicator;
         private CheckBox cbox_SubIndicator;
+        private PictureBox btn_Delete;
     }
 }

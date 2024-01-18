@@ -52,20 +52,20 @@
             // 
             pnl_btn_AddIndicator.BackColor = Color.SpringGreen;
             pnl_btn_AddIndicator.Controls.Add(lbl_btn_AddIndicator);
-            pnl_btn_AddIndicator.Location = new Point(797, -1);
+            pnl_btn_AddIndicator.Location = new Point(785, -1);
             pnl_btn_AddIndicator.Name = "pnl_btn_AddIndicator";
-            pnl_btn_AddIndicator.Size = new Size(118, 47);
+            pnl_btn_AddIndicator.Size = new Size(130, 47);
             pnl_btn_AddIndicator.TabIndex = 1;
             pnl_btn_AddIndicator.Click += AddIndicator;
             // 
             // lbl_btn_AddIndicator
             // 
             lbl_btn_AddIndicator.AutoSize = true;
-            lbl_btn_AddIndicator.Font = new Font("HP Simplified", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_btn_AddIndicator.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
             lbl_btn_AddIndicator.ForeColor = Color.DarkSlateGray;
-            lbl_btn_AddIndicator.Location = new Point(14, 15);
+            lbl_btn_AddIndicator.Location = new Point(9, 15);
             lbl_btn_AddIndicator.Name = "lbl_btn_AddIndicator";
-            lbl_btn_AddIndicator.Size = new Size(92, 16);
+            lbl_btn_AddIndicator.Size = new Size(112, 16);
             lbl_btn_AddIndicator.TabIndex = 3;
             lbl_btn_AddIndicator.Text = "ADD INDICATOR";
             lbl_btn_AddIndicator.Click += AddIndicator;
