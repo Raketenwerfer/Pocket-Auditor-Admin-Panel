@@ -140,6 +140,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullCategories()
         {
+            _Categories.Clear();
+
             // Initialize placeholder variables
             int _catID;
             string _catTitle, _catStatus;
