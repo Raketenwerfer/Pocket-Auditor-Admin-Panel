@@ -62,7 +62,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             foreach (var data in _SubIndicators)
             {
                 // Create an instance of UCM_SubIndicatorItem
-                UCM_SubIndicatorItem subIndicatorItem = new UCM_SubIndicatorItem("test", dbInit);
+                UCM_SubIndicatorItem subIndicatorItem = new UCM_SubIndicatorItem("test", dbInit, AP, this);
 
                 // Set properties of the user control using your data
                 subIndicatorItem.SubIndicatorID = data.SubIndicatorID;

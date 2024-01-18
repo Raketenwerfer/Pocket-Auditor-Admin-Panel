@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +18,15 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         public DatabaseInitiator dbInit;
         readonly string DisplayType;
         private int indicator_id;
-        public UCM_SubIndicatorItem(string displayType, DatabaseInitiator _bucketDB)
+        private AdminPanel AP;
+        private prompt_Edit_ISI pE_ISI;
+        public UCM_SubIndicatorItem(string displayType, DatabaseInitiator _bucketDB, AdminPanel aP, prompt_Edit_ISI _parent)
         {
             InitializeComponent();
             DisplayType = displayType;
             dbInit = _bucketDB;
+            AP = aP;
+            pE_ISI = _parent;
         }
 
         private int _SubIndicatorID;
@@ -154,6 +159,34 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             }
         }
 
+        public void DeleteSubIndicator(int ID)
+        {
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string deleteAssociationQuery = "DELETE FROM SubIndicators " +
+                                                "WHERE SubIndicatorID = @SubIndicatorID";
+
+                using (MySqlCommand cmd = new MySqlCommand(deleteAssociationQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SubIndicatorID", ID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         private void cbox_SubIndicator_MouseDown(object sender, MouseEventArgs e)
         {
             if (cbox_SubIndicator.Checked == false)
@@ -168,7 +201,9 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-
+            DeleteSubIndicator(_SubIndicatorID);
+            AP.PullSubIndicators();
+            pE_ISI.PopuateSubIndicators();
         }
     }
 }
