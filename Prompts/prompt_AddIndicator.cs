@@ -18,13 +18,15 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
     {
         readonly DatabaseInitiator dbInit;
         readonly string SelectedCategory;
+        readonly int SelectedCategoryID;
         readonly AdminPanel AP;
         readonly CDisplay_ISI parent;
-        public prompt_AddIndicator(DatabaseInitiator _bucketDB, string _bucketCategory, AdminPanel aP, CDisplay_ISI _parent)
+        public prompt_AddIndicator(DatabaseInitiator _bucketDB, string _bucketCategory, int _bCateID, AdminPanel aP, CDisplay_ISI _parent)
         {
             parent = _parent;
             dbInit = _bucketDB;
             SelectedCategory = _bucketCategory;
+            SelectedCategoryID = _bCateID;
             AP = aP;
             InitializeComponent();
         }
@@ -114,7 +116,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
                 AP.PullIndicators();
                 AP.PullAssociate_CI();
-                parent.PopulateIndicators();
+                parent.PopulateIndicators(SelectedCategoryID);
                 this.Close();
             }
         }

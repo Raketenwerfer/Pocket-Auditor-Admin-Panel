@@ -23,55 +23,56 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public List<jmdl_CategoriesIndicators> _jmCI;
 
         public prompt_AddIndicator pAddIndicator;
-        public string SelectedCategory = "Test Category - ambot";
+        public int SelectedCategoryID;
+        public string SelectedCategoryTitle;
 
         readonly AdminPanel AP;
 
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<mdl_SubIndicators> bucket_si, AdminPanel aP)
+            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat)
         {
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
             _SubIndicators = bucket_si;
             AP = aP;
-
-
+            SelectedCategoryID = _InitCat;
             InitializeComponent();
-            PopulateIndicators();
+
+            PopulateIndicators(SelectedCategoryID);
         }
 
-        public void PopulateIndicators()
+        public void PopulateIndicators(int filterCategoryID)
         {
+            lbl_dis_CategoryName.Text = SelectedCategoryTitle;
+
             flowLayoutPanel1.Controls.Clear();
 
             foreach (jmdl_CategoriesIndicators data in _jmCI)
             {
-                // Create a new instance of the UserControl
-                UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP, _SubIndicators);
+                // Check if the CategoryID matches the filterCategoryID
+                if (data.CategoryID == filterCategoryID)
+                {
+                    // Create a new instance of the UserControl
+                    UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP, _SubIndicators);
 
-                // Set the UserControl properties using the data from your list
-                userControl.CategoryID = data.CategoryID;
-                userControl.CategoryTitle = data.CategoryTitle;
-                userControl.IndicatorID = data.IndicatorID;
-                userControl.Indicator = data.Indicator;
-                userControl.IndicatorType = data.IndicatorType;
-                userControl.ScoreValue = data.ScoreValue;
+                    // Set the UserControl properties using the data from your list
+                    userControl.CategoryID = data.CategoryID;
+                    userControl.CategoryTitle = data.CategoryTitle;
+                    userControl.IndicatorID = data.IndicatorID;
+                    userControl.Indicator = data.Indicator;
+                    userControl.IndicatorType = data.IndicatorType;
+                    userControl.ScoreValue = data.ScoreValue;
 
-                // Add the UserControl to the FlowLayoutPanel
-                flowLayoutPanel1.Controls.Add(userControl);
-
-
-                //if (userControl.CategoryTitle == SelectedCategory)
-                //{
-                //    flowLayoutPanel1.Controls.Add(userControl);
-                //}
+                    // Add the UserControl to the FlowLayoutPanel
+                    flowLayoutPanel1.Controls.Add(userControl);
+                }
             }
         }
 
         public void AddIndicator(object sender, EventArgs e)
         {
-            pAddIndicator = new prompt_AddIndicator(dbInit, SelectedCategory, AP, this);
+            pAddIndicator = new prompt_AddIndicator(dbInit, SelectedCategoryTitle, SelectedCategoryID, AP, this);
             pAddIndicator.ShowDialog();
         }
 

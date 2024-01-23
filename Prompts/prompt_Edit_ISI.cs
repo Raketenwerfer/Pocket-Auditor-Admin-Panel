@@ -22,7 +22,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         List<mdl_Indicators> _Indicators;
         List<mdl_SubIndicators> _SubIndicators;
         List<jmdl_IndicatorsSubInd> _jmISI;
-        private int selected_id;
+        private int selected_id, selected_category_id;
         public DatabaseInitiator dbInit;
         readonly string indicatorName;
         readonly CDisplay_ISI parent;
@@ -31,7 +31,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
 
         public prompt_Edit_ISI(string _buckketIndicator,
-            int _selection, DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP,
+            int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP,
             List<mdl_SubIndicators> _bucketSI)
         {
             //selected_id = _selection;
@@ -42,6 +42,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             indicatorName = _buckketIndicator;
             dbInit = _bucketDB;
             selected_id = _selection;
+            selected_category_id = _categoryID;
 
             InitializeComponent();
 
@@ -123,6 +124,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         private void btn_Delete_Click(object sender, EventArgs e)
         {
             DeleteIndicator();
+            this.Close();
         }
 
 
@@ -159,7 +161,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 AP._jmCI.Clear();
                 AP.PullIndicators();
                 AP.PullAssociate_CI();
-                parent.PopulateIndicators();
+                parent.PopulateIndicators(selected_category_id);
             }
         }
 
@@ -196,7 +198,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 AP._jmCI.Clear();
                 AP.PullIndicators();
                 AP.PullAssociate_CI();
-                parent.PopulateIndicators();
+                parent.PopulateIndicators(selected_category_id);
             }
         }
 

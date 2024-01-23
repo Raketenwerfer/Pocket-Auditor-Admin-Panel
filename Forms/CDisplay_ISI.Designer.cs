@@ -31,8 +31,10 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             pnl_btn_AddIndicator = new Panel();
             lbl_btn_AddIndicator = new Label();
-            lbl_dis_Indicator = new Label();
+            lbl_dis_CategoryName = new Label();
+            pbox_btn_ConfigureCategory = new PictureBox();
             pnl_btn_AddIndicator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbox_btn_ConfigureCategory).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -44,7 +46,7 @@
             flowLayoutPanel1.Location = new Point(0, 45);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(2);
-            flowLayoutPanel1.Size = new Size(915, 585);
+            flowLayoutPanel1.Size = new Size(700, 585);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -52,7 +54,7 @@
             // 
             pnl_btn_AddIndicator.BackColor = Color.SpringGreen;
             pnl_btn_AddIndicator.Controls.Add(lbl_btn_AddIndicator);
-            pnl_btn_AddIndicator.Location = new Point(785, -1);
+            pnl_btn_AddIndicator.Location = new Point(571, -1);
             pnl_btn_AddIndicator.Name = "pnl_btn_AddIndicator";
             pnl_btn_AddIndicator.Size = new Size(130, 47);
             pnl_btn_AddIndicator.TabIndex = 1;
@@ -63,31 +65,41 @@
             lbl_btn_AddIndicator.AutoSize = true;
             lbl_btn_AddIndicator.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
             lbl_btn_AddIndicator.ForeColor = Color.DarkSlateGray;
-            lbl_btn_AddIndicator.Location = new Point(9, 15);
+            lbl_btn_AddIndicator.Location = new Point(11, 15);
             lbl_btn_AddIndicator.Name = "lbl_btn_AddIndicator";
             lbl_btn_AddIndicator.Size = new Size(112, 16);
             lbl_btn_AddIndicator.TabIndex = 3;
             lbl_btn_AddIndicator.Text = "ADD INDICATOR";
             lbl_btn_AddIndicator.Click += AddIndicator;
             // 
-            // lbl_dis_Indicator
+            // lbl_dis_CategoryName
             // 
-            lbl_dis_Indicator.AutoSize = true;
-            lbl_dis_Indicator.Font = new Font("Gadugi", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_dis_Indicator.ForeColor = SystemColors.ControlText;
-            lbl_dis_Indicator.Location = new Point(12, 11);
-            lbl_dis_Indicator.Name = "lbl_dis_Indicator";
-            lbl_dis_Indicator.Size = new Size(93, 22);
-            lbl_dis_Indicator.TabIndex = 2;
-            lbl_dis_Indicator.Text = "Indicators";
+            lbl_dis_CategoryName.AutoSize = true;
+            lbl_dis_CategoryName.Font = new Font("Gadugi", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_dis_CategoryName.ForeColor = SystemColors.ControlText;
+            lbl_dis_CategoryName.Location = new Point(11, 13);
+            lbl_dis_CategoryName.Name = "lbl_dis_CategoryName";
+            lbl_dis_CategoryName.Size = new Size(77, 19);
+            lbl_dis_CategoryName.TabIndex = 2;
+            lbl_dis_CategoryName.Text = "Indicators";
+            // 
+            // pbox_btn_ConfigureCategory
+            // 
+            pbox_btn_ConfigureCategory.BackColor = SystemColors.ButtonShadow;
+            pbox_btn_ConfigureCategory.Location = new Point(532, 7);
+            pbox_btn_ConfigureCategory.Name = "pbox_btn_ConfigureCategory";
+            pbox_btn_ConfigureCategory.Size = new Size(30, 30);
+            pbox_btn_ConfigureCategory.TabIndex = 3;
+            pbox_btn_ConfigureCategory.TabStop = false;
             // 
             // CDisplay_ISI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MediumSeaGreen;
-            ClientSize = new Size(915, 630);
-            Controls.Add(lbl_dis_Indicator);
+            ClientSize = new Size(700, 630);
+            Controls.Add(pbox_btn_ConfigureCategory);
+            Controls.Add(lbl_dis_CategoryName);
             Controls.Add(pnl_btn_AddIndicator);
             Controls.Add(flowLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -95,6 +107,7 @@
             Text = "CDisplay_ISI";
             pnl_btn_AddIndicator.ResumeLayout(false);
             pnl_btn_AddIndicator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbox_btn_ConfigureCategory).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -104,6 +117,7 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Panel pnl_btn_AddIndicator;
         private Label lbl_btn_AddIndicator;
-        private Label lbl_dis_Indicator;
+        private Label lbl_dis_CategoryName;
+        private PictureBox pbox_btn_ConfigureCategory;
     }
 }

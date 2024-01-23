@@ -8,11 +8,12 @@ namespace Pocket_Auditor_Admin_Panel
 {
     public partial class AdminPanel : Form
     {
-        readonly DatabaseInitiator dbInit = new DatabaseInitiator("sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN");
-
+        readonly DatabaseInitiator dbInit = new DatabaseInitiator("localhost", "ccydc_database", "root", ";");
+        // Online Database credentials "sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN"
 
         readonly FormDashboard frmDashboard = new FormDashboard();
         //readonly FormAuditForm frmAuditForm;
+        readonly FormCategorySelect frmCateSel;
         readonly CDisplay_ISI cDisplayISI;
         readonly FormActionPlans frmActionPlans = new FormActionPlans();
         readonly FormAuditReports frmAuditReports = new FormAuditReports();
@@ -26,14 +27,19 @@ namespace Pocket_Auditor_Admin_Panel
         public List<jmdl_IndicatorsSubInd> _jmISI = new List<jmdl_IndicatorsSubInd>();
         public List<jmdl_CategoriesIndicators> _jmCI = new List<jmdl_CategoriesIndicators>();
 
+
+        public int InitCategory;
+
         public AdminPanel()
         {
             InitializeComponent();
             InitDatabase();
+            
 
-            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, this);
+            frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, this, InitCategory, _Categories);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
+            InitCategory = _Categories[0].CategoryID;
         }
 
         public void InitDatabase()
@@ -90,12 +96,12 @@ namespace Pocket_Auditor_Admin_Panel
 
         private void btnAuditForm_Click(object sender, EventArgs e)
         {
-            cDisplayISI.TopLevel = false;
-            cDisplayISI.TopMost = true;
+            frmCateSel.TopLevel = false;
+            frmCateSel.TopMost = true;
             panelContent.Controls.Clear();
             panelContent.AutoScroll = true;
-            panelContent.Controls.Add(cDisplayISI);
-            cDisplayISI.Show();
+            panelContent.Controls.Add(frmCateSel);
+            frmCateSel.Show();
         }
 
         private void btnActionPlans_Click(object sender, EventArgs e)

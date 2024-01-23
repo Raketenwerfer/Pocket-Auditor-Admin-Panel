@@ -203,7 +203,7 @@
             panelContent.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             panelContent.Location = new Point(200, 0);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(915, 631);
+            panelContent.Size = new Size(904, 631);
             panelContent.TabIndex = 2;
             // 
             // panel2
@@ -212,7 +212,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 584);
             panel2.Name = "panel2";
-            panel2.Size = new Size(915, 47);
+            panel2.Size = new Size(904, 47);
             panel2.TabIndex = 0;
             // 
             // AdminPanel
@@ -220,7 +220,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1115, 631);
+            ClientSize = new Size(1184, 631);
             Controls.Add(panelContent);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.FixedSingle;

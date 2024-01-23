@@ -45,7 +45,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void pbox_btn_EditItem_Click(object sender, EventArgs e)
         {
-            prompt_Edit_ISI pEditISI = new prompt_Edit_ISI(_indicator, _indicatorID, dbInit, parent, AP, _SubIndicators);
+            prompt_Edit_ISI pEditISI = new prompt_Edit_ISI(_indicator, _indicatorID, _categoryID, dbInit, parent, AP, _SubIndicators);
             pEditISI.ShowDialog();
         }
 
