@@ -40,6 +40,7 @@
             lbl_categoryName.Size = new Size(253, 13);
             lbl_categoryName.TabIndex = 0;
             lbl_categoryName.Text = "Test Category - ho ho ho ho ho ho ho ho ho ho";
+            lbl_categoryName.Click += UCM_CategoryItem_Click;
             // 
             // UCM_CategoryItem
             // 

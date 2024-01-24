@@ -91,6 +91,7 @@
             pbox_btn_ConfigureCategory.Size = new Size(30, 30);
             pbox_btn_ConfigureCategory.TabIndex = 3;
             pbox_btn_ConfigureCategory.TabStop = false;
+            pbox_btn_ConfigureCategory.Click += pbox_btn_ConfigureCategory_Click;
             // 
             // CDisplay_ISI
             // 

@@ -64,9 +64,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources._352514791_278804624543271_4286607186819115630_n;
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(172, 140);
+            pictureBox1.Size = new Size(200, 181);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
@@ -109,7 +109,7 @@
             btnAuditForm.ForeColor = Color.White;
             btnAuditForm.Image = Properties.Resources.icons8_task_32;
             btnAuditForm.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAuditForm.Location = new Point(0, 214);
+            btnAuditForm.Location = new Point(0, 243);
             btnAuditForm.Name = "btnAuditForm";
             btnAuditForm.Padding = new Padding(25, 0, 0, 0);
             btnAuditForm.Size = new Size(200, 50);
@@ -128,7 +128,7 @@
             btnActionPlans.ForeColor = Color.White;
             btnActionPlans.Image = Properties.Resources.icons8_survey_32;
             btnActionPlans.ImageAlign = ContentAlignment.MiddleLeft;
-            btnActionPlans.Location = new Point(0, 270);
+            btnActionPlans.Location = new Point(0, 299);
             btnActionPlans.Name = "btnActionPlans";
             btnActionPlans.Padding = new Padding(25, 0, 0, 0);
             btnActionPlans.Size = new Size(200, 50);
@@ -147,7 +147,7 @@
             btnAuditReports.ForeColor = Color.White;
             btnAuditReports.Image = Properties.Resources.icons8_what_i_do_32__2_;
             btnAuditReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAuditReports.Location = new Point(0, 326);
+            btnAuditReports.Location = new Point(0, 355);
             btnAuditReports.Name = "btnAuditReports";
             btnAuditReports.Padding = new Padding(25, 0, 0, 0);
             btnAuditReports.Size = new Size(200, 50);
@@ -166,7 +166,7 @@
             btnManageAuditors.ForeColor = Color.White;
             btnManageAuditors.Image = Properties.Resources.icons8_manage_32__1_1;
             btnManageAuditors.ImageAlign = ContentAlignment.MiddleLeft;
-            btnManageAuditors.Location = new Point(0, 382);
+            btnManageAuditors.Location = new Point(0, 411);
             btnManageAuditors.Name = "btnManageAuditors";
             btnManageAuditors.Padding = new Padding(15, 0, 0, 0);
             btnManageAuditors.Size = new Size(200, 50);
@@ -185,7 +185,7 @@
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = Properties.Resources.icons8_system_administrator_male_32__1_;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 158);
+            btnDashboard.Location = new Point(0, 187);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Padding = new Padding(25, 0, 0, 0);
             btnDashboard.Size = new Size(200, 50);
@@ -203,7 +203,7 @@
             panelContent.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             panelContent.Location = new Point(200, 0);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(904, 631);
+            panelContent.Size = new Size(984, 631);
             panelContent.TabIndex = 2;
             // 
             // panel2
@@ -212,7 +212,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 584);
             panel2.Name = "panel2";
-            panel2.Size = new Size(904, 47);
+            panel2.Size = new Size(984, 47);
             panel2.TabIndex = 0;
             // 
             // AdminPanel

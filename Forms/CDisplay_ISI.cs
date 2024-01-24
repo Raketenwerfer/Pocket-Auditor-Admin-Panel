@@ -27,10 +27,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public string SelectedCategoryTitle;
 
         readonly AdminPanel AP;
+        readonly FormCategorySelect FCS;
 
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat)
+            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, FormCategorySelect _FCS)
         {
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
@@ -40,6 +41,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             InitializeComponent();
 
             PopulateIndicators(SelectedCategoryID);
+            FCS = _FCS;
         }
 
         public void PopulateIndicators(int filterCategoryID)
@@ -76,6 +78,15 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             pAddIndicator.ShowDialog();
         }
 
+        private void pbox_btn_ConfigureCategory_Click(object sender, EventArgs e)
+        {
+            prompt_Edit_Category pEC = new prompt_Edit_Category(dbInit, AP, FCS, this, SelectedCategoryTitle, SelectedCategoryID);
+            pEC.ShowDialog();
+        }
 
+        public void ExternalUpdate(string title)
+        {
+            lbl_dis_CategoryName.Text = title;
+        }
     }
 }

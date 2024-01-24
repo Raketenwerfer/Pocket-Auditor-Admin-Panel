@@ -42,7 +42,7 @@ namespace Pocket_Auditor_Admin_Panel
 
             _Categories = _cat;
 
-            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP, SelectedCategoryID);
+            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP, SelectedCategoryID, this);
 
             DisplayISI();
         }
@@ -59,7 +59,7 @@ namespace Pocket_Auditor_Admin_Panel
             PopulateCategories();
         }
 
-        private void PopulateCategories()
+        public void PopulateCategories()
         {
             flpCategories.Controls.Clear();
 
@@ -83,6 +83,12 @@ namespace Pocket_Auditor_Admin_Panel
             cDisplayISI.SelectedCategoryID = id;
             cDisplayISI.SelectedCategoryTitle = title;
             cDisplayISI.PopulateIndicators(id);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            prompt_AddCategory pAdd = new prompt_AddCategory(dbInit, AP, this);
+            pAdd.ShowDialog();
         }
     }
 }
