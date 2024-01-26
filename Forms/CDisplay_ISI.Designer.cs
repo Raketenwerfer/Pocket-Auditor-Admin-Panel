@@ -97,11 +97,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.MediumSeaGreen;
+            BackColor = Color.Honeydew;
             ClientSize = new Size(700, 630);
             Controls.Add(pbox_btn_ConfigureCategory);
-            Controls.Add(lbl_dis_CategoryName);
             Controls.Add(pnl_btn_AddIndicator);
+            Controls.Add(lbl_dis_CategoryName);
             Controls.Add(flowLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CDisplay_ISI";

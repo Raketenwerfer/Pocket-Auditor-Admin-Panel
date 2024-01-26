@@ -78,6 +78,17 @@ namespace Pocket_Auditor_Admin_Panel
             }
         }
 
+        public void GlobalCategoryDeselect(int id)
+        {
+            foreach (UCM_CategoryItem item in flpCategories.Controls)
+            {
+                if (item.CategoryID != id)
+                {
+                    item.Deselect();
+                }
+            }
+        }
+
         public void SelectionHandle(int id, string title)
         {
             cDisplayISI.SelectedCategoryID = id;

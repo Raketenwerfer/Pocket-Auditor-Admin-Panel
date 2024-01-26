@@ -40,7 +40,7 @@
             // 
             lblCategories.AutoSize = true;
             lblCategories.Font = new Font("Gadugi", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCategories.Location = new Point(9, 11);
+            lblCategories.Location = new Point(11, 13);
             lblCategories.Margin = new Padding(4, 0, 4, 0);
             lblCategories.Name = "lblCategories";
             lblCategories.Size = new Size(76, 19);
@@ -71,14 +71,12 @@
             // flpCategories
             // 
             flpCategories.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            flpCategories.AutoScroll = true;
-            flpCategories.BackColor = Color.DarkSlateGray;
+            flpCategories.BackColor = Color.SeaGreen;
             flpCategories.FlowDirection = FlowDirection.TopDown;
-            flpCategories.Location = new Point(0, 43);
-            flpCategories.Margin = new Padding(4, 3, 4, 3);
+            flpCategories.Location = new Point(0, 45);
+            flpCategories.Margin = new Padding(0);
             flpCategories.Name = "flpCategories";
-            flpCategories.Padding = new Padding(3);
-            flpCategories.Size = new Size(285, 589);
+            flpCategories.Size = new Size(285, 587);
             flpCategories.TabIndex = 8;
             flpCategories.WrapContents = false;
             // 
@@ -96,7 +94,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.SeaGreen;
+            BackColor = Color.Honeydew;
             ClientSize = new Size(984, 631);
             Controls.Add(button1);
             Controls.Add(lblCategories);
