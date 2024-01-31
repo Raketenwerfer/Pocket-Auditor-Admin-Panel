@@ -106,5 +106,10 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             }
         }
 
+        private void AddSubCategory(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

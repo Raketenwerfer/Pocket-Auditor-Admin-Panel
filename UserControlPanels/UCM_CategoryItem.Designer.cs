@@ -63,10 +63,11 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkSeaGreen;
-            panel1.Location = new Point(121, 67);
+            panel1.Location = new Point(122, 67);
             panel1.Name = "panel1";
             panel1.Size = new Size(54, 25);
             panel1.TabIndex = 3;
+            panel1.Click += AddSubCategory;
             // 
             // UCM_CategoryItem
             // 

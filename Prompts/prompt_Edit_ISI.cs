@@ -51,6 +51,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             AP = aP;
             pASI = new prompt_AddSubIndicator(_bucketDB, this, aP);
 
+            // The prompt will initialize with the Sub-Indicators displayed first
             PopuateSubIndicators();
         }
 
@@ -58,7 +59,12 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         public void PopuateSubIndicators()
         {
-            flp_subindicators.Controls.Clear();
+            btn_pnl_SI.BackColor = Color.White;
+            btn_pnl_SC.BackColor = Color.Silver;
+            btn_AddSubIndicator.Enabled = true;
+            btn_AddSubIndicator.Visible = true;
+
+            flp_Display.Controls.Clear();
 
             foreach (var data in _SubIndicators)
             {
@@ -113,8 +119,16 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
 
                 // Add the UserControl to the FlowLayoutPanel
-                flp_subindicators.Controls.Add(subIndicatorItem);
+                flp_Display.Controls.Add(subIndicatorItem);
             }
+        }
+
+        public void PopulateSubCategories()
+        {
+            btn_pnl_SC.BackColor = Color.White;
+            btn_pnl_SI.BackColor = Color.Silver;
+            btn_AddSubIndicator.Enabled = false;
+            btn_AddSubIndicator.Visible = false;
         }
 
         private void btn_ApplyEdit_Click(object sender, EventArgs e)
@@ -125,6 +139,17 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         {
             DeleteIndicator();
             this.Close();
+        }
+
+
+        private void SelectSC(object sender, EventArgs e)
+        {
+            PopulateSubCategories();
+        }
+
+        private void SelectSI(object sender, EventArgs e)
+        {
+            PopuateSubIndicators();
         }
 
 
