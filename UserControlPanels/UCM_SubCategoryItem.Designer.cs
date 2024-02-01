@@ -28,43 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbl_SubCat = new Label();
             btn_pnl_EditSubCat = new Panel();
+            cbox_SubCategory = new CheckBox();
             SuspendLayout();
-            // 
-            // lbl_SubCat
-            // 
-            lbl_SubCat.AutoSize = true;
-            lbl_SubCat.Location = new Point(3, 9);
-            lbl_SubCat.Name = "lbl_SubCat";
-            lbl_SubCat.Size = new Size(88, 15);
-            lbl_SubCat.TabIndex = 0;
-            lbl_SubCat.Text = "Insert Text Here";
             // 
             // btn_pnl_EditSubCat
             // 
             btn_pnl_EditSubCat.BackColor = SystemColors.AppWorkspace;
-            btn_pnl_EditSubCat.Location = new Point(255, 4);
+            btn_pnl_EditSubCat.Location = new Point(461, 0);
             btn_pnl_EditSubCat.Name = "btn_pnl_EditSubCat";
-            btn_pnl_EditSubCat.Size = new Size(25, 25);
+            btn_pnl_EditSubCat.Size = new Size(30, 30);
             btn_pnl_EditSubCat.TabIndex = 1;
+            // 
+            // cbox_SubCategory
+            // 
+            cbox_SubCategory.AutoSize = true;
+            cbox_SubCategory.Location = new Point(7, 5);
+            cbox_SubCategory.Name = "cbox_SubCategory";
+            cbox_SubCategory.Size = new Size(94, 19);
+            cbox_SubCategory.TabIndex = 2;
+            cbox_SubCategory.Text = "SubCategory";
+            cbox_SubCategory.UseVisualStyleBackColor = true;
             // 
             // UCM_SubCategoryItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            Controls.Add(cbox_SubCategory);
             Controls.Add(btn_pnl_EditSubCat);
-            Controls.Add(lbl_SubCat);
             Cursor = Cursors.Hand;
             Name = "UCM_SubCategoryItem";
-            Size = new Size(285, 33);
+            Size = new Size(491, 28);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lbl_SubCat;
         private Panel btn_pnl_EditSubCat;
+        private CheckBox cbox_SubCategory;
     }
 }

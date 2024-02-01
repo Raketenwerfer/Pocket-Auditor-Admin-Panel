@@ -38,15 +38,13 @@
             btnManageAuditors = new Button();
             btnDashboard = new Button();
             panelContent = new Panel();
-            panel2 = new Panel();
             panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelContent.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = Color.Green;
+            panelMenu.BackColor = Color.Black;
             panelMenu.Controls.Add(pictureBox1);
             panelMenu.Controls.Add(btnLogOut);
             panelMenu.Controls.Add(button1);
@@ -198,22 +196,13 @@
             // 
             // panelContent
             // 
-            panelContent.Controls.Add(panel2);
+            panelContent.BackColor = SystemColors.WindowFrame;
             panelContent.Dock = DockStyle.Fill;
             panelContent.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             panelContent.Location = new Point(200, 0);
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(984, 631);
             panelContent.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Green;
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 584);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(984, 47);
-            panel2.TabIndex = 0;
             // 
             // AdminPanel
             // 
@@ -230,7 +219,6 @@
             Load += AdminPanel_Load;
             panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelContent.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -245,7 +233,6 @@
         private Panel panelContent;
         private Button button1;
         private Button btnLogOut;
-        private Panel panel2;
         private PictureBox pictureBox1;
     }
 }
