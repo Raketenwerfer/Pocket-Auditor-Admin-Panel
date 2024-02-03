@@ -64,7 +64,7 @@ namespace Pocket_Auditor_Admin_Panel
 
             foreach (mdl_Categories data in _Categories)
             {
-                UCM_CategoryItem userControl = new UCM_CategoryItem(cDisplayISI, this);
+                UCM_CategoryItem userControl = new UCM_CategoryItem(cDisplayISI, this, dbInit);
 
                 userControl.CategoryID = data.CategoryID;
                 userControl.CategoryTitle = data.CategoryTitle;

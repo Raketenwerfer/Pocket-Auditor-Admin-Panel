@@ -1,6 +1,6 @@
 ﻿namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 {
-    partial class UCM_SubCategoryItem
+    partial class UCM_AssociateSubCategoryItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbl_subCategoryName = new Label();
+            btn_pnl_EditSubCat = new Panel();
+            cbox_SubCategory = new CheckBox();
             SuspendLayout();
             // 
-            // lbl_subCategoryName
+            // btn_pnl_EditSubCat
             // 
-            lbl_subCategoryName.AutoSize = true;
-            lbl_subCategoryName.Location = new Point(8, 9);
-            lbl_subCategoryName.Name = "lbl_subCategoryName";
-            lbl_subCategoryName.Size = new Size(60, 15);
-            lbl_subCategoryName.TabIndex = 3;
-            lbl_subCategoryName.Text = "Insert Text";
+            btn_pnl_EditSubCat.BackColor = SystemColors.AppWorkspace;
+            btn_pnl_EditSubCat.Location = new Point(461, 0);
+            btn_pnl_EditSubCat.Name = "btn_pnl_EditSubCat";
+            btn_pnl_EditSubCat.Size = new Size(30, 30);
+            btn_pnl_EditSubCat.TabIndex = 1;
+            // 
+            // cbox_SubCategory
+            // 
+            cbox_SubCategory.AutoSize = true;
+            cbox_SubCategory.Location = new Point(7, 5);
+            cbox_SubCategory.Name = "cbox_SubCategory";
+            cbox_SubCategory.Size = new Size(94, 19);
+            cbox_SubCategory.TabIndex = 2;
+            cbox_SubCategory.Text = "SubCategory";
+            cbox_SubCategory.UseVisualStyleBackColor = true;
             // 
             // UCM_SubCategoryItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Gainsboro;
-            Controls.Add(lbl_subCategoryName);
+            BackColor = Color.White;
+            Controls.Add(cbox_SubCategory);
+            Controls.Add(btn_pnl_EditSubCat);
             Cursor = Cursors.Hand;
-            Margin = new Padding(0);
             Name = "UCM_SubCategoryItem";
-            Size = new Size(285, 33);
+            Size = new Size(491, 28);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lbl_subCategoryName;
+        private Panel btn_pnl_EditSubCat;
+        private CheckBox cbox_SubCategory;
     }
 }

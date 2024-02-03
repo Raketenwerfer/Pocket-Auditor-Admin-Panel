@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             btn_AcceptCategory = new Button();
-            tbox_Category = new TextBox();
+            tbox_SubCategory = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -51,13 +51,13 @@
             btn_AcceptCategory.Text = "Accept";
             btn_AcceptCategory.UseVisualStyleBackColor = true;
             // 
-            // tbox_Category
+            // tbox_SubCategory
             // 
-            tbox_Category.Font = new Font("Gadugi", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            tbox_Category.Location = new Point(12, 21);
-            tbox_Category.Name = "tbox_Category";
-            tbox_Category.Size = new Size(348, 27);
-            tbox_Category.TabIndex = 6;
+            tbox_SubCategory.Font = new Font("Gadugi", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            tbox_SubCategory.Location = new Point(12, 21);
+            tbox_SubCategory.Name = "tbox_SubCategory";
+            tbox_SubCategory.Size = new Size(348, 27);
+            tbox_SubCategory.TabIndex = 6;
             // 
             // prompt_AddSubCategory
             // 
@@ -66,7 +66,7 @@
             ClientSize = new Size(371, 87);
             Controls.Add(label1);
             Controls.Add(btn_AcceptCategory);
-            Controls.Add(tbox_Category);
+            Controls.Add(tbox_SubCategory);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "prompt_AddSubCategory";
@@ -80,6 +80,6 @@
 
         private Label label1;
         private Button btn_AcceptCategory;
-        private TextBox tbox_Category;
+        private TextBox tbox_SubCategory;
     }
 }

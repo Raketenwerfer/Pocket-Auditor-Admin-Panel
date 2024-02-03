@@ -1,4 +1,6 @@
-﻿using Pocket_Auditor_Admin_Panel.Forms;
+﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Forms;
+using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +17,17 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     {
         readonly CDisplay_ISI child;
         readonly FormCategorySelect parent;
+        readonly DatabaseInitiator dbInit;
         System.Windows.Forms.Timer tick;
-        public UCM_CategoryItem(CDisplay_ISI _bucketChild, FormCategorySelect _bucketParent)
+        prompt_AddSubCategory p_AddSC;
+        public UCM_CategoryItem(CDisplay_ISI _bucketChild, FormCategorySelect _bucketParent,
+            DatabaseInitiator _dbBucket)
         {
             InitializeComponent();
             child = _bucketChild;
             parent = _bucketParent;
             tick = ItemExpand;
+            dbInit = _dbBucket;
         }
 
         private int _categoryID;
@@ -108,7 +114,8 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void AddSubCategory(object sender, EventArgs e)
         {
-
+            p_AddSC = new prompt_AddSubCategory(dbInit, _categoryID, CategoryTitle);
+            p_AddSC.ShowDialog();
         }
 
     }

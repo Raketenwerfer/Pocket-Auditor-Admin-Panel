@@ -29,6 +29,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         readonly AdminPanel AP;
         readonly FormCategorySelect FCS;
 
+        public string SelectionType;
+
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
             List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, FormCategorySelect _FCS)

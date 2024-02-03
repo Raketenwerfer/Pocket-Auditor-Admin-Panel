@@ -14,7 +14,7 @@ namespace Pocket_Auditor_Admin_Panel
         readonly FormDashboard frmDashboard = new FormDashboard();
         //readonly FormAuditForm frmAuditForm;
         readonly FormCategorySelect frmCateSel;
-        readonly CDisplay_ISI cDisplayISI;
+        //readonly CDisplay_ISI cDisplayISI;
         readonly FormActionPlans frmActionPlans = new FormActionPlans();
         readonly FormAuditReports frmAuditReports = new FormAuditReports();
         readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
@@ -23,9 +23,11 @@ namespace Pocket_Auditor_Admin_Panel
         public List<mdl_Categories> _Categories = new List<mdl_Categories>();
         public List<mdl_SubIndicators> _SubIndicators = new List<mdl_SubIndicators>();
         public List<mdl_Indicators> _Indicators = new List<mdl_Indicators>();
+        public List<mdl_SubCategories> _SubCategories = new List<mdl_SubCategories>();
 
         public List<jmdl_IndicatorsSubInd> _jmISI = new List<jmdl_IndicatorsSubInd>();
         public List<jmdl_CategoriesIndicators> _jmCI = new List<jmdl_CategoriesIndicators>();
+        public List<jmdl_CategoriesSubCategories> _jmCSC = new List<jmdl_CategoriesSubCategories>();
 
 
         public int InitCategory;
@@ -201,6 +203,44 @@ namespace Pocket_Auditor_Admin_Panel
             finally
             {
                 // The most important part! This closes the connection so another connection can be opened
+                conn.Close();
+            }
+        }
+
+        public void PullSubCategories()
+        {
+            string query = "SELECT * FROM SubCategory";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Extract data from the reader and create an instance of mdl_SubCategories
+                            int id = reader.GetInt32(reader.GetOrdinal("SubCategoryID"));
+                            string title = reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
+                            string status = reader.GetString(reader.GetOrdinal("SubCategoryStatus"));
+
+                            // Create an instance of mdl_SubCategories and add it to the list
+                            mdl_SubCategories subCategory = new mdl_SubCategories(id, title, status);
+                            _SubCategories.Add(subCategory);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
                 conn.Close();
             }
         }
@@ -425,6 +465,49 @@ namespace Pocket_Auditor_Admin_Panel
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void PullAssociate_CSC()
+        {
+            string query = "SELECT SC.SubCategoryID, SC.SubCategoryTitle, SC.SubCategoryStatus, " +
+                           "C.CategoryID, C.CategoryTitle, C.CategoryStatus " +
+                           "FROM SubCategory SC " +
+                           "JOIN Associate_Category_to_SubCategory ACSC ON SC.SubCategoryID = ACSC.SubCategoryID_fk " +
+                           "JOIN Categories C ON ACSC.CategoryID_fk = C.CategoryID";
+
+            using MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Extract data from the reader and create an instance of jmdl_CategoriesSubCategories
+                            int categoryId = reader.GetInt32(reader.GetOrdinal("CategoryID"));
+                            int subcategoryId = reader.GetInt32(reader.GetOrdinal("SubCategoryID"));
+                            string categoryTitle = reader.GetString(reader.GetOrdinal("CategoryTitle"));
+                            string subCategoryTitle = reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
+
+                            // Create an instance of jmdl_CategoriesSubCategories and add it to the list
+                            jmdl_CategoriesSubCategories association = new jmdl_CategoriesSubCategories(categoryId, subcategoryId, categoryTitle, subCategoryTitle);
+                            _jmCSC.Add(association);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             finally
             {

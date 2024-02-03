@@ -16,5 +16,38 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         {
             InitializeComponent();
         }
+
+
+        private int _subcategoryID;
+        private string _subcategoryTitle;
+        private string _subcategoryStatus;
+
+        public int SubCategoryID
+        {
+            get { return _subcategoryID; }
+            set
+            {
+                _subcategoryID = value;
+            }
+        }
+        public string SubCategoryTitle
+        {
+            get { return _subcategoryTitle; }
+            set
+            {
+                _subcategoryTitle = value;
+                lbl_subCategoryName.Text = _subcategoryTitle;
+            }
+
+        }
+        public string SubCategoryStatus
+        {
+            get { return _subcategoryStatus; }
+            set
+            {
+                _subcategoryStatus = value;
+            }
+        }
+
     }
 }
