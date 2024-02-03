@@ -38,7 +38,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitDatabase();
             
 
-            frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, this, InitCategory, _Categories);
+            frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, this, InitCategory, _Categories, _jmCSC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
             InitCategory = _Categories[0].CategoryID;
@@ -52,10 +52,12 @@ namespace Pocket_Auditor_Admin_Panel
             if (TestDatabaseConnection())
             {
                 PullCategories();
+                PullSubCategories();
                 PullIndicators();
                 PullSubIndicators();
                 PullAssociate_ISI();
                 PullAssociate_CI();
+                PullAssociate_CSC();
 
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -209,6 +211,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullSubCategories()
         {
+            _SubCategories.Clear();
+
             string query = "SELECT * FROM SubCategory";
 
             MySqlConnection conn = dbInit.GetConnection();
@@ -474,6 +478,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullAssociate_CSC()
         {
+            _jmCSC.Clear();
+
             string query = "SELECT SC.SubCategoryID, SC.SubCategoryTitle, SC.SubCategoryStatus, " +
                            "C.CategoryID, C.CategoryTitle, C.CategoryStatus " +
                            "FROM SubCategory SC " +
@@ -497,9 +503,11 @@ namespace Pocket_Auditor_Admin_Panel
                             int subcategoryId = reader.GetInt32(reader.GetOrdinal("SubCategoryID"));
                             string categoryTitle = reader.GetString(reader.GetOrdinal("CategoryTitle"));
                             string subCategoryTitle = reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
+                            string subCategoryStatus = reader.GetString(reader.GetOrdinal("SubCategoryStatus"));
 
                             // Create an instance of jmdl_CategoriesSubCategories and add it to the list
-                            jmdl_CategoriesSubCategories association = new jmdl_CategoriesSubCategories(categoryId, subcategoryId, categoryTitle, subCategoryTitle);
+                            jmdl_CategoriesSubCategories association = new jmdl_CategoriesSubCategories(categoryId,
+                                subcategoryId, categoryTitle, subCategoryTitle, subCategoryStatus);
                             _jmCSC.Add(association);
                         }
                     }

@@ -50,6 +50,7 @@
             btn_AcceptCategory.TabIndex = 7;
             btn_AcceptCategory.Text = "Accept";
             btn_AcceptCategory.UseVisualStyleBackColor = true;
+            btn_AcceptCategory.Click += InsertSubCategory;
             // 
             // tbox_SubCategory
             // 

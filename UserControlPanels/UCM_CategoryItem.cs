@@ -1,4 +1,5 @@
 ﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Classes;
 using Pocket_Auditor_Admin_Panel.Forms;
 using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
@@ -15,19 +16,25 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 {
     public partial class UCM_CategoryItem : UserControl
     {
+        readonly AdminPanel AP;
         readonly CDisplay_ISI child;
         readonly FormCategorySelect parent;
         readonly DatabaseInitiator dbInit;
+        readonly List<jmdl_CategoriesSubCategories> _jmCSC;
         System.Windows.Forms.Timer tick;
         prompt_AddSubCategory p_AddSC;
-        public UCM_CategoryItem(CDisplay_ISI _bucketChild, FormCategorySelect _bucketParent,
-            DatabaseInitiator _dbBucket)
+        public UCM_CategoryItem(AdminPanel _aP, CDisplay_ISI _bucketChild, FormCategorySelect _bucketParent,
+            DatabaseInitiator _dbBucket, List<jmdl_CategoriesSubCategories> bucket_jmCSC)
         {
             InitializeComponent();
+            AP = _aP;
             child = _bucketChild;
             parent = _bucketParent;
             tick = ItemExpand;
             dbInit = _dbBucket;
+            _jmCSC = bucket_jmCSC;
+            btn_pnl.Visible = false;
+            btn_pnl.Enabled = false;
         }
 
         private int _categoryID;
@@ -35,6 +42,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private string _categoryStatus;
 
         public bool isSelected = false;
+        public int _itemCount;
 
 
         public int CategoryID
@@ -64,6 +72,29 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             }
         }
 
+        public void PopulateSubCategory()
+        {
+            _itemCount = 0;
+            xpnd_subcatPanel.Controls.Clear();
+
+            foreach (jmdl_CategoriesSubCategories data in _jmCSC)
+            {
+                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem();
+
+                userControl.CategoryID = data.CategoryID_fk;
+                userControl.CategoryTitle = data.CategoryTitle;
+                userControl.SubCategoryID = data.SubCategoryID_fk;
+                userControl.SubCategoryTitle = data.SubCategoryTitle;
+                userControl.SubCategoryStatus = data.SubCategoryStatus;
+
+                if (data.SubCategoryStatus == "ACTIVE" && data.CategoryID_fk == _categoryID)
+                {
+                    xpnd_subcatPanel.Controls.Add(userControl);
+                    _itemCount++;
+                }
+            }
+        }
+
         private void UCM_CategoryItem_Click(object sender, EventArgs e)
         {
             parent.SelectionHandle(CategoryID, CategoryTitle);
@@ -73,6 +104,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             lbl_categoryName.BackColor = Color.White;
             xpnd_subcatPanel.BackColor = Color.White;
             BackColor = Color.White;
+            PopulateSubCategory();
             tick.Start();
         }
 
@@ -95,6 +127,8 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
                 }
                 else
                 {
+                    btn_pnl.Visible = true;
+                    btn_pnl.Enabled = true;
                     tick.Stop();
                 }
             }
@@ -107,6 +141,8 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
                 }
                 else
                 {
+                    btn_pnl.Visible = false;
+                    btn_pnl.Enabled = false;
                     tick.Stop();
                 }
             }
@@ -114,7 +150,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void AddSubCategory(object sender, EventArgs e)
         {
-            p_AddSC = new prompt_AddSubCategory(dbInit, _categoryID, CategoryTitle);
+            p_AddSC = new prompt_AddSubCategory(AP, dbInit, CategoryID, CategoryTitle, this);
             p_AddSC.ShowDialog();
         }
 

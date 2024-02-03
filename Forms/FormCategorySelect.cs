@@ -21,6 +21,7 @@ namespace Pocket_Auditor_Admin_Panel
 
         public List<mdl_SubIndicators> _SubIndicators;
         public List<jmdl_CategoriesIndicators> _jmCI;
+        readonly List<jmdl_CategoriesSubCategories> _jmCSC;
 
         public prompt_AddIndicator pAddIndicator;
         readonly AdminPanel AP;
@@ -30,11 +31,13 @@ namespace Pocket_Auditor_Admin_Panel
 
         public int SelectedCategoryID;
         public FormCategorySelect(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, List<mdl_Categories> _cat)
+            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, List<mdl_Categories> _cat,
+            List<jmdl_CategoriesSubCategories> bucket_jmCSC)
         {
             InitializeComponent();
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
+            _jmCSC = bucket_jmCSC;
             _SubIndicators = bucket_si;
             AP = aP;
             SelectedCategoryID = _InitCat;
@@ -64,7 +67,7 @@ namespace Pocket_Auditor_Admin_Panel
 
             foreach (mdl_Categories data in _Categories)
             {
-                UCM_CategoryItem userControl = new UCM_CategoryItem(cDisplayISI, this, dbInit);
+                UCM_CategoryItem userControl = new UCM_CategoryItem(AP, cDisplayISI, this, dbInit, _jmCSC);
 
                 userControl.CategoryID = data.CategoryID;
                 userControl.CategoryTitle = data.CategoryTitle;

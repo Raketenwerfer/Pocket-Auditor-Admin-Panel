@@ -32,7 +32,7 @@
             ItemExpand = new System.Windows.Forms.Timer(components);
             xpnd_subcatPanel = new FlowLayoutPanel();
             lbl_categoryName = new Label();
-            panel1 = new Panel();
+            btn_pnl = new Panel();
             SuspendLayout();
             // 
             // ItemExpand
@@ -60,21 +60,22 @@
             lbl_categoryName.Text = "Insert Text";
             lbl_categoryName.Click += UCM_CategoryItem_Click;
             // 
-            // panel1
+            // btn_pnl
             // 
-            panel1.BackColor = Color.DarkSeaGreen;
-            panel1.Location = new Point(122, 67);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(54, 25);
-            panel1.TabIndex = 3;
-            panel1.Click += AddSubCategory;
+            btn_pnl.BackColor = Color.DarkSeaGreen;
+            btn_pnl.Dock = DockStyle.Bottom;
+            btn_pnl.Location = new Point(0, 71);
+            btn_pnl.Name = "btn_pnl";
+            btn_pnl.Size = new Size(287, 25);
+            btn_pnl.TabIndex = 3;
+            btn_pnl.Click += AddSubCategory;
             // 
             // UCM_CategoryItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
-            Controls.Add(panel1);
+            Controls.Add(btn_pnl);
             Controls.Add(lbl_categoryName);
             Controls.Add(xpnd_subcatPanel);
             Cursor = Cursors.Hand;
@@ -90,6 +91,6 @@
         private System.Windows.Forms.Timer ItemExpand;
         private FlowLayoutPanel xpnd_subcatPanel;
         private Label lbl_categoryName;
-        private Panel panel1;
+        private Panel btn_pnl;
     }
 }

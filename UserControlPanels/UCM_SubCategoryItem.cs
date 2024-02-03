@@ -21,6 +21,8 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private int _subcategoryID;
         private string _subcategoryTitle;
         private string _subcategoryStatus;
+        private int _categoryID;
+        private string _categoryTitle;
 
         public int SubCategoryID
         {
@@ -46,6 +48,22 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             set
             {
                 _subcategoryStatus = value;
+            }
+        }
+        public int CategoryID
+        {
+            get { return _categoryID; }
+            set
+            {
+                _categoryID = value;
+            }
+        }
+        public string CategoryTitle
+        {
+            get { return _categoryTitle; }
+            set
+            {
+                _categoryTitle = value;
             }
         }
 

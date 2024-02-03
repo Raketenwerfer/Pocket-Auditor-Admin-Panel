@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.UserControlPanels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,18 +16,23 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
     public partial class prompt_AddSubCategory : Form
     {
         readonly DatabaseInitiator dbInit;
+        readonly AdminPanel AP;
         readonly int categoryID;
         readonly string categoryTitle;
-        public prompt_AddSubCategory(DatabaseInitiator _dbBucket, int _categoryID, string _categoryTitle)
+        readonly UCM_CategoryItem parent;
+        public prompt_AddSubCategory(AdminPanel _aP, DatabaseInitiator _dbBucket, int _categoryID,
+            string _categoryTitle, UCM_CategoryItem _parent)
         {
             InitializeComponent();
 
             dbInit = _dbBucket;
             categoryTitle = _categoryTitle;
+            parent = _parent;
+            AP = _aP;
         }
 
 
-        private void InsertSubCategory()
+        private void InsertSubCategory(object sender, EventArgs e)
         {
             using MySqlConnection conn = dbInit.GetConnection();
 
@@ -70,6 +76,13 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Clone();
+                AP.PullSubCategories();
+                AP.PullAssociate_CSC();
+                parent.PopulateSubCategory();
             }
         }
     }
