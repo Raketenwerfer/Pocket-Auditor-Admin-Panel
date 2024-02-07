@@ -79,7 +79,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
             foreach (jmdl_CategoriesSubCategories data in _jmCSC)
             {
-                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem(child, _jmCSC);
+                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem(child);
 
                 if (data.SubCategoryStatus == "ACTIVE" && data.CategoryID_fk == filterID)
                 {

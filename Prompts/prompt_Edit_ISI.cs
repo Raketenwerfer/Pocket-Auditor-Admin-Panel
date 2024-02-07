@@ -21,6 +21,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         List<mdl_Indicators> _Indicators;
         List<mdl_SubIndicators> _SubIndicators;
+        List<mdl_SubCategories> _SubCategories;
         List<jmdl_IndicatorsSubInd> _jmISI;
         private int selected_id, selected_category_id;
         public DatabaseInitiator dbInit;
@@ -32,7 +33,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         public prompt_Edit_ISI(string _buckketIndicator,
             int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent,
-            AdminPanel aP, List<mdl_SubIndicators> _bucketSI)
+            AdminPanel aP, List<mdl_SubIndicators> _bucketSI, List<mdl_SubCategories> subCategories)
         {
             //selected_id = _selection;
             //type = edit_type;
@@ -53,6 +54,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             // The prompt will initialize with the Sub-Indicators displayed first
             PopuateSubIndicators();
+            _SubCategories = subCategories;
         }
 
 
