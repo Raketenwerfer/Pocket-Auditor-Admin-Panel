@@ -72,39 +72,39 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             }
         }
 
-        public void PopulateSubCategory()
+        public void PopulateSubCategory(int filterID)
         {
             _itemCount = 0;
             xpnd_subcatPanel.Controls.Clear();
 
             foreach (jmdl_CategoriesSubCategories data in _jmCSC)
             {
-                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem();
+                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem(child, _jmCSC);
 
-                userControl.CategoryID = data.CategoryID_fk;
-                userControl.CategoryTitle = data.CategoryTitle;
-                userControl.SubCategoryID = data.SubCategoryID_fk;
-                userControl.SubCategoryTitle = data.SubCategoryTitle;
-                userControl.SubCategoryStatus = data.SubCategoryStatus;
-
-                if (data.SubCategoryStatus == "ACTIVE" && data.CategoryID_fk == _categoryID)
+                if (data.SubCategoryStatus == "ACTIVE" && data.CategoryID_fk == filterID)
                 {
+                    userControl.CategoryID = data.CategoryID_fk;
+                    userControl.CategoryTitle = data.CategoryTitle;
+                    userControl.SubCategoryID = data.SubCategoryID_fk;
+                    userControl.SubCategoryTitle = data.SubCategoryTitle;
+                    userControl.SubCategoryStatus = data.SubCategoryStatus;
+
                     xpnd_subcatPanel.Controls.Add(userControl);
                     _itemCount++;
                 }
             }
         }
 
-        private void UCM_CategoryItem_Click(object sender, EventArgs e)
+        public void UCM_CategoryItem_Click(object sender, EventArgs e)
         {
             parent.SelectionHandle(CategoryID, CategoryTitle);
-
+            PopulateSubCategory(CategoryID);
             isSelected = true;
             parent.GlobalCategoryDeselect(CategoryID);
             lbl_categoryName.BackColor = Color.White;
             xpnd_subcatPanel.BackColor = Color.White;
             BackColor = Color.White;
-            PopulateSubCategory();
+
             tick.Start();
         }
 
@@ -121,9 +121,10 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         {
             if (isSelected)
             {
-                if (Height < 96)
+                if (Height < (72 + (32 * _itemCount)))
                 {
                     Height += 8;
+                    xpnd_subcatPanel.Height += 8;
                 }
                 else
                 {
@@ -138,6 +139,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
                 if (Height > 32)
                 {
                     Height -= 8;
+                    xpnd_subcatPanel.Height -= 8;
                 }
                 else
                 {
@@ -148,11 +150,37 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             }
         }
 
+        public void ExternalControlResize_AddItem()
+        {
+            UCM_CategoryItem_Click(btn_pnl, System.EventArgs.Empty);
+        }
+
         private void AddSubCategory(object sender, EventArgs e)
         {
             p_AddSC = new prompt_AddSubCategory(AP, dbInit, CategoryID, CategoryTitle, this);
             p_AddSC.ShowDialog();
         }
 
+        public void UI_Controls(bool MouseOver)
+        {
+            if (MouseOver)
+            {
+                btn_pnl.BackColor = Color.PowderBlue;
+            }
+            if (!MouseOver)
+            {
+                btn_pnl.BackColor = Color.CadetBlue;
+            }
+        }
+
+        private void btn_pnl_MouseEnter(object sender, EventArgs e)
+        {
+            UI_Controls(true);
+        }
+
+        private void btn_pnl_MouseLeave(object sender, EventArgs e)
+        {
+            UI_Controls(false);
+        }
     }
 }

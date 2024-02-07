@@ -44,9 +44,10 @@
             // xpnd_subcatPanel
             // 
             xpnd_subcatPanel.BackColor = Color.SeaGreen;
-            xpnd_subcatPanel.Location = new Point(0, 32);
+            xpnd_subcatPanel.Location = new Point(0, 41);
+            xpnd_subcatPanel.Margin = new Padding(0);
             xpnd_subcatPanel.Name = "xpnd_subcatPanel";
-            xpnd_subcatPanel.Size = new Size(285, 33);
+            xpnd_subcatPanel.Size = new Size(285, 32);
             xpnd_subcatPanel.TabIndex = 1;
             xpnd_subcatPanel.Click += UCM_CategoryItem_Click;
             // 
@@ -62,13 +63,15 @@
             // 
             // btn_pnl
             // 
-            btn_pnl.BackColor = Color.DarkSeaGreen;
+            btn_pnl.BackColor = Color.CadetBlue;
             btn_pnl.Dock = DockStyle.Bottom;
-            btn_pnl.Location = new Point(0, 71);
+            btn_pnl.Location = new Point(0, 80);
             btn_pnl.Name = "btn_pnl";
-            btn_pnl.Size = new Size(287, 25);
+            btn_pnl.Size = new Size(287, 32);
             btn_pnl.TabIndex = 3;
             btn_pnl.Click += AddSubCategory;
+            btn_pnl.MouseEnter += btn_pnl_MouseEnter;
+            btn_pnl.MouseLeave += btn_pnl_MouseLeave;
             // 
             // UCM_CategoryItem
             // 
@@ -81,7 +84,7 @@
             Cursor = Cursors.Hand;
             Margin = new Padding(0);
             Name = "UCM_CategoryItem";
-            Size = new Size(287, 96);
+            Size = new Size(287, 112);
             Click += UCM_CategoryItem_Click;
             ResumeLayout(false);
             PerformLayout();

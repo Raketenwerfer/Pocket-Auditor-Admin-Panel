@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 {
     public partial class UCM_SubCategoryItem : UserControl
     {
-        public UCM_SubCategoryItem()
+        private CDisplay_ISI FCS_Child;
+        public UCM_SubCategoryItem(CDisplay_ISI _fcschild)
         {
             InitializeComponent();
+            FCS_Child = _fcschild;
         }
 
 
@@ -67,5 +71,32 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             }
         }
 
+        public void UI_Controls(bool MouseOver)
+        {
+            if (MouseOver)
+            {
+                BackColor = Color.WhiteSmoke;
+            }
+            if (!MouseOver)
+            {
+                BackColor = Color.Gainsboro;
+            }
+        }
+
+        private void UCM_SubCategoryItem_MouseEnter(object sender, EventArgs e)
+        {
+            UI_Controls(true);
+        }
+
+        private void UCM_SubCategoryItem_MouseLeave(object sender, EventArgs e)
+        {
+            UI_Controls(false);
+        }
+
+
+        private void IndicatorDisplayFilter(object sender, EventArgs e)
+        {
+            FCS_Child.FilterIndicators(CategoryID, SubCategoryTitle);
+        }
     }
 }

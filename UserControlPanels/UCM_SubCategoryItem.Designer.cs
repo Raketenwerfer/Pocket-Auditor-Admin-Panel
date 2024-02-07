@@ -34,11 +34,12 @@
             // lbl_subCategoryName
             // 
             lbl_subCategoryName.AutoSize = true;
-            lbl_subCategoryName.Location = new Point(8, 9);
+            lbl_subCategoryName.Location = new Point(8, 7);
             lbl_subCategoryName.Name = "lbl_subCategoryName";
             lbl_subCategoryName.Size = new Size(60, 15);
             lbl_subCategoryName.TabIndex = 3;
             lbl_subCategoryName.Text = "Insert Text";
+            lbl_subCategoryName.Click += IndicatorDisplayFilter;
             // 
             // UCM_SubCategoryItem
             // 
@@ -46,10 +47,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
             Controls.Add(lbl_subCategoryName);
-            Cursor = Cursors.Hand;
             Margin = new Padding(0);
             Name = "UCM_SubCategoryItem";
-            Size = new Size(285, 33);
+            Size = new Size(285, 32);
+            Click += IndicatorDisplayFilter;
+            MouseEnter += UCM_SubCategoryItem_MouseEnter;
+            MouseLeave += UCM_SubCategoryItem_MouseLeave;
             ResumeLayout(false);
             PerformLayout();
         }

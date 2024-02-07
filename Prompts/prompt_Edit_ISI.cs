@@ -31,8 +31,8 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
 
         public prompt_Edit_ISI(string _buckketIndicator,
-            int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP,
-            List<mdl_SubIndicators> _bucketSI)
+            int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent,
+            AdminPanel aP, List<mdl_SubIndicators> _bucketSI)
         {
             //selected_id = _selection;
             //type = edit_type;

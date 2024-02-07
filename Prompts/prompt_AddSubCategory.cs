@@ -27,6 +27,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             dbInit = _dbBucket;
             categoryTitle = _categoryTitle;
+            categoryID = _categoryID;
             parent = _parent;
             AP = _aP;
         }
@@ -72,6 +73,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
                     associateCmd.ExecuteNonQuery(); // Execute the query to associate SubCategory with Category
                 }
+
             }
             catch (Exception ex)
             {
@@ -82,8 +84,11 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Clone();
                 AP.PullSubCategories();
                 AP.PullAssociate_CSC();
-                parent.PopulateSubCategory();
+                parent.PopulateSubCategory(categoryID);
+                parent.ExternalControlResize_AddItem();
             }
+
+            this.Close();
         }
     }
 }
