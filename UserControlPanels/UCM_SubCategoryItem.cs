@@ -15,10 +15,10 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     public partial class UCM_SubCategoryItem : UserControl
     {
         private CDisplay_ISI FCS_Child;
-        public UCM_SubCategoryItem(CDisplay_ISI _fcschild)
+        public UCM_SubCategoryItem(/*CDisplay_ISI _fcschild*/)
         {
             InitializeComponent();
-            FCS_Child = _fcschild;
+            //FCS_Child = _fcschild;
         }
 
 
@@ -96,7 +96,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void IndicatorDisplayFilter(object sender, EventArgs e)
         {
-            FCS_Child.FilterIndicators(CategoryID, SubCategoryTitle);
+            //FCS_Child.FilterIndicators(CategoryID, SubCategoryTitle);
         }
     }
 }

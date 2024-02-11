@@ -20,6 +20,7 @@ namespace Pocket_Auditor_Admin_Panel
         public DatabaseInitiator dbInit;
 
         public List<mdl_SubIndicators> _SubIndicators;
+        public List<mdl_SubCategories> _SubCategories;
         public List<jmdl_CategoriesIndicators> _jmCI;
         readonly List<jmdl_CategoriesSubCategories> _jmCSC;
 
@@ -31,7 +32,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public int SelectedCategoryID;
         public FormCategorySelect(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, List<mdl_Categories> _cat,
+            List<mdl_SubIndicators> bucket_si, List<mdl_SubCategories> bucket_sc,
+            AdminPanel aP, int _InitCat, List<mdl_Categories> _cat,
             List<jmdl_CategoriesSubCategories> bucket_jmCSC)
         {
             InitializeComponent();
@@ -39,12 +41,14 @@ namespace Pocket_Auditor_Admin_Panel
             _jmCI = bucket_jmci;
             _jmCSC = bucket_jmCSC;
             _SubIndicators = bucket_si;
+            _SubCategories = bucket_sc;
             AP = aP;
             SelectedCategoryID = _InitCat;
 
             _Categories = _cat;
 
-            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP, SelectedCategoryID, this);
+            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP,
+                SelectedCategoryID, this, _SubCategories);
 
             DisplayISI();
         }

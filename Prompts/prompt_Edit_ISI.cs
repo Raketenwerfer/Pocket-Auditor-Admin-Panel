@@ -44,6 +44,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             dbInit = _bucketDB;
             selected_id = _selection;
             selected_category_id = _categoryID;
+            _SubCategories = subCategories;
 
             InitializeComponent();
 
@@ -54,7 +55,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             // The prompt will initialize with the Sub-Indicators displayed first
             PopuateSubIndicators();
-            _SubCategories = subCategories;
+            //_SubCategories = subCategories;
         }
 
 
@@ -131,6 +132,62 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             btn_pnl_SI.BackColor = Color.Silver;
             btn_AddSubIndicator.Enabled = false;
             btn_AddSubIndicator.Visible = false;
+
+            flp_Display.Controls.Clear();
+
+            foreach (var data in _SubCategories)
+            {
+                // Create an instance of UCM_SubIndicatorItem
+                UCM_AssociateSubCategoryItem subCategoryItem = new UCM_AssociateSubCategoryItem(dbInit);
+
+                // Set properties of the user control using your data
+                subCategoryItem.SubCategoryID = data.SubCategoryID;
+                subCategoryItem.SubCategoryTitle = data.SubCategoryTitle;
+                subCategoryItem.SubCategoryStatus = data.SubCategoryStatus;
+
+                subCategoryItem.IndicatorID = selected_id;
+
+                MySqlConnection conn = dbInit.GetConnection();
+
+                try
+                {
+                    conn.Open();
+
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM Associate_Indicator_to_SubCategory " +
+                                                   "WHERE IndicatorID_fk = @IndicatorID AND SubCategoryID_fk = @SubCategoryID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+                        cmd.Parameters.AddWithValue("@SubCategoryID", data.SubCategoryID);
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // If an entry exists, set the checkbox as checked
+                        if (count > 0)
+                        {
+                            subCategoryItem.State = true;
+                        }
+                        else
+                        {
+                            subCategoryItem.State = false;
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+
+                // Add the UserControl to the FlowLayoutPanel
+                flp_Display.Controls.Add(subCategoryItem);
+            }
         }
 
         private void btn_ApplyEdit_Click(object sender, EventArgs e)
