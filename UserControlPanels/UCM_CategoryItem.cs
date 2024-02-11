@@ -21,10 +21,12 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         readonly FormCategorySelect parent;
         readonly DatabaseInitiator dbInit;
         readonly List<jmdl_CategoriesSubCategories> _jmCSC;
+        readonly List<jmdl_IndicatorSubCat> _jmISC;
         System.Windows.Forms.Timer tick;
         prompt_AddSubCategory p_AddSC;
         public UCM_CategoryItem(AdminPanel _aP, CDisplay_ISI _bucketChild, FormCategorySelect _bucketParent,
-            DatabaseInitiator _dbBucket, List<jmdl_CategoriesSubCategories> bucket_jmCSC)
+            DatabaseInitiator _dbBucket, List<jmdl_CategoriesSubCategories> bucket_jmCSC,
+            List<jmdl_IndicatorSubCat> bucket_ISC)
         {
             InitializeComponent();
             AP = _aP;
@@ -33,6 +35,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             tick = ItemExpand;
             dbInit = _dbBucket;
             _jmCSC = bucket_jmCSC;
+            _jmISC = bucket_ISC;
             btn_pnl.Visible = false;
             btn_pnl.Enabled = false;
         }
@@ -79,7 +82,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
             foreach (jmdl_CategoriesSubCategories data in _jmCSC)
             {
-                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem(/*child*/);
+                UCM_SubCategoryItem userControl = new UCM_SubCategoryItem(child, _jmISC);
 
                 if (data.SubCategoryStatus == "ACTIVE" && data.CategoryID_fk == filterID)
                 {

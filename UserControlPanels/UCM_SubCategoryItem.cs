@@ -15,10 +15,12 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     public partial class UCM_SubCategoryItem : UserControl
     {
         private CDisplay_ISI FCS_Child;
-        public UCM_SubCategoryItem(/*CDisplay_ISI _fcschild*/)
+        readonly List<jmdl_IndicatorSubCat> _jmISC;
+        public UCM_SubCategoryItem(CDisplay_ISI _fcschild, List<jmdl_IndicatorSubCat> bucket_jmISC)
         {
             InitializeComponent();
-            //FCS_Child = _fcschild;
+            _jmISC = bucket_jmISC;
+            FCS_Child = _fcschild;
         }
 
 
@@ -27,6 +29,8 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private string _subcategoryStatus;
         private int _categoryID;
         private string _categoryTitle;
+
+        public bool isSelected = false;
 
         public int SubCategoryID
         {
@@ -96,7 +100,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void IndicatorDisplayFilter(object sender, EventArgs e)
         {
-            //FCS_Child.FilterIndicators(CategoryID, SubCategoryTitle);
+            FCS_Child.SubCatFilter(SubCategoryID, CategoryID);
         }
     }
 }

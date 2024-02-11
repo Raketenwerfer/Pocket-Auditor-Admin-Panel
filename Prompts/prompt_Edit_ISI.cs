@@ -135,7 +135,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             flp_Display.Controls.Clear();
 
-            foreach (var data in _SubCategories)
+            foreach (var data in _SubCategories) // Switch from mdl_SubCategories to
+                                                 // jmdl_CategoriesSubCategories to allow
+                                                 // selection filters
             {
                 // Create an instance of UCM_SubIndicatorItem
                 UCM_AssociateSubCategoryItem subCategoryItem = new UCM_AssociateSubCategoryItem(dbInit);
