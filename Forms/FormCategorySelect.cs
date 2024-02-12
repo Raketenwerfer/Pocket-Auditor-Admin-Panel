@@ -49,7 +49,7 @@ namespace Pocket_Auditor_Admin_Panel
             _Categories = _cat;
 
             cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP,
-                SelectedCategoryID, this, _SubCategories, _jmISC);
+                SelectedCategoryID, this, _SubCategories, _jmISC, _jmCSC);
 
             DisplayISI();
 

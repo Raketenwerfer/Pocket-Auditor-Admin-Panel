@@ -23,6 +23,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         List<mdl_SubIndicators> _SubIndicators;
         List<mdl_SubCategories> _SubCategories;
         List<jmdl_IndicatorsSubInd> _jmISI;
+        List<jmdl_CategoriesSubCategories> _jmCSC;
         private int selected_id, selected_category_id;
         public DatabaseInitiator dbInit;
         readonly string indicatorName;
@@ -33,18 +34,16 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         public prompt_Edit_ISI(string _buckketIndicator,
             int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent,
-            AdminPanel aP, List<mdl_SubIndicators> _bucketSI, List<mdl_SubCategories> subCategories)
+            AdminPanel aP, List<mdl_SubIndicators> _bucketSI, List<mdl_SubCategories> subCategories,
+            List<jmdl_CategoriesSubCategories> _bucketjmCSC)
         {
-            //selected_id = _selection;
-            //type = edit_type;
-            //_Indicators = indicators;
-            //_SubIndicators = subIndicators;
             _SubIndicators = _bucketSI;
             indicatorName = _buckketIndicator;
             dbInit = _bucketDB;
             selected_id = _selection;
             selected_category_id = _categoryID;
             _SubCategories = subCategories;
+            _jmCSC = _bucketjmCSC;
 
             InitializeComponent();
 
@@ -55,7 +54,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             // The prompt will initialize with the Sub-Indicators displayed first
             PopuateSubIndicators();
-            //_SubCategories = subCategories;
+
         }
 
 
@@ -135,15 +134,14 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             flp_Display.Controls.Clear();
 
-            foreach (var data in _SubCategories) // Switch from mdl_SubCategories to
-                                                 // jmdl_CategoriesSubCategories to allow
-                                                 // selection filters
+            foreach (jmdl_CategoriesSubCategories data in _jmCSC)
             {
                 // Create an instance of UCM_SubIndicatorItem
                 UCM_AssociateSubCategoryItem subCategoryItem = new UCM_AssociateSubCategoryItem(dbInit);
 
                 // Set properties of the user control using your data
-                subCategoryItem.SubCategoryID = data.SubCategoryID;
+                subCategoryItem.CategoryID = data.CategoryID_fk;
+                subCategoryItem.SubCategoryID = data.SubCategoryID_fk;
                 subCategoryItem.SubCategoryTitle = data.SubCategoryTitle;
                 subCategoryItem.SubCategoryStatus = data.SubCategoryStatus;
 
@@ -161,7 +159,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                     using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
-                        cmd.Parameters.AddWithValue("@SubCategoryID", data.SubCategoryID);
+                        cmd.Parameters.AddWithValue("@SubCategoryID", data.SubCategoryID_fk);
 
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -183,12 +181,14 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 }
                 finally
                 {
+                    if (data.CategoryID_fk == selected_category_id)
+                    {
+                        // Add the UserControl to the FlowLayoutPanel
+                        flp_Display.Controls.Add(subCategoryItem);
+                    }
                     conn.Close();
                 }
 
-
-                // Add the UserControl to the FlowLayoutPanel
-                flp_Display.Controls.Add(subCategoryItem);
             }
         }
 

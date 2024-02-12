@@ -23,6 +23,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public List<mdl_SubCategories> _SubCategories;
         public List<jmdl_CategoriesIndicators> _jmCI;
         readonly List<jmdl_IndicatorSubCat> _jmISC;
+        readonly List<jmdl_CategoriesSubCategories> _jmCSC;
 
         public prompt_AddIndicator pAddIndicator;
         public int SelectedCategoryID;
@@ -36,7 +37,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         public CDisplay_ISI(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
             List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, FormCategorySelect _FCS,
-            List<mdl_SubCategories> subCategories, List<jmdl_IndicatorSubCat> bucket_jmISC)
+            List<mdl_SubCategories> subCategories, List<jmdl_IndicatorSubCat> bucket_jmISC,
+            List<jmdl_CategoriesSubCategories> bucket_jmCSC)
         {
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
@@ -46,10 +48,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             FCS = _FCS;
             _SubCategories = subCategories;
             _jmISC = bucket_jmISC;
+            _jmCSC = bucket_jmCSC;
+
 
             InitializeComponent();
 
             PopulateIndicators(SelectedCategoryID);
+
         }
 
         public void PopulateIndicators(int filterCategoryID)
@@ -65,7 +70,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 {
                     // Create a new instance of the UserControl
                     UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP,
-                        _SubIndicators, _SubCategories);
+                        _SubIndicators, _SubCategories, _jmCSC);
 
                     // Set the UserControl properties using the data from your list
                     userControl.CategoryID = data.CategoryID;
@@ -94,7 +99,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 {
                     // Create a new instance of the UserControl
                     UCM_IndicatorItem userControl = new UCM_IndicatorItem(dbInit, this, AP,
-                        _SubIndicators, _SubCategories);
+                        _SubIndicators, _SubCategories, _jmCSC);
 
                     // Set the UserControl properties using the data from your list
                     userControl.CategoryID = subcat.CategoryID_fk;

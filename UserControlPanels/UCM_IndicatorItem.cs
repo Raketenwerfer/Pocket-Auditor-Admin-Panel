@@ -23,9 +23,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         public List<mdl_SubIndicators> _SubIndicators;
         public List<mdl_SubCategories> _SubCategories;
+        readonly List<jmdl_CategoriesSubCategories> _jmCSC;
 
         public UCM_IndicatorItem(DatabaseInitiator _bucketDB, CDisplay_ISI _parent, AdminPanel aP,
-            List<mdl_SubIndicators> _bucketSI, List<mdl_SubCategories> subCategories)
+            List<mdl_SubIndicators> _bucketSI, List<mdl_SubCategories> subCategories,
+            List<jmdl_CategoriesSubCategories> _bucketjmCSC)
         {
             dbInit = _bucketDB;
             parent = _parent;
@@ -33,6 +35,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             _SubIndicators = _bucketSI;
             InitializeComponent();
             _SubCategories = subCategories;
+            _jmCSC = _bucketjmCSC;
         }
 
 
@@ -48,7 +51,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private void pbox_btn_EditItem_Click(object sender, EventArgs e)
         {
             prompt_Edit_ISI pEditISI = new prompt_Edit_ISI(_indicator, _indicatorID, _categoryID,
-                dbInit, parent, AP, _SubIndicators, _SubCategories);
+                dbInit, parent, AP, _SubIndicators, _SubCategories, _jmCSC);
             pEditISI.ShowDialog();
         }
 
