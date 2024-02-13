@@ -137,7 +137,8 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             foreach (jmdl_CategoriesSubCategories data in _jmCSC)
             {
                 // Create an instance of UCM_SubIndicatorItem
-                UCM_AssociateSubCategoryItem subCategoryItem = new UCM_AssociateSubCategoryItem(dbInit);
+                UCM_AssociateSubCategoryItem subCategoryItem = new UCM_AssociateSubCategoryItem(dbInit,
+                    AP, parent);
 
                 // Set properties of the user control using your data
                 subCategoryItem.CategoryID = data.CategoryID_fk;

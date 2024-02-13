@@ -528,6 +528,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullAssociate_ISC()
         {
+            _jmISC.Clear();
+
             string query = "SELECT " +
                "AIS.IndicatorID_fk, I.Indicator, ACSC.CategoryID_fk, AIS.SubCategoryID_fk, " +
                "SC.SubCategoryTitle, SC.SubCategoryStatus " +

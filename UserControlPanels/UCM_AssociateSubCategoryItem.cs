@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +17,15 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     {
         private int selected_id;
         readonly DatabaseInitiator dbInit;
-        public UCM_AssociateSubCategoryItem(DatabaseInitiator _bucketDB)
+        readonly AdminPanel AP;
+        readonly CDisplay_ISI display;
+        public UCM_AssociateSubCategoryItem(DatabaseInitiator _bucketDB, AdminPanel aP,
+            CDisplay_ISI _display)
         {
             InitializeComponent();
             dbInit = _bucketDB;
+            AP = aP;
+            display = _display;
         }
 
         private int _subcategoryID;
@@ -148,6 +154,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             {
                 DisassociateSubCategory(selected_id, SubCategoryID);
             }
+            AP.PullAssociate_ISC();
         }
     }
 }

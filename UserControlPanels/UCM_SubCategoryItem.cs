@@ -100,6 +100,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
         private void IndicatorDisplayFilter(object sender, EventArgs e)
         {
+            FCS_Child.AP.PullAssociate_ISC();
             FCS_Child.SubCatFilter(SubCategoryID, CategoryID);
         }
     }

@@ -29,7 +29,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public int SelectedCategoryID;
         public string SelectedCategoryTitle;
 
-        readonly AdminPanel AP;
+        public AdminPanel AP;
         readonly FormCategorySelect FCS;
 
         public string SelectionType;
