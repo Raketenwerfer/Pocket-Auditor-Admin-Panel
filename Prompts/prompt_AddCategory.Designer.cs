@@ -44,12 +44,14 @@
             // 
             // btn_AcceptCategory
             // 
+            btn_AcceptCategory.BackColor = Color.LightGreen;
+            btn_AcceptCategory.ForeColor = SystemColors.ActiveCaptionText;
             btn_AcceptCategory.Location = new Point(132, 52);
             btn_AcceptCategory.Name = "btn_AcceptCategory";
             btn_AcceptCategory.Size = new Size(112, 29);
             btn_AcceptCategory.TabIndex = 4;
             btn_AcceptCategory.Text = "Accept";
-            btn_AcceptCategory.UseVisualStyleBackColor = true;
+            btn_AcceptCategory.UseVisualStyleBackColor = false;
             btn_AcceptCategory.Click += btn_AcceptCategory_Click;
             // 
             // tbox_Category
@@ -68,6 +70,7 @@
             Controls.Add(label1);
             Controls.Add(btn_AcceptCategory);
             Controls.Add(tbox_Category);
+            ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;

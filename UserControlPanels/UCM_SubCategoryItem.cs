@@ -15,7 +15,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
     public partial class UCM_SubCategoryItem : UserControl
     {
         private CDisplay_ISI FCS_Child;
-        public UCM_SubCategoryItem(CDisplay_ISI _fcschild)
+        public UCM_SubCategoryItem(CDisplay_ISI _fcschild, List<jmdl_CategoriesSubCategories> _jmCSC)
         {
             InitializeComponent();
             FCS_Child = _fcschild;

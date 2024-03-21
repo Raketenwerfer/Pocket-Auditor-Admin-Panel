@@ -43,6 +43,7 @@
             flowLayoutPanel1.BackColor = Color.DarkSeaGreen;
             flowLayoutPanel1.Dock = DockStyle.Bottom;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.ForeColor = Color.Green;
             flowLayoutPanel1.Location = new Point(0, 45);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(2);
@@ -86,6 +87,8 @@
             // pbox_btn_ConfigureCategory
             // 
             pbox_btn_ConfigureCategory.BackColor = SystemColors.ButtonShadow;
+            pbox_btn_ConfigureCategory.ErrorImage = null;
+            pbox_btn_ConfigureCategory.Image = Properties.Resources.icons8_add_new_30;
             pbox_btn_ConfigureCategory.Location = new Point(532, 7);
             pbox_btn_ConfigureCategory.Name = "pbox_btn_ConfigureCategory";
             pbox_btn_ConfigureCategory.Size = new Size(30, 30);

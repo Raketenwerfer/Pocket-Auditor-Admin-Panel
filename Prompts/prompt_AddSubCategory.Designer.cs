@@ -44,12 +44,13 @@
             // 
             // btn_AcceptCategory
             // 
+            btn_AcceptCategory.BackColor = Color.LightGreen;
             btn_AcceptCategory.Location = new Point(131, 52);
             btn_AcceptCategory.Name = "btn_AcceptCategory";
             btn_AcceptCategory.Size = new Size(112, 29);
             btn_AcceptCategory.TabIndex = 7;
             btn_AcceptCategory.Text = "Accept";
-            btn_AcceptCategory.UseVisualStyleBackColor = true;
+            btn_AcceptCategory.UseVisualStyleBackColor = false;
             btn_AcceptCategory.Click += InsertSubCategory;
             // 
             // tbox_SubCategory
@@ -68,6 +69,7 @@
             Controls.Add(label1);
             Controls.Add(btn_AcceptCategory);
             Controls.Add(tbox_SubCategory);
+            ForeColor = SystemColors.ActiveCaptionText;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "prompt_AddSubCategory";
