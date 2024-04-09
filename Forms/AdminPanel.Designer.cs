@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            pictureBox1 = new PictureBox();
             btnLogOut = new Button();
             button1 = new Button();
             btnAuditForm = new Button();
@@ -37,16 +38,13 @@
             btnManageAuditors = new Button();
             btnDashboard = new Button();
             panelContent = new Panel();
-            panel2 = new Panel();
-            pictureBox1 = new PictureBox();
             panelMenu.SuspendLayout();
-            panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = Color.Green;
+            panelMenu.BackColor = Color.Black;
             panelMenu.Controls.Add(pictureBox1);
             panelMenu.Controls.Add(btnLogOut);
             panelMenu.Controls.Add(button1);
@@ -60,6 +58,16 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(200, 631);
             panelMenu.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources._352514791_278804624543271_4286607186819115630_n;
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(200, 181);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // btnLogOut
             // 
@@ -99,7 +107,7 @@
             btnAuditForm.ForeColor = Color.White;
             btnAuditForm.Image = Properties.Resources.icons8_task_32;
             btnAuditForm.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAuditForm.Location = new Point(0, 214);
+            btnAuditForm.Location = new Point(0, 243);
             btnAuditForm.Name = "btnAuditForm";
             btnAuditForm.Padding = new Padding(25, 0, 0, 0);
             btnAuditForm.Size = new Size(200, 50);
@@ -108,6 +116,7 @@
             btnAuditForm.TextAlign = ContentAlignment.MiddleLeft;
             btnAuditForm.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAuditForm.UseVisualStyleBackColor = true;
+            btnAuditForm.Click += btnAuditForm_Click;
             // 
             // btnActionPlans
             // 
@@ -117,7 +126,7 @@
             btnActionPlans.ForeColor = Color.White;
             btnActionPlans.Image = Properties.Resources.icons8_survey_32;
             btnActionPlans.ImageAlign = ContentAlignment.MiddleLeft;
-            btnActionPlans.Location = new Point(0, 270);
+            btnActionPlans.Location = new Point(0, 299);
             btnActionPlans.Name = "btnActionPlans";
             btnActionPlans.Padding = new Padding(25, 0, 0, 0);
             btnActionPlans.Size = new Size(200, 50);
@@ -136,7 +145,7 @@
             btnAuditReports.ForeColor = Color.White;
             btnAuditReports.Image = Properties.Resources.icons8_what_i_do_32__2_;
             btnAuditReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAuditReports.Location = new Point(0, 326);
+            btnAuditReports.Location = new Point(0, 355);
             btnAuditReports.Name = "btnAuditReports";
             btnAuditReports.Padding = new Padding(25, 0, 0, 0);
             btnAuditReports.Size = new Size(200, 50);
@@ -155,7 +164,7 @@
             btnManageAuditors.ForeColor = Color.White;
             btnManageAuditors.Image = Properties.Resources.icons8_manage_32__1_1;
             btnManageAuditors.ImageAlign = ContentAlignment.MiddleLeft;
-            btnManageAuditors.Location = new Point(0, 382);
+            btnManageAuditors.Location = new Point(0, 411);
             btnManageAuditors.Name = "btnManageAuditors";
             btnManageAuditors.Padding = new Padding(15, 0, 0, 0);
             btnManageAuditors.Size = new Size(200, 50);
@@ -174,7 +183,7 @@
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = Properties.Resources.icons8_system_administrator_male_32__1_;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 158);
+            btnDashboard.Location = new Point(0, 187);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Padding = new Padding(25, 0, 0, 0);
             btnDashboard.Size = new Size(200, 50);
@@ -187,39 +196,20 @@
             // 
             // panelContent
             // 
-            panelContent.Controls.Add(panel2);
+            panelContent.BackColor = SystemColors.WindowFrame;
             panelContent.Dock = DockStyle.Fill;
             panelContent.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             panelContent.Location = new Point(200, 0);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(915, 631);
+            panelContent.Size = new Size(984, 631);
             panelContent.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Green;
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 584);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(915, 47);
-            panel2.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources._352514791_278804624543271_4286607186819115630_n;
-            pictureBox1.Location = new Point(12, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(172, 140);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 8;
-            pictureBox1.TabStop = false;
             // 
             // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1115, 631);
+            ClientSize = new Size(1184, 631);
             Controls.Add(panelContent);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -228,7 +218,6 @@
             Text = "Pocket Auditor - Admin Panel";
             Load += AdminPanel_Load;
             panelMenu.ResumeLayout(false);
-            panelContent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -244,7 +233,6 @@
         private Panel panelContent;
         private Button button1;
         private Button btnLogOut;
-        private Panel panel2;
         private PictureBox pictureBox1;
     }
 }

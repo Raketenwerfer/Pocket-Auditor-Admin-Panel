@@ -29,129 +29,157 @@
         private void InitializeComponent()
         {
             lbl_itemname = new Label();
-            lbl_itemnumber = new Label();
-            lbl_itemscorevalue = new Label();
-            lbl_assignment_or_dgvname = new Label();
-            prmpt_dgv_subind = new DataGridView();
-            textBox1 = new TextBox();
-            numericUpDown1 = new NumericUpDown();
-            textBox2 = new TextBox();
-            comboBox1 = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)prmpt_dgv_subind).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            tbox_EditIndicator = new TextBox();
+            btn_ApplyEdit = new Button();
+            btn_Delete = new Button();
+            flp_Display = new FlowLayoutPanel();
+            btn_lbl_SI = new Label();
+            btn_AddSubIndicator = new PictureBox();
+            btn_lbl_SC = new Label();
+            btn_pnl_SI = new Panel();
+            btn_pnl_SC = new Panel();
+            ((System.ComponentModel.ISupportInitialize)btn_AddSubIndicator).BeginInit();
+            btn_pnl_SI.SuspendLayout();
+            btn_pnl_SC.SuspendLayout();
             SuspendLayout();
             // 
             // lbl_itemname
             // 
             lbl_itemname.AutoSize = true;
-            lbl_itemname.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_itemname.Location = new Point(30, 17);
+            lbl_itemname.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_itemname.Location = new Point(12, 11);
             lbl_itemname.Name = "lbl_itemname";
-            lbl_itemname.Size = new Size(74, 17);
+            lbl_itemname.Size = new Size(128, 15);
             lbl_itemname.TabIndex = 0;
-            lbl_itemname.Text = "---Indicator";
+            lbl_itemname.Text = "Edit Indicator Question";
             // 
-            // lbl_itemnumber
+            // tbox_EditIndicator
             // 
-            lbl_itemnumber.AutoSize = true;
-            lbl_itemnumber.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_itemnumber.Location = new Point(27, 89);
-            lbl_itemnumber.Name = "lbl_itemnumber";
-            lbl_itemnumber.Size = new Size(71, 17);
-            lbl_itemnumber.TabIndex = 1;
-            lbl_itemnumber.Text = "---Number";
+            tbox_EditIndicator.BackColor = SystemColors.ControlLightLight;
+            tbox_EditIndicator.Font = new Font("Gadugi", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            tbox_EditIndicator.Location = new Point(12, 28);
+            tbox_EditIndicator.Multiline = true;
+            tbox_EditIndicator.Name = "tbox_EditIndicator";
+            tbox_EditIndicator.Size = new Size(523, 26);
+            tbox_EditIndicator.TabIndex = 22;
             // 
-            // lbl_itemscorevalue
+            // btn_ApplyEdit
             // 
-            lbl_itemscorevalue.AutoSize = true;
-            lbl_itemscorevalue.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_itemscorevalue.Location = new Point(27, 122);
-            lbl_itemscorevalue.Name = "lbl_itemscorevalue";
-            lbl_itemscorevalue.Size = new Size(87, 17);
-            lbl_itemscorevalue.TabIndex = 2;
-            lbl_itemscorevalue.Text = "---ScoreValue";
+            btn_ApplyEdit.BackColor = Color.LightGreen;
+            btn_ApplyEdit.Location = new Point(162, 331);
+            btn_ApplyEdit.Name = "btn_ApplyEdit";
+            btn_ApplyEdit.Size = new Size(112, 29);
+            btn_ApplyEdit.TabIndex = 23;
+            btn_ApplyEdit.Text = "Apply Changes";
+            btn_ApplyEdit.UseVisualStyleBackColor = false;
+            btn_ApplyEdit.Click += btn_ApplyEdit_Click;
             // 
-            // lbl_assignment_or_dgvname
+            // btn_Delete
             // 
-            lbl_assignment_or_dgvname.AutoSize = true;
-            lbl_assignment_or_dgvname.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_assignment_or_dgvname.Location = new Point(27, 154);
-            lbl_assignment_or_dgvname.Name = "lbl_assignment_or_dgvname";
-            lbl_assignment_or_dgvname.Size = new Size(133, 17);
-            lbl_assignment_or_dgvname.TabIndex = 3;
-            lbl_assignment_or_dgvname.Text = "---Assigned Category";
+            btn_Delete.BackColor = Color.Salmon;
+            btn_Delete.FlatStyle = FlatStyle.Popup;
+            btn_Delete.Location = new Point(280, 331);
+            btn_Delete.Name = "btn_Delete";
+            btn_Delete.Size = new Size(112, 29);
+            btn_Delete.TabIndex = 24;
+            btn_Delete.Text = "Delete";
+            btn_Delete.UseVisualStyleBackColor = false;
+            btn_Delete.Click += btn_Delete_Click;
             // 
-            // prmpt_dgv_subind
+            // flp_Display
             // 
-            prmpt_dgv_subind.AllowUserToAddRows = false;
-            prmpt_dgv_subind.AllowUserToDeleteRows = false;
-            prmpt_dgv_subind.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            prmpt_dgv_subind.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            prmpt_dgv_subind.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            prmpt_dgv_subind.Location = new Point(0, 197);
-            prmpt_dgv_subind.MultiSelect = false;
-            prmpt_dgv_subind.Name = "prmpt_dgv_subind";
-            prmpt_dgv_subind.ReadOnly = true;
-            prmpt_dgv_subind.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            prmpt_dgv_subind.RowTemplate.Height = 25;
-            prmpt_dgv_subind.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            prmpt_dgv_subind.Size = new Size(443, 194);
-            prmpt_dgv_subind.TabIndex = 21;
+            flp_Display.AutoScroll = true;
+            flp_Display.BackColor = SystemColors.InactiveBorder;
+            flp_Display.FlowDirection = FlowDirection.TopDown;
+            flp_Display.Location = new Point(12, 87);
+            flp_Display.Margin = new Padding(8);
+            flp_Display.Name = "flp_Display";
+            flp_Display.Padding = new Padding(0, 3, 0, 6);
+            flp_Display.Size = new Size(523, 233);
+            flp_Display.TabIndex = 25;
+            flp_Display.WrapContents = false;
             // 
-            // textBox1
+            // btn_lbl_SI
             // 
-            textBox1.Location = new Point(196, 16);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(218, 64);
-            textBox1.TabIndex = 22;
+            btn_lbl_SI.AutoSize = true;
+            btn_lbl_SI.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_lbl_SI.Location = new Point(7, 5);
+            btn_lbl_SI.Name = "btn_lbl_SI";
+            btn_lbl_SI.Size = new Size(84, 15);
+            btn_lbl_SI.TabIndex = 26;
+            btn_lbl_SI.Text = "Sub-Indicators";
+            btn_lbl_SI.Click += SelectSI;
             // 
-            // numericUpDown1
+            // btn_AddSubIndicator
             // 
-            numericUpDown1.Location = new Point(196, 119);
-            numericUpDown1.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(47, 23);
-            numericUpDown1.TabIndex = 23;
+            btn_AddSubIndicator.BackColor = Color.DarkSeaGreen;
+            btn_AddSubIndicator.Image = Properties.Resources.icons8_add_new_20;
+            btn_AddSubIndicator.Location = new Point(515, 66);
+            btn_AddSubIndicator.Name = "btn_AddSubIndicator";
+            btn_AddSubIndicator.Size = new Size(20, 20);
+            btn_AddSubIndicator.TabIndex = 27;
+            btn_AddSubIndicator.TabStop = false;
+            btn_AddSubIndicator.Click += btn_AddSubIndicator_Click;
             // 
-            // textBox2
+            // btn_lbl_SC
             // 
-            textBox2.Location = new Point(196, 89);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(85, 23);
-            textBox2.TabIndex = 24;
+            btn_lbl_SC.AutoSize = true;
+            btn_lbl_SC.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_lbl_SC.Location = new Point(6, 5);
+            btn_lbl_SC.Name = "btn_lbl_SC";
+            btn_lbl_SC.Size = new Size(88, 15);
+            btn_lbl_SC.TabIndex = 28;
+            btn_lbl_SC.Text = "Sub-Categories";
+            btn_lbl_SC.Click += SelectSC;
             // 
-            // comboBox1
+            // btn_pnl_SI
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(196, 154);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(218, 23);
-            comboBox1.TabIndex = 25;
+            btn_pnl_SI.BackColor = Color.Silver;
+            btn_pnl_SI.Controls.Add(btn_lbl_SI);
+            btn_pnl_SI.Cursor = Cursors.Hand;
+            btn_pnl_SI.Location = new Point(22, 62);
+            btn_pnl_SI.Name = "btn_pnl_SI";
+            btn_pnl_SI.Size = new Size(97, 25);
+            btn_pnl_SI.TabIndex = 29;
+            btn_pnl_SI.Click += SelectSI;
+            // 
+            // btn_pnl_SC
+            // 
+            btn_pnl_SC.BackColor = Color.Silver;
+            btn_pnl_SC.Controls.Add(btn_lbl_SC);
+            btn_pnl_SC.Cursor = Cursors.Hand;
+            btn_pnl_SC.Location = new Point(119, 62);
+            btn_pnl_SC.Name = "btn_pnl_SC";
+            btn_pnl_SC.Size = new Size(100, 25);
+            btn_pnl_SC.TabIndex = 30;
+            btn_pnl_SC.Click += SelectSC;
             // 
             // prompt_Edit_ISI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(444, 391);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox2);
-            Controls.Add(numericUpDown1);
-            Controls.Add(textBox1);
-            Controls.Add(prmpt_dgv_subind);
-            Controls.Add(lbl_assignment_or_dgvname);
-            Controls.Add(lbl_itemscorevalue);
-            Controls.Add(lbl_itemnumber);
+            ClientSize = new Size(547, 372);
+            Controls.Add(btn_pnl_SC);
+            Controls.Add(btn_pnl_SI);
+            Controls.Add(btn_AddSubIndicator);
+            Controls.Add(flp_Display);
+            Controls.Add(btn_Delete);
+            Controls.Add(btn_ApplyEdit);
+            Controls.Add(tbox_EditIndicator);
             Controls.Add(lbl_itemname);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            ForeColor = SystemColors.ControlText;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "prompt_Edit_ISI";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Item";
-            ((System.ComponentModel.ISupportInitialize)prmpt_dgv_subind).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btn_AddSubIndicator).EndInit();
+            btn_pnl_SI.ResumeLayout(false);
+            btn_pnl_SI.PerformLayout();
+            btn_pnl_SC.ResumeLayout(false);
+            btn_pnl_SC.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -159,13 +187,14 @@
         #endregion
 
         private Label lbl_itemname;
-        private Label lbl_itemnumber;
-        private Label lbl_itemscorevalue;
-        private Label lbl_assignment_or_dgvname;
-        private DataGridView prmpt_dgv_subind;
-        private TextBox textBox1;
-        private NumericUpDown numericUpDown1;
-        private TextBox textBox2;
-        private ComboBox comboBox1;
+        private TextBox tbox_EditIndicator;
+        private Button btn_ApplyEdit;
+        private Button btn_Delete;
+        private FlowLayoutPanel flp_Display;
+        private Label btn_lbl_SI;
+        private PictureBox btn_AddSubIndicator;
+        private Label btn_lbl_SC;
+        private Panel btn_pnl_SI;
+        private Panel btn_pnl_SC;
     }
 }

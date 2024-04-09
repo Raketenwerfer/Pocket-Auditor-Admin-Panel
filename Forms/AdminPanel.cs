@@ -8,11 +8,13 @@ namespace Pocket_Auditor_Admin_Panel
 {
     public partial class AdminPanel : Form
     {
-        readonly DatabaseInitiator dbInit = new DatabaseInitiator("sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN");
-
+        readonly DatabaseInitiator dbInit = new DatabaseInitiator("localhost", "ccydc_database", "root", ";");
+        // Online Database credentials "sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN"
 
         readonly FormDashboard frmDashboard = new FormDashboard();
         //readonly FormAuditForm frmAuditForm;
+        readonly FormCategorySelect frmCateSel;
+        //readonly CDisplay_ISI cDisplayISI;
         readonly FormActionPlans frmActionPlans = new FormActionPlans();
         readonly FormAuditReports frmAuditReports = new FormAuditReports();
         readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
@@ -21,17 +23,25 @@ namespace Pocket_Auditor_Admin_Panel
         public List<mdl_Categories> _Categories = new List<mdl_Categories>();
         public List<mdl_SubIndicators> _SubIndicators = new List<mdl_SubIndicators>();
         public List<mdl_Indicators> _Indicators = new List<mdl_Indicators>();
+        public List<mdl_SubCategories> _SubCategories = new List<mdl_SubCategories>();
 
         public List<jmdl_IndicatorsSubInd> _jmISI = new List<jmdl_IndicatorsSubInd>();
         public List<jmdl_CategoriesIndicators> _jmCI = new List<jmdl_CategoriesIndicators>();
+        public List<jmdl_CategoriesSubCategories> _jmCSC = new List<jmdl_CategoriesSubCategories>();
+
+
+        public int InitCategory;
 
         public AdminPanel()
         {
             InitializeComponent();
             InitDatabase();
+            
 
+            frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, this, InitCategory, _Categories, _jmCSC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
+            InitCategory = _Categories[0].CategoryID;
         }
 
         public void InitDatabase()
@@ -42,10 +52,12 @@ namespace Pocket_Auditor_Admin_Panel
             if (TestDatabaseConnection())
             {
                 PullCategories();
+                PullSubCategories();
                 PullIndicators();
                 PullSubIndicators();
                 PullAssociate_ISI();
                 PullAssociate_CI();
+                PullAssociate_CSC();
 
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -86,15 +98,15 @@ namespace Pocket_Auditor_Admin_Panel
             frmDashboard.Show();
         }
 
-        //private void btnAuditForm_Click(object sender, EventArgs e)
-        //{
-        //    frmAuditForm.TopLevel = false;
-        //    frmAuditForm.TopMost = true;
-        //    panelContent.Controls.Clear();
-        //    panelContent.AutoScroll = true;
-        //    panelContent.Controls.Add(frmAuditForm);
-        //    frmAuditForm.Show();
-        //}
+        private void btnAuditForm_Click(object sender, EventArgs e)
+        {
+            frmCateSel.TopLevel = false;
+            frmCateSel.TopMost = true;
+            panelContent.Controls.Clear();
+            panelContent.AutoScroll = true;
+            panelContent.Controls.Add(frmCateSel);
+            frmCateSel.Show();
+        }
 
         private void btnActionPlans_Click(object sender, EventArgs e)
         {
@@ -138,6 +150,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullCategories()
         {
+            _Categories.Clear();
+
             // Initialize placeholder variables
             int _catID;
             string _catTitle, _catStatus;
@@ -195,9 +209,51 @@ namespace Pocket_Auditor_Admin_Panel
             }
         }
 
+        public void PullSubCategories()
+        {
+            _SubCategories.Clear();
+
+            string query = "SELECT * FROM SubCategory";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Extract data from the reader and create an instance of mdl_SubCategories
+                            int id = reader.GetInt32(reader.GetOrdinal("SubCategoryID"));
+                            string title = reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
+                            string status = reader.GetString(reader.GetOrdinal("SubCategoryStatus"));
+
+                            // Create an instance of mdl_SubCategories and add it to the list
+                            mdl_SubCategories subCategory = new mdl_SubCategories(id, title, status);
+                            _SubCategories.Add(subCategory);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public void PullIndicators()
         {
-            int _indID, _indNo;
+            _Indicators.Clear();
+
+            int _indID;
             double _indScoreValue;
             string _indTitle, _indStatus, _indType;
 
@@ -216,16 +272,14 @@ namespace Pocket_Auditor_Admin_Panel
                         while (read.Read())
                         {
                             _indID = read.GetInt32(read.GetOrdinal("IndicatorID"));
-                            _indNo = read.GetInt32(read.GetOrdinal("IndicatorNumber"));
                             _indScoreValue = read.GetDouble(read.GetOrdinal("ScoreValue"));
                             _indTitle = read.GetString(read.GetOrdinal("Indicator"));
                             _indStatus = read.GetString(read.GetOrdinal("IndicatorStatus"));
                             _indType = read.GetString(read.GetOrdinal("IndicatorType"));
 
-                            mdl_Indicators a = new mdl_Indicators(_indID, _indNo, _indScoreValue, _indTitle, _indStatus, _indType);
+                            mdl_Indicators a = new mdl_Indicators(_indID, _indScoreValue, _indTitle, _indStatus, _indType);
                             {
                                 a.IndicatorID = _indID;
-                                a.IndicatorNumber = _indNo;
                                 a.ScoreValue = _indScoreValue;
                                 a.Indicator = _indTitle;
                                 a.IndicatorStatus = _indStatus;
@@ -249,6 +303,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullSubIndicators()
         {
+            _SubIndicators.Clear();
+
             int _subIndID;
             string _subIndTitle, _subIndType, _subIndStatus;
             double _subIndScoreValue;
@@ -299,6 +355,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullAssociate_ISI()
         {
+            _jmISI.Clear();
+
             int indicatorFK, subindicatorFK;
             double subindSV;
             string indicator, subind, subindtype, subindstatus;
@@ -361,11 +419,13 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void PullAssociate_CI()
         {
-            int indicatorID, indNO, categoryID;
+            _jmCI.Clear();
+
+            int indicatorID, categoryID;
             string catTitle, indicator, indType;
             double indScoreValue;
 
-            string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.IndicatorNumber, I.IndicatorType, I.ScoreValue " +
+            string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.IndicatorType, I.ScoreValue " +
                 "FROM Associate_Category_to_Indicator AtC " +
                 "INNER JOIN Categories C on AtC.CategoryID_fk = C.CategoryID " +
                 "INNER JOIN Indicators I on AtC.IndicatorID_fk = I.IndicatorID " +
@@ -387,18 +447,16 @@ namespace Pocket_Auditor_Admin_Panel
                             indicator = read.GetString(read.GetOrdinal("Indicator"));
                             categoryID = read.GetInt32(read.GetOrdinal("CategoryID"));
                             catTitle = read.GetString(read.GetOrdinal("CategoryTitle"));
-                            indNO = read.GetInt32(read.GetOrdinal("IndicatorNumber"));
                             indType = read.GetString(read.GetOrdinal("IndicatorType"));
                             indScoreValue = read.GetDouble(read.GetOrdinal("ScoreValue"));
 
                             jmdl_CategoriesIndicators a = new jmdl_CategoriesIndicators(categoryID, catTitle, indicatorID,
-                                indicator, indNO, indType, indScoreValue);
+                                indicator, indType, indScoreValue);
                             {
                                 a.CategoryID = categoryID;
                                 a.CategoryTitle = catTitle;
                                 a.IndicatorID = indicatorID;
                                 a.Indicator = indicator;
-                                a.IndicatorNumber = indNO;
                                 a.IndicatorType = indType;
                                 a.ScoreValue = indScoreValue;
                             }
@@ -411,6 +469,53 @@ namespace Pocket_Auditor_Admin_Panel
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void PullAssociate_CSC()
+        {
+            _jmCSC.Clear();
+
+            string query = "SELECT SC.SubCategoryID, SC.SubCategoryTitle, SC.SubCategoryStatus, " +
+                           "C.CategoryID, C.CategoryTitle, C.CategoryStatus " +
+                           "FROM SubCategory SC " +
+                           "JOIN Associate_Category_to_SubCategory ACSC ON SC.SubCategoryID = ACSC.SubCategoryID_fk " +
+                           "JOIN Categories C ON ACSC.CategoryID_fk = C.CategoryID";
+
+            using MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Extract data from the reader and create an instance of jmdl_CategoriesSubCategories
+                            int categoryId = reader.GetInt32(reader.GetOrdinal("CategoryID"));
+                            int subcategoryId = reader.GetInt32(reader.GetOrdinal("SubCategoryID"));
+                            string categoryTitle = reader.GetString(reader.GetOrdinal("CategoryTitle"));
+                            string subCategoryTitle = reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
+                            string subCategoryStatus = reader.GetString(reader.GetOrdinal("SubCategoryStatus"));
+
+                            // Create an instance of jmdl_CategoriesSubCategories and add it to the list
+                            jmdl_CategoriesSubCategories association = new jmdl_CategoriesSubCategories(categoryId,
+                                subcategoryId, categoryTitle, subCategoryTitle, subCategoryStatus);
+                            _jmCSC.Add(association);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             finally
             {

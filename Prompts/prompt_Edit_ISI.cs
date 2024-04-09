@@ -1,4 +1,8 @@
-﻿using Pocket_Auditor_Admin_Panel.Classes;
+﻿using MySql.Data.MySqlClient;
+using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Forms;
+using Pocket_Auditor_Admin_Panel.UserControlPanels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,79 +22,214 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         List<mdl_Indicators> _Indicators;
         List<mdl_SubIndicators> _SubIndicators;
         List<jmdl_IndicatorsSubInd> _jmISI;
-        private int selected_id;
+        private int selected_id, selected_category_id;
+        public DatabaseInitiator dbInit;
+        readonly string indicatorName;
+        readonly CDisplay_ISI parent;
+        readonly AdminPanel AP;
+        prompt_AddSubIndicator pASI;
 
-        readonly DataTable DGV_subind = new DataTable();
 
-        public prompt_Edit_ISI(string edit_type, int _selection, List<mdl_Indicators> indicators,
-            List<mdl_SubIndicators> subIndicators, List<jmdl_IndicatorsSubInd> jmISI)
+        public prompt_Edit_ISI(string _buckketIndicator,
+            int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent,
+            AdminPanel aP, List<mdl_SubIndicators> _bucketSI)
         {
+            //selected_id = _selection;
+            //type = edit_type;
+            //_Indicators = indicators;
+            //_SubIndicators = subIndicators;
+            _SubIndicators = _bucketSI;
+            indicatorName = _buckketIndicator;
+            dbInit = _bucketDB;
             selected_id = _selection;
-            type = edit_type;
-            _Indicators = indicators;
-            _SubIndicators = subIndicators;
-            _jmISI = jmISI;
+            selected_category_id = _categoryID;
 
             InitializeComponent();
 
-            SetSize();
-            SetView();
-            SubIndicatorTable();
-            SetDataGrid();
+            tbox_EditIndicator.Text = indicatorName;
+            parent = _parent;
+            AP = aP;
+            pASI = new prompt_AddSubIndicator(_bucketDB, this, aP);
+
+            // The prompt will initialize with the Sub-Indicators displayed first
+            PopuateSubIndicators();
         }
 
-        public void SetSize()
-        {
-            if (type == "indicator")
-            {
-                prmpt_dgv_subind.Visible = false;
-                this.Size = new System.Drawing.Size(460, 240);
-            }
-            else if (type == "subindicator")
-            {
-                prmpt_dgv_subind.Visible = true;
-                this.Size = new System.Drawing.Size(460, 430);
-            }
-        }
 
-        public void SetView()
-        {
-            if (type == "indicator")
-            {
-                lbl_itemname.Text = "Indicator";
-                lbl_itemnumber.Text = "Indicator Number";
-                lbl_itemscorevalue.Text = "Score Value";
-                lbl_assignment_or_dgvname.Text = "Assign Category";
-            }
-            else if (type == "subindicator")
-            {
-                lbl_itemname.Text = "Sub-Indicator Question";
-                lbl_itemscorevalue.Text = "Score Value";
-                lbl_itemnumber.Visible = false;
-                lbl_assignment_or_dgvname.Text = "Type";
-            }
-        }
 
-        public void SetDataGrid()
+        public void PopuateSubIndicators()
         {
-            DGV_subind.Rows.Clear();
+            btn_pnl_SI.BackColor = Color.White;
+            btn_pnl_SC.BackColor = Color.Silver;
+            btn_AddSubIndicator.Enabled = true;
+            btn_AddSubIndicator.Visible = true;
 
-            foreach (jmdl_IndicatorsSubInd j in _jmISI)
+            flp_Display.Controls.Clear();
+
+            foreach (var data in _SubIndicators)
             {
-                if (selected_id == j.IndicatorID_fk)
+                // Create an instance of UCM_SubIndicatorItem
+                UCM_SubIndicatorItem subIndicatorItem = new UCM_SubIndicatorItem("test", dbInit, AP, this);
+
+                // Set properties of the user control using your data
+                subIndicatorItem.SubIndicatorID = data.SubIndicatorID;
+                subIndicatorItem.SubIndicator = data.SubIndicator;
+                subIndicatorItem.SubIndicatorType = data.SubIndicatorType;
+                subIndicatorItem.SubIndicatorStatus = data.SubIndicatorStatus;
+                subIndicatorItem.ScoreValue = data.ScoreValue;
+
+                subIndicatorItem.IndicatorID = selected_id;
+
+                MySqlConnection conn = dbInit.GetConnection();
+
+                try
                 {
-                    DGV_subind.Rows.Add(j.SubIndicator, j.SubIndicatorType, j.ScoreValue);
+                    conn.Open();
+
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM Associate_Indicator_to_SubIndicator " +
+                                                   "WHERE IndicatorID_fk = @IndicatorID AND SubIndicatorID_fk = @SubIndicatorID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+                        cmd.Parameters.AddWithValue("@SubIndicatorID", data.SubIndicatorID);
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // If an entry exists, set the checkbox as checked
+                        if (count > 0)
+                        {
+                            subIndicatorItem.State = true;
+                        }
+                        else
+                        {
+                            subIndicatorItem.State = false;
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+
+                // Add the UserControl to the FlowLayoutPanel
+                flp_Display.Controls.Add(subIndicatorItem);
+            }
+        }
+
+        public void PopulateSubCategories()
+        {
+            btn_pnl_SC.BackColor = Color.White;
+            btn_pnl_SI.BackColor = Color.Silver;
+            btn_AddSubIndicator.Enabled = false;
+            btn_AddSubIndicator.Visible = false;
+        }
+
+        private void btn_ApplyEdit_Click(object sender, EventArgs e)
+        {
+            EditIndicator();
+        }
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            DeleteIndicator();
+            this.Close();
+        }
+
+
+        private void SelectSC(object sender, EventArgs e)
+        {
+            PopulateSubCategories();
+        }
+
+        private void SelectSI(object sender, EventArgs e)
+        {
+            PopuateSubIndicators();
+        }
+
+
+        public void EditIndicator()
+        {
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string updateIndicatorTextQuery = "UPDATE Indicators " +
+                                                  "SET Indicator = @NewIndicatorText " +
+                                                  "WHERE IndicatorID = @IndicatorID";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateIndicatorTextQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@NewIndicatorText", tbox_EditIndicator.Text);
+                    cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MessageBox.Show("Indicator Successfully Edited!", "Edit Succesful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                conn.Close();
+                AP._Indicators.Clear();
+                AP._jmCI.Clear();
+                AP.PullIndicators();
+                AP.PullAssociate_CI();
+                parent.PopulateIndicators(selected_category_id);
+            }
         }
 
-        private void SubIndicatorTable()
+        public void DeleteIndicator()
         {
-            DGV_subind.Columns.Add("Sub-Indicator");
-            DGV_subind.Columns.Add("Sub-Indicator Type");
-            DGV_subind.Columns.Add("Score Value");
-            prmpt_dgv_subind.DataSource = DGV_subind;
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                string deactivateIndicatorQuery = "UPDATE Indicators " +
+                                                  "SET IndicatorStatus = 'INACTIVE' " +
+                                                  "WHERE IndicatorID = @IndicatorID";
+
+                using (MySqlCommand cmd = new MySqlCommand(deactivateIndicatorQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MessageBox.Show("Indicator Deleted!", "Delete Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                conn.Close();
+                AP._Indicators.Clear();
+                AP._jmCI.Clear();
+                AP.PullIndicators();
+                AP.PullAssociate_CI();
+                parent.PopulateIndicators(selected_category_id);
+            }
         }
 
+        private void btn_AddSubIndicator_Click(object sender, EventArgs e)
+        {
+            pASI.ShowDialog();
+        }
     }
 }

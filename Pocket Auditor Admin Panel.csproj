@@ -12,13 +12,10 @@
   <ItemGroup>
     <Compile Remove="Forms\FormAuditForm.cs" />
     <Compile Remove="Forms\FormAuditForm.Designer.cs" />
-    <Compile Remove="Prompts\prompt_Edit_ISI.cs" />
-    <Compile Remove="Prompts\prompt_Edit_ISI.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="Forms\FormAuditForm.resx" />
-    <EmbeddedResource Remove="Prompts\prompt_Edit_ISI.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +28,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="UserControlPanels\UCM_SubCategoryItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +38,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Prompts\" />
   </ItemGroup>
 
 </Project>
