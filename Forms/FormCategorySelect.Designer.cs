@@ -43,9 +43,9 @@
             lblCategories.Location = new Point(11, 13);
             lblCategories.Margin = new Padding(4, 0, 4, 0);
             lblCategories.Name = "lblCategories";
-            lblCategories.Size = new Size(76, 19);
+            lblCategories.Size = new Size(130, 19);
             lblCategories.TabIndex = 0;
-            lblCategories.Text = "Category ";
+            lblCategories.Text = "Select a category ";
             // 
             // pnl_ISI_View
             // 
