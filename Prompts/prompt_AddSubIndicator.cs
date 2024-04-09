@@ -39,7 +39,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             string _subind = tbox_SubIndicator.Text;
             string _subindtype = cbox_SubIndType.Text;
             double _scorevalue = 0;
-            
+
             if (_subindtype == "DETAILS")
             {
                 _scorevalue = 0;

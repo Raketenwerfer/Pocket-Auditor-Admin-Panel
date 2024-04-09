@@ -131,5 +131,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             lbl_dis_CategoryName.Text = title;
         }
+
+        internal void FilterIndicators(int categoryID, string subCategoryTitle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

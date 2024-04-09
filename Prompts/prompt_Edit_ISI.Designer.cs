@@ -65,12 +65,13 @@
             // 
             // btn_ApplyEdit
             // 
+            btn_ApplyEdit.BackColor = Color.LightGreen;
             btn_ApplyEdit.Location = new Point(162, 331);
             btn_ApplyEdit.Name = "btn_ApplyEdit";
             btn_ApplyEdit.Size = new Size(112, 29);
             btn_ApplyEdit.TabIndex = 23;
             btn_ApplyEdit.Text = "Apply Changes";
-            btn_ApplyEdit.UseVisualStyleBackColor = true;
+            btn_ApplyEdit.UseVisualStyleBackColor = false;
             btn_ApplyEdit.Click += btn_ApplyEdit_Click;
             // 
             // btn_Delete
@@ -112,6 +113,7 @@
             // btn_AddSubIndicator
             // 
             btn_AddSubIndicator.BackColor = Color.DarkSeaGreen;
+            btn_AddSubIndicator.Image = Properties.Resources.icons8_add_new_20;
             btn_AddSubIndicator.Location = new Point(515, 66);
             btn_AddSubIndicator.Name = "btn_AddSubIndicator";
             btn_AddSubIndicator.Size = new Size(20, 20);
@@ -166,6 +168,7 @@
             Controls.Add(btn_ApplyEdit);
             Controls.Add(tbox_EditIndicator);
             Controls.Add(lbl_itemname);
+            ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;

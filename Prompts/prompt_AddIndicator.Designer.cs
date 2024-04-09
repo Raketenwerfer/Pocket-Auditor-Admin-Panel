@@ -43,12 +43,13 @@
             // 
             // btn_AcceptIndicator
             // 
+            btn_AcceptIndicator.BackColor = Color.LightGreen;
             btn_AcceptIndicator.Location = new Point(217, 55);
             btn_AcceptIndicator.Name = "btn_AcceptIndicator";
             btn_AcceptIndicator.Size = new Size(112, 29);
             btn_AcceptIndicator.TabIndex = 1;
             btn_AcceptIndicator.Text = "Accept";
-            btn_AcceptIndicator.UseVisualStyleBackColor = true;
+            btn_AcceptIndicator.UseVisualStyleBackColor = false;
             btn_AcceptIndicator.Click += btn_AcceptIndicator_Click;
             // 
             // label1
@@ -68,6 +69,7 @@
             Controls.Add(label1);
             Controls.Add(btn_AcceptIndicator);
             Controls.Add(tbox_Indicator);
+            ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;

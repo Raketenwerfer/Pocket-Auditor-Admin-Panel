@@ -45,12 +45,13 @@
             // 
             // btn_AcceptCategory
             // 
+            btn_AcceptCategory.BackColor = Color.LightGreen;
             btn_AcceptCategory.Location = new Point(72, 52);
             btn_AcceptCategory.Name = "btn_AcceptCategory";
             btn_AcceptCategory.Size = new Size(112, 29);
             btn_AcceptCategory.TabIndex = 7;
             btn_AcceptCategory.Text = "Accept";
-            btn_AcceptCategory.UseVisualStyleBackColor = true;
+            btn_AcceptCategory.UseVisualStyleBackColor = false;
             btn_AcceptCategory.Click += btn_AcceptCategory_Click;
             // 
             // tbox_Category
@@ -63,12 +64,13 @@
             // 
             // btn_Delete
             // 
+            btn_Delete.BackColor = Color.Salmon;
             btn_Delete.Location = new Point(190, 52);
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(112, 29);
             btn_Delete.TabIndex = 9;
             btn_Delete.Text = "Delete";
-            btn_Delete.UseVisualStyleBackColor = true;
+            btn_Delete.UseVisualStyleBackColor = false;
             btn_Delete.Click += btn_Delete_Click;
             // 
             // prompt_Edit_Category
@@ -80,6 +82,7 @@
             Controls.Add(label1);
             Controls.Add(btn_AcceptCategory);
             Controls.Add(tbox_Category);
+            ForeColor = SystemColors.ActiveCaptionText;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "prompt_Edit_Category";

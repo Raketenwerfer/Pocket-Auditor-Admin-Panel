@@ -78,7 +78,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             reportTable.Columns.Add("Score");
             reportTable.Columns.Add("Auditor");
             reportTable.Columns.Add("Date");
-            Reportsdgv.DataSource = reportTable;
+            dgv_Results.DataSource = reportTable;
         }
 
         private void Reportsdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)

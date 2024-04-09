@@ -9,6 +9,7 @@ namespace Pocket_Auditor_Admin_Panel
     public partial class AdminPanel : Form
     {
         readonly DatabaseInitiator dbInit = new DatabaseInitiator("localhost", "ccydc_database", "root", ";");
+        public DataSharingService DSS = new DataSharingService();
         // Online Database credentials "sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN"
 
         readonly FormDashboard frmDashboard = new FormDashboard();
@@ -37,13 +38,20 @@ namespace Pocket_Auditor_Admin_Panel
         {
             InitializeComponent();
             InitDatabase();
-            
 
-            frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this,
-                InitCategory, _Categories, _jmCSC, _jmISC);
+            DSS.GetInstance();
+            frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, this, InitCategory, _Categories, _jmCSC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
             
+            try
+            {
+                InitCategory = _Categories[0].CategoryID;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void InitDatabase()
@@ -68,6 +76,9 @@ namespace Pocket_Auditor_Admin_Panel
             {
                 MessageBox.Show("No database established! Check your internet connection!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            DSS.SetDatabase(dbInit);
+
         }
         private bool TestDatabaseConnection()
         {
