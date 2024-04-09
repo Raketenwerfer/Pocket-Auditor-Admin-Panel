@@ -43,7 +43,7 @@ namespace Pocket_Auditor_Admin_Panel
                 InitCategory, _Categories, _jmCSC, _jmISC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
-            InitCategory = _Categories[0].CategoryID;
+            
         }
 
         public void InitDatabase()
