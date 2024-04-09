@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pocket_Auditor_Admin_Panel.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,13 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
     public class DataSharingService
     {
         private static DataSharingService instance;
-        private DatabaseInitiator dbInit;
+        public static DatabaseInitiator dbInit;
+        private List<mdl_ScoreTable> ST_HOLDER;
 
-
-        public DataSharingService GetInstance()
+        public DataSharingService()
+        {
+        }
+        public static DataSharingService GetInstance()
         {
             if (instance == null)
             {
@@ -29,6 +33,18 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
         public DatabaseInitiator GetDatabase()
         {
             return dbInit;
+        }
+
+
+
+        public void SET_ST(List<mdl_ScoreTable> list)
+        {
+            ST_HOLDER = list;
+        }
+
+        public List<mdl_ScoreTable> GET_ST()
+        {
+            return ST_HOLDER;
         }
     }
 }

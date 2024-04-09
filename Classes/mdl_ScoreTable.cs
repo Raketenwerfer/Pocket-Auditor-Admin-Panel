@@ -13,25 +13,26 @@ namespace Pocket_Auditor_Admin_Panel.Classes
         public string ChapterName { get; set; }
         public int CategoryID_fk { get; set; }
         public string CategoryTitle { get; set; }
-        public string SubCategoryID_fk { get; set; }
+        public string? SubCategoryID_fk { get; set; }
         // Set to string as this is nullable in the database
-        public string SubCategoryTitle { get; set; }
+        public string? SubCategoryTitle { get; set; }
         public int IndicatorID_fk { get; set; }
         public string Indicator { get; set; }
-        public string SubIndicatorID_fk { get; set; }
-        public string SubIndicator { get; set; }
+        public string? SubIndicatorID_fk { get; set; }
+        public string? SubIndicator { get; set; }
         public bool IsChecked { get; set; }
         public string ItemChecked { get; set; }
-        public string Remarks { get; set; }
-        public string SubIndicatorType { get; set; }
+        public string? Remarks { get; set; }
+        public string? SubIndicatorType { get; set; }
         public double IND_ScoreValue { get; set; }
-        public double SUBIND_ScoreValue { get; set; }
+        public double? SUBIND_ScoreValue { get; set; }
 
-        public mdl_ScoreTable(int chapterID_fk, string chapterName, int catID, string catTitle,
+        public mdl_ScoreTable(int entryid, int chapterID_fk, string chapterName, int catID, string catTitle,
             string subcatID, string subcatTitle, int indID, string ind, 
             string subindID, string subind, bool ischekced, string itemchecked, string remarks,
-            string subIndicatorType, double I_ScoreValue, double SI_ScoreValue)
+            string subIndicatorType, double I_ScoreValue, double? SI_ScoreValue)
         {
+            EntryID = entryid;
             ChapterID_fk = chapterID_fk;
             ChapterName = chapterName;
             CategoryID_fk = catID;

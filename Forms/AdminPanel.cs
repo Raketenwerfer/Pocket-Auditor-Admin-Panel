@@ -17,7 +17,7 @@ namespace Pocket_Auditor_Admin_Panel
         readonly FormCategorySelect frmCateSel;
         //readonly CDisplay_ISI cDisplayISI;
         readonly FormActionPlans frmActionPlans = new FormActionPlans();
-        readonly FormAuditReports frmAuditReports = new FormAuditReports();
+        readonly FormAuditReports frmAuditReports;
         readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
 
 
@@ -31,15 +31,19 @@ namespace Pocket_Auditor_Admin_Panel
         public List<jmdl_CategoriesSubCategories> _jmCSC = new List<jmdl_CategoriesSubCategories>();
         public List<jmdl_IndicatorSubCat> _jmISC = new List<jmdl_IndicatorSubCat>();
 
+        public List<mdl_ScoreTable> _ScoreTable = new List<mdl_ScoreTable>();
 
         public int InitCategory;
 
         public AdminPanel()
         {
+            DSS = DataSharingService.GetInstance();
+            DSS.SetDatabase(dbInit);
+
             InitializeComponent();
             InitDatabase();
 
-            DSS.GetInstance();
+            frmAuditReports = new FormAuditReports(dbInit);
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
@@ -70,6 +74,7 @@ namespace Pocket_Auditor_Admin_Panel
                 PullAssociate_CI();
                 PullAssociate_CSC();
                 PullAssociate_ISC();
+                PullScoreTable();
 
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -77,9 +82,6 @@ namespace Pocket_Auditor_Admin_Panel
             {
                 MessageBox.Show("No database established! Check your internet connection!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            DSS.SetDatabase(dbInit);
-
         }
         private bool TestDatabaseConnection()
         {
@@ -584,6 +586,84 @@ namespace Pocket_Auditor_Admin_Panel
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        public void PullScoreTable()
+        {
+            _ScoreTable.Clear();
+
+            string query = "SELECT " +
+                           "ST.EntryID, ST.ChapterID_fk, SK.Barangay, ST.CategoryID_fk, C.CategoryTitle, " +
+                           "ST.SubCategoryID_fk, SC.SubCategoryTitle, ST.IndicatorID_fk, I.Indicator, " +
+                           "ST.SubIndicatorID_fk, SI.SubIndicator, ST.IsChecked, ST.ItemChecked, " +
+                           "ST.Remarks, SI.SubIndicatorType, I.ScoreValue as IND_ScoreValue, SI.ScoreValue as SUBIND_ScoreValue " +
+                           "FROM scoretable ST " +
+                           "LEFT JOIN subcategory SC ON ST.SubCategoryID_fk = SC.SubCategoryID " +
+                           "LEFT JOIN categories C ON ST.CategoryID_fk = C.CategoryID " +
+                           "LEFT JOIN indicators I ON ST.IndicatorID_fk = I.IndicatorID " +
+                           "LEFT JOIN subIndicators SI ON ST.SubIndicatorID_fk = SI.SubIndicatorID " +
+                           "INNER JOIN skchapters SK ON ST.ChapterID_fk = SK.ChapterID";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Extract data from the reader and create an instance of mdl_ScoreTable
+                            int entryID = reader.GetInt32(reader.GetOrdinal("EntryID"));
+                            int chapterID_fk = reader.GetInt32(reader.GetOrdinal("ChapterID_fk"));
+                            string chapterName = reader.GetString(reader.GetOrdinal("Barangay"));
+                            int categoryID_fk = reader.GetInt32(reader.GetOrdinal("CategoryID_fk"));
+                            string categoryTitle = reader.GetString(reader.GetOrdinal("CategoryTitle"));
+                            string? subCategoryID_fk = reader.IsDBNull(reader.GetOrdinal("SubCategoryID_fk")) 
+                                ? null : reader.GetString(reader.GetOrdinal("SubCategoryID_fk"));
+                            string? subCategoryTitle = reader.IsDBNull(reader.GetOrdinal("SubCategoryTitle")) 
+                                ? null : reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
+                            int indicatorID_fk = reader.GetInt32(reader.GetOrdinal("IndicatorID_fk"));
+                            string indicator = reader.GetString(reader.GetOrdinal("Indicator"));
+                            string? subIndicatorID_fk = reader.IsDBNull(reader.GetOrdinal("SubIndicatorID_fk")) 
+                                ? null : reader.GetString(reader.GetOrdinal("SubIndicatorID_fk"));
+                            string? subIndicator = reader.IsDBNull(reader.GetOrdinal("SubIndicator")) 
+                                ? null : reader.GetString(reader.GetOrdinal("SubIndicator"));
+                            bool isChecked = reader.GetBoolean(reader.GetOrdinal("IsChecked"));
+                            string itemChecked = reader.GetString(reader.GetOrdinal("ItemChecked"));
+                            string? remarks = reader.IsDBNull(reader.GetOrdinal("Remarks")) 
+                                ? null : reader.GetString(reader.GetOrdinal("Remarks"));
+                            string? subIndicatorType = reader.IsDBNull(reader.GetOrdinal("SubIndicatorType")) 
+                                ? null : reader.GetString(reader.GetOrdinal("SubIndicatorType"));
+                            double indScoreValue = reader.GetDouble(reader.GetOrdinal("IND_ScoreValue"));
+                            double? subIndScoreValue = reader.IsDBNull(reader.GetOrdinal("SUBIND_ScoreValue")) 
+                                ? null : reader.GetDouble(reader.GetOrdinal("SUBIND_ScoreValue"));
+
+                            // Create an instance of mdl_ScoreTable and add it to the list
+                            mdl_ScoreTable scoreTableRow = new mdl_ScoreTable(entryID,
+                                chapterID_fk, chapterName, categoryID_fk, categoryTitle,
+                                subCategoryID_fk, subCategoryTitle, indicatorID_fk,
+                                indicator, subIndicatorID_fk, subIndicator,
+                                isChecked, itemChecked, remarks, subIndicatorType,
+                                indScoreValue, subIndScoreValue);
+
+                            _ScoreTable.Add(scoreTableRow);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DSS.SET_ST(_ScoreTable);
+                conn.Close();
+            }
         }
         #endregion
     }

@@ -18,12 +18,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public DataSharingService DSS;
         public DatabaseInitiator dbInit;
         List<mdl_ScoreTable> _ScoreTable;
-        List<double> ChapterScores = new List<double>();
+        Dictionary<string, double?> ScoreList = new Dictionary<string, double?>();
 
-        Form editISI;
 
         DataTable reportTable = new DataTable();
-        int index;
+
 
         // Declare the list at the class level
         //private List<string> allChoices = new List<string>
@@ -40,11 +39,14 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         //    // Add more choices as needed
         //};
 
-        public FormAuditReports()
+        public FormAuditReports(DatabaseInitiator db)
         {
             InitializeComponent();
-            DSS = DSS.GetInstance();
-            dbInit = DSS.GetDatabase();
+            DSS = DataSharingService.GetInstance();
+            dbInit = db;
+            _ScoreTable = DSS.GET_ST();
+
+            HandleData();
         }
 
         //private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -86,9 +88,26 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             reportTable.Columns.Add("Barangay");
             reportTable.Columns.Add("Score");
-            reportTable.Columns.Add("Auditor");
-            reportTable.Columns.Add("Date");
+            //reportTable.Columns.Add("Auditor");
+            //reportTable.Columns.Add("Date");
             dgv_Results.DataSource = reportTable;
+
+
+            try
+            {
+                foreach (var entry in ScoreList)
+                {
+                    string chapterName = entry.Key;
+                    double? overallScore = entry.Value;
+
+                    // Add a new row to the DataGridView with ChapterName and OverallScore values
+                    reportTable.Rows.Add(chapterName, overallScore);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Reportsdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -98,84 +117,15 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             showForm.ShowDialog();
         }
 
-        public void PullScoreTable()
+        public void HandleData()
         {
-            _ScoreTable.Clear();
-
-            string query = "SELECT " +
-                           "ST.EntryID, ST.ChapterID_fk, SK.Barangay, ST.CategoryID_fk, C.CategoryTitle, " +
-                           "ST.SubCategoryID_fk, SC.SubCategoryTitle, ST.IndicatorID_fk, I.Indicator, " +
-                           "ST.SubIndicatorID_fk, SI.SubIndicator, ST.IsChecked, ST.ItemChecked, " +
-                           "ST.Remarks, SI.SubIndicatorType, I.ScoreValue as IND_ScoreValue, SI.ScoreValue as SUBIND_ScoreValue " +
-                           "FROM scoretable ST " +
-                           "LEFT JOIN SubCategory SC ON ST.SubCategoryID_fk = SC.SubCategoryID " +
-                           "LEFT JOIN Categories C ON ST.CategoryID_fk = C.CategoryID " +
-                           "LEFT JOIN Indicators I ON ST.IndicatorID_fk = I.IndicatorID " +
-                           "LEFT JOIN SubIndicators SI ON ST.SubIndicatorID_fk = SI.SubIndicatorID " +
-                           "INNER JOIN skchapters SK ON ST.ChapterID_fk = SK.ChapterID";
-
-            MySqlConnection conn = dbInit.GetConnection();
-
-            try
-            {
-                conn.Open();
-
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            // Extract data from the reader and create an instance of mdl_ScoreTable
-                            int entryID = reader.GetInt32(reader.GetOrdinal("EntryID"));
-                            int chapterID_fk = reader.GetInt32(reader.GetOrdinal("ChapterID_fk"));
-                            string chapterName = reader.GetString(reader.GetOrdinal("Barangay"));
-                            int categoryID_fk = reader.GetInt32(reader.GetOrdinal("CategoryID_fk"));
-                            string categoryTitle = reader.GetString(reader.GetOrdinal("CategoryTitle"));
-                            string subCategoryID_fk = reader.GetString(reader.GetOrdinal("SubCategoryID_fk"));
-                            string subCategoryTitle = reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
-                            int indicatorID_fk = reader.GetInt32(reader.GetOrdinal("IndicatorID_fk"));
-                            string indicator = reader.GetString(reader.GetOrdinal("Indicator"));
-                            string subIndicatorID_fk = reader.GetString(reader.GetOrdinal("SubIndicatorID_fk"));
-                            string subIndicator = reader.GetString(reader.GetOrdinal("SubIndicator"));
-                            bool isChecked = reader.GetBoolean(reader.GetOrdinal("IsChecked"));
-                            string itemChecked = reader.GetString(reader.GetOrdinal("ItemChecked"));
-                            string remarks = reader.GetString(reader.GetOrdinal("Remarks"));
-                            string subIndicatorType = reader.GetString(reader.GetOrdinal("SubIndicatorType"));
-                            double indScoreValue = reader.GetDouble(reader.GetOrdinal("IND_ScoreValue"));
-                            double subIndScoreValue = reader.GetDouble(reader.GetOrdinal("SUBIND_ScoreValue"));
-
-                            // Create an instance of mdl_ScoreTable and add it to the list
-                            mdl_ScoreTable scoreTableRow = new mdl_ScoreTable(
-                                chapterID_fk, chapterName, categoryID_fk, categoryTitle,
-                                subCategoryID_fk, subCategoryTitle, indicatorID_fk,
-                                indicator, subIndicatorID_fk, subIndicator,
-                                isChecked, itemChecked, remarks, subIndicatorType,
-                                indScoreValue, subIndScoreValue);
-
-                            _ScoreTable.Add(scoreTableRow);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        public void kek()
-        {
-            var tally = _ScoreTable.GroupBy(item => item.ChapterID_fk);
+            var tally = _ScoreTable.Where(item => item.IsChecked)
+                                               .GroupBy(item => item.ChapterID_fk);
 
             foreach (var group in tally)
             {
-                double indScore = 0;
-                double subIndScore = 0;
+                double? indScore = 0;
+                double? subIndScore = 0;
 
                 foreach (var item in group)
                 {
@@ -194,12 +144,19 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                         subIndScore += item.SUBIND_ScoreValue;
                     }
                 }
-                // Add the overall score (sum of indScore and subIndScore) to the list
-                ChapterScores.Add(indScore + subIndScore);
+
+                double? overallScore = indScore + subIndScore;
+
+                string chapterName = group.FirstOrDefault()?.ChapterName;
+
+                if (!string.IsNullOrEmpty(chapterName))
+                {
+                    ScoreList[chapterName] = overallScore;
+                }
             }
-            // Now, overallScores list contains the overall scores for each chapter
+
+            // Now, overallScoresByChapterName dictionary contains the overall scores for each chapter, keyed by ChapterName
+
         }
-
-
     }
 }
