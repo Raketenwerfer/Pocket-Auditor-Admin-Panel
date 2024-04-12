@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Prompts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,26 +19,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public DataSharingService DSS;
         public DatabaseInitiator dbInit;
         List<mdl_ScoreTable> _ScoreTable;
-        Dictionary<string, double?> ScoreList = new Dictionary<string, double?>();
-
+        public List<ChapterOverview> ScoreList = new List<ChapterOverview>();
 
         DataTable reportTable = new DataTable();
-
-
-        // Declare the list at the class level
-        //private List<string> allChoices = new List<string>
-        //{
-        //    //example
-        //    "Babag",
-        //    "Bakayam",
-        //    "Bjakjlf",
-        //    "Bjkahd",
-        //    "Aabag",
-        //    "Aakayam",
-        //    "Ajakjlf",
-        //    "Ajkahd",
-        //    // Add more choices as needed
-        //};
 
         public FormAuditReports(DatabaseInitiator db)
         {
@@ -86,35 +70,52 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void FormAuditReports_Load(object sender, EventArgs e)
         {
+            reportTable.Columns.Add("ChapterID");
             reportTable.Columns.Add("Barangay");
             reportTable.Columns.Add("Score");
             //reportTable.Columns.Add("Auditor");
             //reportTable.Columns.Add("Date");
             dgv_Results.DataSource = reportTable;
 
-
             try
             {
-                foreach (var entry in ScoreList)
+                foreach (ChapterOverview entry in ScoreList)
                 {
-                    string chapterName = entry.Key;
-                    double? overallScore = entry.Value;
+                    int chapterid = entry.ChapterID;
+                    string? chapterName = entry.ChapterTitle;
+                    double? overallScore = entry.TotalScore;
+
 
                     // Add a new row to the DataGridView with ChapterName and OverallScore values
-                    reportTable.Rows.Add(chapterName, overallScore);
+                    reportTable.Rows.Add(chapterid, chapterName, overallScore);
+
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            dgv_Results.Columns[0].Visible = false;
         }
 
         private void Reportsdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string? barangay;
+            int? id = null;
+
+            if (dgv_Results.SelectedRows[0].Cells[0].Value.ToString() != null)
+            {
+                barangay = dgv_Results.SelectedRows[0].Cells[1].Value.ToString();
+                id = Convert.ToInt32(dgv_Results.SelectedRows[0].Cells[0].Value);
+            }
+            else
+            {
+                barangay = "Empty";
+            }
             // to be continued! HAHAHA
-            Form showForm = new Form();
-            showForm.ShowDialog();
+            prompt_ViewResultDetails details = new prompt_ViewResultDetails(id, barangay);
+            details.ShowDialog();
         }
 
         public void HandleData()
@@ -147,16 +148,32 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
                 double? overallScore = indScore + subIndScore;
 
-                string chapterName = group.FirstOrDefault()?.ChapterName;
+                string? chapterName = group.FirstOrDefault()?.ChapterName;
+                int chapterID = group.FirstOrDefault().ChapterID_fk;
+
+                ChapterOverview a = new ChapterOverview(chapterID, chapterName, overallScore);
 
                 if (!string.IsNullOrEmpty(chapterName))
                 {
-                    ScoreList[chapterName] = overallScore;
+                    ScoreList.Add(a);
                 }
             }
 
             // Now, overallScoresByChapterName dictionary contains the overall scores for each chapter, keyed by ChapterName
 
+        }
+    }
+
+    public class ChapterOverview
+    {
+        public int ChapterID { get; set; }
+        public string? ChapterTitle { get; set; }
+        public double? TotalScore { get; set; }
+        public ChapterOverview(int id, string? title, double? score)
+        {
+            ChapterID = id;
+            ChapterTitle = title;
+            TotalScore = score;
         }
     }
 }
