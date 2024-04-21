@@ -1,4 +1,5 @@
-﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+﻿using MySql.Data.MySqlClient;
+using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 {
     public partial class FormActionPlans : Form
     {
+        AdminPanel AP;
 
         readonly DataTable ActionPlanTable = new DataTable();
         readonly DataTable ChapterTable = new DataTable();
@@ -22,16 +24,23 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public List<mdl_SKChapters> _Chapters;
         public List<mdl_ScoreTable> _ScoreTable;
         public List<mdl_Categories> _Categories;
+        public List<mdl_ActionPlans> _ActionPlans;
+        bool APEntryExists;
+        DatabaseInitiator dbInit;
 
-        string? SelectedChapter, SelectedCategory;
+        string? SelectedChapter, SelectedCategory, existingAPd;
+        double? CategoryScore;
 
-        public FormActionPlans()
+        public FormActionPlans(AdminPanel pass_AP)
         {
+            AP = pass_AP;
             InitializeComponent();
             DSS = DataSharingService.GetInstance();
             _Chapters = DSS.GET_SKC();
             _ScoreTable = DSS.GET_ST();
             _Categories = DSS.GET_C();
+            _ActionPlans = DSS.GET_A();
+            dbInit = DSS.GetDatabase();
         }
 
         private void FormActionPlans_Load(object sender, EventArgs e)
@@ -103,8 +112,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public void eSelCat(object sender, DataGridViewCellEventArgs e)
         {
             SelectedCategory = Convert.ToString(dgv_CategorySelect.SelectedCells[0].Value);
-
+            CheckForExistingAP();
             ReloadAuditList();
+            CategoryScore = GetCategoryScore();
         }
 
         public void ReloadAuditList()
@@ -162,8 +172,202 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
 
+
+            ///////
+
+            try
+            {
+                CheckForExistingAP();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void CheckForExistingAP()
+        {
+            bool entryFound = false; // Flag to track if an existing entry is found
+
+            foreach (mdl_ActionPlans y in _ActionPlans)
+            {
+                // Checks if there's an existing entry
+                if (y.ChapterID_fk == Convert.ToInt32(SelectedChapter) &&
+                    y.CategoryID_fk == Convert.ToInt32(SelectedCategory))
+                {
+                    rtb_ActionPlanDetail.Text = y.ActionPlan;
+                    existingAPd = y.ActionPlan;
+                    APEntryExists = true;
+                    btn_SaveActionPlan.Enabled = false;
+
+                    entryFound = true; // Set flag to true once entry is found
+                    break; // Exit loop since entry is found
+                }
+            }
+
+            // Runs if no existing entry is found
+            if (!entryFound)
+            {
+                rtb_ActionPlanDetail.Text = null;
+                existingAPd = null;
+                APEntryExists = false;
+                btn_SaveActionPlan.Enabled = true;
+            }
+        }
+
+
+        private void rtb_ActionPlanDetail_TextChanged(object sender, EventArgs e)
+        {
+            if (rtb_ActionPlanDetail.Text == existingAPd)
+            {
+                btn_SaveActionPlan.Enabled = false;
+            }
+            else
+            {
+                btn_SaveActionPlan.Enabled = true;
+            }
+        }
+
+        private void btn_SaveActionPlan_Click(object sender, EventArgs e)
+        {
+            if (APEntryExists)
+            {
+                EditActionPlan();
+            }
+            else
+            {
+                AddActionPlan();
+            }
+
+            AP.PullActionPlans();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DeleteActionPlan(Convert.ToInt32(SelectedChapter), Convert.ToInt32(SelectedCategory));
+            AP.PullActionPlans();
+        }
+        public void EditActionPlan()
+        {
+            string query = "UPDATE actionplans SET ActionPlanDetails = @ActionPlanDetails WHERE ChapterID_fk = @ChapterID AND CategoryID_fk = @CategoryID";
+
+            using (MySqlConnection conn = dbInit.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ActionPlanDetails", rtb_ActionPlanDetail.Text);
+                        cmd.Parameters.AddWithValue("@ChapterID", SelectedChapter);
+                        cmd.Parameters.AddWithValue("@CategoryID", SelectedCategory);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        public void AddActionPlan()
+        {
+            string query = "INSERT INTO actionplans (ChapterID_fk, ChapterTitle, CategoryID_fk, CategoryTitle, CategoryScore, ActionPlanDetails) " +
+                           "VALUES (@ChapterID, @ChapterTitle, @CategoryID, @CategoryTitle, @CategoryScore, @ActionPlanDetails)";
+
+            string? chapter = dgv_ChapterSelect.SelectedCells[1].Value.ToString();
+            string? category = dgv_CategorySelect.SelectedCells[1].Value.ToString();
+
+            using (MySqlConnection conn = dbInit.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ChapterID", SelectedChapter);
+                        cmd.Parameters.AddWithValue("@ChapterTitle", chapter);
+                        cmd.Parameters.AddWithValue("@CategoryID", SelectedCategory);
+                        cmd.Parameters.AddWithValue("@CategoryTitle", category);
+                        cmd.Parameters.AddWithValue("@CategoryScore", CategoryScore);
+                        cmd.Parameters.AddWithValue("@ActionPlanDetails", rtb_ActionPlanDetail.Text);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        public void DeleteActionPlan(int chapterID, int categoryID)
+        {
+            string query = "DELETE FROM actionplans WHERE ChapterID_fk = @ChapterID AND CategoryID_fk = @CategoryID";
+
+            using (MySqlConnection conn = dbInit.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ChapterID", chapterID);
+                        cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    rtb_ActionPlanDetail.Text = null;
+                }
+            }
+        }
+
+
+        public double? GetCategoryScore()
+        {
+            var tally = _ScoreTable.Where(item => item.IsChecked)
+                                   .GroupBy(item => item.CategoryID_fk == Convert.ToUInt32(SelectedCategory));
+
+            double? overallscore = 0;
+
+            foreach (var group in tally)
+            {
+                double? indScore = 0;
+                double? subIndScore = 0;
+
+                foreach (var item in group)
+                {
+                    if (item.ItemChecked == "IND")
+                    {
+                        indScore += item.IND_ScoreValue;
+
+                        var subIndItem = group.FirstOrDefault(subItem => subItem.ItemChecked == "SUBIND" && subItem.SubIndicatorID_fk == item.SubIndicatorID_fk);
+                        if (subIndItem != null)
+                        {
+                            subIndScore += subIndItem.SUBIND_ScoreValue;
+                        }
+                    }
+                    else if (item.ItemChecked == "SUBIND")
+                    {
+                        subIndScore += item.SUBIND_ScoreValue;
+                    }
+                }
+
+                overallscore = indScore + subIndScore;
+
+            }
+
+            return overallscore;
         }
     }
 }

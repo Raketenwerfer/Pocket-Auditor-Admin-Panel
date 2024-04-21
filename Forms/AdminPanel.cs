@@ -33,6 +33,7 @@ namespace Pocket_Auditor_Admin_Panel
 
         public List<mdl_ScoreTable> _ScoreTable = new List<mdl_ScoreTable>();
         public List<mdl_SKChapters> _Chapters = new List<mdl_SKChapters>();
+        public List<mdl_ActionPlans> _ActionPlans = new List<mdl_ActionPlans>();
 
         public int InitCategory;
 
@@ -45,7 +46,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitDatabase();
 
             frmAuditReports = new FormAuditReports(dbInit);
-            frmActionPlans = new FormActionPlans();
+            frmActionPlans = new FormActionPlans(this);
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
@@ -78,6 +79,7 @@ namespace Pocket_Auditor_Admin_Panel
                 PullAssociate_ISC();
                 PullScoreTable();
                 PullChapters();
+                PullActionPlans();
 
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -704,6 +706,51 @@ namespace Pocket_Auditor_Admin_Panel
             finally
             {
                 DSS.SET_SKC(_Chapters);
+                conn.Close();
+            }
+        }
+
+
+        public void PullActionPlans()
+        {
+            _ActionPlans.Clear();
+
+            string query = "SELECT * FROM actionplans";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader read = cmd.ExecuteReader())
+                    {
+                        while (read.Read())
+                        {
+                            int id = read.GetInt32(read.GetOrdinal("ActionPlanID"));
+                            int chapter_id = read.GetInt32(read.GetOrdinal("ChapterID_fk"));
+                            string chapter_title = read.GetString(read.GetOrdinal("ChapterTitle"));
+                            int cat_id = read.GetInt32(read.GetOrdinal("CategoryID_fk"));
+                            string category_title = read.GetString(read.GetOrdinal("CategoryTitle"));
+                            double category_score = read.GetDouble(read.GetOrdinal("CategoryScore"));
+                            string actionplan = read.GetString(read.GetOrdinal("ActionPlanDetails"));
+
+                            mdl_ActionPlans a = new mdl_ActionPlans(id, chapter_id, chapter_title,
+                                cat_id, category_title, category_score,actionplan);
+                            _ActionPlans.Add(a);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DSS.SET_A(_ActionPlans);
                 conn.Close();
             }
         }
