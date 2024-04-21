@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,89 +14,156 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 {
     public partial class FormActionPlans : Form
     {
+
         readonly DataTable ActionPlanTable = new DataTable();
-        int index;
+        readonly DataTable ChapterTable = new DataTable();
+        readonly DataTable CategoryTable = new DataTable();
+        public DataSharingService DSS;
+        public List<mdl_SKChapters> _Chapters;
+        public List<mdl_ScoreTable> _ScoreTable;
+        public List<mdl_Categories> _Categories;
+
+        string? SelectedChapter, SelectedCategory;
 
         public FormActionPlans()
         {
             InitializeComponent();
+            DSS = DataSharingService.GetInstance();
+            _Chapters = DSS.GET_SKC();
+            _ScoreTable = DSS.GET_ST();
+            _Categories = DSS.GET_C();
         }
 
         private void FormActionPlans_Load(object sender, EventArgs e)
         {
-            HideControls();
-
-            ActionPlanTable.Columns.Add("Plan Name");
-            ActionPlanTable.Columns.Add("Plan Details");
-            ActionPlanTable.Columns.Add("Plan Type");
-            APlandgv.DataSource = ActionPlanTable;
+            InitChapterList();
+            InitCategoryList();
+            InitAuditList();
         }
 
-        private void btnA_Insert_Click(object sender, EventArgs e)
+        public void InitChapterList()
         {
-            if (string.IsNullOrEmpty(txtPlanName.Text) || string.IsNullOrEmpty(txtPlanDetails.Text) ||
-                string.IsNullOrEmpty(cbxAPlanType.Text))
+            ChapterTable.Columns.Add("ChapterID");
+            ChapterTable.Columns.Add("Barangay");
+
+            try
             {
-                MessageBox.Show("Please select and input a data.");
-                return;
+                foreach (mdl_SKChapters x in _Chapters)
+                {
+                    ChapterTable.Rows.Add(x.ChapterID, x.Barangay);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            ActionPlanTable.Rows.Add(txtPlanName.Text, txtPlanDetails.Text, cbxAPlanType.Text);
-            ClearEntry();
-            ShowControls();
+            dgv_ChapterSelect.DataSource = ChapterTable;
+            dgv_ChapterSelect.Columns[0].Visible = false;
         }
 
-
-
-        private void ClearEntry()
+        public void InitCategoryList()
         {
-            txtPlanName.Clear();
-            txtPlanDetails.Clear();
-            cbxAPlanType.SelectedItem = null;
+            CategoryTable.Columns.Add("CategoryID");
+            CategoryTable.Columns.Add("Category");
+
+            try
+            {
+                foreach (mdl_Categories x in _Categories)
+                {
+                    CategoryTable.Rows.Add(x.CategoryID, x.CategoryTitle);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            dgv_CategorySelect.DataSource = CategoryTable;
+            dgv_CategorySelect.Columns[0].Visible = false;
         }
 
-        private void ShowControls()
+        public void InitAuditList()
         {
-            btnA_Delete.Show();
-            btnA_Update.Show();
+            ActionPlanTable.Columns.Add("Sub-Category");
+            ActionPlanTable.Columns.Add("Indicator");
+            ActionPlanTable.Columns.Add("Sub-Indicator");
+            ActionPlanTable.Columns.Add("Remarks");
+
+            dgv_SelectedChapterAuditResults.DataSource = ActionPlanTable;
         }
 
-        private void HideControls()
+        public void eSelChap(object sender, DataGridViewCellEventArgs e)
         {
-            btnA_Delete.Hide();
-            btnA_Update.Hide();
+            SelectedChapter = Convert.ToString(dgv_ChapterSelect.SelectedCells[0].Value);
+
+            ReloadAuditList();
         }
 
-        private void btnA_Update_Click(object sender, EventArgs e)
+        public void eSelCat(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow newData = APlandgv.Rows[index];
+            SelectedCategory = Convert.ToString(dgv_CategorySelect.SelectedCells[0].Value);
 
-            newData.Cells[0].Value = txtPlanName.Text;
-            newData.Cells[1].Value = txtPlanDetails.Text;
-            newData.Cells[2].Value = cbxAPlanType.Text;
-
-            ClearEntry();
+            ReloadAuditList();
         }
 
-        private void APlandgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void ReloadAuditList()
         {
-            index = e.RowIndex;
-            DataGridViewRow row = APlandgv.Rows[index];
-
-            txtPlanName.Text = row.Cells[0].Value.ToString();
-            txtPlanDetails.Text = row.Cells[1].Value.ToString();
-            cbxAPlanType.Text = row.Cells[2].Value.ToString();
+            if (SelectedCategory != null && SelectedChapter != null)
+            {
+                LoadAuditList();
+            }
         }
 
-        private void btnA_Delete_Click(object sender, EventArgs e)
+        public void LoadAuditList()
         {
+            ActionPlanTable.Clear();
 
-            index = APlandgv.CurrentCell.RowIndex;
-            APlandgv.Rows.RemoveAt(index);
+            try
+            {
+                foreach (mdl_ScoreTable x in _ScoreTable)
+                {
+                    string? itemresponse = null;
 
-            MessageBox.Show("Data Successfully Deleted!");
+                    if (x.Remarks == null)
+                    {
+                        if (x.IsChecked == true)
+                        {
+                            if (x.ItemChecked == "IND")
+                            {
+                                itemresponse = "YES - [1]";
+                            }
+                            if (x.ItemChecked == "SUBIND")
+                            {
+                                itemresponse = "YES - [0.5]";
+                            }
+                        }
 
-            ClearEntry();
+                        if (x.IsChecked == false)
+                        {
+                            itemresponse = "NO";
+                        }
+                    }
+                    else
+                    {
+                        itemresponse = x.Remarks;
+                    }
+
+                    if (SelectedCategory == x.CategoryID_fk.ToString() &&
+                        SelectedChapter == x.ChapterID_fk.ToString())
+                    {
+                        ActionPlanTable.Rows.Add(
+                            x.SubCategoryTitle,
+                            x.Indicator,
+                            x.SubIndicator,
+                            itemresponse);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
         }
     }
 }

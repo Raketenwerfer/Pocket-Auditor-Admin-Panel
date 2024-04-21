@@ -44,6 +44,14 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             dgv_table_ResultsDetails.Columns[8].DefaultCellStyle.BackColor = Color.Khaki;
             dgv_table_ResultsDetails.Columns[8].DefaultCellStyle.SelectionForeColor = Color.Black;
             dgv_table_ResultsDetails.Columns[8].DefaultCellStyle.SelectionBackColor = Color.Gold;
+
+            dgv_table_ResultsDetails.Columns[5].DefaultCellStyle.BackColor = Color.DarkKhaki;
+            dgv_table_ResultsDetails.Columns[5].DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv_table_ResultsDetails.Columns[5].DefaultCellStyle.SelectionBackColor = Color.PaleGoldenrod;
+
+            dgv_table_ResultsDetails.Columns[7].DefaultCellStyle.BackColor = Color.DarkKhaki;
+            dgv_table_ResultsDetails.Columns[7].DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv_table_ResultsDetails.Columns[7].DefaultCellStyle.SelectionBackColor = Color.PaleGoldenrod;
         }
         public void HandleData()
         {

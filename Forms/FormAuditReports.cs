@@ -97,6 +97,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
 
             dgv_Results.Columns[0].Visible = false;
+            dgv_Results.ColumnHeadersVisible = false;
         }
 
         private void Reportsdgv_CellContentClick(object sender, DataGridViewCellEventArgs e)

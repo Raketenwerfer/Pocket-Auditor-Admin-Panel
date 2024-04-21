@@ -16,7 +16,7 @@ namespace Pocket_Auditor_Admin_Panel
         //readonly FormAuditForm frmAuditForm;
         readonly FormCategorySelect frmCateSel;
         //readonly CDisplay_ISI cDisplayISI;
-        readonly FormActionPlans frmActionPlans = new FormActionPlans();
+        readonly FormActionPlans frmActionPlans;
         readonly FormAuditReports frmAuditReports;
         readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
 
@@ -32,6 +32,7 @@ namespace Pocket_Auditor_Admin_Panel
         public List<jmdl_IndicatorSubCat> _jmISC = new List<jmdl_IndicatorSubCat>();
 
         public List<mdl_ScoreTable> _ScoreTable = new List<mdl_ScoreTable>();
+        public List<mdl_SKChapters> _Chapters = new List<mdl_SKChapters>();
 
         public int InitCategory;
 
@@ -44,6 +45,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitDatabase();
 
             frmAuditReports = new FormAuditReports(dbInit);
+            frmActionPlans = new FormActionPlans();
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
@@ -75,6 +77,7 @@ namespace Pocket_Auditor_Admin_Panel
                 PullAssociate_CSC();
                 PullAssociate_ISC();
                 PullScoreTable();
+                PullChapters();
 
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -222,6 +225,7 @@ namespace Pocket_Auditor_Admin_Panel
             finally
             {
                 // The most important part! This closes the connection so another connection can be opened
+                DSS.SET_C(_Categories);
                 conn.Close();
             }
         }
@@ -665,6 +669,46 @@ namespace Pocket_Auditor_Admin_Panel
                 conn.Close();
             }
         }
+
+        public void PullChapters()
+        {
+            _Chapters.Clear();
+
+            string query = "SELECT * FROM skchapters";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader read = cmd.ExecuteReader())
+                    {
+                        while (read.Read())
+                        {
+                            int id = read.GetInt32(read.GetOrdinal("ChapterID"));
+                            string chapter = read.GetString(read.GetOrdinal("Barangay"));
+
+                            mdl_SKChapters a = new mdl_SKChapters(id, chapter);
+                            _Chapters.Add(a);
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DSS.SET_SKC(_Chapters);
+                conn.Close();
+            }
+        }
+
+
         #endregion
     }
 }
