@@ -57,7 +57,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             try
             {
-                foreach (mdl_SKChapters x in _Chapters)
+                foreach (mdl_SKChapters x in _Chapters.Where(x => x.hasFinishedAudit.Equals(true)))
                 {
                     ChapterTable.Rows.Add(x.ChapterID, x.Barangay);
                 }

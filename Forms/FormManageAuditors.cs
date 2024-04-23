@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pocket_Auditor_Admin_Panel.Auxiliaries;
+using Pocket_Auditor_Admin_Panel.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +15,17 @@ namespace Pocket_Auditor_Admin_Panel.Forms
     public partial class FormManageAuditors : Form
     {
         readonly DataTable UserTable = new DataTable();
+        DataSharingService DSS;
+        AdminPanel AP;
+        List<mdl_Users> _Users;
         int index;
 
-        public FormManageAuditors()
+        public FormManageAuditors(AdminPanel aP)
         {
+            DSS = DataSharingService.GetInstance();
+            _Users = DSS.GET_U();
             InitializeComponent();
+            AP = aP;
         }
 
         private void FormManageAuditors_Load(object sender, EventArgs e)

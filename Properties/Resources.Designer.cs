@@ -73,6 +73,106 @@ namespace Pocket_Auditor_Admin_Panel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ActionPlanBlack {
+            get {
+                object obj = ResourceManager.GetObject("ActionPlanBlack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ActionPlanWhite {
+            get {
+                object obj = ResourceManager.GetObject("ActionPlanWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddUser_x256 {
+            get {
+                object obj = ResourceManager.GetObject("AddUser x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddUser_x32 {
+            get {
+                object obj = ResourceManager.GetObject("AddUser x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AuditFormBlack {
+            get {
+                object obj = ResourceManager.GetObject("AuditFormBlack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AuditFormWhite {
+            get {
+                object obj = ResourceManager.GetObject("AuditFormWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AuditReportsBlack {
+            get {
+                object obj = ResourceManager.GetObject("AuditReportsBlack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AuditReportsWhite {
+            get {
+                object obj = ResourceManager.GetObject("AuditReportsWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChapterList_x256 {
+            get {
+                object obj = ResourceManager.GetObject("ChapterList x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChapterList_x32 {
+            get {
+                object obj = ResourceManager.GetObject("ChapterList x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_new_20 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-new-20", resourceCulture);
@@ -206,6 +306,26 @@ namespace Pocket_Auditor_Admin_Panel.Properties {
         internal static System.Drawing.Bitmap icons8_what_i_do_32__2_ {
             get {
                 object obj = ResourceManager.GetObject("icons8-what-i-do-32 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Restart_x256 {
+            get {
+                object obj = ResourceManager.GetObject("Restart x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Restart_x32 {
+            get {
+                object obj = ResourceManager.GetObject("Restart x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

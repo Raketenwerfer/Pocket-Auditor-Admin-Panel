@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Pocket_Auditor_Admin_Panel.Auxiliaries;
 using Pocket_Auditor_Admin_Panel.Classes;
+using Pocket_Auditor_Admin_Panel.Prompts;
 
 namespace Pocket_Auditor_Admin_Panel
 {
@@ -12,13 +13,13 @@ namespace Pocket_Auditor_Admin_Panel
         public DataSharingService DSS = new DataSharingService();
         // Online Database credentials "sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN"
 
-        readonly FormDashboard frmDashboard = new FormDashboard();
+        readonly FormDashboard frmDashboard;
         //readonly FormAuditForm frmAuditForm;
         readonly FormCategorySelect frmCateSel;
         //readonly CDisplay_ISI cDisplayISI;
         readonly FormActionPlans frmActionPlans;
         readonly FormAuditReports frmAuditReports;
-        readonly FormManageAuditors frmManageAuditors = new FormManageAuditors();
+        readonly FormManageAuditors frmManageAuditors;
 
 
         public List<mdl_Categories> _Categories = new List<mdl_Categories>();
@@ -34,6 +35,7 @@ namespace Pocket_Auditor_Admin_Panel
         public List<mdl_ScoreTable> _ScoreTable = new List<mdl_ScoreTable>();
         public List<mdl_SKChapters> _Chapters = new List<mdl_SKChapters>();
         public List<mdl_ActionPlans> _ActionPlans = new List<mdl_ActionPlans>();
+        public List<mdl_Users> _Users = new List<mdl_Users>();
 
         public int InitCategory;
 
@@ -45,13 +47,17 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
+            frmDashboard = new FormDashboard(this);
             frmAuditReports = new FormAuditReports(dbInit);
             frmActionPlans = new FormActionPlans(this);
+            frmManageAuditors = new FormManageAuditors(this);
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
             //    _SubIndicators, _jmISI, _jmCI, this);
-            
+
+            InitDashboard();
+
             try
             {
                 InitCategory = _Categories[0].CategoryID;
@@ -111,7 +117,8 @@ namespace Pocket_Auditor_Admin_Panel
             }
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
+        #region UI Controls
+        public void InitDashboard()
         {
             frmDashboard.TopLevel = false;
             frmDashboard.TopMost = true;
@@ -120,7 +127,12 @@ namespace Pocket_Auditor_Admin_Panel
             frmDashboard.Show();
         }
 
-        private void btnAuditForm_Click(object sender, EventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            InitDashboard();
+        }
+
+        public void btnAuditForm_Click(object sender, EventArgs e)
         {
             frmCateSel.TopLevel = false;
             frmCateSel.TopMost = true;
@@ -130,7 +142,7 @@ namespace Pocket_Auditor_Admin_Panel
             frmCateSel.Show();
         }
 
-        private void btnActionPlans_Click(object sender, EventArgs e)
+        public void btnActionPlans_Click(object sender, EventArgs e)
         {
             frmActionPlans.TopLevel = false;
             frmActionPlans.TopMost = true;
@@ -140,7 +152,7 @@ namespace Pocket_Auditor_Admin_Panel
             frmActionPlans.Show();
         }
 
-        private void btnAuditReports_Click(object sender, EventArgs e)
+        public void btnAuditReports_Click(object sender, EventArgs e)
         {
             frmAuditReports.TopLevel = false;
             frmAuditReports.TopMost = true;
@@ -163,9 +175,14 @@ namespace Pocket_Auditor_Admin_Panel
         private void AdminPanel_Load(object sender, EventArgs e)
         {
         }
+        #endregion
 
 
-
+        public void ShowUserControlsPrompt(string type)
+        {
+            prompt_ECUser pEC = new prompt_ECUser(type, null, this);
+            pEC.ShowDialog();
+        }
 
 
         #region Pull Data
@@ -692,8 +709,9 @@ namespace Pocket_Auditor_Admin_Panel
                         {
                             int id = read.GetInt32(read.GetOrdinal("ChapterID"));
                             string chapter = read.GetString(read.GetOrdinal("Barangay"));
+                            bool isdone = read.GetBoolean(read.GetOrdinal("hasFinishedAudit"));
 
-                            mdl_SKChapters a = new mdl_SKChapters(id, chapter);
+                            mdl_SKChapters a = new mdl_SKChapters(id, chapter, isdone);
                             _Chapters.Add(a);
                         }
                     }
@@ -709,7 +727,6 @@ namespace Pocket_Auditor_Admin_Panel
                 conn.Close();
             }
         }
-
 
         public void PullActionPlans()
         {
@@ -754,7 +771,46 @@ namespace Pocket_Auditor_Admin_Panel
                 conn.Close();
             }
         }
+        public void PullUsers()
+        {
+            _Users.Clear();
 
+            string query = "SELECT * FROM users";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader read = cmd.ExecuteReader())
+                    {
+                        while (read.Read())
+                        {
+                            int id = read.GetInt32(read.GetOrdinal("UserID"));
+                            string username = read.GetString(read.GetOrdinal("Username"));
+                            string password = read.GetString(read.GetOrdinal("Password"));
+                            string type = read.GetString(read.GetOrdinal("UerType"));
+                            string status = read.GetString(read.GetOrdinal("UserStatus"));
+
+                            mdl_Users a = new mdl_Users(id, username, password, type, status);
+                            _Users.Add(a);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DSS.SET_U(_Users);
+                conn.Close();
+            }
+        }
 
         #endregion
     }

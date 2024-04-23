@@ -15,6 +15,7 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
         private List<mdl_SKChapters> SKC_HOLDER;
         private List<mdl_Categories> C_HOLDER;
         private List<mdl_ActionPlans> A_HOLDER;
+        private List<mdl_Users> U_HOLDER;
 
         public DataSharingService()
         {
@@ -81,6 +82,17 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
         public List<mdl_ActionPlans> GET_A()
         {
             return A_HOLDER;
+        }
+
+
+        public void SET_U(List<mdl_Users> list)
+        {
+            U_HOLDER = list;
+        }
+
+        public List<mdl_Users> GET_U()
+        {
+            return U_HOLDER;
         }
     }
 }
