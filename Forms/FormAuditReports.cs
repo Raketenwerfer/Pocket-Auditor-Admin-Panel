@@ -20,15 +20,17 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public DatabaseInitiator dbInit;
         List<mdl_ScoreTable> _ScoreTable;
         public List<ChapterOverview> ScoreList = new List<ChapterOverview>();
+        AdminPanel AP;
 
         DataTable reportTable = new DataTable();
 
-        public FormAuditReports(DatabaseInitiator db)
+        public FormAuditReports(DatabaseInitiator db, AdminPanel passAP)
         {
             InitializeComponent();
             DSS = DataSharingService.GetInstance();
             dbInit = db;
             _ScoreTable = DSS.GET_ST();
+            AP = passAP;
 
             HandleData();
         }
@@ -128,10 +130,100 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             // Now, overallScoresByChapterName dictionary contains the overall scores for each chapter, keyed by ChapterName
 
         }
+        public void DeleteEntry()
+        {
+            string query = "DELETE FROM scoretable WHERE chapterid_fk = @chapter_id";
+            string update = "UPDATE skchapters SET hasFinishedAudit = 0 WHERE chapterid = @chapter_id";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@chapter_id", Convert.ToInt32(dgv_Results.SelectedCells[0].Value));
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(update, conn))
+                {
+                    cmd.Parameters.AddWithValue("@chapter_id", Convert.ToInt32(dgv_Results.SelectedCells[0].Value));
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                MessageBox.Show("Report has been removed!");
+                conn.Close();
+                AP.PullScoreTable();
+                HandleData();
+            }
+        }
+
+        public void EmptyTable()
+        {
+            string query = "DELETE FROM scoretable";
+            string update = "UPDATE skchapters SET hasFinishedAudit = 0";
+
+            MySqlConnection conn = dbInit.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                using (MySqlCommand cmd = new MySqlCommand(update, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                MessageBox.Show("All reports have been removed!");
+                conn.Close();
+                AP.PullScoreTable();
+                HandleData();
+            }
+
+        }
 
         private void FormAuditReports_Leave(object sender, EventArgs e)
         {
             Close();
+            dgv_Results.Refresh();
+        }
+
+        private void btn_DeleteEntry_Click(object sender, EventArgs e)
+        {
+            DeleteEntry();
+        }
+
+        private void btn_ResetEntries_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete all reports? This cannot be undone!", 
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                EmptyTable();
+                dgv_Results.Refresh();
+            }
         }
     }
 

@@ -173,6 +173,26 @@ namespace Pocket_Auditor_Admin_Panel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Delete_x32 {
+            get {
+                object obj = ResourceManager.GetObject("Delete x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Export_x32 {
+            get {
+                object obj = ResourceManager.GetObject("Export x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_new_20 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-new-20", resourceCulture);

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             label1 = new Label();
             dgv_ChapterSelect = new DataGridView();
             dgv_SelectedChapterAuditResults = new DataGridView();
@@ -44,10 +44,15 @@
             rtb_ActionPlanDetail = new RichTextBox();
             label5 = new Label();
             btn_SaveActionPlan = new Button();
-            button1 = new Button();
+            btn_Delete = new Button();
+            btn_pnl_Export = new Panel();
+            btn_lbl_Export = new Label();
+            btn_pb_Export = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgv_ChapterSelect).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_SelectedChapterAuditResults).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_CategorySelect).BeginInit();
+            btn_pnl_Export.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btn_pb_Export).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -71,14 +76,14 @@
             dgv_ChapterSelect.BackgroundColor = Color.White;
             dgv_ChapterSelect.BorderStyle = BorderStyle.None;
             dgv_ChapterSelect.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(1, 188, 22);
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(1, 188, 22);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgv_ChapterSelect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgv_ChapterSelect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgv_ChapterSelect.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_ChapterSelect.ColumnHeadersVisible = false;
             dgv_ChapterSelect.EnableHeadersVisualStyles = false;
@@ -87,13 +92,13 @@
             dgv_ChapterSelect.Name = "dgv_ChapterSelect";
             dgv_ChapterSelect.ReadOnly = true;
             dgv_ChapterSelect.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.LightGray;
-            dataGridViewCellStyle2.ForeColor = Color.Gray;
-            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_ChapterSelect.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.LightGray;
+            dataGridViewCellStyle8.ForeColor = Color.Gray;
+            dataGridViewCellStyle8.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dgv_ChapterSelect.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgv_ChapterSelect.RowTemplate.Height = 25;
             dgv_ChapterSelect.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_ChapterSelect.Size = new Size(159, 262);
@@ -112,14 +117,14 @@
             dgv_SelectedChapterAuditResults.BackgroundColor = Color.White;
             dgv_SelectedChapterAuditResults.BorderStyle = BorderStyle.None;
             dgv_SelectedChapterAuditResults.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(1, 188, 22);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(1, 188, 22);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgv_SelectedChapterAuditResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgv_SelectedChapterAuditResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgv_SelectedChapterAuditResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_SelectedChapterAuditResults.EnableHeadersVisualStyles = false;
             dgv_SelectedChapterAuditResults.Location = new Point(359, 96);
@@ -127,13 +132,13 @@
             dgv_SelectedChapterAuditResults.Name = "dgv_SelectedChapterAuditResults";
             dgv_SelectedChapterAuditResults.ReadOnly = true;
             dgv_SelectedChapterAuditResults.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.Gainsboro;
-            dataGridViewCellStyle4.ForeColor = Color.DimGray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgv_SelectedChapterAuditResults.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle10.ForeColor = Color.DimGray;
+            dataGridViewCellStyle10.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgv_SelectedChapterAuditResults.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dgv_SelectedChapterAuditResults.RowTemplate.Height = 25;
             dgv_SelectedChapterAuditResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_SelectedChapterAuditResults.Size = new Size(621, 262);
@@ -158,14 +163,14 @@
             dgv_CategorySelect.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dgv_CategorySelect.BackgroundColor = Color.White;
             dgv_CategorySelect.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(1, 188, 22);
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(1, 188, 22);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgv_CategorySelect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle11.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dgv_CategorySelect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dgv_CategorySelect.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_CategorySelect.ColumnHeadersVisible = false;
             dgv_CategorySelect.EnableHeadersVisualStyles = false;
@@ -174,13 +179,13 @@
             dgv_CategorySelect.Name = "dgv_CategorySelect";
             dgv_CategorySelect.ReadOnly = true;
             dgv_CategorySelect.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.LightGray;
-            dataGridViewCellStyle6.ForeColor = Color.Gray;
-            dataGridViewCellStyle6.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgv_CategorySelect.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = Color.LightGray;
+            dataGridViewCellStyle12.ForeColor = Color.Gray;
+            dataGridViewCellStyle12.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgv_CategorySelect.RowsDefaultCellStyle = dataGridViewCellStyle12;
             dgv_CategorySelect.RowTemplate.Height = 32;
             dgv_CategorySelect.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_CategorySelect.Size = new Size(188, 262);
@@ -236,25 +241,64 @@
             btn_SaveActionPlan.UseVisualStyleBackColor = false;
             btn_SaveActionPlan.Click += btn_SaveActionPlan_Click;
             // 
-            // button1
+            // btn_Delete
             // 
-            button1.BackColor = Color.IndianRed;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(818, 431);
-            button1.Name = "button1";
-            button1.Size = new Size(154, 32);
-            button1.TabIndex = 25;
-            button1.Text = "DELETE";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btn_Delete.BackColor = Color.IndianRed;
+            btn_Delete.FlatAppearance.BorderSize = 0;
+            btn_Delete.FlatStyle = FlatStyle.Flat;
+            btn_Delete.Location = new Point(818, 431);
+            btn_Delete.Name = "btn_Delete";
+            btn_Delete.Size = new Size(154, 32);
+            btn_Delete.TabIndex = 25;
+            btn_Delete.Text = "DELETE";
+            btn_Delete.UseVisualStyleBackColor = false;
+            btn_Delete.Click += button1_Click;
+            // 
+            // btn_pnl_Export
+            // 
+            btn_pnl_Export.BackColor = Color.Transparent;
+            btn_pnl_Export.Controls.Add(btn_lbl_Export);
+            btn_pnl_Export.Controls.Add(btn_pb_Export);
+            btn_pnl_Export.Location = new Point(818, 587);
+            btn_pnl_Export.Name = "btn_pnl_Export";
+            btn_pnl_Export.Size = new Size(154, 32);
+            btn_pnl_Export.TabIndex = 26;
+            btn_pnl_Export.Click += PressExport;
+            btn_pnl_Export.MouseEnter += MOExport;
+            btn_pnl_Export.MouseLeave += MLExport;
+            // 
+            // btn_lbl_Export
+            // 
+            btn_lbl_Export.AutoSize = true;
+            btn_lbl_Export.Font = new Font("HP Simplified Light", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_lbl_Export.Location = new Point(41, 6);
+            btn_lbl_Export.Name = "btn_lbl_Export";
+            btn_lbl_Export.Size = new Size(99, 19);
+            btn_lbl_Export.TabIndex = 28;
+            btn_lbl_Export.Text = "Export to PDF";
+            btn_lbl_Export.Click += PressExport;
+            btn_lbl_Export.MouseEnter += MOExport;
+            btn_lbl_Export.MouseLeave += MLExport;
+            // 
+            // btn_pb_Export
+            // 
+            btn_pb_Export.Image = Properties.Resources.Export_x32;
+            btn_pb_Export.Location = new Point(0, 0);
+            btn_pb_Export.Name = "btn_pb_Export";
+            btn_pb_Export.Size = new Size(32, 32);
+            btn_pb_Export.TabIndex = 27;
+            btn_pb_Export.TabStop = false;
+            btn_pb_Export.Click += PressExport;
+            btn_pb_Export.MouseEnter += MOExport;
+            btn_pb_Export.MouseLeave += MLExport;
             // 
             // FormActionPlans
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 631);
-            Controls.Add(button1);
+            Controls.Add(btn_pnl_Export);
+            Controls.Add(btn_Delete);
             Controls.Add(btn_SaveActionPlan);
             Controls.Add(label5);
             Controls.Add(rtb_ActionPlanDetail);
@@ -270,11 +314,13 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormActionPlans";
             Text = "FormActionPlans";
-            Load += FormActionPlans_Load;
             Leave += FormActionPlans_Leave;
             ((System.ComponentModel.ISupportInitialize)dgv_ChapterSelect).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_SelectedChapterAuditResults).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_CategorySelect).EndInit();
+            btn_pnl_Export.ResumeLayout(false);
+            btn_pnl_Export.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btn_pb_Export).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -291,6 +337,9 @@
         private RichTextBox rtb_ActionPlanDetail;
         private Label label5;
         private Button btn_SaveActionPlan;
-        private Button button1;
+        private Button btn_Delete;
+        private Panel btn_pnl_Export;
+        private Label btn_lbl_Export;
+        private PictureBox btn_pb_Export;
     }
 }

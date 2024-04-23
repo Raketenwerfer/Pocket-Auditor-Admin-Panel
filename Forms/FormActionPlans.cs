@@ -20,6 +20,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         readonly DataTable ActionPlanTable = new DataTable();
         readonly DataTable ChapterTable = new DataTable();
         readonly DataTable CategoryTable = new DataTable();
+        readonly DataTable Export = new DataTable();
         public DataSharingService DSS;
         public List<mdl_SKChapters> _Chapters;
         public List<mdl_ScoreTable> _ScoreTable;
@@ -41,9 +42,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             _Categories = DSS.GET_C();
             _ActionPlans = DSS.GET_A();
             dbInit = DSS.GetDatabase();
+            LoadLists();
+
         }
 
-        private void FormActionPlans_Load(object sender, EventArgs e)
+        public void LoadLists()
         {
             InitChapterList();
             InitCategoryList();
@@ -373,6 +376,63 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         private void FormActionPlans_Leave(object sender, EventArgs e)
         {
             Close();
+        }
+
+
+
+        public void PressExport(object sender, EventArgs e)
+        {
+            MapDataForExport();
+
+            try
+            {
+                ExportService PDF = new ExportService();
+                // Show the SaveFileDialog
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the selected file path from SaveFileDialog
+                    string filePath = saveFileDialog.FileName;
+
+                    // Export the PDF with the selected file path
+                    PDF.ExportToPdf(filePath, Export);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                MessageBox.Show("Export finished!");
+            }
+
+        }
+        public void MOExport(object sender, EventArgs e)
+        {
+            btn_pnl_Export.BackColor = Color.DodgerBlue;
+        }
+        public void MLExport(object sender, EventArgs e)
+        {
+            btn_pnl_Export.BackColor = Color.Transparent;
+        }
+
+        public void MapDataForExport()
+        {
+            Export.Columns.Clear();
+
+            Export.Columns.Add("Chapter");
+            Export.Columns.Add("Category");
+            Export.Columns.Add("Score");
+            Export.Columns.Add("Action Plan");
+            foreach (mdl_ActionPlans x in _ActionPlans)
+            {
+                Export.Rows.Add(x.ChapterTitle, x.CategoryTitle, x.CategoryScore, x.ActionPlan);
+            }
         }
     }
 }

@@ -151,7 +151,7 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void btnAuditReports_Click(object sender, EventArgs e)
         {
-            FormAuditReports frmAuditReports = new FormAuditReports(dbInit);
+            FormAuditReports frmAuditReports = new FormAuditReports(dbInit, this);
             PullScoreTable();
             frmAuditReports.TopLevel = false;
             frmAuditReports.TopMost = true;
