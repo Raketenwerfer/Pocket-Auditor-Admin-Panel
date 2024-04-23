@@ -17,15 +17,16 @@ namespace Pocket_Auditor_Admin_Panel.Forms
     {
         AdminPanel AP;
 
-        readonly DataTable ActionPlanTable = new DataTable();
-        readonly DataTable ChapterTable = new DataTable();
-        readonly DataTable CategoryTable = new DataTable();
-        readonly DataTable Export = new DataTable();
+        public DataTable ActionPlanTable = new DataTable();
+        public DataTable ChapterTable = new DataTable();
+        public DataTable CategoryTable = new DataTable();
+        public DataTable Export = new DataTable();
         public DataSharingService DSS;
         public List<mdl_SKChapters> _Chapters;
         public List<mdl_ScoreTable> _ScoreTable;
         public List<mdl_Categories> _Categories;
         public List<mdl_ActionPlans> _ActionPlans;
+        List<CategoryScore> CS = new List<CategoryScore>();
         bool APEntryExists;
         DatabaseInitiator dbInit;
 
@@ -42,6 +43,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             _Categories = DSS.GET_C();
             _ActionPlans = DSS.GET_A();
             dbInit = DSS.GetDatabase();
+            CS = CalculateCategoryScores(_ScoreTable);
             LoadLists();
 
         }
@@ -55,6 +57,9 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         public void InitChapterList()
         {
+            ChapterTable.Columns.Clear();
+            ChapterTable.Rows.Clear();
+
             ChapterTable.Columns.Add("ChapterID");
             ChapterTable.Columns.Add("Barangay");
 
@@ -117,7 +122,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             SelectedCategory = Convert.ToString(dgv_CategorySelect.SelectedCells[0].Value);
             CheckForExistingAP();
             ReloadAuditList();
-            CategoryScore = GetCategoryScore();
         }
 
         public void ReloadAuditList()
@@ -291,14 +295,23 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@ChapterID", SelectedChapter);
-                        cmd.Parameters.AddWithValue("@ChapterTitle", chapter);
-                        cmd.Parameters.AddWithValue("@CategoryID", SelectedCategory);
-                        cmd.Parameters.AddWithValue("@CategoryTitle", category);
-                        cmd.Parameters.AddWithValue("@CategoryScore", CategoryScore);
-                        cmd.Parameters.AddWithValue("@ActionPlanDetails", rtb_ActionPlanDetail.Text);
+                        foreach (CategoryScore x in CS)
+                        {
+                            if (x.ChapterID == Convert.ToInt32(SelectedChapter) &&
+                                x.CategoryID == Convert.ToInt32(SelectedCategory))
+                            {
+                                cmd.Parameters.AddWithValue("@ChapterID", x.ChapterID);
+                                cmd.Parameters.AddWithValue("@ChapterTitle", chapter);
+                                cmd.Parameters.AddWithValue("@CategoryID", x.CategoryID);
+                                cmd.Parameters.AddWithValue("@CategoryTitle", category);
+                                cmd.Parameters.AddWithValue("@CategoryScore", x.TotalScore);
+                                cmd.Parameters.AddWithValue("@ActionPlanDetails", 
+                                    rtb_ActionPlanDetail.Text);
 
-                        cmd.ExecuteNonQuery();
+                                cmd.ExecuteNonQuery();
+                                break;
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -336,42 +349,42 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         }
 
 
-        public double? GetCategoryScore()
+        public List<CategoryScore> CalculateCategoryScores(List<mdl_ScoreTable> scoreTable)
         {
-            var tally = _ScoreTable.Where(item => item.IsChecked)
-                                   .GroupBy(item => item.CategoryID_fk == Convert.ToUInt32(SelectedCategory));
+            var categoryScores = new List<CategoryScore>();
 
-            double? overallscore = 0;
+            var groupedScores = scoreTable.Where(item => item.IsChecked)
+                                          .GroupBy(item => new { 
+                                              item.ChapterID_fk, 
+                                              item.ChapterName, 
+                                              item.CategoryID_fk,
+                                              item.CategoryTitle});
 
-            foreach (var group in tally)
+            foreach (var group in groupedScores)
             {
-                double? indScore = 0;
-                double? subIndScore = 0;
+                int chapterID = group.Key.ChapterID_fk;
+                string chap = group.Key.ChapterName;
+                int categoryID = group.Key.CategoryID_fk;
+                string cat = group.Key.CategoryTitle;
+                double totalScore = group.Sum(scoreTable => scoreTable.ItemChecked == "IND" ? scoreTable.IND_ScoreValue : (scoreTable.SUBIND_ScoreValue ?? 0));
 
-                foreach (var item in group)
+
+                categoryScores.Add(new CategoryScore
                 {
-                    if (item.ItemChecked == "IND")
-                    {
-                        indScore += item.IND_ScoreValue;
-
-                        var subIndItem = group.FirstOrDefault(subItem => subItem.ItemChecked == "SUBIND" && subItem.SubIndicatorID_fk == item.SubIndicatorID_fk);
-                        if (subIndItem != null)
-                        {
-                            subIndScore += subIndItem.SUBIND_ScoreValue;
-                        }
-                    }
-                    else if (item.ItemChecked == "SUBIND")
-                    {
-                        subIndScore += item.SUBIND_ScoreValue;
-                    }
-                }
-
-                overallscore = indScore + subIndScore;
-
+                    ChapterID = chapterID,
+                    Chapter = chap,
+                    CategoryID = categoryID,
+                    Category = cat,
+                    TotalScore = totalScore
+                });
             }
 
-            return overallscore;
+            return categoryScores.OrderBy(score => score.ChapterID)
+                                 .ThenBy(score => score.CategoryID)
+                                 //.ThenBy(score => score.SubCategoryID)
+                                 .ToList();
         }
+
 
         private void FormActionPlans_Leave(object sender, EventArgs e)
         {
@@ -386,7 +399,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             try
             {
-                ExportService PDF = new ExportService();
+                //ExportService PDF = new ExportService();
                 // Show the SaveFileDialog
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
@@ -399,7 +412,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     string filePath = saveFileDialog.FileName;
 
                     // Export the PDF with the selected file path
-                    PDF.ExportToPdf(filePath, Export);
+                    ExportService.ExportToPdf(filePath, Export);
                 }
             }
             catch (Exception ex)
@@ -424,15 +437,35 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public void MapDataForExport()
         {
             Export.Columns.Clear();
+            Export.Rows.Clear();
 
             Export.Columns.Add("Chapter");
             Export.Columns.Add("Category");
+            //Export.Columns.Add("Sub-Category");
             Export.Columns.Add("Score");
             Export.Columns.Add("Action Plan");
-            foreach (mdl_ActionPlans x in _ActionPlans)
+
+
+            AP.PullActionPlans();
+            foreach (CategoryScore y in CS)
             {
-                Export.Rows.Add(x.ChapterTitle, x.CategoryTitle, x.CategoryScore, x.ActionPlan);
+                foreach (mdl_ActionPlans ap in _ActionPlans)
+                {
+                    if (ap.ChapterID_fk == y.ChapterID && ap.CategoryID_fk == y.CategoryID)
+                    {
+                        Export.Rows.Add(y.Chapter, y.Category, /*y.SubCategoryTitle*/ y.TotalScore, ap.ActionPlan);
+                    }
+                }
             }
         }
     }
+    public class CategoryScore
+    {
+        public int ChapterID { get; set; }
+        public string Chapter { get; set; }
+        public int CategoryID { get; set; }
+        public string Category { get; set; }
+        public double TotalScore { get; set; }
+    }
+
 }
