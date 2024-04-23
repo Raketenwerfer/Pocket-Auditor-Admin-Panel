@@ -36,6 +36,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             InitializeComponent();
 
             _Users = DSS.GET_U();
+            cbox_UserType.SelectedIndex = 0;
 
             InitPrompt();
         }
@@ -81,19 +82,15 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 EditUser();
             }
-            AP.PullUsers();
+            Close();
         }
         public void PressAlt(object sender, EventArgs e)
         {
-            if (process_type == "create")
-            {
-                this.Close();
-            }
-            else if (process_type == "edit")
+            if (process_type == "edit")
             {
                 DeleteUser();
             }
-            AP.PullUsers();
+            Close();
         }
 
 
@@ -123,7 +120,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             }
             finally
             {
+                MessageBox.Show("User successfully created!");
                 conn.Close();
+                AP.PullUsers();
             }
         }
         public void EditUser()
@@ -153,7 +152,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             }
             finally
             {
+                MessageBox.Show("Changes saved successfully!");
                 conn.Close();
+                AP.PullUsers();
             }
         }
         public void DeleteUser()
@@ -179,7 +180,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             }
             finally
             {
+                MessageBox.Show("Selected user has been removed!");
                 conn.Close();
+                AP.PullUsers();
             }
         }
 

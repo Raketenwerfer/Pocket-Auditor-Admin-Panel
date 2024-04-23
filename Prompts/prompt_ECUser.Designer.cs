@@ -115,6 +115,7 @@
             btn_Accept.TabIndex = 7;
             btn_Accept.Text = "button1";
             btn_Accept.UseVisualStyleBackColor = true;
+            btn_Accept.Click += PressAccept;
             // 
             // btn_Alt
             // 
@@ -125,6 +126,7 @@
             btn_Alt.TabIndex = 8;
             btn_Alt.Text = "button1";
             btn_Alt.UseVisualStyleBackColor = true;
+            btn_Alt.Click += PressAlt;
             // 
             // prompt_ECUser
             // 

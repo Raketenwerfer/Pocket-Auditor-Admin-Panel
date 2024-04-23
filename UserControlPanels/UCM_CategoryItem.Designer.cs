@@ -33,6 +33,8 @@
             xpnd_subcatPanel = new FlowLayoutPanel();
             lbl_categoryName = new Label();
             btn_pnl = new Panel();
+            label1 = new Label();
+            btn_pnl.SuspendLayout();
             SuspendLayout();
             // 
             // ItemExpand
@@ -64,6 +66,7 @@
             // btn_pnl
             // 
             btn_pnl.BackColor = Color.CadetBlue;
+            btn_pnl.Controls.Add(label1);
             btn_pnl.Dock = DockStyle.Bottom;
             btn_pnl.Location = new Point(0, 80);
             btn_pnl.Name = "btn_pnl";
@@ -72,6 +75,19 @@
             btn_pnl.Click += AddSubCategory;
             btn_pnl.MouseEnter += btn_pnl_MouseEnter;
             btn_pnl.MouseLeave += btn_pnl_MouseLeave;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("HP Simplified", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(68, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(149, 19);
+            label1.TabIndex = 0;
+            label1.Text = "[+] Add Sub-Category";
+            label1.Click += AddSubCategory;
+            label1.MouseEnter += btn_pnl_MouseEnter;
+            label1.MouseLeave += btn_pnl_MouseLeave;
             // 
             // UCM_CategoryItem
             // 
@@ -86,6 +102,8 @@
             Name = "UCM_CategoryItem";
             Size = new Size(287, 112);
             Click += UCM_CategoryItem_Click;
+            btn_pnl.ResumeLayout(false);
+            btn_pnl.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -95,5 +113,6 @@
         private FlowLayoutPanel xpnd_subcatPanel;
         private Label lbl_categoryName;
         private Panel btn_pnl;
+        private Label label1;
     }
 }

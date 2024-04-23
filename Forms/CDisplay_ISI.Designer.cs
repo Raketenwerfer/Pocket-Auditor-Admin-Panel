@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDisplay_ISI));
             flowLayoutPanel1 = new FlowLayoutPanel();
             pnl_btn_AddIndicator = new Panel();
             lbl_btn_AddIndicator = new Label();
@@ -86,12 +87,13 @@
             // 
             // pbox_btn_ConfigureCategory
             // 
-            pbox_btn_ConfigureCategory.BackColor = SystemColors.ButtonShadow;
+            pbox_btn_ConfigureCategory.BackColor = Color.Transparent;
             pbox_btn_ConfigureCategory.ErrorImage = null;
-            pbox_btn_ConfigureCategory.Image = Properties.Resources.icons8_add_new_30;
+            pbox_btn_ConfigureCategory.Image = (Image)resources.GetObject("pbox_btn_ConfigureCategory.Image");
             pbox_btn_ConfigureCategory.Location = new Point(532, 7);
             pbox_btn_ConfigureCategory.Name = "pbox_btn_ConfigureCategory";
             pbox_btn_ConfigureCategory.Size = new Size(30, 30);
+            pbox_btn_ConfigureCategory.SizeMode = PictureBoxSizeMode.StretchImage;
             pbox_btn_ConfigureCategory.TabIndex = 3;
             pbox_btn_ConfigureCategory.TabStop = false;
             pbox_btn_ConfigureCategory.Click += pbox_btn_ConfigureCategory_Click;

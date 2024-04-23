@@ -329,5 +329,15 @@ namespace Pocket_Auditor_Admin_Panel.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SettingsConfig_x256 {
+            get {
+                object obj = ResourceManager.GetObject("SettingsConfig x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -117,7 +117,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         }
         public void AddUser(object sender, EventArgs e)
         {
-            AP.ShowUserControlsPrompt("create");
+            AP.ShowUserControlsPrompt("create", null);
         }
 
 

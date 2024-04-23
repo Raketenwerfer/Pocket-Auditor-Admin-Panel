@@ -86,6 +86,7 @@ namespace Pocket_Auditor_Admin_Panel
                 PullScoreTable();
                 PullChapters();
                 PullActionPlans();
+                PullUsers();
 
                 MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -178,9 +179,9 @@ namespace Pocket_Auditor_Admin_Panel
         #endregion
 
 
-        public void ShowUserControlsPrompt(string type)
+        public void ShowUserControlsPrompt(string type, int? id)
         {
-            prompt_ECUser pEC = new prompt_ECUser(type, null, this);
+            prompt_ECUser pEC = new prompt_ECUser(type, id, this);
             pEC.ShowDialog();
         }
 
@@ -792,7 +793,7 @@ namespace Pocket_Auditor_Admin_Panel
                             int id = read.GetInt32(read.GetOrdinal("UserID"));
                             string username = read.GetString(read.GetOrdinal("Username"));
                             string password = read.GetString(read.GetOrdinal("Password"));
-                            string type = read.GetString(read.GetOrdinal("UerType"));
+                            string type = read.GetString(read.GetOrdinal("UserType"));
                             string status = read.GetString(read.GetOrdinal("UserStatus"));
 
                             mdl_Users a = new mdl_Users(id, username, password, type, status);
