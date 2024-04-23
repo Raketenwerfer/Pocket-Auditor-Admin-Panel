@@ -128,6 +128,11 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             // Now, overallScoresByChapterName dictionary contains the overall scores for each chapter, keyed by ChapterName
 
         }
+
+        private void FormAuditReports_Leave(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 
     public class ChapterOverview

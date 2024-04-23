@@ -97,6 +97,7 @@
             Name = "FormAuditReports";
             Text = "FormAuditReports";
             Load += FormAuditReports_Load;
+            Leave += FormAuditReports_Leave;
             ((System.ComponentModel.ISupportInitialize)dgv_Results).EndInit();
             ResumeLayout(false);
             PerformLayout();

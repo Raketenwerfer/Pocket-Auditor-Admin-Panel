@@ -23,14 +23,25 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public FormManageAuditors(AdminPanel aP)
         {
             DSS = DataSharingService.GetInstance();
-            _Users = DSS.GET_U();
+
             InitializeComponent();
-            PopulateTable();
+
             AP = aP;
+        }
+
+        public void LoadPopulateTable(object sender, EventArgs e)
+        {
+            PopulateTable();
+            dgv_Users.Refresh();
         }
 
         public void PopulateTable()
         {
+            _Users = DSS.GET_U();
+
+            UserTable.Columns.Clear();
+            UserTable.Rows.Clear();
+
             UserTable.Columns.Add("User ID");
             UserTable.Columns.Add("Username");
             UserTable.Columns.Add("User Type");
@@ -48,10 +59,16 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             dgv_Users.DefaultCellStyle.SelectionForeColor = Color.Black;
         }
 
+
         public void EditUser(object sender, DataGridViewCellEventArgs e)
         {
             AP.ShowUserControlsPrompt("edit", Convert.ToInt32(dgv_Users.SelectedCells[0].Value));
             PopulateTable();
+        }
+
+        private void FormManageAuditors_Leave(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

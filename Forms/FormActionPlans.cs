@@ -369,5 +369,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             return overallscore;
         }
+
+        private void FormActionPlans_Leave(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

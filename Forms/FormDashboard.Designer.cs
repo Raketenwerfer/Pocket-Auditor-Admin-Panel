@@ -272,6 +272,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormDashboard";
             Text = "FormDashboard";
+            Leave += FormDashboard_Leave;
             btn_pnl_AF.ResumeLayout(false);
             btn_pnl_AF.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btn_pb_AF).EndInit();

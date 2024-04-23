@@ -103,6 +103,8 @@
             Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormManageAuditors";
+            Load += LoadPopulateTable;
+            Leave += FormManageAuditors_Leave;
             ((System.ComponentModel.ISupportInitialize)dgv_Users).EndInit();
             ResumeLayout(false);
             PerformLayout();

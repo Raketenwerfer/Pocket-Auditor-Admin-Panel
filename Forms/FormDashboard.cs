@@ -41,7 +41,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             flp_Ranks.Controls.Clear();
 
-            List<ChapterOverview> listbucket = RankList.OrderByDescending(x => x.TotalScore).ToList();        
+            List<ChapterOverview> listbucket = RankList.OrderByDescending(x => x.TotalScore).ToList();
 
             int rank = 1;
 
@@ -75,7 +75,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 double? indScore = 0;
                 double? subIndScore = 0;
 
-                foreach (var item in group) 
+                foreach (var item in group)
                 {
                     if (item.ItemChecked == "IND")
                     {
@@ -162,5 +162,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             btn_pnl_AR.BackColor = Color.MediumAquamarine;
         }
         #endregion
+
+        private void FormDashboard_Leave(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

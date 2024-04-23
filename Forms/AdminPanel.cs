@@ -12,14 +12,9 @@ namespace Pocket_Auditor_Admin_Panel
         readonly DatabaseInitiator dbInit = new DatabaseInitiator("localhost", "ccydc_database", "root", ";");
         public DataSharingService DSS = new DataSharingService();
         // Online Database credentials "sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN"
-
-        readonly FormDashboard frmDashboard;
         //readonly FormAuditForm frmAuditForm;
         readonly FormCategorySelect frmCateSel;
         //readonly CDisplay_ISI cDisplayISI;
-        readonly FormActionPlans frmActionPlans;
-        readonly FormAuditReports frmAuditReports;
-        readonly FormManageAuditors frmManageAuditors;
 
 
         public List<mdl_Categories> _Categories = new List<mdl_Categories>();
@@ -47,10 +42,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
-            frmDashboard = new FormDashboard(this);
-            frmAuditReports = new FormAuditReports(dbInit);
-            frmActionPlans = new FormActionPlans(this);
-            frmManageAuditors = new FormManageAuditors(this);
+            
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
             //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
@@ -121,11 +113,13 @@ namespace Pocket_Auditor_Admin_Panel
         #region UI Controls
         public void InitDashboard()
         {
+            FormDashboard frmDashboard = new FormDashboard(this);
             frmDashboard.TopLevel = false;
             frmDashboard.TopMost = true;
             panelContent.Controls.Clear();
             panelContent.Controls.Add(frmDashboard);
             frmDashboard.Show();
+            frmDashboard.PopulateRanks();
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -145,6 +139,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void btnActionPlans_Click(object sender, EventArgs e)
         {
+            FormActionPlans frmActionPlans = new FormActionPlans(this);
+            PullActionPlans();
             frmActionPlans.TopLevel = false;
             frmActionPlans.TopMost = true;
             panelContent.Controls.Clear();
@@ -155,6 +151,8 @@ namespace Pocket_Auditor_Admin_Panel
 
         public void btnAuditReports_Click(object sender, EventArgs e)
         {
+            FormAuditReports frmAuditReports = new FormAuditReports(dbInit);
+            PullScoreTable();
             frmAuditReports.TopLevel = false;
             frmAuditReports.TopMost = true;
             panelContent.Controls.Clear();
@@ -165,6 +163,7 @@ namespace Pocket_Auditor_Admin_Panel
 
         private void btnManageAuditors_Click(object sender, EventArgs e)
         {
+            FormManageAuditors frmManageAuditors = new FormManageAuditors(this);
             frmManageAuditors.TopLevel = false;
             frmManageAuditors.TopMost = true;
             panelContent.Controls.Clear();
