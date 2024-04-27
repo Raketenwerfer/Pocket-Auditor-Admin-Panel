@@ -40,7 +40,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             reportTable.Columns.Add("ChapterID");
             reportTable.Columns.Add("Barangay");
             reportTable.Columns.Add("Score");
-            //reportTable.Columns.Add("Auditor");
+            reportTable.Columns.Add("Auditor");
             //reportTable.Columns.Add("Date");
             dgv_Results.DataSource = reportTable;
 
@@ -51,10 +51,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     int chapterid = entry.ChapterID;
                     string? chapterName = entry.ChapterTitle;
                     double? overallScore = entry.TotalScore;
-
+                    string? auditor = entry.Auditor;
 
                     // Add a new row to the DataGridView with ChapterName and OverallScore values
-                    reportTable.Rows.Add(chapterid, chapterName, overallScore);
+                    reportTable.Rows.Add(chapterid, chapterName, overallScore, auditor);
 
                 }
             }
@@ -117,9 +117,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 double? overallScore = indScore + subIndScore;
 
                 string? chapterName = group.FirstOrDefault()?.ChapterName;
+                string auditor = group.FirstOrDefault()?.Auditor;
                 int chapterID = group.FirstOrDefault().ChapterID_fk;
 
-                ChapterOverview a = new ChapterOverview(chapterID, chapterName, overallScore);
+                ChapterOverview a = new ChapterOverview(chapterID, chapterName, overallScore, auditor);
 
                 if (!string.IsNullOrEmpty(chapterName))
                 {
@@ -232,11 +233,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         public int ChapterID { get; set; }
         public string? ChapterTitle { get; set; }
         public double? TotalScore { get; set; }
-        public ChapterOverview(int id, string? title, double? score)
+        public string Auditor { get; set; }
+        public ChapterOverview(int id, string? title, double? score, string auditor)
         {
             ChapterID = id;
             ChapterTitle = title;
             TotalScore = score;
+            Auditor = auditor;
         }
     }
 }

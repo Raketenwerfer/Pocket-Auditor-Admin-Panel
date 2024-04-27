@@ -113,6 +113,16 @@ namespace Pocket_Auditor_Admin_Panel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddUserBlk_x32 {
+            get {
+                object obj = ResourceManager.GetObject("AddUserBlk x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AuditFormBlack {
             get {
                 object obj = ResourceManager.GetObject("AuditFormBlack", resourceCulture);

@@ -70,5 +70,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             Close();
         }
+
+        private void btn_AddUser_Click(object sender, EventArgs e)
+        {
+            AP.ShowUserControlsPrompt("create", null);
+        }
     }
 }

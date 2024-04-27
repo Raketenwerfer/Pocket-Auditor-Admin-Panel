@@ -77,7 +77,6 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     userControl.CategoryTitle = data.CategoryTitle;
                     userControl.IndicatorID = data.IndicatorID;
                     userControl.Indicator = data.Indicator;
-                    userControl.IndicatorType = data.IndicatorType;
                     userControl.ScoreValue = data.ScoreValue;
 
                     // Add the UserControl to the FlowLayoutPanel

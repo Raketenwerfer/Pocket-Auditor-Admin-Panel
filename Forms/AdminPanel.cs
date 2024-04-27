@@ -315,15 +315,13 @@ namespace Pocket_Auditor_Admin_Panel
                             _indScoreValue = read.GetDouble(read.GetOrdinal("ScoreValue"));
                             _indTitle = read.GetString(read.GetOrdinal("Indicator"));
                             _indStatus = read.GetString(read.GetOrdinal("IndicatorStatus"));
-                            _indType = read.GetString(read.GetOrdinal("IndicatorType"));
 
-                            mdl_Indicators a = new mdl_Indicators(_indID, _indScoreValue, _indTitle, _indStatus, _indType);
+                            mdl_Indicators a = new mdl_Indicators(_indID, _indScoreValue, _indTitle, _indStatus);
                             {
                                 a.IndicatorID = _indID;
                                 a.ScoreValue = _indScoreValue;
                                 a.Indicator = _indTitle;
                                 a.IndicatorStatus = _indStatus;
-                                a.IndicatorType = _indType;
                             }
 
                             _Indicators.Add(a);
@@ -465,7 +463,7 @@ namespace Pocket_Auditor_Admin_Panel
             string catTitle, indicator, indType;
             double indScoreValue;
 
-            string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.IndicatorType, I.ScoreValue " +
+            string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.ScoreValue " +
                 "FROM Associate_Category_to_Indicator AtC " +
                 "INNER JOIN Categories C on AtC.CategoryID_fk = C.CategoryID " +
                 "INNER JOIN Indicators I on AtC.IndicatorID_fk = I.IndicatorID " +
@@ -487,17 +485,15 @@ namespace Pocket_Auditor_Admin_Panel
                             indicator = read.GetString(read.GetOrdinal("Indicator"));
                             categoryID = read.GetInt32(read.GetOrdinal("CategoryID"));
                             catTitle = read.GetString(read.GetOrdinal("CategoryTitle"));
-                            indType = read.GetString(read.GetOrdinal("IndicatorType"));
                             indScoreValue = read.GetDouble(read.GetOrdinal("ScoreValue"));
 
                             jmdl_CategoriesIndicators a = new jmdl_CategoriesIndicators(categoryID, catTitle, indicatorID,
-                                indicator, indType, indScoreValue);
+                                indicator, indScoreValue);
                             {
                                 a.CategoryID = categoryID;
                                 a.CategoryTitle = catTitle;
                                 a.IndicatorID = indicatorID;
                                 a.Indicator = indicator;
-                                a.IndicatorType = indType;
                                 a.ScoreValue = indScoreValue;
                             }
 
@@ -619,7 +615,7 @@ namespace Pocket_Auditor_Admin_Panel
                            "ST.EntryID, ST.ChapterID_fk, SK.Barangay, ST.CategoryID_fk, C.CategoryTitle, " +
                            "ST.SubCategoryID_fk, SC.SubCategoryTitle, ST.IndicatorID_fk, I.Indicator, " +
                            "ST.SubIndicatorID_fk, SI.SubIndicator, ST.IsChecked, ST.ItemChecked, " +
-                           "ST.Remarks, SI.SubIndicatorType, I.ScoreValue as IND_ScoreValue, SI.ScoreValue as SUBIND_ScoreValue " +
+                           "ST.Remarks, ST.Auditor, ST.AuditorID_fk, SI.SubIndicatorType, I.ScoreValue as IND_ScoreValue, SI.ScoreValue as SUBIND_ScoreValue " +
                            "FROM scoretable ST " +
                            "LEFT JOIN subcategory SC ON ST.SubCategoryID_fk = SC.SubCategoryID " +
                            "LEFT JOIN categories C ON ST.CategoryID_fk = C.CategoryID " +
@@ -664,6 +660,8 @@ namespace Pocket_Auditor_Admin_Panel
                             double indScoreValue = reader.GetDouble(reader.GetOrdinal("IND_ScoreValue"));
                             double? subIndScoreValue = reader.IsDBNull(reader.GetOrdinal("SUBIND_ScoreValue")) 
                                 ? null : reader.GetDouble(reader.GetOrdinal("SUBIND_ScoreValue"));
+                            string auditor = reader.GetString(reader.GetOrdinal("Auditor"));
+                            int auditorID = reader.GetInt32(reader.GetOrdinal("AuditorID_fk"));
 
                             // Create an instance of mdl_ScoreTable and add it to the list
                             mdl_ScoreTable scoreTableRow = new mdl_ScoreTable(entryID,
@@ -671,7 +669,7 @@ namespace Pocket_Auditor_Admin_Panel
                                 subCategoryID_fk, subCategoryTitle, indicatorID_fk,
                                 indicator, subIndicatorID_fk, subIndicator,
                                 isChecked, itemChecked, remarks, subIndicatorType,
-                                indScoreValue, subIndScoreValue);
+                                indScoreValue, subIndScoreValue, auditorID, auditor);
 
                             _ScoreTable.Add(scoreTableRow);
                         }

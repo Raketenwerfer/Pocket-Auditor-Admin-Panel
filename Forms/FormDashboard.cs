@@ -47,12 +47,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
             foreach (ChapterOverview x in listbucket)
             {
-                if (rank <= 6)
+                if (rank <= 11)
                 {
                     UCM_TopChapterItem rankItem = new UCM_TopChapterItem();
                     rankItem.Rank = rank;
                     rankItem.Chapter = x.ChapterTitle;
                     rankItem.Score = x.TotalScore;
+                    rankItem.Auditor = x.Auditor;
 
                     flp_Ranks.Controls.Add(rankItem);
                     rank++;
@@ -96,9 +97,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 double? overallScore = indScore + subIndScore;
 
                 string? chapterName = group.FirstOrDefault()?.ChapterName;
+                string auditor = group.FirstOrDefault().Auditor;
                 int chapterID = group.FirstOrDefault().ChapterID_fk;
 
-                ChapterOverview a = new ChapterOverview(chapterID, chapterName, overallScore);
+                ChapterOverview a = new ChapterOverview(chapterID, chapterName, overallScore, auditor);
 
                 if (!string.IsNullOrEmpty(chapterName))
                 {
@@ -137,29 +139,29 @@ namespace Pocket_Auditor_Admin_Panel.Forms
 
         private void HoverAF(object sender, EventArgs e)
         {
-            btn_pnl_AF.BackColor = Color.Aquamarine;
+            //btn_pnl_AF.BackColor = Color.Aquamarine;
         }
         private void LeaveAF(object sender, EventArgs e)
         {
-            btn_pnl_AF.BackColor = Color.MediumAquamarine;
+            //btn_pnl_AF.BackColor = Color.MediumAquamarine;
         }
 
         private void HoverAP(object sender, EventArgs e)
         {
-            btn_pnl_AP.BackColor = Color.Aquamarine;
+            //btn_pnl_AP.BackColor = Color.Aquamarine;
         }
         private void LeaveAP(object sender, EventArgs e)
         {
-            btn_pnl_AP.BackColor = Color.MediumAquamarine;
+            //btn_pnl_AP.BackColor = Color.MediumAquamarine;
         }
 
         private void HoverAR(object sender, EventArgs e)
         {
-            btn_pnl_AR.BackColor = Color.Aquamarine;
+            //btn_pnl_AR.BackColor = Color.Aquamarine;
         }
         private void LeaveAR(object sender, EventArgs e)
         {
-            btn_pnl_AR.BackColor = Color.MediumAquamarine;
+            //btn_pnl_AR.BackColor = Color.MediumAquamarine;
         }
         #endregion
 

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             label1 = new Label();
             dgv_Results = new DataGridView();
             btn_DeleteEntry = new Button();
@@ -40,11 +40,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("HP Simplified", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("HP Simplified", 23.9999962F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(13, 11);
+            label1.Location = new Point(13, 12);
             label1.Name = "label1";
-            label1.Size = new Size(249, 41);
+            label1.Size = new Size(214, 35);
             label1.TabIndex = 2;
             label1.Text = "AUDIT RESULTS";
             // 
@@ -59,14 +59,14 @@
             dgv_Results.BackgroundColor = Color.White;
             dgv_Results.BorderStyle = BorderStyle.None;
             dgv_Results.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new Padding(0, 0, 0, 5);
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlDarkDark;
-            dgv_Results.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(0, 0, 0, 5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlDarkDark;
+            dgv_Results.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgv_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Results.EnableHeadersVisualStyles = false;
             dgv_Results.Location = new Point(1, 100);
@@ -74,13 +74,13 @@
             dgv_Results.Name = "dgv_Results";
             dgv_Results.ReadOnly = true;
             dgv_Results.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.Gainsboro;
-            dataGridViewCellStyle6.ForeColor = Color.DimGray;
-            dataGridViewCellStyle6.Padding = new Padding(0, 0, 0, 5);
-            dataGridViewCellStyle6.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dgv_Results.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle4.ForeColor = Color.DimGray;
+            dataGridViewCellStyle4.Padding = new Padding(0, 0, 0, 5);
+            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dgv_Results.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgv_Results.RowTemplate.Height = 25;
             dgv_Results.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_Results.Size = new Size(984, 528);

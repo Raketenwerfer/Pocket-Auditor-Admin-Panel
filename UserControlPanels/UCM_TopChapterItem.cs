@@ -20,6 +20,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private int _rank;
         private string? _chapter;
         private double? _score;
+        private string auditor;
 
         public int Rank
         {
@@ -31,16 +32,25 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             get { return _chapter; }
             set { _chapter = value; }
         }
+        public string Auditor
+        {
+            get { return auditor; }
+            set
+            {
+                auditor = value;
+                lbl_Auditor.Text = auditor;
+            }
+        }
         public double? Score
         {
             get { return _score; }
             set { _score = value; SetData(); }
         }
-
         public void SetData()
         {
             lbl_Barangay.Text = "#" + _rank + " | " + _score.ToString() + " - " + _chapter;
-            
+
+
             switch (_rank)
             {
                 case 1:

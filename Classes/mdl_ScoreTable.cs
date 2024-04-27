@@ -26,11 +26,14 @@ namespace Pocket_Auditor_Admin_Panel.Classes
         public string? SubIndicatorType { get; set; }
         public double IND_ScoreValue { get; set; }
         public double? SUBIND_ScoreValue { get; set; }
+        public int AuditorID { get; set; }
+        public string Auditor { get; set; }
 
         public mdl_ScoreTable(int entryid, int chapterID_fk, string chapterName, int catID, string catTitle,
             string subcatID, string subcatTitle, int indID, string ind, 
             string subindID, string subind, bool ischekced, string itemchecked, string remarks,
-            string subIndicatorType, double I_ScoreValue, double? SI_ScoreValue)
+            string subIndicatorType, double I_ScoreValue, double? SI_ScoreValue, 
+            int auditorID, string auditor)
         {
             EntryID = entryid;
             ChapterID_fk = chapterID_fk;
@@ -49,6 +52,8 @@ namespace Pocket_Auditor_Admin_Panel.Classes
             SubIndicatorType = subIndicatorType;
             IND_ScoreValue = I_ScoreValue;
             SUBIND_ScoreValue = SI_ScoreValue;
+            AuditorID = auditorID;
+            Auditor = auditor;
         }
     }
 }
