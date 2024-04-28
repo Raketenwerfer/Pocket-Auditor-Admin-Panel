@@ -42,11 +42,8 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
-            
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
-            //frmAuditForm = new FormAuditForm(dbInit, _Categories, _Indicators,
-            //    _SubIndicators, _jmISI, _jmCI, this);
 
             InitDashboard();
 
@@ -58,6 +55,16 @@ namespace Pocket_Auditor_Admin_Panel
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void AuthChallenge()
+        {
+            prompt_Login LP = new prompt_Login(_Users);
+            LP.ShowDialog();
+            if (!DSS.GET_LOGGEDIN())
+            {
+                this.Close();
+            }
+
         }
 
         public void InitDatabase()
@@ -174,6 +181,7 @@ namespace Pocket_Auditor_Admin_Panel
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
+            AuthChallenge();
         }
         #endregion
 

@@ -16,6 +16,7 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
         private List<mdl_Categories> C_HOLDER;
         private List<mdl_ActionPlans> A_HOLDER;
         private List<mdl_Users> U_HOLDER;
+        private bool isLoggedIn;
 
         public DataSharingService()
         {
@@ -93,6 +94,15 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
         public List<mdl_Users> GET_U()
         {
             return U_HOLDER;
+        }
+
+        public void SET_LOGGEDIN(bool set)
+        {
+            isLoggedIn = set;
+        }
+        public bool GET_LOGGEDIN()
+        {
+            return isLoggedIn;
         }
     }
 }
