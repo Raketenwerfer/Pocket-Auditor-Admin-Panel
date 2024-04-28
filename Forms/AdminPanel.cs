@@ -204,7 +204,7 @@ namespace Pocket_Auditor_Admin_Panel
             string _catTitle, _catStatus;
 
             // Query string to command our databse
-            string getCatQuery = "SELECT * FROM Categories WHERE CategoryStatus = 'ACTIVE'";
+            string getCatQuery = "SELECT * FROM categories WHERE CategoryStatus = 'ACTIVE'";
 
             // Establish a new connection instance to the database
             MySqlConnection conn = dbInit.GetConnection();
@@ -261,7 +261,7 @@ namespace Pocket_Auditor_Admin_Panel
         {
             _SubCategories.Clear();
 
-            string query = "SELECT * FROM SubCategory";
+            string query = "SELECT * FROM subcategory";
 
             MySqlConnection conn = dbInit.GetConnection();
 
@@ -305,7 +305,7 @@ namespace Pocket_Auditor_Admin_Panel
             double _indScoreValue;
             string _indTitle, _indStatus, _indType;
 
-            string getIndQuery = "SELECT * From Indicators WHERE IndicatorStatus = 'ACTIVE'";
+            string getIndQuery = "SELECT * From indicators WHERE IndicatorStatus = 'ACTIVE'";
 
             MySqlConnection conn = dbInit.GetConnection();
 
@@ -355,7 +355,7 @@ namespace Pocket_Auditor_Admin_Panel
             string _subIndTitle, _subIndType, _subIndStatus;
             double _subIndScoreValue;
 
-            string getSubIndQuery = "SELECT * FROM SubIndicators WHERE SubIndicatorStatus = 'ACTIVE'";
+            string getSubIndQuery = "SELECT * FROM subindicators WHERE SubIndicatorStatus = 'ACTIVE'";
 
             MySqlConnection conn = dbInit.GetConnection();
 
@@ -409,9 +409,9 @@ namespace Pocket_Auditor_Admin_Panel
 
             string query = "SELECT S.SubIndicatorID, S.SubIndicator, S.SubIndicatorType, S.SubIndicatorStatus, S.ScoreValue, " +
                 "I.IndicatorID, I.Indicator " +
-                "FROM Associate_Indicator_to_SubIndicator AtISI " +
-                "INNER JOIN SubIndicators S on AtISI.SubIndicatorID_fk = S.SubIndicatorID " +
-                "INNER JOIN Indicators I on AtISI.IndicatorID_fk = I.IndicatorID " +
+                "FROM associate_indicator_to_subindicator AtISI " +
+                "INNER JOIN subindicators S on AtISI.SubIndicatorID_fk = S.SubIndicatorID " +
+                "INNER JOIN indicators I on AtISI.IndicatorID_fk = I.IndicatorID " +
                 "WHERE (S.SubIndicatorStatus = 'ACTIVE' AND I.IndicatorStatus = 'ACTIVE') " +
                 "OR (S.SubIndicatorStatus = 'ACTIVE' AND I.IndicatorStatus = 'INACTIVE') " +
                 "ORDER BY S.SubIndicatorID, I.IndicatorID ASC";
@@ -472,9 +472,9 @@ namespace Pocket_Auditor_Admin_Panel
             double indScoreValue;
 
             string query = "SELECT C.CategoryID, C.CategoryTitle, I.IndicatorID, I.Indicator, I.ScoreValue " +
-                "FROM Associate_Category_to_Indicator AtC " +
-                "INNER JOIN Categories C on AtC.CategoryID_fk = C.CategoryID " +
-                "INNER JOIN Indicators I on AtC.IndicatorID_fk = I.IndicatorID " +
+                "FROM associate_category_to_indicator AtC " +
+                "INNER JOIN categories C on AtC.CategoryID_fk = C.CategoryID " +
+                "INNER JOIN indicators I on AtC.IndicatorID_fk = I.IndicatorID " +
                 "WHERE (C.CategoryStatus = 'ACTIVE' AND I.IndicatorStatus = 'ACTIVE')";
 
             MySqlConnection conn = dbInit.GetConnection();
@@ -526,9 +526,9 @@ namespace Pocket_Auditor_Admin_Panel
 
             string query = "SELECT SC.SubCategoryID, SC.SubCategoryTitle, SC.SubCategoryStatus, " +
                            "C.CategoryID, C.CategoryTitle, C.CategoryStatus " +
-                           "FROM SubCategory SC " +
-                           "JOIN Associate_Category_to_SubCategory ACSC ON SC.SubCategoryID = ACSC.SubCategoryID_fk " +
-                           "JOIN Categories C ON ACSC.CategoryID_fk = C.CategoryID";
+                           "FROM subcategory SC " +
+                           "JOIN associate_category_to_subcategory ACSC ON SC.SubCategoryID = ACSC.SubCategoryID_fk " +
+                           "JOIN categories C ON ACSC.CategoryID_fk = C.CategoryID";
 
             using MySqlConnection conn = dbInit.GetConnection();
 
@@ -574,10 +574,10 @@ namespace Pocket_Auditor_Admin_Panel
             string query = "SELECT " +
                "AIS.IndicatorID_fk, I.Indicator, ACSC.CategoryID_fk, AIS.SubCategoryID_fk, " +
                "SC.SubCategoryTitle, SC.SubCategoryStatus " +
-               "FROM Associate_Indicator_to_SubCategory AIS " +
-               "JOIN Indicators I ON AIS.IndicatorID_fk = I.IndicatorID " +
-               "JOIN Associate_Category_to_SubCategory ACSC ON AIS.SubCategoryID_fk = ACSC.SubCategoryID_fk " +
-               "JOIN SubCategory SC ON ACSC.SubCategoryID_fk = SC.SubCategoryID";
+               "FROM associate_indicator_to_subcategory AIS " +
+               "JOIN indicators I ON AIS.IndicatorID_fk = I.IndicatorID " +
+               "JOIN associate_category_to_subcategory ACSC ON AIS.SubCategoryID_fk = ACSC.SubCategoryID_fk " +
+               "JOIN subcategory SC ON ACSC.SubCategoryID_fk = SC.SubCategoryID";
 
             using MySqlConnection conn = dbInit.GetConnection();
 
@@ -628,7 +628,7 @@ namespace Pocket_Auditor_Admin_Panel
                            "LEFT JOIN subcategory SC ON ST.SubCategoryID_fk = SC.SubCategoryID " +
                            "LEFT JOIN categories C ON ST.CategoryID_fk = C.CategoryID " +
                            "LEFT JOIN indicators I ON ST.IndicatorID_fk = I.IndicatorID " +
-                           "LEFT JOIN subIndicators SI ON ST.SubIndicatorID_fk = SI.SubIndicatorID " +
+                           "LEFT JOIN subindicators SI ON ST.SubIndicatorID_fk = SI.SubIndicatorID " +
                            "INNER JOIN skchapters SK ON ST.ChapterID_fk = SK.ChapterID";
 
             MySqlConnection conn = dbInit.GetConnection();
