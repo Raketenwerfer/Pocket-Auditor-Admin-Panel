@@ -9,7 +9,7 @@ namespace Pocket_Auditor_Admin_Panel
 {
     public partial class AdminPanel : Form
     {
-        readonly DatabaseInitiator dbInit = new DatabaseInitiator("localhost", "ccydc_database", "root", ";");
+        readonly DatabaseInitiator dbInit = new DatabaseInitiator("sql.freedb.tech", "freedb_ccydc_db", "freedb_ccydc", "uFjK7Gr&SGG@!z5");
         public DataSharingService DSS = new DataSharingService();
         // Online Database credentials "sql.freedb.tech", "freedb_ccydc_test_db", "freedb_ccydc", "r*kmjEa6N#KUsDN"
         //readonly FormAuditForm frmAuditForm;
@@ -733,7 +733,6 @@ namespace Pocket_Auditor_Admin_Panel
                 conn.Close();
             }
         }
-
         public void PullActionPlans()
         {
             _ActionPlans.Clear();
