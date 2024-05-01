@@ -47,7 +47,6 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             _indTitle = tbox_Indicator.Text;
             _indStatus = "ACTIVE";
             _indScoreValue = 1;
-            _indType = "SINGLE";
 
             MySqlConnection conn = dbInit.GetConnection();
 
@@ -56,15 +55,14 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Open();
 
                 // Step 1: Insert the indicator into the Indicators table
-                string insertIndicatorQuery = "INSERT INTO indicators (ScoreValue, Indicator, IndicatorStatus, IndicatorType) " +
-                                              "VALUES (@ScoreValue, @Indicator, @IndicatorStatus, @IndicatorType)";
+                string insertIndicatorQuery = "INSERT INTO indicators (ScoreValue, Indicator, IndicatorStatus) " +
+                                              "VALUES (@ScoreValue, @Indicator, @IndicatorStatus)";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertIndicatorQuery, conn))
                 {
                     cmd.Parameters.AddWithValue("@ScoreValue", _indScoreValue);
                     cmd.Parameters.AddWithValue("@Indicator", _indTitle);
                     cmd.Parameters.AddWithValue("@IndicatorStatus", _indStatus);
-                    cmd.Parameters.AddWithValue("@IndicatorType", _indType);
 
                     cmd.ExecuteNonQuery(); // Execute the query to insert the indicator
 
