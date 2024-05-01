@@ -23,6 +23,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             DSS = DataSharingService.GetInstance();
             _Users = list;
             InitializeComponent();
+            DSS.SET_LOGGEDIN(false);
         }
         private void Authenticate(object sender, EventArgs e)
         {

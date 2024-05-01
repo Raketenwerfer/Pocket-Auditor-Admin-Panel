@@ -46,7 +46,9 @@
             // 
             // btn_Delete
             // 
-            btn_Delete.BackColor = Color.IndianRed;
+            btn_Delete.BackColor = Color.Transparent;
+            btn_Delete.BackgroundImage = Properties.Resources.Delete_x32;
+            btn_Delete.BackgroundImageLayout = ImageLayout.Stretch;
             btn_Delete.Location = new Point(461, 0);
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(30, 28);

@@ -34,7 +34,9 @@
             // 
             // btn_pnl_EditSubCat
             // 
-            btn_pnl_EditSubCat.BackColor = SystemColors.AppWorkspace;
+            btn_pnl_EditSubCat.BackColor = Color.Transparent;
+            btn_pnl_EditSubCat.BackgroundImage = Properties.Resources.Delete_x32;
+            btn_pnl_EditSubCat.BackgroundImageLayout = ImageLayout.Stretch;
             btn_pnl_EditSubCat.Location = new Point(461, 0);
             btn_pnl_EditSubCat.Name = "btn_pnl_EditSubCat";
             btn_pnl_EditSubCat.Size = new Size(30, 30);
