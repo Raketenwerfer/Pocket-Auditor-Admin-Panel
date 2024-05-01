@@ -88,7 +88,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 {
                     conn.Open();
 
-                    string checkAssociationQuery = "SELECT COUNT(*) FROM Associate_Indicator_to_SubIndicator " +
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM associate_indicator_to_subindicator " +
                                                    "WHERE IndicatorID_fk = @IndicatorID AND SubIndicatorID_fk = @SubIndicatorID";
 
                     using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
@@ -154,7 +154,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 {
                     conn.Open();
 
-                    string checkAssociationQuery = "SELECT COUNT(*) FROM Associate_Indicator_to_SubCategory " +
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM associate_indicator_to_subcategory " +
                                                    "WHERE IndicatorID_fk = @IndicatorID AND SubCategoryID_fk = @SubCategoryID";
 
                     using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
@@ -223,7 +223,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 conn.Open();
 
-                string updateIndicatorTextQuery = "UPDATE Indicators " +
+                string updateIndicatorTextQuery = "UPDATE indicators " +
                                                   "SET Indicator = @NewIndicatorText " +
                                                   "WHERE IndicatorID = @IndicatorID";
 
@@ -261,7 +261,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 conn.Open();
 
-                string deactivateIndicatorQuery = "UPDATE Indicators " +
+                string deactivateIndicatorQuery = "UPDATE indicators " +
                                                   "SET IndicatorStatus = 'INACTIVE' " +
                                                   "WHERE IndicatorID = @IndicatorID";
 
