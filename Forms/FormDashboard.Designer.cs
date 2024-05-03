@@ -57,7 +57,7 @@
             // flp_Ranks
             // 
             flp_Ranks.AutoScrollMargin = new Size(2, 2);
-            flp_Ranks.BackColor = SystemColors.Control;
+            flp_Ranks.BackColor = Color.Transparent;
             flp_Ranks.ForeColor = Color.Black;
             flp_Ranks.Location = new Point(26, 185);
             flp_Ranks.Name = "flp_Ranks";

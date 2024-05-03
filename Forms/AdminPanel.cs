@@ -39,8 +39,9 @@ namespace Pocket_Auditor_Admin_Panel
             DSS = DataSharingService.GetInstance();
             DSS.SetDatabase(dbInit);
 
-            InitializeComponent();
             InitDatabase();
+            InitializeComponent();
+
 
 
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,

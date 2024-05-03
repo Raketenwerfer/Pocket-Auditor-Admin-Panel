@@ -36,7 +36,7 @@
             // 
             lbl_Barangay.AutoSize = true;
             lbl_Barangay.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_Barangay.Location = new Point(13, 11);
+            lbl_Barangay.Location = new Point(13, 8);
             lbl_Barangay.Name = "lbl_Barangay";
             lbl_Barangay.Size = new Size(99, 30);
             lbl_Barangay.TabIndex = 0;
@@ -57,7 +57,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DimGray;
+            BackColor = Color.LightGray;
             Controls.Add(lbl_Auditor);
             Controls.Add(lbl_Barangay);
             Name = "UCM_TopChapterItem";
