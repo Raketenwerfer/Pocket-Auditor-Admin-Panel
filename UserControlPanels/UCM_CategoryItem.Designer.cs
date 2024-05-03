@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCM_CategoryItem));
             ItemExpand = new System.Windows.Forms.Timer(components);
             xpnd_subcatPanel = new FlowLayoutPanel();
             lbl_categoryName = new Label();
@@ -45,7 +46,6 @@
             // 
             // xpnd_subcatPanel
             // 
-            xpnd_subcatPanel.BackColor = Color.SeaGreen;
             xpnd_subcatPanel.Location = new Point(0, 41);
             xpnd_subcatPanel.Margin = new Padding(0);
             xpnd_subcatPanel.Name = "xpnd_subcatPanel";
@@ -65,7 +65,7 @@
             // 
             // btn_pnl
             // 
-            btn_pnl.BackColor = Color.CadetBlue;
+            btn_pnl.BackColor = Color.FromArgb(119, 186, 27);
             btn_pnl.Controls.Add(label1);
             btn_pnl.Dock = DockStyle.Bottom;
             btn_pnl.Location = new Point(0, 80);
@@ -79,12 +79,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("HP Simplified", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Image = (Image)resources.GetObject("label1.Image");
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
             label1.Location = new Point(68, 6);
             label1.Name = "label1";
-            label1.Size = new Size(149, 19);
+            label1.RightToLeft = RightToLeft.No;
+            label1.Size = new Size(160, 20);
             label1.TabIndex = 0;
-            label1.Text = "[+] Add Sub-Category";
+            label1.Text = "     Add Sub-Category";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.UseWaitCursor = true;
             label1.Click += AddSubCategory;
             label1.MouseEnter += btn_pnl_MouseEnter;
             label1.MouseLeave += btn_pnl_MouseLeave;
@@ -93,7 +98,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.SeaGreen;
+            BackColor = Color.WhiteSmoke;
             Controls.Add(btn_pnl);
             Controls.Add(lbl_categoryName);
             Controls.Add(xpnd_subcatPanel);

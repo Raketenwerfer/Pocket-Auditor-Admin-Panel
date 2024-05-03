@@ -77,5 +77,15 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             DSS.SET_LOGGEDIN(false);
             this.Close();
         }
+
+        private void tbox_Username_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

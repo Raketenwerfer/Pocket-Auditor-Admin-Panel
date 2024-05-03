@@ -42,6 +42,7 @@ namespace Pocket_Auditor_Admin_Panel
             InitializeComponent();
             InitDatabase();
 
+
             frmCateSel = new FormCategorySelect(dbInit, _jmCI, _SubIndicators, _SubCategories, this, InitCategory,
                 _Categories, _jmCSC, _jmISC);
 
@@ -129,9 +130,11 @@ namespace Pocket_Auditor_Admin_Panel
             frmDashboard.PopulateRanks();
         }
 
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             InitDashboard();
+
         }
 
         public void btnAuditForm_Click(object sender, EventArgs e)
@@ -182,6 +185,7 @@ namespace Pocket_Auditor_Admin_Panel
         private void AdminPanel_Load(object sender, EventArgs e)
         {
             AuthChallenge();
+
         }
         #endregion
 
@@ -649,24 +653,24 @@ namespace Pocket_Auditor_Admin_Panel
                             string chapterName = reader.GetString(reader.GetOrdinal("Barangay"));
                             int categoryID_fk = reader.GetInt32(reader.GetOrdinal("CategoryID_fk"));
                             string categoryTitle = reader.GetString(reader.GetOrdinal("CategoryTitle"));
-                            string? subCategoryID_fk = reader.IsDBNull(reader.GetOrdinal("SubCategoryID_fk")) 
+                            string? subCategoryID_fk = reader.IsDBNull(reader.GetOrdinal("SubCategoryID_fk"))
                                 ? null : reader.GetString(reader.GetOrdinal("SubCategoryID_fk"));
-                            string? subCategoryTitle = reader.IsDBNull(reader.GetOrdinal("SubCategoryTitle")) 
+                            string? subCategoryTitle = reader.IsDBNull(reader.GetOrdinal("SubCategoryTitle"))
                                 ? null : reader.GetString(reader.GetOrdinal("SubCategoryTitle"));
                             int indicatorID_fk = reader.GetInt32(reader.GetOrdinal("IndicatorID_fk"));
                             string indicator = reader.GetString(reader.GetOrdinal("Indicator"));
-                            string? subIndicatorID_fk = reader.IsDBNull(reader.GetOrdinal("SubIndicatorID_fk")) 
+                            string? subIndicatorID_fk = reader.IsDBNull(reader.GetOrdinal("SubIndicatorID_fk"))
                                 ? null : reader.GetString(reader.GetOrdinal("SubIndicatorID_fk"));
-                            string? subIndicator = reader.IsDBNull(reader.GetOrdinal("SubIndicator")) 
+                            string? subIndicator = reader.IsDBNull(reader.GetOrdinal("SubIndicator"))
                                 ? null : reader.GetString(reader.GetOrdinal("SubIndicator"));
                             bool isChecked = reader.GetBoolean(reader.GetOrdinal("IsChecked"));
                             string itemChecked = reader.GetString(reader.GetOrdinal("ItemChecked"));
-                            string? remarks = reader.IsDBNull(reader.GetOrdinal("Remarks")) 
+                            string? remarks = reader.IsDBNull(reader.GetOrdinal("Remarks"))
                                 ? null : reader.GetString(reader.GetOrdinal("Remarks"));
-                            string? subIndicatorType = reader.IsDBNull(reader.GetOrdinal("SubIndicatorType")) 
+                            string? subIndicatorType = reader.IsDBNull(reader.GetOrdinal("SubIndicatorType"))
                                 ? null : reader.GetString(reader.GetOrdinal("SubIndicatorType"));
                             double indScoreValue = reader.GetDouble(reader.GetOrdinal("IND_ScoreValue"));
-                            double? subIndScoreValue = reader.IsDBNull(reader.GetOrdinal("SUBIND_ScoreValue")) 
+                            double? subIndScoreValue = reader.IsDBNull(reader.GetOrdinal("SUBIND_ScoreValue"))
                                 ? null : reader.GetDouble(reader.GetOrdinal("SUBIND_ScoreValue"));
                             string auditor = reader.GetString(reader.GetOrdinal("Auditor"));
                             int auditorID = reader.GetInt32(reader.GetOrdinal("AuditorID_fk"));
@@ -723,7 +727,7 @@ namespace Pocket_Auditor_Admin_Panel
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -760,7 +764,7 @@ namespace Pocket_Auditor_Admin_Panel
                             string actionplan = read.GetString(read.GetOrdinal("ActionPlanDetails"));
 
                             mdl_ActionPlans a = new mdl_ActionPlans(id, chapter_id, chapter_title,
-                                cat_id, category_title, category_score,actionplan);
+                                cat_id, category_title, category_score, actionplan);
                             _ActionPlans.Add(a);
                         }
                     }
@@ -818,5 +822,10 @@ namespace Pocket_Auditor_Admin_Panel
         }
 
         #endregion
+
+        private void panelContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

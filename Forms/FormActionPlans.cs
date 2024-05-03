@@ -305,7 +305,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                                 cmd.Parameters.AddWithValue("@CategoryID", x.CategoryID);
                                 cmd.Parameters.AddWithValue("@CategoryTitle", category);
                                 cmd.Parameters.AddWithValue("@CategoryScore", x.TotalScore);
-                                cmd.Parameters.AddWithValue("@ActionPlanDetails", 
+                                cmd.Parameters.AddWithValue("@ActionPlanDetails",
                                     rtb_ActionPlanDetail.Text);
 
                                 cmd.ExecuteNonQuery();
@@ -354,11 +354,13 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             var categoryScores = new List<CategoryScore>();
 
             var groupedScores = scoreTable.Where(item => item.IsChecked)
-                                          .GroupBy(item => new { 
-                                              item.ChapterID_fk, 
-                                              item.ChapterName, 
+                                          .GroupBy(item => new
+                                          {
+                                              item.ChapterID_fk,
+                                              item.ChapterName,
                                               item.CategoryID_fk,
-                                              item.CategoryTitle});
+                                              item.CategoryTitle
+                                          });
 
             foreach (var group in groupedScores)
             {
@@ -457,6 +459,16 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     }
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public class CategoryScore

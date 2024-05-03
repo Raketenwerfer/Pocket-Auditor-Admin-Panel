@@ -28,23 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAuditReports));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             dgv_Results = new DataGridView();
             btn_DeleteEntry = new Button();
             btn_ResetEntries = new Button();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             ((System.ComponentModel.ISupportInitialize)dgv_Results).BeginInit();
+            guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("HP Simplified", 23.9999962F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(13, 12);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(18, 11);
             label1.Name = "label1";
-            label1.Size = new Size(214, 35);
+            label1.Size = new Size(191, 32);
             label1.TabIndex = 2;
             label1.Text = "AUDIT RESULTS";
             // 
@@ -59,31 +64,31 @@
             dgv_Results.BackgroundColor = Color.White;
             dgv_Results.BorderStyle = BorderStyle.None;
             dgv_Results.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new Padding(0, 0, 0, 5);
-            dataGridViewCellStyle3.SelectionBackColor = Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlDarkDark;
-            dgv_Results.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(0, 0, 0, 5);
+            dataGridViewCellStyle1.SelectionBackColor = Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlDarkDark;
+            dgv_Results.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Results.EnableHeadersVisualStyles = false;
-            dgv_Results.Location = new Point(1, 100);
+            dgv_Results.Location = new Point(27, 154);
             dgv_Results.MultiSelect = false;
             dgv_Results.Name = "dgv_Results";
             dgv_Results.ReadOnly = true;
             dgv_Results.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.Gainsboro;
-            dataGridViewCellStyle4.ForeColor = Color.DimGray;
-            dataGridViewCellStyle4.Padding = new Padding(0, 0, 0, 5);
-            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dgv_Results.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle2.ForeColor = Color.DimGray;
+            dataGridViewCellStyle2.Padding = new Padding(0, 0, 0, 5);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(173, 223, 136);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dgv_Results.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgv_Results.RowTemplate.Height = 25;
             dgv_Results.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv_Results.Size = new Size(984, 528);
+            dgv_Results.Size = new Size(932, 450);
             dgv_Results.TabIndex = 51;
             dgv_Results.CellDoubleClick += Reportsdgv_CellContentClick;
             // 
@@ -93,9 +98,10 @@
             btn_DeleteEntry.Cursor = Cursors.Hand;
             btn_DeleteEntry.FlatAppearance.BorderSize = 0;
             btn_DeleteEntry.FlatStyle = FlatStyle.Flat;
-            btn_DeleteEntry.Font = new Font("HP Simplified Light", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_DeleteEntry.Image = Properties.Resources.Delete_x32;
-            btn_DeleteEntry.Location = new Point(660, 50);
+            btn_DeleteEntry.Font = new Font("Microsoft Sans Serif", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_DeleteEntry.ForeColor = Color.Black;
+            btn_DeleteEntry.Image = (Image)resources.GetObject("btn_DeleteEntry.Image");
+            btn_DeleteEntry.Location = new Point(669, 104);
             btn_DeleteEntry.Name = "btn_DeleteEntry";
             btn_DeleteEntry.Size = new Size(139, 44);
             btn_DeleteEntry.TabIndex = 52;
@@ -110,9 +116,10 @@
             btn_ResetEntries.Cursor = Cursors.Hand;
             btn_ResetEntries.FlatAppearance.BorderSize = 0;
             btn_ResetEntries.FlatStyle = FlatStyle.Flat;
-            btn_ResetEntries.Font = new Font("HP Simplified Light", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_ResetEntries.Image = Properties.Resources.Restart_x32;
-            btn_ResetEntries.Location = new Point(806, 48);
+            btn_ResetEntries.Font = new Font("Microsoft Sans Serif", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_ResetEntries.ForeColor = Color.Black;
+            btn_ResetEntries.Image = (Image)resources.GetObject("btn_ResetEntries.Image");
+            btn_ResetEntries.Location = new Point(814, 104);
             btn_ResetEntries.Name = "btn_ResetEntries";
             btn_ResetEntries.Size = new Size(171, 44);
             btn_ResetEntries.TabIndex = 53;
@@ -121,15 +128,28 @@
             btn_ResetEntries.UseVisualStyleBackColor = false;
             btn_ResetEntries.Click += btn_ResetEntries_Click;
             // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BackColor = Color.FromArgb(119, 186, 27);
+            guna2Panel1.Controls.Add(label1);
+            guna2Panel1.CustomizableEdges = customizableEdges1;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Panel1.Size = new Size(984, 74);
+            guna2Panel1.TabIndex = 54;
+            // 
             // FormAuditReports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(984, 631);
+            Controls.Add(guna2Panel1);
             Controls.Add(btn_ResetEntries);
             Controls.Add(btn_DeleteEntry);
             Controls.Add(dgv_Results);
-            Controls.Add(label1);
             Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormAuditReports";
@@ -137,8 +157,9 @@
             Load += FormAuditReports_Load;
             Leave += FormAuditReports_Leave;
             ((System.ComponentModel.ISupportInitialize)dgv_Results).EndInit();
+            guna2Panel1.ResumeLayout(false);
+            guna2Panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -147,5 +168,6 @@
         private DataGridView dgv_Results;
         private Button btn_DeleteEntry;
         private Button btn_ResetEntries;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }

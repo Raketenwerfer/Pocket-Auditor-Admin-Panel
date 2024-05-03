@@ -56,5 +56,10 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             dgv_Chapters.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
         }
+
+        private void dgv_Chapters_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

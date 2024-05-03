@@ -169,5 +169,20 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             Close();
         }
+
+        private void flp_Ranks_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

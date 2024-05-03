@@ -44,9 +44,12 @@
             // 
             // btn_AcceptCategory
             // 
-            btn_AcceptCategory.BackColor = Color.LightGreen;
-            btn_AcceptCategory.ForeColor = SystemColors.ActiveCaptionText;
-            btn_AcceptCategory.Location = new Point(132, 52);
+            btn_AcceptCategory.BackColor = Color.FromArgb(119, 186, 27);
+            btn_AcceptCategory.FlatAppearance.BorderSize = 0;
+            btn_AcceptCategory.FlatStyle = FlatStyle.Flat;
+            btn_AcceptCategory.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_AcceptCategory.ForeColor = Color.White;
+            btn_AcceptCategory.Location = new Point(132, 54);
             btn_AcceptCategory.Name = "btn_AcceptCategory";
             btn_AcceptCategory.Size = new Size(112, 29);
             btn_AcceptCategory.TabIndex = 4;

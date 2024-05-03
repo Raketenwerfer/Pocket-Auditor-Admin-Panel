@@ -65,7 +65,11 @@
             // 
             // btn_ApplyEdit
             // 
-            btn_ApplyEdit.BackColor = Color.LightGreen;
+            btn_ApplyEdit.BackColor = Color.FromArgb(119, 186, 27);
+            btn_ApplyEdit.FlatAppearance.BorderSize = 0;
+            btn_ApplyEdit.FlatStyle = FlatStyle.Flat;
+            btn_ApplyEdit.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_ApplyEdit.ForeColor = Color.White;
             btn_ApplyEdit.Location = new Point(162, 331);
             btn_ApplyEdit.Name = "btn_ApplyEdit";
             btn_ApplyEdit.Size = new Size(112, 29);
@@ -77,7 +81,10 @@
             // btn_Delete
             // 
             btn_Delete.BackColor = Color.Salmon;
-            btn_Delete.FlatStyle = FlatStyle.Popup;
+            btn_Delete.FlatAppearance.BorderSize = 0;
+            btn_Delete.FlatStyle = FlatStyle.Flat;
+            btn_Delete.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Delete.ForeColor = Color.White;
             btn_Delete.Location = new Point(280, 331);
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(112, 29);
@@ -112,7 +119,7 @@
             // 
             // btn_AddSubIndicator
             // 
-            btn_AddSubIndicator.BackColor = Color.DarkSeaGreen;
+            btn_AddSubIndicator.BackColor = Color.FromArgb(119, 186, 27);
             btn_AddSubIndicator.Image = Properties.Resources.icons8_add_new_20;
             btn_AddSubIndicator.Location = new Point(515, 66);
             btn_AddSubIndicator.Name = "btn_AddSubIndicator";

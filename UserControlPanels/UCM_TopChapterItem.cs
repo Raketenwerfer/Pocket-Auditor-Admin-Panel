@@ -71,5 +71,10 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
                 BackColor = Color.DimGray;
             }
         }
+
+        private void UCM_TopChapterItem_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

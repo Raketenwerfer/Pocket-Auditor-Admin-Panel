@@ -75,5 +75,10 @@ namespace Pocket_Auditor_Admin_Panel.Forms
         {
             AP.ShowUserControlsPrompt("create", null);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

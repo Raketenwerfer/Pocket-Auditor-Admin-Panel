@@ -50,7 +50,7 @@
             dgv_Chapters.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.Black;
-            dataGridViewCellStyle1.Font = new Font("HP Simplified Light", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = SystemColors.Info;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -80,6 +80,7 @@
             dgv_Chapters.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_Chapters.Size = new Size(352, 285);
             dgv_Chapters.TabIndex = 0;
+            dgv_Chapters.CellContentClick += dgv_Chapters_CellContentClick;
             // 
             // prompt_ViewChapters
             // 

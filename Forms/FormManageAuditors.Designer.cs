@@ -28,25 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormManageAuditors));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             dgv_Users = new DataGridView();
             label2 = new Label();
             btn_AddUser = new Button();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             ((System.ComponentModel.ISupportInitialize)dgv_Users).BeginInit();
+            guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("HP Simplified", 23.9999962F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(13, 13);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(12, 10);
             label1.Name = "label1";
-            label1.Size = new Size(265, 35);
+            label1.Size = new Size(247, 32);
             label1.TabIndex = 3;
             label1.Text = "MANAGE AUDITORS";
+            label1.Click += label1_Click;
             // 
             // dgv_Users
             // 
@@ -59,25 +65,25 @@
             dgv_Users.BorderStyle = BorderStyle.None;
             dgv_Users.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgv_Users.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.AliceBlue;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.DodgerBlue;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgv_Users.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.AliceBlue;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(119, 186, 27);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_Users.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_Users.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Users.EnableHeadersVisualStyles = false;
             dgv_Users.Location = new Point(59, 161);
             dgv_Users.Name = "dgv_Users";
             dgv_Users.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = Color.LightGray;
-            dataGridViewCellStyle4.ForeColor = Color.Gray;
-            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgv_Users.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = Color.LightGray;
+            dataGridViewCellStyle2.ForeColor = Color.Gray;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(173, 223, 136);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgv_Users.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgv_Users.RowTemplate.Height = 25;
             dgv_Users.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_Users.Size = new Size(868, 430);
@@ -87,10 +93,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("HP Simplified Light", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(59, 140);
             label2.Name = "label2";
-            label2.Size = new Size(213, 18);
+            label2.Size = new Size(232, 20);
             label2.TabIndex = 29;
             label2.Text = "Double-click on an entry to edit it";
             // 
@@ -98,32 +104,48 @@
             // 
             btn_AddUser.FlatAppearance.BorderSize = 0;
             btn_AddUser.FlatStyle = FlatStyle.Flat;
-            btn_AddUser.Font = new Font("HP Simplified Light", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_AddUser.Image = Properties.Resources.AddUserBlk_x32;
-            btn_AddUser.Location = new Point(59, 91);
+            btn_AddUser.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_AddUser.Image = (Image)resources.GetObject("btn_AddUser.Image");
+            btn_AddUser.Location = new Point(59, 80);
             btn_AddUser.Name = "btn_AddUser";
-            btn_AddUser.Size = new Size(146, 40);
+            btn_AddUser.Size = new Size(174, 57);
             btn_AddUser.TabIndex = 30;
             btn_AddUser.Text = "  Add user";
             btn_AddUser.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_AddUser.UseVisualStyleBackColor = true;
             btn_AddUser.Click += btn_AddUser_Click;
             // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BackColor = Color.FromArgb(119, 186, 27);
+            guna2Panel1.Controls.Add(label1);
+            guna2Panel1.CustomizableEdges = customizableEdges1;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Panel1.Size = new Size(984, 74);
+            guna2Panel1.TabIndex = 31;
+            // 
             // FormManageAuditors
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 630);
+            Controls.Add(guna2Panel1);
             Controls.Add(btn_AddUser);
             Controls.Add(label2);
             Controls.Add(dgv_Users);
-            Controls.Add(label1);
             Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormManageAuditors";
+            Text = " ";
+            WindowState = FormWindowState.Maximized;
             Load += LoadPopulateTable;
             Leave += FormManageAuditors_Leave;
             ((System.ComponentModel.ISupportInitialize)dgv_Users).EndInit();
+            guna2Panel1.ResumeLayout(false);
+            guna2Panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,5 +156,6 @@
         private DataGridView dgv_Users;
         private Label label2;
         private Button btn_AddUser;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }

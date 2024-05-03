@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCM_IndicatorItem));
             pbox_btn_EditItem = new PictureBox();
             txt_itemName = new Label();
             ((System.ComponentModel.ISupportInitialize)pbox_btn_EditItem).BeginInit();
@@ -35,7 +36,9 @@
             // 
             // pbox_btn_EditItem
             // 
-            pbox_btn_EditItem.BackColor = SystemColors.ControlDark;
+            pbox_btn_EditItem.BackColor = Color.Transparent;
+            pbox_btn_EditItem.Image = (Image)resources.GetObject("pbox_btn_EditItem.Image");
+            pbox_btn_EditItem.InitialImage = null;
             pbox_btn_EditItem.Location = new Point(646, 0);
             pbox_btn_EditItem.Name = "pbox_btn_EditItem";
             pbox_btn_EditItem.Size = new Size(44, 42);

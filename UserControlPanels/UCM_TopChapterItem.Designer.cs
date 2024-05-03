@@ -35,20 +35,20 @@
             // lbl_Barangay
             // 
             lbl_Barangay.AutoSize = true;
-            lbl_Barangay.Font = new Font("HP Simplified", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_Barangay.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbl_Barangay.Location = new Point(13, 11);
             lbl_Barangay.Name = "lbl_Barangay";
-            lbl_Barangay.Size = new Size(92, 24);
+            lbl_Barangay.Size = new Size(99, 30);
             lbl_Barangay.TabIndex = 0;
             lbl_Barangay.Text = "Barangay";
             // 
             // lbl_Auditor
             // 
             lbl_Auditor.AutoSize = true;
-            lbl_Auditor.Font = new Font("HP Simplified", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_Auditor.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             lbl_Auditor.Location = new Point(833, 11);
             lbl_Auditor.Name = "lbl_Auditor";
-            lbl_Auditor.Size = new Size(74, 24);
+            lbl_Auditor.Size = new Size(82, 30);
             lbl_Auditor.TabIndex = 1;
             lbl_Auditor.Text = "Auditor";
             lbl_Auditor.TextAlign = ContentAlignment.MiddleRight;
@@ -62,6 +62,7 @@
             Controls.Add(lbl_Barangay);
             Name = "UCM_TopChapterItem";
             Size = new Size(925, 50);
+            Load += UCM_TopChapterItem_Load;
             ResumeLayout(false);
             PerformLayout();
         }
