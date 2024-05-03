@@ -135,10 +135,10 @@
             dgv_SelectedChapterAuditResults.BorderStyle = BorderStyle.Fixed3D;
             dgv_SelectedChapterAuditResults.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(18, 139, 254);
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(1, 188, 22);
             dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(18, 139, 254);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(1, 188, 22);
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
             dgv_SelectedChapterAuditResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
