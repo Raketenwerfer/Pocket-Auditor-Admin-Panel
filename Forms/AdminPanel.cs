@@ -93,6 +93,7 @@ namespace Pocket_Auditor_Admin_Panel
             else
             {
                 MessageBox.Show("No database established! Check your internet connection!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
         }
         private bool TestDatabaseConnection()
