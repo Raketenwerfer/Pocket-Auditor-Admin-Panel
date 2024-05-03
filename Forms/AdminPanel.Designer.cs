@@ -221,6 +221,7 @@
             Controls.Add(panelContent);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AdminPanel";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pocket Auditor - Admin Panel";
