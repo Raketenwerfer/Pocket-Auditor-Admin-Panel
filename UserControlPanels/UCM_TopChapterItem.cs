@@ -68,7 +68,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
 
             if (_rank >= 4)
             {
-                BackColor = Color.DimGray;
+                BackColor = Color.LightGray;
             }
         }
 
