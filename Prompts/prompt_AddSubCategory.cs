@@ -42,7 +42,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Open();
 
                 // Step 1: Insert SubCategory into the SubCategory table
-                string insertSubCategoryQuery = "INSERT INTO SubCategory (SubCategoryTitle, SubCategoryStatus) " +
+                string insertSubCategoryQuery = "INSERT INTO subcategory (SubCategoryTitle, SubCategoryStatus) " +
                                                 "VALUES (@SubCategoryTitle, 'ACTIVE')";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertSubCategoryQuery, conn))
@@ -63,7 +63,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 }
 
                 // Step 3: Associate SubCategory with the specified Category
-                string associateSubCategoryQuery = "INSERT INTO Associate_Category_to_SubCategory (CategoryID_fk, SubCategoryID_fk) " +
+                string associateSubCategoryQuery = "INSERT INTO associate_category_to_subcategory (CategoryID_fk, SubCategoryID_fk) " +
                                                    "VALUES (@CategoryID, @SubCategoryID)";
 
                 using (MySqlCommand associateCmd = new MySqlCommand(associateSubCategoryQuery, conn))
