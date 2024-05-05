@@ -114,8 +114,8 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         public void Deselect()
         {
             isSelected = false;
-            lbl_categoryName.BackColor = Color.SeaGreen;
-            xpnd_subcatPanel.BackColor = Color.SeaGreen;
+            lbl_categoryName.BackColor = Color.WhiteSmoke;
+            xpnd_subcatPanel.BackColor = Color.WhiteSmoke;
             BackColor = Color.SeaGreen;
             tick.Start();
         }
