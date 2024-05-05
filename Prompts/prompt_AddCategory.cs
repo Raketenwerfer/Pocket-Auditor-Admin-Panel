@@ -40,7 +40,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Open();
 
                 // Insert query for the "Categories" table
-                string insertCategoryQuery = "INSERT INTO Categories (CategoryTitle, CategoryStatus) VALUES (@CategoryTitle, @CategoryStatus)";
+                string insertCategoryQuery = "INSERT INTO categories (CategoryTitle, CategoryStatus) VALUES (@CategoryTitle, @CategoryStatus)";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertCategoryQuery, conn))
                 {
