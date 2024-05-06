@@ -20,8 +20,10 @@ namespace Pocket_Auditor_Admin_Panel
         public DatabaseInitiator dbInit;
 
         public List<mdl_SubIndicators> _SubIndicators;
+        public List<mdl_SubCategories> _SubCategories;
         public List<jmdl_CategoriesIndicators> _jmCI;
         readonly List<jmdl_CategoriesSubCategories> _jmCSC;
+        readonly List<jmdl_IndicatorSubCat> _jmISC;
 
         public prompt_AddIndicator pAddIndicator;
         readonly AdminPanel AP;
@@ -31,22 +33,26 @@ namespace Pocket_Auditor_Admin_Panel
 
         public int SelectedCategoryID;
         public FormCategorySelect(DatabaseInitiator bucket_init, List<jmdl_CategoriesIndicators> bucket_jmci,
-            List<mdl_SubIndicators> bucket_si, AdminPanel aP, int _InitCat, List<mdl_Categories> _cat,
-            List<jmdl_CategoriesSubCategories> bucket_jmCSC)
+            List<mdl_SubIndicators> bucket_si, List<mdl_SubCategories> bucket_sc,
+            AdminPanel aP, int _InitCat, List<mdl_Categories> _cat,
+            List<jmdl_CategoriesSubCategories> bucket_jmCSC, List<jmdl_IndicatorSubCat> bucket_jmISC)
         {
             InitializeComponent();
             dbInit = bucket_init;
             _jmCI = bucket_jmci;
             _jmCSC = bucket_jmCSC;
+            _jmISC = bucket_jmISC;
             _SubIndicators = bucket_si;
+            _SubCategories = bucket_sc;
             AP = aP;
             SelectedCategoryID = _InitCat;
-
             _Categories = _cat;
 
-            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP, SelectedCategoryID, this);
+            cDisplayISI = new CDisplay_ISI(dbInit, _jmCI, _SubIndicators, AP,
+                SelectedCategoryID, this, _SubCategories, _jmISC, _jmCSC);
 
             DisplayISI();
+
         }
 
         private void DisplayISI()
@@ -67,7 +73,8 @@ namespace Pocket_Auditor_Admin_Panel
 
             foreach (mdl_Categories data in _Categories)
             {
-                UCM_CategoryItem userControl = new UCM_CategoryItem(AP, cDisplayISI, this, dbInit, _jmCSC);
+                UCM_CategoryItem userControl = new UCM_CategoryItem(AP, cDisplayISI, this, dbInit,
+                    _jmCSC, _jmISC);
 
                 userControl.CategoryID = data.CategoryID;
                 userControl.CategoryTitle = data.CategoryTitle;

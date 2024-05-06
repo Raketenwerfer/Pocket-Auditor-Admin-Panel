@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCM_SubIndicatorItem));
             cbox_SubIndicator = new CheckBox();
             btn_Delete = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)btn_Delete).BeginInit();
@@ -46,10 +47,11 @@
             // 
             // btn_Delete
             // 
-            btn_Delete.BackColor = Color.IndianRed;
-            btn_Delete.Location = new Point(461, 0);
+            btn_Delete.BackColor = Color.Salmon;
+            btn_Delete.Image = (Image)resources.GetObject("btn_Delete.Image");
+            btn_Delete.Location = new Point(464, 0);
             btn_Delete.Name = "btn_Delete";
-            btn_Delete.Size = new Size(30, 28);
+            btn_Delete.Size = new Size(27, 28);
             btn_Delete.TabIndex = 2;
             btn_Delete.TabStop = false;
             btn_Delete.Click += btn_Delete_Click;

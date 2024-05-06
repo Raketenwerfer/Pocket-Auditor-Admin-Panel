@@ -49,8 +49,9 @@
             cbox_SubCategory.TabIndex = 2;
             cbox_SubCategory.Text = "SubCategory";
             cbox_SubCategory.UseVisualStyleBackColor = true;
+            cbox_SubCategory.MouseDown += cbox_SubCategory_MouseDown;
             // 
-            // UCM_SubCategoryItem
+            // UCM_AssociateSubCategoryItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -58,7 +59,7 @@
             Controls.Add(cbox_SubCategory);
             Controls.Add(btn_pnl_EditSubCat);
             Cursor = Cursors.Hand;
-            Name = "UCM_SubCategoryItem";
+            Name = "UCM_AssociateSubCategoryItem";
             Size = new Size(491, 28);
             ResumeLayout(false);
             PerformLayout();

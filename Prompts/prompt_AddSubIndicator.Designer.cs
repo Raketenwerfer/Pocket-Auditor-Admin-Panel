@@ -45,7 +45,11 @@
             // 
             // btn_AcceptSubIndicator
             // 
-            btn_AcceptSubIndicator.BackColor = Color.LightGreen;
+            btn_AcceptSubIndicator.BackColor = Color.FromArgb(119, 186, 27);
+            btn_AcceptSubIndicator.FlatAppearance.BorderSize = 0;
+            btn_AcceptSubIndicator.FlatStyle = FlatStyle.Flat;
+            btn_AcceptSubIndicator.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_AcceptSubIndicator.ForeColor = Color.White;
             btn_AcceptSubIndicator.Location = new Point(293, 54);
             btn_AcceptSubIndicator.Name = "btn_AcceptSubIndicator";
             btn_AcceptSubIndicator.Size = new Size(112, 29);

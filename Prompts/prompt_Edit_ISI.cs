@@ -21,7 +21,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         List<mdl_Indicators> _Indicators;
         List<mdl_SubIndicators> _SubIndicators;
+        List<mdl_SubCategories> _SubCategories;
         List<jmdl_IndicatorsSubInd> _jmISI;
+        List<jmdl_CategoriesSubCategories> _jmCSC;
         private int selected_id, selected_category_id;
         public DatabaseInitiator dbInit;
         readonly string indicatorName;
@@ -32,17 +34,16 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
         public prompt_Edit_ISI(string _buckketIndicator,
             int _selection, int _categoryID, DatabaseInitiator _bucketDB, CDisplay_ISI _parent,
-            AdminPanel aP, List<mdl_SubIndicators> _bucketSI)
+            AdminPanel aP, List<mdl_SubIndicators> _bucketSI, List<mdl_SubCategories> subCategories,
+            List<jmdl_CategoriesSubCategories> _bucketjmCSC)
         {
-            //selected_id = _selection;
-            //type = edit_type;
-            //_Indicators = indicators;
-            //_SubIndicators = subIndicators;
             _SubIndicators = _bucketSI;
             indicatorName = _buckketIndicator;
             dbInit = _bucketDB;
             selected_id = _selection;
             selected_category_id = _categoryID;
+            _SubCategories = subCategories;
+            _jmCSC = _bucketjmCSC;
 
             InitializeComponent();
 
@@ -53,6 +54,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
 
             // The prompt will initialize with the Sub-Indicators displayed first
             PopuateSubIndicators();
+
         }
 
 
@@ -74,7 +76,6 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 // Set properties of the user control using your data
                 subIndicatorItem.SubIndicatorID = data.SubIndicatorID;
                 subIndicatorItem.SubIndicator = data.SubIndicator;
-                subIndicatorItem.SubIndicatorType = data.SubIndicatorType;
                 subIndicatorItem.SubIndicatorStatus = data.SubIndicatorStatus;
                 subIndicatorItem.ScoreValue = data.ScoreValue;
 
@@ -86,7 +87,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 {
                     conn.Open();
 
-                    string checkAssociationQuery = "SELECT COUNT(*) FROM Associate_Indicator_to_SubIndicator " +
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM associate_indicator_to_subindicator " +
                                                    "WHERE IndicatorID_fk = @IndicatorID AND SubIndicatorID_fk = @SubIndicatorID";
 
                     using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
@@ -129,6 +130,66 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             btn_pnl_SI.BackColor = Color.Silver;
             btn_AddSubIndicator.Enabled = false;
             btn_AddSubIndicator.Visible = false;
+
+            flp_Display.Controls.Clear();
+
+            foreach (jmdl_CategoriesSubCategories data in _jmCSC)
+            {
+                // Create an instance of UCM_SubIndicatorItem
+                UCM_AssociateSubCategoryItem subCategoryItem = new UCM_AssociateSubCategoryItem(dbInit,
+                    AP, parent);
+
+                // Set properties of the user control using your data
+                subCategoryItem.CategoryID = data.CategoryID_fk;
+                subCategoryItem.SubCategoryID = data.SubCategoryID_fk;
+                subCategoryItem.SubCategoryTitle = data.SubCategoryTitle;
+                subCategoryItem.SubCategoryStatus = data.SubCategoryStatus;
+
+                subCategoryItem.IndicatorID = selected_id;
+
+                MySqlConnection conn = dbInit.GetConnection();
+
+                try
+                {
+                    conn.Open();
+
+                    string checkAssociationQuery = "SELECT COUNT(*) FROM associate_indicator_to_subcategory " +
+                                                   "WHERE IndicatorID_fk = @IndicatorID AND SubCategoryID_fk = @SubCategoryID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(checkAssociationQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IndicatorID", selected_id);
+                        cmd.Parameters.AddWithValue("@SubCategoryID", data.SubCategoryID_fk);
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // If an entry exists, set the checkbox as checked
+                        if (count > 0)
+                        {
+                            subCategoryItem.State = true;
+                        }
+                        else
+                        {
+                            subCategoryItem.State = false;
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (data.CategoryID_fk == selected_category_id)
+                    {
+                        // Add the UserControl to the FlowLayoutPanel
+                        flp_Display.Controls.Add(subCategoryItem);
+                    }
+                    conn.Close();
+                }
+
+            }
         }
 
         private void btn_ApplyEdit_Click(object sender, EventArgs e)
@@ -161,7 +222,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 conn.Open();
 
-                string updateIndicatorTextQuery = "UPDATE Indicators " +
+                string updateIndicatorTextQuery = "UPDATE indicators " +
                                                   "SET Indicator = @NewIndicatorText " +
                                                   "WHERE IndicatorID = @IndicatorID";
 
@@ -199,7 +260,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 conn.Open();
 
-                string deactivateIndicatorQuery = "UPDATE Indicators " +
+                string deactivateIndicatorQuery = "UPDATE indicators " +
                                                   "SET IndicatorStatus = 'INACTIVE' " +
                                                   "WHERE IndicatorID = @IndicatorID";
 

@@ -34,7 +34,7 @@
             // lbl_subCategoryName
             // 
             lbl_subCategoryName.AutoSize = true;
-            lbl_subCategoryName.Location = new Point(8, 7);
+            lbl_subCategoryName.Location = new Point(21, 9);
             lbl_subCategoryName.Name = "lbl_subCategoryName";
             lbl_subCategoryName.Size = new Size(60, 15);
             lbl_subCategoryName.TabIndex = 3;

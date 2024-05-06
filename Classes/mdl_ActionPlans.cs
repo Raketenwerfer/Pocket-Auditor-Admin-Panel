@@ -9,18 +9,21 @@ namespace Pocket_Auditor_Admin_Panel.Classes
     public class mdl_ActionPlans
     {
         public int ActionPlanID { get; set; }
-        public string ActionPlanName { get; set; }
-        public string ActionPlanDetails { get; set; }
-        public string ActionPlanType { get; set; }
-        public string ActionPlanStatus { get; set; }
-
-        public mdl_ActionPlans(int actionPlanID, string actionPlanName, string actionPlanDetails, string actionPlanType, string actionPlanStatus)
+        public int ChapterID_fk { get; set; }
+        public string ChapterTitle { get; set; }
+        public int CategoryID_fk { get; set; }
+        public string CategoryTitle { get; set; }
+        public double CategoryScore { get; set; }
+        public string? ActionPlan { get; set; }
+        public mdl_ActionPlans(int ap_id, int chapterID_fk, string chapterTitle, int categoryID_fk, string categoryTitle, double categoryScore, string? actionPlan)
         {
-            ActionPlanID = actionPlanID;
-            ActionPlanName = actionPlanName;
-            ActionPlanDetails = actionPlanDetails;
-            ActionPlanType = actionPlanType;
-            ActionPlanStatus = actionPlanStatus;
+            ActionPlanID = ap_id;
+            ChapterID_fk = chapterID_fk;
+            ChapterTitle = chapterTitle;
+            CategoryID_fk = categoryID_fk;
+            CategoryTitle = categoryTitle;
+            CategoryScore = categoryScore;
+            ActionPlan = actionPlan;
         }
     }
 }

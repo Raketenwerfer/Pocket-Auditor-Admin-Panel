@@ -39,18 +39,18 @@
             // lblCategories
             // 
             lblCategories.AutoSize = true;
-            lblCategories.Font = new Font("Gadugi", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCategories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblCategories.Location = new Point(11, 13);
             lblCategories.Margin = new Padding(4, 0, 4, 0);
             lblCategories.Name = "lblCategories";
-            lblCategories.Size = new Size(76, 19);
+            lblCategories.Size = new Size(131, 21);
             lblCategories.TabIndex = 0;
-            lblCategories.Text = "Category ";
+            lblCategories.Text = "Select a category ";
             // 
             // pnl_ISI_View
             // 
             pnl_ISI_View.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnl_ISI_View.BackColor = SystemColors.ActiveBorder;
+            pnl_ISI_View.BackColor = SystemColors.Control;
             pnl_ISI_View.Controls.Add(lblCatTitle);
             pnl_ISI_View.Location = new Point(284, 0);
             pnl_ISI_View.Margin = new Padding(4, 3, 4, 3);
@@ -71,7 +71,6 @@
             // flpCategories
             // 
             flpCategories.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            flpCategories.BackColor = Color.SeaGreen;
             flpCategories.FlowDirection = FlowDirection.TopDown;
             flpCategories.Location = new Point(0, 45);
             flpCategories.Margin = new Padding(0);
@@ -82,19 +81,23 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(119, 186, 27);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
             button1.Location = new Point(221, 5);
             button1.Name = "button1";
             button1.Size = new Size(55, 33);
             button1.TabIndex = 9;
             button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // FormCategorySelect
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Honeydew;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(984, 631);
             Controls.Add(button1);
             Controls.Add(lblCategories);

@@ -120,4 +120,16 @@
   <metadata name="ItemExpand.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DgAACw4BQL7hQQAAARNJREFUSEvd1UtKBDEURuEa6U58TVXckQNFBz5wDe6gewviDkRtt6AuRu0GPQc6
+        UCS3UunGif7wEagklzKmbnf/Oru4xhR3y/EKO1g7R3jBd8UMh1gpx/hCVDC3wA2aco6oyJhTVONRzBFt
+        1mfwLHHfAQZTO+M3bCzHaF5PCLOHaEPyAOMYzSfbKOJ1ixYnrcUvUcT7my98hcV0C+OYnkVHNEGRe/QX
+        fWATtTif/5OtUyR6c9/sV97cTzpf2Gcx4xjNJxcoYq+IFietxbcQxl4RbZBH4Bm/957lHjEYm9C6X6i9
+        aB/VnCHaPOYETVmlK/qXNnfFFJvQM6KCiWc8ehS12Cu8pt5ff4kc/cQHb8VfT9f9AAsF7t3yFkJdAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
 </root>

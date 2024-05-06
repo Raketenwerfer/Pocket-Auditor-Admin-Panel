@@ -37,6 +37,10 @@
             // btn_Delete
             // 
             btn_Delete.BackColor = Color.Salmon;
+            btn_Delete.FlatAppearance.BorderSize = 0;
+            btn_Delete.FlatStyle = FlatStyle.Flat;
+            btn_Delete.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Delete.ForeColor = Color.White;
             btn_Delete.Location = new Point(190, 52);
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(112, 29);
@@ -55,7 +59,12 @@
             // 
             // btn_AcceptCategory
             // 
-            btn_AcceptCategory.BackColor = Color.LightGreen;
+            btn_AcceptCategory.BackColor = Color.FromArgb(119, 186, 27);
+            btn_AcceptCategory.CausesValidation = false;
+            btn_AcceptCategory.FlatAppearance.BorderSize = 0;
+            btn_AcceptCategory.FlatStyle = FlatStyle.Flat;
+            btn_AcceptCategory.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_AcceptCategory.ForeColor = Color.White;
             btn_AcceptCategory.Location = new Point(72, 52);
             btn_AcceptCategory.Name = "btn_AcceptCategory";
             btn_AcceptCategory.Size = new Size(112, 29);
@@ -65,7 +74,7 @@
             // 
             // tbox_Category
             // 
-            tbox_Category.BackColor = Color.PaleGreen;
+            tbox_Category.BackColor = Color.WhiteSmoke;
             tbox_Category.Font = new Font("Gadugi", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             tbox_Category.Location = new Point(12, 21);
             tbox_Category.Name = "tbox_Category";

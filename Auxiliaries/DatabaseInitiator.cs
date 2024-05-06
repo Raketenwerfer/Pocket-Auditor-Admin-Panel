@@ -11,7 +11,7 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
     {
 
         private string connectionString;
-        private string server, database, username, password;
+        private string server, database, username, password, port;
 
         public DatabaseInitiator(string _server, string _db, string _username, string _password)
         {
@@ -22,8 +22,8 @@ namespace Pocket_Auditor_Admin_Panel.Auxiliaries
             database = _db;
             username = _username;
             password = _password;
-
-            connectionString = $"Server={server};Database={database};User ID={username};Password={password};";
+            port = "3306";
+            connectionString = $"Server={server};Port={port};Database={database};User ID={username};Password={password};";
         }
 
         public MySqlConnection GetConnection()

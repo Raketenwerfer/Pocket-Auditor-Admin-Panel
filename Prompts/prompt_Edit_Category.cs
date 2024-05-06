@@ -56,7 +56,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Open();
 
                 // Update query for the "Categories" table
-                string updateCategoryTitleQuery = "UPDATE Categories SET CategoryTitle = @NewTitle WHERE CategoryID = @CategoryID";
+                string updateCategoryTitleQuery = "UPDATE categories SET CategoryTitle = @NewTitle WHERE CategoryID = @CategoryID";
 
                 using (MySqlCommand cmd = new MySqlCommand(updateCategoryTitleQuery, conn))
                 {
@@ -99,7 +99,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Open();
 
                 // Delete query for the "Categories" table
-                string deleteCategoryQuery = "DELETE FROM Categories WHERE CategoryID = @CategoryID";
+                string deleteCategoryQuery = "DELETE FROM categories WHERE CategoryID = @CategoryID";
 
                 using (MySqlCommand cmd = new MySqlCommand(deleteCategoryQuery, conn))
                 {
