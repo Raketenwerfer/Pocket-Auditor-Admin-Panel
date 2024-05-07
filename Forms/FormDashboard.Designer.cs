@@ -57,7 +57,7 @@
             // flp_Ranks
             // 
             flp_Ranks.AutoScrollMargin = new Size(2, 2);
-            flp_Ranks.BackColor = Color.Transparent;
+            flp_Ranks.BackColor = Color.White;
             flp_Ranks.ForeColor = Color.Black;
             flp_Ranks.Location = new Point(26, 185);
             flp_Ranks.Name = "flp_Ranks";
@@ -70,7 +70,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(119, 186, 27);
-            label2.Location = new Point(26, 112);
+            label2.Location = new Point(421, 144);
             label2.Name = "label2";
             label2.Size = new Size(119, 32);
             label2.TabIndex = 5;
@@ -94,15 +94,15 @@
             btn_ViewChapters.Cursor = Cursors.Hand;
             btn_ViewChapters.FlatAppearance.BorderSize = 0;
             btn_ViewChapters.FlatStyle = FlatStyle.Flat;
-            btn_ViewChapters.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_ViewChapters.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             btn_ViewChapters.ForeColor = Color.White;
             btn_ViewChapters.Image = (Image)resources.GetObject("btn_ViewChapters.Image");
             btn_ViewChapters.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_ViewChapters.Location = new Point(750, 0);
+            btn_ViewChapters.Location = new Point(709, 0);
             btn_ViewChapters.Name = "btn_ViewChapters";
             btn_ViewChapters.Padding = new Padding(12, 0, 0, 0);
             btn_ViewChapters.RightToLeft = RightToLeft.No;
-            btn_ViewChapters.Size = new Size(234, 48);
+            btn_ViewChapters.Size = new Size(275, 48);
             btn_ViewChapters.TabIndex = 8;
             btn_ViewChapters.Text = "View list of Barangays";
             btn_ViewChapters.TextAlign = ContentAlignment.MiddleLeft;
@@ -127,7 +127,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel2.ForeColor = Color.FromArgb(119, 186, 27);
-            guna2HtmlLabel2.Location = new Point(810, 147);
+            guna2HtmlLabel2.Location = new Point(830, 145);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(111, 34);
             guna2HtmlLabel2.TabIndex = 10;
@@ -151,7 +151,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(984, 631);
             Controls.Add(guna2Panel1);
             Controls.Add(guna2HtmlLabel2);

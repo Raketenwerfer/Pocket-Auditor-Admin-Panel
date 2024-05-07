@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCM_AssociateSubCategoryItem));
             btn_pnl_EditSubCat = new Panel();
             cbox_SubCategory = new CheckBox();
             SuspendLayout();
             // 
             // btn_pnl_EditSubCat
             // 
-            btn_pnl_EditSubCat.BackColor = SystemColors.AppWorkspace;
-            btn_pnl_EditSubCat.Location = new Point(461, 0);
+            btn_pnl_EditSubCat.BackColor = Color.Transparent;
+            btn_pnl_EditSubCat.BackgroundImage = (Image)resources.GetObject("btn_pnl_EditSubCat.BackgroundImage");
+            btn_pnl_EditSubCat.Location = new Point(464, 0);
             btn_pnl_EditSubCat.Name = "btn_pnl_EditSubCat";
-            btn_pnl_EditSubCat.Size = new Size(30, 30);
+            btn_pnl_EditSubCat.Size = new Size(27, 28);
             btn_pnl_EditSubCat.TabIndex = 1;
             // 
             // cbox_SubCategory

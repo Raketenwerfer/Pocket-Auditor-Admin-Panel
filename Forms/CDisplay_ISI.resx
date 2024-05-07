@@ -120,13 +120,13 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbox_btn_ConfigureCategory.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAEUSURBVEhL7ZUxTgJBAEVXgiZcgFh4CKM2dpwBpTEkJjYm
-        mtByAAu8g+ECdHQmnIAa4i0MDSVR39/dCWSZnVmGoTG85GV3JjvzdrbZ5L/QwFs8S0cH4gSn+IufmijS
-        wfdAb1Cc5tcWLvE7HW2giN4gxA+s4TnO8AGFYo/Z7ZoB2jbxuRn5yudWaGJb6PjFTXwOUZEmzvM5+YOv
-        aGXXUFBEmNAERx7fsPi5TOQZnZjQdTry44rU86uVXUKuz3WF/ezWTtWQ6yQXuEDtVUqVkO0kL2jQWs3v
-        HTLP2CIiWmiMZRERLdTDJ7xMR9tEC/k4hoKpFDK/iS5qQYhaqz20Vyn3qIdieIdO9IDeRkcPUWvbeCQG
-        SfIH4FS76Y80JPoAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAARRJREFUSEvtlTFOAkEARVeCJlyAWHgIozZ2nAGlMSQmNiaa0HIAC7yD4QJ0dCac
+        gBriLQwNJVHf390JZJmdWYahMbzkZXcmO/N2ttnkv9DAWzxLRwfiBKf4i5+aKNLB90BvUJzm1xYu8Tsd
+        baCI3iDED6zhOc7wAYVij9ntmgHaNvG5GfnK51ZoYlvo+MVNfA5RkSbO8zn5g69oZddQUESY0ARHHt+w
+        +LlM5BmdmNB1OvLjitTzq5VdQq7PdYX97NZO1ZDrJBe4QO1VSpWQ7SQvaNBaze8dMs/YIiJaaIxlEREt
+        1MMnvExH20QL+TiGgqkUMr+JLmpBiFqrPbRXKfeoh2J4h070gN5GRw9Ra9t4JAZJ8gfgVLvpjzQk+gAA
+        AABJRU5ErkJggg==
 </value>
   </data>
 </root>

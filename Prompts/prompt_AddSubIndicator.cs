@@ -78,5 +78,10 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             }
 
         }
+
+        private void prompt_AddSubIndicator_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

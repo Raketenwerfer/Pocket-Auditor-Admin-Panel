@@ -48,8 +48,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 lbl_EditType.Text = "Create New User";
                 Text = "Create User";
                 btn_Accept.Text = "Create";
-                btn_Accept.BackColor = Color.MediumSeaGreen;
+                btn_Accept.BackColor = Color.FromArgb(119, 186, 27);
                 btn_Alt.Text = "Close";
+
             }
             else if (process_type == "edit")
             {
@@ -66,9 +67,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 lbl_EditType.Text = "Edit User Details";
                 Text = "Edit User";
                 btn_Accept.Text = "Save";
-                btn_Accept.BackColor = Color.SkyBlue;
+                btn_Accept.BackColor = Color.FromArgb(119, 186, 27);
                 btn_Alt.Text = "Delete";
-                btn_Alt.BackColor = Color.IndianRed;
+                btn_Alt.BackColor = Color.Salmon;
             }
         }
 
@@ -204,6 +205,11 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 }
                 return sb.ToString();
             }
+        }
+
+        private void prompt_ECUser_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

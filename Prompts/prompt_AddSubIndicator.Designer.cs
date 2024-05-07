@@ -91,6 +91,7 @@
             Name = "prompt_AddSubIndicator";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add Sub-Indicator";
+            Load += prompt_AddSubIndicator_Load;
             ResumeLayout(false);
             PerformLayout();
         }
