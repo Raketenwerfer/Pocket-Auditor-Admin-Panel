@@ -73,6 +73,7 @@
             btn_pnl.Size = new Size(287, 32);
             btn_pnl.TabIndex = 3;
             btn_pnl.Click += AddSubCategory;
+            btn_pnl.Paint += btn_pnl_Paint;
             btn_pnl.MouseEnter += btn_pnl_MouseEnter;
             btn_pnl.MouseLeave += btn_pnl_MouseLeave;
             // 
@@ -82,12 +83,12 @@
             label1.Font = new Font("Microsoft Sans Serif", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Image = (Image)resources.GetObject("label1.Image");
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(68, 6);
+            label1.Location = new Point(62, 6);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.No;
-            label1.Size = new Size(160, 20);
+            label1.Size = new Size(176, 20);
             label1.TabIndex = 0;
-            label1.Text = "     Add Sub-Category";
+            label1.Text = "         Add Sub-Category";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             label1.UseWaitCursor = true;
             label1.Click += AddSubCategory;

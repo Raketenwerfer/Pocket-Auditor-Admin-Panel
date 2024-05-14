@@ -108,24 +108,28 @@
             // 
             // btn_Accept
             // 
+            btn_Accept.BackColor = Color.Gainsboro;
+            btn_Accept.FlatStyle = FlatStyle.Flat;
             btn_Accept.ForeColor = Color.Black;
             btn_Accept.Location = new Point(25, 215);
             btn_Accept.Name = "btn_Accept";
             btn_Accept.Size = new Size(84, 31);
             btn_Accept.TabIndex = 7;
             btn_Accept.Text = "button1";
-            btn_Accept.UseVisualStyleBackColor = true;
+            btn_Accept.UseVisualStyleBackColor = false;
             btn_Accept.Click += PressAccept;
             // 
             // btn_Alt
             // 
+            btn_Alt.BackColor = Color.Gainsboro;
+            btn_Alt.FlatStyle = FlatStyle.Flat;
             btn_Alt.ForeColor = Color.Black;
             btn_Alt.Location = new Point(115, 215);
             btn_Alt.Name = "btn_Alt";
             btn_Alt.Size = new Size(84, 31);
             btn_Alt.TabIndex = 8;
             btn_Alt.Text = "button1";
-            btn_Alt.UseVisualStyleBackColor = true;
+            btn_Alt.UseVisualStyleBackColor = false;
             btn_Alt.Click += PressAlt;
             // 
             // prompt_ECUser
@@ -152,6 +156,7 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "User Management Window";
+            Load += prompt_ECUser_Load;
             ResumeLayout(false);
             PerformLayout();
         }

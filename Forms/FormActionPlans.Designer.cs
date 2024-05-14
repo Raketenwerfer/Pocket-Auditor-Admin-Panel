@@ -108,9 +108,9 @@
             dgv_ChapterSelect.ReadOnly = true;
             dgv_ChapterSelect.RowHeadersVisible = false;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.LightGray;
+            dataGridViewCellStyle3.BackColor = Color.WhiteSmoke;
             dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(186, 255, 57);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(173, 223, 136);
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgv_ChapterSelect.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -135,10 +135,10 @@
             dgv_SelectedChapterAuditResults.BorderStyle = BorderStyle.Fixed3D;
             dgv_SelectedChapterAuditResults.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(119, 186, 27);
             dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(1, 188, 22);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(119, 186, 27);
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
             dgv_SelectedChapterAuditResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
@@ -150,9 +150,9 @@
             dgv_SelectedChapterAuditResults.ReadOnly = true;
             dgv_SelectedChapterAuditResults.RowHeadersVisible = false;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.LightGray;
+            dataGridViewCellStyle6.BackColor = Color.WhiteSmoke;
             dataGridViewCellStyle6.ForeColor = Color.DimGray;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(186, 255, 57);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(173, 223, 136);
             dataGridViewCellStyle6.SelectionForeColor = Color.Black;
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
             dgv_SelectedChapterAuditResults.RowsDefaultCellStyle = dataGridViewCellStyle6;
@@ -164,11 +164,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
             label2.Location = new Point(12, 89);
             label2.Name = "label2";
-            label2.Size = new Size(127, 20);
+            label2.Size = new Size(132, 20);
             label2.TabIndex = 18;
             label2.Text = "Select a Barangay";
             // 
@@ -200,9 +200,9 @@
             dgv_CategorySelect.ReadOnly = true;
             dgv_CategorySelect.RowHeadersVisible = false;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = Color.LightGray;
+            dataGridViewCellStyle8.BackColor = Color.WhiteSmoke;
             dataGridViewCellStyle8.ForeColor = Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(186, 255, 57);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(173, 223, 136);
             dataGridViewCellStyle8.SelectionForeColor = Color.Black;
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
             dgv_CategorySelect.RowsDefaultCellStyle = dataGridViewCellStyle8;
@@ -215,22 +215,22 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.Black;
             label3.Location = new Point(179, 89);
             label3.Name = "label3";
-            label3.Size = new Size(125, 20);
+            label3.Size = new Size(130, 20);
             label3.TabIndex = 20;
             label3.Text = "Select a Category";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Black;
             label4.Location = new Point(373, 89);
             label4.Name = "label4";
-            label4.Size = new Size(95, 20);
+            label4.Size = new Size(100, 20);
             label4.TabIndex = 21;
             label4.Text = "Audit Details";
             // 
@@ -247,11 +247,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.Black;
             label5.Location = new Point(12, 387);
             label5.Name = "label5";
-            label5.Size = new Size(84, 20);
+            label5.Size = new Size(89, 20);
             label5.TabIndex = 23;
             label5.Text = "Action Plan";
             label5.Click += label5_Click;
@@ -263,7 +263,7 @@
             btn_SaveActionPlan.FlatStyle = FlatStyle.Flat;
             btn_SaveActionPlan.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btn_SaveActionPlan.ForeColor = Color.White;
-            btn_SaveActionPlan.Location = new Point(818, 431);
+            btn_SaveActionPlan.Location = new Point(818, 410);
             btn_SaveActionPlan.Name = "btn_SaveActionPlan";
             btn_SaveActionPlan.Size = new Size(154, 32);
             btn_SaveActionPlan.TabIndex = 24;
@@ -279,7 +279,7 @@
             btn_Delete.FlatStyle = FlatStyle.Flat;
             btn_Delete.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btn_Delete.ForeColor = Color.White;
-            btn_Delete.Location = new Point(818, 469);
+            btn_Delete.Location = new Point(818, 448);
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(154, 32);
             btn_Delete.TabIndex = 25;

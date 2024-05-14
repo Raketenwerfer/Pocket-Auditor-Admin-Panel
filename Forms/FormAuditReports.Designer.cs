@@ -49,9 +49,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(18, 11);
             label1.Name = "label1";
-            label1.Size = new Size(191, 32);
+            label1.Size = new Size(200, 32);
             label1.TabIndex = 2;
-            label1.Text = "AUDIT RESULTS";
+            label1.Text = "AUDIT REPORTS";
             // 
             // dgv_Results
             // 
@@ -80,7 +80,7 @@
             dgv_Results.ReadOnly = true;
             dgv_Results.RowHeadersVisible = false;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle2.BackColor = Color.WhiteSmoke;
             dataGridViewCellStyle2.ForeColor = Color.DimGray;
             dataGridViewCellStyle2.Padding = new Padding(0, 0, 0, 5);
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(173, 223, 136);
@@ -101,9 +101,9 @@
             btn_DeleteEntry.Font = new Font("Microsoft Sans Serif", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
             btn_DeleteEntry.ForeColor = Color.Black;
             btn_DeleteEntry.Image = (Image)resources.GetObject("btn_DeleteEntry.Image");
-            btn_DeleteEntry.Location = new Point(669, 104);
+            btn_DeleteEntry.Location = new Point(642, 94);
             btn_DeleteEntry.Name = "btn_DeleteEntry";
-            btn_DeleteEntry.Size = new Size(139, 44);
+            btn_DeleteEntry.Size = new Size(154, 54);
             btn_DeleteEntry.TabIndex = 52;
             btn_DeleteEntry.Text = "Delete Report";
             btn_DeleteEntry.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -119,9 +119,9 @@
             btn_ResetEntries.Font = new Font("Microsoft Sans Serif", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point);
             btn_ResetEntries.ForeColor = Color.Black;
             btn_ResetEntries.Image = (Image)resources.GetObject("btn_ResetEntries.Image");
-            btn_ResetEntries.Location = new Point(814, 104);
+            btn_ResetEntries.Location = new Point(789, 94);
             btn_ResetEntries.Name = "btn_ResetEntries";
-            btn_ResetEntries.Size = new Size(171, 44);
+            btn_ResetEntries.Size = new Size(183, 54);
             btn_ResetEntries.TabIndex = 53;
             btn_ResetEntries.Text = "Delete All Reports";
             btn_ResetEntries.TextImageRelation = TextImageRelation.ImageBeforeText;

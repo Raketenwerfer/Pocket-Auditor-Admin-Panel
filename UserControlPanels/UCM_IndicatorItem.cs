@@ -55,6 +55,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             pEditISI.ShowDialog();
         }
 
+        private void txt_itemName_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // Expose properties
         public int CategoryID
         {

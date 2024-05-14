@@ -54,7 +54,7 @@
             // 
             // pnl_btn_AddIndicator
             // 
-            pnl_btn_AddIndicator.BackColor = Color.FromArgb(110, 172, 78);
+            pnl_btn_AddIndicator.BackColor = Color.FromArgb(119, 186, 27);
             pnl_btn_AddIndicator.Controls.Add(lbl_btn_AddIndicator);
             pnl_btn_AddIndicator.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             pnl_btn_AddIndicator.Location = new Point(571, -1);
@@ -78,11 +78,11 @@
             // lbl_dis_CategoryName
             // 
             lbl_dis_CategoryName.AutoSize = true;
-            lbl_dis_CategoryName.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_dis_CategoryName.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lbl_dis_CategoryName.ForeColor = SystemColors.ControlText;
             lbl_dis_CategoryName.Location = new Point(12, 7);
             lbl_dis_CategoryName.Name = "lbl_dis_CategoryName";
-            lbl_dis_CategoryName.Size = new Size(117, 32);
+            lbl_dis_CategoryName.Size = new Size(129, 32);
             lbl_dis_CategoryName.TabIndex = 2;
             lbl_dis_CategoryName.Text = "Indicators";
             // 

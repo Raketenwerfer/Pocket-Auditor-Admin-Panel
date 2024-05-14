@@ -39,11 +39,11 @@
             // lblCategories
             // 
             lblCategories.AutoSize = true;
-            lblCategories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCategories.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblCategories.Location = new Point(11, 13);
             lblCategories.Margin = new Padding(4, 0, 4, 0);
             lblCategories.Name = "lblCategories";
-            lblCategories.Size = new Size(131, 21);
+            lblCategories.Size = new Size(132, 20);
             lblCategories.TabIndex = 0;
             lblCategories.Text = "Select a category ";
             // 

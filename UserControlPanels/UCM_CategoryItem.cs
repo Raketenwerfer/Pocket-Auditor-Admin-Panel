@@ -104,9 +104,9 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             PopulateSubCategory(CategoryID);
             isSelected = true;
             parent.GlobalCategoryDeselect(CategoryID);
-            lbl_categoryName.BackColor = Color.White;
-            xpnd_subcatPanel.BackColor = Color.White;
-            BackColor = Color.White;
+            lbl_categoryName.BackColor = Color.FromArgb(173, 223, 136);
+            xpnd_subcatPanel.BackColor = Color.FromArgb(173, 223, 136);
+            BackColor = Color.FromArgb(173, 223, 136);
 
             tick.Start();
         }
@@ -114,9 +114,9 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         public void Deselect()
         {
             isSelected = false;
-            lbl_categoryName.BackColor = Color.WhiteSmoke;
-            xpnd_subcatPanel.BackColor = Color.WhiteSmoke;
-            BackColor = Color.SeaGreen;
+            lbl_categoryName.BackColor = Color.FromArgb(173, 223, 136);
+            xpnd_subcatPanel.BackColor = Color.FromArgb(173, 223, 136);
+            BackColor = Color.FromArgb(173, 223, 136);
             tick.Start();
         }
 
@@ -168,11 +168,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         {
             if (MouseOver)
             {
-                btn_pnl.BackColor = Color.PowderBlue;
+                btn_pnl.BackColor = Color.FromArgb(119, 186, 27);
             }
             if (!MouseOver)
             {
-                btn_pnl.BackColor = Color.CadetBlue;
+                btn_pnl.BackColor = Color.FromArgb(119, 186, 27);      
             }
         }
 
@@ -184,6 +184,11 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
         private void btn_pnl_MouseLeave(object sender, EventArgs e)
         {
             UI_Controls(false);
+        }
+
+        private void btn_pnl_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -75,10 +75,11 @@
             dgv_Users.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_Users.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_Users.EnableHeadersVisualStyles = false;
+            dgv_Users.GridColor = Color.White;
             dgv_Users.Location = new Point(59, 161);
             dgv_Users.Name = "dgv_Users";
             dgv_Users.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = Color.LightGray;
+            dataGridViewCellStyle2.BackColor = Color.WhiteSmoke;
             dataGridViewCellStyle2.ForeColor = Color.Gray;
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(173, 223, 136);
             dataGridViewCellStyle2.SelectionForeColor = Color.Black;

@@ -39,9 +39,9 @@
             pbox_btn_EditItem.BackColor = Color.Transparent;
             pbox_btn_EditItem.Image = (Image)resources.GetObject("pbox_btn_EditItem.Image");
             pbox_btn_EditItem.InitialImage = null;
-            pbox_btn_EditItem.Location = new Point(646, 0);
+            pbox_btn_EditItem.Location = new Point(658, 0);
             pbox_btn_EditItem.Name = "pbox_btn_EditItem";
-            pbox_btn_EditItem.Size = new Size(44, 42);
+            pbox_btn_EditItem.Size = new Size(32, 40);
             pbox_btn_EditItem.TabIndex = 1;
             pbox_btn_EditItem.TabStop = false;
             pbox_btn_EditItem.Click += pbox_btn_EditItem_Click;
@@ -49,12 +49,13 @@
             // txt_itemName
             // 
             txt_itemName.AutoSize = true;
-            txt_itemName.Font = new Font("Gadugi", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txt_itemName.Location = new Point(10, 10);
+            txt_itemName.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txt_itemName.Location = new Point(4, 10);
             txt_itemName.Name = "txt_itemName";
-            txt_itemName.Size = new Size(79, 19);
+            txt_itemName.Size = new Size(79, 20);
             txt_itemName.TabIndex = 0;
             txt_itemName.Text = "ItemName";
+            txt_itemName.Click += txt_itemName_Click;
             // 
             // UCM_IndicatorItem
             // 

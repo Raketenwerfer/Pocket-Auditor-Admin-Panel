@@ -119,7 +119,7 @@
             // 
             // btn_AddSubIndicator
             // 
-            btn_AddSubIndicator.BackColor = Color.FromArgb(119, 186, 27);
+            btn_AddSubIndicator.BackColor = Color.Transparent;
             btn_AddSubIndicator.Image = Properties.Resources.icons8_add_new_20;
             btn_AddSubIndicator.Location = new Point(515, 66);
             btn_AddSubIndicator.Name = "btn_AddSubIndicator";
@@ -131,6 +131,7 @@
             // btn_lbl_SC
             // 
             btn_lbl_SC.AutoSize = true;
+            btn_lbl_SC.BackColor = Color.Silver;
             btn_lbl_SC.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_lbl_SC.Location = new Point(6, 5);
             btn_lbl_SC.Name = "btn_lbl_SC";
