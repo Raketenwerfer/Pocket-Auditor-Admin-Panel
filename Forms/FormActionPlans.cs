@@ -368,7 +368,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                 string chap = group.Key.ChapterName;
                 int categoryID = group.Key.CategoryID_fk;
                 string cat = group.Key.CategoryTitle;
-                double totalScore = group.Sum(scoreTable => scoreTable.ItemChecked == "IND" ? scoreTable.IND_ScoreValue : (scoreTable.SUBIND_ScoreValue ?? 0));
+                double totalScore = group.Sum(scoreTable => scoreTable.ItemChecked == "IND" ?
+                    scoreTable.IND_ScoreValue : (scoreTable.SUBIND_ScoreValue ?? 0));
 
 
                 categoryScores.Add(new CategoryScore
@@ -416,6 +417,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     // Export the PDF with the selected file path
                     ExportService.ExportToPdf(filePath, Export);
                 }
+                MessageBox.Show("Export finished!");
             }
             catch (Exception ex)
             {
@@ -423,7 +425,7 @@ namespace Pocket_Auditor_Admin_Panel.Forms
             }
             finally
             {
-                MessageBox.Show("Export finished!");
+               
             }
 
         }

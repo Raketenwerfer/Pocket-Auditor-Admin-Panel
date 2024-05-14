@@ -55,8 +55,8 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
                 conn.Open();
 
                 // Step 1: Insert the indicator into the Indicators table
-                string insertIndicatorQuery = "INSERT INTO indicators (ScoreValue, Indicator, IndicatorStatus, IndicatorType) " +
-                                              "VALUES (@ScoreValue, @Indicator, @IndicatorStatus, @IndicatorType)";
+                string insertIndicatorQuery = "INSERT INTO indicators (ScoreValue, Indicator, IndicatorStatus) " +
+                                              "VALUES (@ScoreValue, @Indicator, @IndicatorStatus)";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertIndicatorQuery, conn))
                 {

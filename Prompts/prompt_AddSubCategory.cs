@@ -37,6 +37,9 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
         {
             using MySqlConnection conn = dbInit.GetConnection();
 
+            // 3 Steps, Insert SC > Get SC-ID > Associate SC-ID to C-ID
+            // All using the same conn
+
             try
             {
                 conn.Open();

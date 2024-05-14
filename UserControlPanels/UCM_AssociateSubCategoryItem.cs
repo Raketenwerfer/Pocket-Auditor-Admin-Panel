@@ -93,7 +93,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             {
                 conn.Open();
 
-                string insertAssociationQuery = "INSERT INTO Associate_Indicator_to_SubCategory (IndicatorID_fk, SubCategoryID_fk) " +
+                string insertAssociationQuery = "INSERT INTO associate_indicator_to_subcategory (IndicatorID_fk, SubCategoryID_fk) " +
                                                "VALUES (@IndicatorID, @SubCategoryID)";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertAssociationQuery, conn))
@@ -122,7 +122,7 @@ namespace Pocket_Auditor_Admin_Panel.UserControlPanels
             {
                 conn.Open();
 
-                string deleteAssociationQuery = "DELETE FROM Associate_Indicator_to_SubCategory " +
+                string deleteAssociationQuery = "DELETE FROM associate_indicator_to_subcategory " +
                                                 "WHERE IndicatorID_fk = @IndicatorID AND SubCategoryID_fk = @SubCategoryID";
 
                 using (MySqlCommand cmd = new MySqlCommand(deleteAssociationQuery, conn))

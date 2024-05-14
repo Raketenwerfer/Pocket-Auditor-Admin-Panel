@@ -55,7 +55,7 @@ namespace Pocket_Auditor_Admin_Panel.Prompts
             {
                 conn.Open();
 
-                string insertSubindCommand = "INSERT INTO SubIndicators (SubIndicator, SubIndicatorType, SubIndicatorStatus, ScoreValue) " +
+                string insertSubindCommand = "INSERT INTO subindicators (SubIndicator, SubIndicatorType, SubIndicatorStatus, ScoreValue) " +
                                              "VALUES (@SubIndicator, @SubIndicatorType, @SubIndicatorStatus, @ScoreValue)";
 
                 using (MySqlCommand cmd = new MySqlCommand(insertSubindCommand, conn))

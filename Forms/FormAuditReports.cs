@@ -102,7 +102,8 @@ namespace Pocket_Auditor_Admin_Panel.Forms
                     {
                         indScore += item.IND_ScoreValue;
 
-                        var subIndItem = group.FirstOrDefault(subItem => subItem.ItemChecked == "SUBIND" && subItem.SubIndicatorID_fk == item.SubIndicatorID_fk);
+                        var subIndItem = group.FirstOrDefault(subItem => subItem.ItemChecked == "SUBIND" &&
+                        subItem.SubIndicatorID_fk == item.SubIndicatorID_fk);
                         if (subIndItem != null)
                         {
                             subIndScore += subIndItem.SUBIND_ScoreValue;
